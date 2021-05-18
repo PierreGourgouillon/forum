@@ -5,32 +5,31 @@ import _ "github.com/go-sql-driver/mysql"
 import "fmt"
 
 func main() {
-	createDB("AHA")
+	createAndSelectDB("testD")
 }
 
-func createDB(name string) {
-	// Configure the database connection (always check errors)
-	db, err := sql.Open("mysql", "root:my-secret-pw@(127.0.0.1:49153)/")
+func createAndSelectDB(name string) {
+	//Connexion au docker sql en root
+	db, err := sql.Open("mysql", "root:pierre@(127.0.0.1:49153)/")
 
 	if err != nil {
-		panic(err.Error()) // Just for example purpose. You should use proper error handling instead of panic
+		panic(err.Error())
 	}
 	defer db.Close()
 
-	a, err := db.Exec("CREATE DATABASE " + name)
+	//Création de bdla
+	_, error := db.Exec("CREATE DATABASE " + name)
 
-	fmt.Println(a)
-
-	if err != nil {
+	if error != nil {
 		panic(err)
+	} else {
+		fmt.Println("DATABASE " + name + " is create")
 	}
 
-	_, b := db.Query("SHOW TABLES")
-	fmt.Println(b)
-
+	//Selectionne la bd
 	_, err = db.Exec("USE " + name)
 	if err != nil {
-		fmt.Println(err.Error())
+		panic(err)
 	} else {
 		fmt.Println("DB selected successfully..")
 	}
