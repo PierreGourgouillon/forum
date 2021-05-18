@@ -1,0 +1,42 @@
+//Créer sa font-family pour la montserrat
+
+@font-face {
+    font-family: "montserrat";
+    src: url('Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+//Créer sa font-family pour l'open sans semibold pour les textes
+
+@font-face {
+    font-family: "openTexte";
+    src: url('open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+//Créer sa font-family pour l'open sans semibold pour les titres
+
+@font-face {
+    font-family: "openTitre";
+    src: url('open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: bold;
+}
+
+//Pour appeler votre font voulu dans le css
+    font-family: "nom de la font family"; //il faut mettre les guillemets
+    ex -> font-family: "montserrat";
+
+//variables couleurs
+:root {
+    --color-fond-ligt-mode: #E0E0E0;
+    --color-fond-dark-mode: #15202B;
+    --color-box-dark-mode: #1C2834;
+    --color-purple: #794BC4;
+}
+
+//Pour utiliser la couleur vouludans le css
+    color: var(nom de la variable de la couleur)
+    ex -> color: var(--color-purple);
