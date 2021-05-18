@@ -1,0 +1,145 @@
+/*faire en sorte que les images ne change pas de dimension quand on change les dimensions de la*/
+/*changer la police*/
+
+html { overflow-y: hidden;
+    overflow-x: hidden; } 
+
+body{
+    background: #15202B;
+    display: flex;
+}
+
+#logo{
+    width: 12%;
+    height: 23%;
+
+    position: absolute;
+    left: 44.5%;
+}
+
+#cadre{
+    width: 35%;
+    height: 85%;
+
+    position: absolute;
+    top :7%;
+    left: 33%;
+    text-align: center;
+    
+    padding-top: 10%;
+}
+#general{
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:100px;
+}
+
+
+
+.field{
+    position: relative;
+    height: 10%;
+}
+
+.mdp{
+    position:relative;
+    height: 10%;
+    left :3.3%;
+}
+
+.test{
+    position: relative;
+    /* border: none; */
+    width: 45%;
+    height: 45px;
+    padding-left :20px;
+}
+  
+.test2{
+    /* border: none; */
+    width: 14%;
+    height: 45px;
+    padding-left :10px;
+}
+
+.naissance{
+    position: relative;
+    width: 15.25%;
+    height: 45px;
+
+    padding-left :10px;  
+    cursor: pointer;  
+    
+}
+
+#oeil1{
+    position: relative;
+    width: 6%;
+    height: 45%;
+    left:-8%;
+    top:18%;
+    opacity: 80%;
+    cursor: pointer;
+}
+#oeil1:hover{
+    opacity: 100%;
+}
+
+#oeil2{
+    position: relative;
+    width: 6%;
+    height: 45%;
+    left:-8%;
+    top:20%;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+#oeil2:hover{
+    opacity: 100%;
+}
+
+
+
+
+
+
+#bt{
+    position : absolute;
+    left: 25%;
+    top: 58%;
+    
+    border:none;
+    background: #794BC4;
+    color:white;
+    border-radius: 40px;
+
+    width:50%;
+    height: 6%;
+    cursor: pointer;
+}
+#bt:hover{
+    background: #5618b9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
