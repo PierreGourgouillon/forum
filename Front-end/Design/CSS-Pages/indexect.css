@@ -2,7 +2,8 @@
 /*changer la police*/
 
 html { overflow-y: hidden; 
-    overflow-x: hidden;} 
+    overflow-x: hidden;
+} 
 
 body{
     background: #15202B;
@@ -16,13 +17,11 @@ body{
     position: absolute;
     left: 44.5%;
     top: -3%;
-    
 }
 
 #cadre{
     width: 35%;
     height: 85%;
-
     position: absolute;
     top :7%;
     left: 33%;
@@ -89,6 +88,16 @@ body{
 }
 #bt:hover{
     background: #5618b9;
+}
+
+/*---*/
+
+#retour{
+    position: absolute;
+    left:96%;
+    top: 93%;
+    width: 3%;
+    aspect-ratio: 1/1;
 }
 
 
