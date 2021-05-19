@@ -1,18 +1,13 @@
-package main
+package database
 
 import (
 	"database/sql"
+	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"strconv"
 )
-import _ "github.com/go-sql-driver/mysql"
-import "fmt"
 
-func main() {
-	createAndSelectDB("Forum")
-	createTable("Forum")
-}
-
-func createAndSelectDB(name string) {
+func CreateAndSelectDB(name string) {
 	//Connexion au docker sql en root
 	db, err := sql.Open("mysql", "root:pierre@(127.0.0.1:49153)/")
 
@@ -39,7 +34,7 @@ func createAndSelectDB(name string) {
 	}
 }
 
-func createTable(nameDb string) {
+func CreateTable(nameDb string) {
 	//Connexion à la bd sur le docker
 	db, err := sql.Open("mysql", "root:pierre@(127.0.0.1:49153)/"+nameDb)
 
