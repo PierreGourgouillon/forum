@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
@@ -21,8 +22,7 @@ func StartServer() {
 		port = "8080"
 	}
 	fmt.Println(port)
-	http.ListenAndServe(":"+port, router)
-	fmt.Println("StartServer is Up !")
+	http.ListenAndServe(":"+port, csrf.Protect([]byte("32-byte-long-auth-key"))(router))
 }
 
 func requestHTTP(router *mux.Router) {
@@ -42,7 +42,7 @@ func staticFile(router *mux.Router) {
 
 func homeRoute(w http.ResponseWriter, r *http.Request) {
 
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/demarrage.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -53,7 +53,7 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/connect.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -64,7 +64,7 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/inscription.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
 
 	if err != nil {
 		fmt.Println(err)
