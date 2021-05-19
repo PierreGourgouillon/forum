@@ -1,6 +1,8 @@
 /*faire en sorte que les images ne change pas de dimension quand on change les dimensions de la fenetre*/
 /*changer la police*/
 
+
+
 html { overflow-y: hidden; 
     overflow-x: hidden;
 } 
@@ -86,6 +88,9 @@ body{
     background: #794BC4;
     color:white;
     border-radius: 40px;
+
+    font-family: "montserrat";
+    font-size: 130%;
 
     width:50%;
     height: 6%;

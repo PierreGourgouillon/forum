@@ -1,7 +1,27 @@
 /* police */
 
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "openTexte";
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "openTitre";
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
 html { overflow-y: hidden; 
     overflow-x: hidden;
+    font-family: "montserrat";
 } 
 
 body{
@@ -49,7 +69,7 @@ h1{
     top:15%;
     left:10%;
     color: white;
-    font-size: 280%;
+    font-size: 270%;
 }
 
 #auMax{
@@ -88,6 +108,9 @@ h2{
     background: #794BC4;
     color:white;
     border-radius: 40px;
+    
+    font-family: "montserrat";
+    font-size: 130%;
 
     width: 33%;
     height: 100%;
@@ -105,6 +128,9 @@ h2{
     text-decoration:white;
     border: 3px solid #794BC4;
     border-radius: 40px;
+
+    font-family: "montserrat";
+    font-size: 130%;
 
     width: 33%;
     height: 100%;

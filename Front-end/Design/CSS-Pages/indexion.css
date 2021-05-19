@@ -70,6 +70,10 @@ body{
 
     padding-left :10px;  
     cursor: pointer;  
+
+    font-family: "montserrat";
+    font-size: 70%;
+    color:rgb(94, 94, 94);
     
 }
 
@@ -112,6 +116,9 @@ body{
     background: #794BC4;
     color:white;
     border-radius: 40px;
+
+    font-family: "montserrat";
+    font-size: 130%;
 
     width:50%;
     height: 6%;
