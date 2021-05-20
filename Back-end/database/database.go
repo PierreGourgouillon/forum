@@ -9,7 +9,7 @@ import (
 
 func CreateAndSelectDB(name string) {
 	//Connexion au docker sql en root
-	db, err := sql.Open("mysql", "root:pierre@(127.0.0.1:49153)/")
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/")
 
 	if err != nil {
 		panic(err.Error())
@@ -36,7 +36,7 @@ func CreateAndSelectDB(name string) {
 
 func CreateTable(nameDb string) {
 	//Connexion à la bd sur le docker
-	db, err := sql.Open("mysql", "root:pierre@(127.0.0.1:49153)/"+nameDb)
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/"+nameDb)
 
 	if err != nil {
 		panic(err.Error())

@@ -19,7 +19,7 @@ func StartServer() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		port = "8080"
+		port = "8088"
 	}
 	fmt.Println(port)
 	http.ListenAndServe(":"+port, csrf.Protect([]byte("32-byte-long-auth-key"))(router))
