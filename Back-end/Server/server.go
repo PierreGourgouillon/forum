@@ -31,6 +31,8 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/", homeRoute)
 	router.HandleFunc("/login/", loginRoute)
 	router.HandleFunc("/register/", registerRoute)
+	router.HandleFunc("/home/", newsRoute)
+	router.HandleFunc("/settings/", settingsRoute)
 }
 
 func staticFile(router *mux.Router) {
@@ -65,6 +67,28 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func newsRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func settingsRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/settingsPage.html")
 
 	if err != nil {
 		fmt.Println(err)

@@ -1,0 +1,93 @@
+body, html{
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    border: 1px solid black;
+    position: relative;
+    width: 26%;
+    height: 100vh;
+}
+
+.container-header{
+    border: 1px solid red;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    height: 100%;
+}
+
+.container-menu{
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: start;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.logo{
+    border: 1px solid blue;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.container-list{
+    border: 1px solid yellowgreen;
+}
+
+.container-link-menu{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.container-link-menu:hover .container-inlink{
+    background-color: deeppink;
+    border-radius: 100px;
+    color: pink;
+}
+
+.container-inlink {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container-inlink div{
+    height: 100%;
+}
+
+.container-inlink span{
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 6px;
+    margin-left: 20px;
+    margin-right: 16px;
+}
+
+img{
+    width: 35px;
+    height: 35px;
+}
+
