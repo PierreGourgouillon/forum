@@ -2,11 +2,14 @@ package server
 
 import (
 	"fmt"
-	"github.com/gorilla/csrf"
-	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
 	"os"
+
+	"github.com/forum/Back-end/authentification"
+	"github.com/forum/Back-end/structs"
+	"github.com/gorilla/csrf"
+	"github.com/gorilla/mux"
 )
 
 func StartServer() {
@@ -71,6 +74,36 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
+	}
+
+	userRegister := structs.Register{
+		Pseudo:         r.FormValue("username"),
+		Email:          r.FormValue("email"),
+		MotDePasse:     r.FormValue("password"),
+		MotDePasseConf: r.FormValue("confirmationpassword"),
+		Day:            r.FormValue("aniversaire_jour"),
+		Month:          r.FormValue("anniversaire_mois"),
+		Year:           r.FormValue("anniversaire_ans"),
+	}
+
+	fmt.Println(userRegister)
+
+	if userRegister.Pseudo != "" {
+		success, message := authentification.DoInscription(userRegister)
+		fmt.Println(success)
+		if success {
+			fmt.Println("Un nouvel utilisateur s'est inscrit")
+			tmpl2, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			tmpl2.Execute(w, nil)
+			return
+		} else {
+			fmt.Println(message)
+		}
 	}
 
 	tmpl.Execute(w, nil)
