@@ -65,6 +65,12 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
+	cookieIsSet := readCookie(r, "user-id")
+
+	if !cookieIsSet {
+		setCookie(w, "user-id", "15", "/")
+	}
+
 	tmpl.Execute(w, nil)
 }
 
