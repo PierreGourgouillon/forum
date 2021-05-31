@@ -81,7 +81,7 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(message)
 			ID := database.GetIdByEmail(userLogin.Email)
 			cookie.SetCookie(w, "PioutterID", ID, "/")
-			route(w, r)
+			homeRoute(w, r)
 			return
 		}
 		fmt.Println(message)
