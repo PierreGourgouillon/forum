@@ -165,5 +165,9 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 
 	database.InsertPost(userPost)
 
+	allPosts := database.GetAllPosts()
+
+	fmt.Println(allPosts)
+
 	tmpl.Execute(w, nil)
 }

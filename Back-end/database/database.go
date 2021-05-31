@@ -193,3 +193,27 @@ func InsertPost(post structs.Post) {
 		log.Fatal(error)
 	}
 }
+
+func GetAllPosts() []structs.Post {
+	var allPost []structs.Post
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var post structs.Post
+		rows.Scan(&post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		allPost = append(allPost, post)
+	}
+
+	return allPost
+}
