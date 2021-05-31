@@ -7,6 +7,8 @@ import (
 	"os"
 
 	"github.com/forum/Back-end/authentification"
+	"github.com/forum/Back-end/cookie"
+	"github.com/forum/Back-end/database"
 	"github.com/forum/Back-end/structs"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
@@ -31,10 +33,10 @@ func StartServer() {
 func requestHTTP(router *mux.Router) {
 
 	staticFile(router)
-	router.HandleFunc("/", homeRoute)
+	router.HandleFunc("/", route)
 	router.HandleFunc("/login/", loginRoute)
 	router.HandleFunc("/register/", registerRoute)
-	router.HandleFunc("/home/", newsRoute)
+	router.HandleFunc("/home/", homeRoute)
 	router.HandleFunc("/settings/", settingsRoute)
 }
 
@@ -45,7 +47,7 @@ func staticFile(router *mux.Router) {
 		Handler(http.StripPrefix("/static/", fileServer))
 }
 
-func homeRoute(w http.ResponseWriter, r *http.Request) {
+func route(w http.ResponseWriter, r *http.Request) {
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
@@ -63,6 +65,26 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
+	}
+
+	userLogin := structs.Login{
+		Email:    r.FormValue("email"),
+		Password: r.FormValue("password"),
+	}
+
+	fmt.Println("login ->")
+	fmt.Println(userLogin)
+
+	if userLogin.Email != "" {
+		success, message := authentification.CheckUser(userLogin.Email, userLogin.Password)
+		if success {
+			fmt.Println(message)
+			ID := database.GetIdByEmail(userLogin.Email)
+			cookie.SetCookie(w, "PioutterID", ID, "/")
+			route(w, r)
+			return
+		}
+		fmt.Println(message)
 	}
 
 	tmpl.Execute(w, nil)
@@ -92,14 +114,7 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 		success, message := authentification.DoInscription(userRegister)
 		fmt.Println(success)
 		if success {
-			fmt.Println("Un nouvel utilisateur s'est inscrit")
-			tmpl2, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
-			if err != nil {
-				fmt.Println(err)
-				os.Exit(1)
-			}
-
-			tmpl2.Execute(w, nil)
+			homeRoute(w, r)
 			return
 		} else {
 			fmt.Println(message)
@@ -109,7 +124,7 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func newsRoute(w http.ResponseWriter, r *http.Request) {
+func homeRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil.html")
 
 	if err != nil {
