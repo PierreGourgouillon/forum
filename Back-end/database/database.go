@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"strconv"
 
 	"github.com/forum/Back-end/password"
@@ -92,8 +93,8 @@ user_pseudo VARCHAR(50) NOT NULL,
 user_id INT NOT NULL,
 user_message TEXT NULL,
 post_image BINARY,
-post_date DATE NULL,
-post_hour TIME NOT NULL,
+post_date VARCHAR(15) NULL,
+post_hour VARCHAR(15) NOT NULL,
 post_likes INT NULL,
 post_dislikes INT NULL)`
 
@@ -146,4 +147,49 @@ func InsertNewUser(user structs.Register) {
 	}
 
 	fmt.Println(data)
+}
+
+func GetIdentityUser(valueCookie string) structs.UserIdentity {
+	var idUser int
+	var user structs.UserIdentity
+
+	if valueCookie != "" {
+		var err error
+		idUser, err = strconv.Atoi(valueCookie)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	query := "SELECT user_email, user_pseudo, user_birth FROM userIdentity WHERE user_id= ?"
+	errorDB := db.QueryRow(query, idUser).Scan(&user.Email, &user.Pseudo, &user.Birth)
+
+	if errorDB != nil {
+		log.Fatal(errorDB)
+	}
+
+	user.ID = idUser
+
+	return user
+}
+
+func InsertPost(post structs.Post) {
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	_, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
+
+	if error != nil {
+		log.Fatal(error)
+	}
 }

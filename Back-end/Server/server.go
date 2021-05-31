@@ -2,14 +2,15 @@ package server
 
 import (
 	"fmt"
-	"html/template"
-	"net/http"
-	"os"
-
 	"github.com/forum/Back-end/authentification"
+	"github.com/forum/Back-end/database"
 	"github.com/forum/Back-end/structs"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
+	"html/template"
+	"net/http"
+	"os"
+	"time"
 )
 
 func StartServer() {
@@ -36,6 +37,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/register/", registerRoute)
 	router.HandleFunc("/home/", newsRoute)
 	router.HandleFunc("/settings/", settingsRoute)
+	router.HandleFunc("/test/", testRoute)
 }
 
 func staticFile(router *mux.Router) {
@@ -65,11 +67,13 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	cookieIsSet := readCookie(r, "user-id")
+	cookieIsSet := ReadCookie(r, "user-id")
 
 	if !cookieIsSet {
-		setCookie(w, "user-id", "15", "/")
+		SetCookie(w, "user-id", "15", "/")
 	}
+
+	fmt.Println(ValueCookie(r, "user-id"))
 
 	tmpl.Execute(w, nil)
 }
@@ -133,6 +137,33 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	tmpl.Execute(w, nil)
+}
+
+func testRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	//valueCookie := ValueCookie(r,"user-id")
+	user := database.GetIdentityUser("1")
+	time := time.Now()
+
+	userPost := structs.Post{
+		IdUser:  user.ID,
+		Pseudo:  user.Pseudo,
+		Message: r.FormValue("message"),
+		Date:    time.Format("02-01-2006"),
+		Hour:    time.Format("15:04:05"),
+	}
+
+	fmt.Println("Post : ")
+	fmt.Println(userPost)
+
+	database.InsertPost(userPost)
 
 	tmpl.Execute(w, nil)
 }
