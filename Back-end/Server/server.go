@@ -44,7 +44,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/settings/account/", accountInformations)
 	router.HandleFunc("/settings/account/pseudo/", accountChangePseudo)
 	router.HandleFunc("/settings/account/country/", accountChangeCountry)
-	router.HandleFunc("/settings/account/deactivate/", deactivateAccount)
+	router.HandleFunc("/settings/deactivate/", deactivateAccount)
 
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
