@@ -118,3 +118,13 @@ section{
     padding-bottom: 5px;
     padding-right: 5px;
 }
+
+.textStyle {
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.transition {
+    transition-duration: 0.2s;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage_lightMode.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Header-Footer/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+    <title>Votre compte</title>
+</head>
+<body>
+    <div class="container-body">
+        <header role="banner">
+            <div class="container-header">
+                <div class="container-menu">
+                    <div class="logo"><img src="/static/Design/Images/Logo/pioutter.png"></div>
+                    <div class="container-list">
+                        <nav>
+                            <a class="container-link-menu">
+                                <div class="container-inlink">
+                                    <div><img src="/static/Design/Images/Icon/home.svg"></div>
+                                    <span>Accueil</span>
+                                </div>
+                            </a>
+                            <a class="container-link-menu">
+                                <div class="container-inlink">
+                                    <div><img src="/static/Design/Images/Icon/profile.svg"></div>
+                                    <span>Profil</span>
+                                </div>
+                            </a>
+                            <a class="container-link-menu">
+                                <div class="container-inlink">
+                                    <div><img src="/static/Design/Images/Icon/change_mode.svg"></div>
+                                    <span>Mode Sombre</span>
+                                </div>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="container-profile" style="margin-top: 12px;margin-bottom: 12px;">
+                    <div class="container-prof">
+                        <div class="container-in-profile">
+                            <div class="image-profile container-profile">
+                                <img src="/static/Design/Images/Logo/light_mode.png">
+                            </div>
+                            <div class="pseudo-profile">
+                                <span id="pseudoname">PierreG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="container-main">
+                <section class="globalFLex">
+                    <div class="container-account globalFLex">
+                        <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
+                            <div class="globalFLex" style="flex-direction: row">
+                                <a href="/home/" class="globalFLex" style="justify-content: center;min-width: 50px">
+                                    <div style="height: 52px;justify-content: center" class="globalFLex">
+                                        <img style="height: 25px;width: 25px;padding-left: 5px" class="image" src="/static/Design/Images/Icon/arrow_left_purple.svg">
+                                    </div>
+                                </a>
+
+                                <h2>Votre Compte</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="RowFLex paddingLeft paddingTop transition" id="lineDeactivate" style="border-top: 1px solid black">
+                        <div class="RowFLex">
+                            <div class="RowFLex" style="flex-basis: 48px;margin-right: 12px; justify-content: center;">
+                                <img src="/static/Design/Images/avatar.jpg" style="height: 48px;border-radius: 999px">
+                            </div>
+                            <div class="globalFLex" style="justify-content: center;flex-basis: 0px;flex-grow: 1;">
+                                <div class="globalFLex">
+                                   <span class="textStyle">Pierre</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="globalFLex paddingTop paddingLeft">
+                        <div class="globalFLex">
+                            <span class="textStyle" style="font-size: 20px;font-family: Open-Sans-Extra,Arial">Cela désactivera votre compte</span>
+                        </div>
+                    </div>
+
+                    <div class="globalFLex paddingLeft paddingTop" style="border-top: 1px solid black;">
+                        <div class="globalFLex">
+                            <span class="textStyle" style="font-family: Montserrat-Regular;font-weight: normal;font-size: 13px;">Vous êtes sur le point de commencer le processus de désactivation de votre compte Pioutter. Votre nom d'affichage et votre profil public ne seront plus visibles sur Pioutter.com.</span>
+                        </div>
+                    </div>
+
+                    <div class="globalFLex paddingTop paddingLeft transition" id="deactivateAcc" style="justify-content: center;margin-top: 25px;">
+                        <div class="globalFLex" style="text-align: center">
+                            <form method="get" action="/">
+                                <button value="true" type="submit" id="buttonDeactivAcc" class="textStyle" style="color:rgb(224, 36, 94);font-size: 15px;font-weight: 400;">Désactiver votre compte</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
