@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/settingsPage_lightMode.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage_lightMode.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Header-Footer/header.css" type="text/css">
     <title>Votre Compte</title>
 </head>
 <body>
@@ -12,24 +12,24 @@
     <header role="banner">
         <div class="container-header">
             <div class="container-menu">
-                <div class="logo"><img src="/static/Design/Images/logo_pioutter.png"></div>
+                <div class="logo"><img src="/static/Design/Images/Logo/pioutter.png"></div>
                 <div class="container-list">
                     <nav>
                         <a class="container-link-menu">
                             <div class="container-inlink">
-                                <div><img src="/static/Design/Images/icon_home.svg"></div>
+                                <div><img src="/static/Design/Images/Icon/home.svg"></div>
                                 <span>Accueil</span>
                             </div>
                         </a>
                         <a class="container-link-menu">
                             <div class="container-inlink">
-                                <div><img src="/static/Design/Images/icon_profile.svg"></div>
+                                <div><img src="/static/Design/Images/Icon/profile.svg"></div>
                                 <span>Profil</span>
                             </div>
                         </a>
                         <a class="container-link-menu">
                             <div class="container-inlink">
-                                <div><img src="/static/Design/Images/icon_change_mode.svg"></div>
+                                <div><img src="/static/Design/Images/Icon/change_mode.svg"></div>
                                 <span>Mode Sombre</span>
                             </div>
                         </a>
@@ -40,7 +40,7 @@
                 <div class="container-prof">
                     <div class="container-in-profile">
                         <div class="image-profile container-profile">
-                            <img src="/static/Design/Images/logo_light_mode.png">
+                            <img src="/static/Design/Images/Logo/light_mode.png">
                         </div>
                         <div class="pseudo-profile">
                             <span id="pseudoname">PierreG</span>
@@ -56,20 +56,26 @@
             <section class="globalFLex">
                 <div class="container-account globalFLex">
                     <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
-                        <div class="globalFLex">
+                        <div class="globalFLex" style="flex-direction: row">
+                            <a href="/home/" class="globalFLex" style="justify-content: center;min-width: 50px">
+                                <div style="height: 52px;justify-content: center" class="globalFLex">
+                                    <img style="height: 25px;width: 25px;padding-left: 5px" class="image" src="/static/Design/Images/Icon/arrow_left_purple.svg">
+                                </div>
+                            </a>
+
                             <h2>Votre Compte</h2>
                         </div>
                     </div>
                 </div>
                 <div class="list-settings globalFLex">
                     <div class="explication-settings">
-                        <span>See information about your account, download an archive of your data, or learn about your<br>account deactivation options</span>
+                        <span>Consultez les informations sur votre compte ou découvrez les options <br> de désactivation de votre compte</span>
                     </div>
 
-                    <a href="" class="globalFLex link-in-main">
+                    <a href="/settings/account/" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
-                                <img src="/static/Design/Images/icon_profile.svg">
+                                <img src="/static/Design/Images/Icon/profile.svg">
                             </div>
                             <div class="globalFLex" style="flex-grow: 1;flex-shrink: 1;">
                                 <div class="style-link">
@@ -79,96 +85,43 @@
                                     <span>Consultez les informations de votre compte telles que votre numéro de téléphone et votre adresse e-mail.</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/icon_arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
                     <a href="/settings/password/" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
-                                <img src="/static/Design/Images/icon_profile.svg">
+                                <img src="/static/Design/Images/Icon/password.svg">
                             </div>
                             <div class="globalFLex" style="flex-grow: 1;flex-shrink: 1;">
                                 <div class="style-link">
-                                    <span>Changez votre mot de passe</span>
+                                    <span>Changer votre mot de passe</span>
                                 </div>
                                 <div class="style-link" style="font-size: 13px;line-height: 16px">
                                     <span>Changez votre mot de passe à tout moment.</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/icon_arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
                     <a href="" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
-                                <img src="/static/Design/Images/icon_profile.svg">
+                                <img src="/static/Design/Images/Icon/desactivate_account.svg">
                             </div>
                             <div class="globalFLex" style="flex-grow: 1;flex-shrink: 1;">
                                 <div class="style-link">
-                                    <span>Désactivez votre compte</span>
+                                    <span>Désactiver votre compte</span>
                                 </div>
                                 <div class="style-link" style="font-size: 13px;line-height: 16px">
                                     <span>Désactiver ou supprimer votre compte</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/icon_arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
                         </div>
                     </a>
-
-                    <a href="" class="globalFLex link-in-main">
-                        <div class="container-link-main globalFLex">
-                            <div class="container-link-icon globalFLex">
-                                <img src="/static/Design/Images/icon_profile.svg">
-                            </div>
-                            <div class="globalFLex" style="flex-grow: 1;flex-shrink: 1;">
-                                <div class="style-link">
-                                    <span>Informations sur le compte</span>
-                                </div>
-                                <div class="style-link" style="font-size: 13px;line-height: 16px">
-                                    <span>Vous pouvez voir vos informations sur votre compte</span>
-                                </div>
-                            </div>
-                            <img src="/static/Design/Images/icon_arrow_right.svg" style="height: 29px;width: 29px;">
-                        </div>
-                    </a>
-
-                    <a href="" class="globalFLex link-in-main">
-                        <div class="container-link-main globalFLex">
-                            <div class="container-link-icon globalFLex">
-                                <img src="/static/Design/Images/icon_profile.svg">
-                            </div>
-                            <div class="globalFLex" style="flex-grow: 1;flex-shrink: 1;">
-                                <div class="style-link">
-                                    <span>Informations sur le compte</span>
-                                </div>
-                                <div class="style-link" style="font-size: 13px;line-height: 16px">
-                                    <span>Vous pouvez voir vos informations sur votre compte</span>
-                                </div>
-                            </div>
-                            <img src="/static/Design/Images/icon_arrow_right.svg" style="height: 29px;width: 29px;">
-                        </div>
-                    </a>
-
-                    <a href="" class="globalFLex link-in-main">
-                        <div class="container-link-main globalFLex">
-                            <div class="container-link-icon globalFLex">
-                                <img src="/static/Design/Images/icon_profile.svg">
-                            </div>
-                            <div class="globalFLex" style="flex-grow: 1;flex-shrink: 1;">
-                                <div class="style-link">
-                                    <span>Informations sur le compte</span>
-                                </div>
-                                <div class="style-link" style="font-size: 13px;line-height: 16px">
-                                    <span>Vous pouvez voir vos informations sur votre compte</span>
-                                </div>
-                            </div>
-                            <img src="/static/Design/Images/icon_arrow_right.svg" style="height: 29px;width: 29px;">
-                        </div>
-                    </a>
-
-                    <div style="height: 165px"></div>
                 </div>
             </section>
         </div>

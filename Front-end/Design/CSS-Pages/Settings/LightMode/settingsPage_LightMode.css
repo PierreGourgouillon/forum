@@ -40,6 +40,8 @@ main{
 
 .container-main{
     width: 990px;
+    height: 100vh;
+    border-right: 1px solid black;
 }
 
 section{
@@ -80,7 +82,7 @@ section{
 .link-in-main:hover{
     background-color: rgba(121,75,195,0.1);
     transition-duration: 0.2s;
-    color: #794BC4;
+    color: #794bc4;
 }
 
 .link-in-main:hover img{
@@ -109,3 +111,10 @@ section{
     font-family: Montserrat-Regular;
 }
 
+.image:hover{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
