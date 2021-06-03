@@ -48,6 +48,9 @@ func requestHTTP(router *mux.Router) {
 
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
+
+	//Profil Route
+	router.HandleFunc("/profil/", profilRoute)
 }
 
 func staticFile(router *mux.Router) {
@@ -202,6 +205,17 @@ func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
 
 func deactivateAccount(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func profilRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/profilPage.html")
 
 	if err != nil {
 		fmt.Println(err)

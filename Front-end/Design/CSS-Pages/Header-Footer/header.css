@@ -24,28 +24,28 @@ a:hover,a:link,a:visited,a:active{
     text-decoration: none;
 }
 
-header{
+header {
     margin: 0;
     padding: 0;
     display: flex;
     flex-basis: auto;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     flex-grow: 1;
     position: relative;
-    width: 26%;
+    width: 20%; /*26%*/ 
     height: 100vh;
+    border: 1px solid red;
+    border-right: 1px solid rgb(47, 51, 54);
 }
 
 .container-body{
     display: flex;
     height: 100%;
-
 }
 
 .container-header{
-    border-right: 1px solid rgb(47, 51, 54);
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     flex-basis: auto;
