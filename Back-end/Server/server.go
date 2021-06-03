@@ -135,7 +135,7 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func homeRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)

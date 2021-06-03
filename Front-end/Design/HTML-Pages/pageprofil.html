@@ -4,49 +4,11 @@
     <meta charset="UTF-8">
     <title>Accueil / Pioutter</title>
     <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
 </head>
 <body>
-<header role="banner">
-    <div class="container-header">
-        <div class="container-menu">
-            <div class="logo"><img src="/static/Design/Images/logo_pioutter.png"></div>
-            <div class="container-list">
-                <nav>
-                    <a class="container-link-menu">
-                        <div class="container-inlink">
-                            <div><img src="/static/Design/Images/icon_home.svg"></div>
-                            <span>Accueil</span>
-                        </div>
-                    </a>
-                    <a class="container-link-menu">
-                        <div class="container-inlink">
-                            <div><img src="/static/Design/Images/icon_profile.svg"></div>
-                            <span>Profil</span>
-                        </div>
-                    </a>
-                    <a class="container-link-menu">
-                        <div class="container-inlink">
-                            <div><img src="/static/Design/Images/icon_change_mode.svg"></div>
-                            <span>Mode Sombre</span>
-                        </div>
-                    </a>
-                </nav>
-            </div>
-        </div>
-        <div class="container-profile" style="margin-top: 12px;margin-bottom: 12px;">
-            <div class="container-prof">
-                <div class="container-in-profile">
-                    <div class="image-profile container-profile">
-                        <img src="/static/Design/Images/logo_light_mode.png">
-                    </div>
-                    <div class="pseudo-profile">
-                        <span id="pseudoname">PierreG</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+
+{{template "header"}}
 
 <section class="middle">
     <div id="news">Fil d'actualité</div>
