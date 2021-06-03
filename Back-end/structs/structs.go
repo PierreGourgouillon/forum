@@ -9,3 +9,8 @@ type Register struct {
 	Month          string
 	Year           string
 }
+
+type Login struct {
+	Email    string
+	Password string
+}
