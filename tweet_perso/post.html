@@ -7,24 +7,34 @@
     <title>Document</title>
 
     <!-- Style -->
-    <link rel="stylesheet" href="/tweet_perso/postsstyle.css">
+    <link rel="stylesheet" href="/tweet-perso/postsstyle.css">
 </head>
 <body>
     <!-- Add Post -->
     <!-- form ici -->
-    <div id ="ecritureTweet">
-        <!-- form pour ecrire un tweet (changer <div zoneEcriture> par <form zoneEcriture) -->
-        <div class="zoneEcriture" id="zoneEcriture">
-            <textarea id="textArea"  placeholder="Ecrire un nouveau tweet..."></textarea>
+    <!-- <div class="separationGeneral" id="separation1"></div> -->
+    <div class="separationGeneral">
+        <div id ="ecritureTweet">
+            <!-- form pour ecrire un tweet (changer <div zoneEcriture> par <form zoneEcriture) -->
+            <div id="ppZoneEcriture"></div>
+            <div class="zoneEcriture" id="zoneEcriture">
+                <textarea id="textArea" spellcheck="false" placeholder="Ecrire un nouveau tweet..."></textarea>
+            </div>
+            <div id="iconImage"></div>
+            <div id="iconEmoji"></div>
             <input type="submit" id="inputForm"></input>
+            
         </div>
-    </div>
-    <!-- for fermer ici -->
 
-    <!-- Area View Post -->
-    <div id="test">
-        
+        <!-- <div class="separationGeneral" id="separation2"></div> -->
+        <!-- for fermer ici -->
 
+        <!-- Area View Post -->
+        <div id="zonePostTweet">
+            
+
+        </div>
+        <div id="flag"></div>
     </div>
     <script src="scriptpost.js"></script>
 </body>

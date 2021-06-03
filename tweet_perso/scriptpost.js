@@ -1,15 +1,16 @@
 const txt_area = document.getElementById("textArea")
-const btn_txt = document.getElementById("inputForm")
+const inputForm = document.getElementById("inputForm")
 let id_post = 0
 
-btn_txt.addEventListener("click",function(){
+inputForm.addEventListener("click",function(){
     // bien regarder avant de cree si il y a un text
-    CreatNewPost()
-    btn_txt.style.background = "green"
+    inputForm.style.background = "rgb(72, 45, 116)";
     setTimeout(() => {
-        btn_txt.style.background = "rgb(46, 154, 194)"
-    }, 120);
+        inputForm.style.background = "rgb(121, 75, 196)";
         
+        console.log(inputForm.style.background)
+    }, 120);   
+    CreatNewPost()
 })
 
 function CreatNewPost (){
@@ -19,7 +20,7 @@ function CreatNewPost (){
         NewPost = document.createElement('div')
         NewPost.id = `post${id_post}`
         NewPost.classList.add("tweet")
-        document.getElementById('test').appendChild(NewPost)
+        document.getElementById('zonePostTweet').appendChild(NewPost)
 
             /*div image profile*/
             let pp
@@ -38,7 +39,7 @@ function CreatNewPost (){
             let logo
             logo= document.createElement('img')
             logo.classList.add("logo")
-            logo.src="/tweet_perso/img/piout.png"
+            logo.src="/tweet-perso/img/piout.png"
             document.getElementById(NewPost.id).appendChild(logo)
 
             /*div contenue du tweet*/
@@ -58,7 +59,7 @@ function CreatNewPost (){
             let like
             like= document.createElement('img')
             like.classList.add("like")
-            like.src="/tweet_perso/img/iconCoeurLike.png"
+            like.src="/tweet-perso/img/iconCoeurLike.png"
             like.id = `post${id_post}`
             document.getElementById(NewPost.id).appendChild(like)
 
@@ -67,12 +68,13 @@ function CreatNewPost (){
             let commentaire
             commentaire= document.createElement('img')
             commentaire.classList.add("commentaire")
-            commentaire.src="/tweet_perso/img/comments.png"
+            commentaire.src="/tweet-perso/img/comments.png"
             commentaire.id = `post${id_post}`
             document.getElementById(NewPost.id).appendChild(commentaire)
 
         id_post ++
     }
+    txt_area.value = ""
 }
 
 
