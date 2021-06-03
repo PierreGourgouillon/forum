@@ -33,8 +33,9 @@ header{
     align-items: flex-end;
     flex-grow: 1;
     position: relative;
-    width: 26%;
+    width: 20%;
     height: 100vh;
+    border-right: 1px solid rgb(47, 51, 54);
 }
 
 .container-body{
@@ -44,8 +45,7 @@ header{
 }
 
 .container-header{
-    border-right: 1px solid rgb(47, 51, 54);
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     flex-basis: auto;
@@ -86,7 +86,7 @@ header{
 .container-link-menu{
     margin-top: 10px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     cursor: pointer;
 }
 
