@@ -6,19 +6,48 @@
     <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
 </head>
 <body>
-<section class="left">
-    <img id="logo" src="/static/Design/Images/logo_light_mode.png"></img>
-    <div class="toolbox">
-        <a class="home" href="/home">Accueil</a>
-        <a class="profil" href="/profil">Profil</a>
-        <a class="option" href="/option">Option</a>
-        <a class="darkmode" href="/darkmode">Mode Sombre</a>
+<header role="banner">
+    <div class="container-header">
+        <div class="container-menu">
+            <div class="logo"><img src="/static/Design/Images/logo_pioutter.png"></div>
+            <div class="container-list">
+                <nav>
+                    <a class="container-link-menu">
+                        <div class="container-inlink">
+                            <div><img src="/static/Design/Images/icon_home.svg"></div>
+                            <span>Accueil</span>
+                        </div>
+                    </a>
+                    <a class="container-link-menu">
+                        <div class="container-inlink">
+                            <div><img src="/static/Design/Images/icon_profile.svg"></div>
+                            <span>Profil</span>
+                        </div>
+                    </a>
+                    <a class="container-link-menu">
+                        <div class="container-inlink">
+                            <div><img src="/static/Design/Images/icon_change_mode.svg"></div>
+                            <span>Mode Sombre</span>
+                        </div>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="container-profile" style="margin-top: 12px;margin-bottom: 12px;">
+            <div class="container-prof">
+                <div class="container-in-profile">
+                    <div class="image-profile container-profile">
+                        <img src="/static/Design/Images/logo_light_mode.png">
+                    </div>
+                    <div class="pseudo-profile">
+                        <span id="pseudoname">PierreG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="id">
-        <img class="avatar" src="/static/Design/Images/avatar.jpg">
-        <p class="name">Michel de la Compta</p>
-    </div>
-</section>
+</header>
+
 <section class="middle">
     <div id="news">Fil d'actualité</div>
     <div class="newpost">
@@ -29,6 +58,7 @@
             <button id="publish">Publier</button>
         </div>
     </div>
+
     <div class="post">
         <img class="avatar" src="/static/Design/Images/avatar.jpg">
         <div class="content">
@@ -98,9 +128,15 @@
         </button>
     </div>
 </section>
-<section class="right">
-    <input class="searchbar" type="text" placeholder="Rechercher...">
-    <div class="filter">Filtrer les posts</div>
-</section>
+
+<footer role="banner">
+    <div class="container-footer">
+        <div class="container-tools">
+            <input class="container-searchbar" type="text" placeholder="Rechercher...">
+            <div class="container-filter">Filtrer les posts</div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
