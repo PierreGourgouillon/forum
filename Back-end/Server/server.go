@@ -146,7 +146,7 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/settingsPage.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/settingsPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -157,7 +157,7 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/password.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/password.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -168,7 +168,7 @@ func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func accountInformations(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/accountInformations.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/accountInformations.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -179,7 +179,7 @@ func accountInformations(w http.ResponseWriter, r *http.Request) {
 }
 
 func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changePseudo.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changePseudo.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -190,7 +190,7 @@ func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
 }
 
 func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changeCountry.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changeCountry.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -201,7 +201,7 @@ func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
 }
 
 func deactivateAccount(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
