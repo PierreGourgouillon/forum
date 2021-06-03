@@ -33,11 +33,21 @@ func StartServer() {
 func requestHTTP(router *mux.Router) {
 
 	staticFile(router)
+	//Authentification Route
 	router.HandleFunc("/", route)
 	router.HandleFunc("/login/", loginRoute)
 	router.HandleFunc("/register/", registerRoute)
-	router.HandleFunc("/home/", homeRoute)
+
+	//settings Route
 	router.HandleFunc("/settings/", settingsRoute)
+	router.HandleFunc("/settings/password/", changePasswordRoute)
+	router.HandleFunc("/settings/account/", accountInformations)
+	router.HandleFunc("/settings/account/pseudo/", accountChangePseudo)
+	router.HandleFunc("/settings/account/country/", accountChangeCountry)
+	router.HandleFunc("/settings/deactivate/", deactivateAccount)
+
+	//Home Route
+	router.HandleFunc("/home/", homeRoute)
 }
 
 func staticFile(router *mux.Router) {
@@ -136,7 +146,62 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/settingsPage.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/settingsPage.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/password.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func accountInformations(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/accountInformations.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changePseudo.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changeCountry.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func deactivateAccount(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html")
 
 	if err != nil {
 		fmt.Println(err)
