@@ -6,18 +6,18 @@
 </head>
 <body>
 
-<form method="post" onsubmit="fe()">
-    <label>Message</label>
-    <input type="text" name="message">
+<label>Message</label>
+<input type="text" id="postMessage">
+<button onclick="fe()">Clique ici batard</button>
 
-    <button type="submit">click fdp</button>
-</form>
+<p id="test" style="color: black"></p>
 
 <script>
 
     function fe(){
 
-        let valueCookie = document.cookie("")
+        let input = document.getElementById("postMessage");
+        let t = document.getElementById("test")
 
             fetch("/post/", {
                 method: 'POST',
@@ -25,19 +25,24 @@
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id : 1,
                     pseudo: "pierre",
-                    message: "salut je m'appelle Pierre",
+                    message: input.value,
                     like: 0,
                     dislike: 0
                 })
             })
                 .then((response) => {
+                    input.value = ""
                     return response.json()
                 })
                 .then((res) => {
                     console.log(res)
                 })
+            .catch((error)=>{
+                input.value = ""
+                alert(`Un problème est survenue : ${error.message}`)
+            })
+
     }
 
 

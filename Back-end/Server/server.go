@@ -9,8 +9,10 @@ import (
 	"github.com/gorilla/mux"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -185,6 +187,13 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
+	valueCookie, err := strconv.Atoi(ValueCookie(r, "user-id"))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	post.IdUser = valueCookie
 	post.Date = time.Format("02-01-2006")
 	post.Hour = time.Format("15:04:05")
 
@@ -192,7 +201,8 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	database.InsertPost(&post)
 
-	json.NewEncoder(w).Encode(post)
+	jsonPost, _ := json.Marshal(post)
+	w.Write(jsonPost)
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {

@@ -21,7 +21,7 @@ type UserIdentity struct {
 }
 
 type Post struct {
-	IdUser     int      `json:"id"`
+	IdUser     int
 	Pseudo     string   `json:"pseudo"`
 	Message    string   `json:"message"`
 	Categories []string `json:"categories"`
