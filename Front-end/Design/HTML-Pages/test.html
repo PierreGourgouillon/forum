@@ -6,12 +6,41 @@
 </head>
 <body>
 
-<form>
+<form method="post" onsubmit="fe()">
     <label>Message</label>
     <input type="text" name="message">
 
-    <button type="submit">Click</button>
+    <button type="submit">click fdp</button>
 </form>
 
+<script>
+
+    function fe(){
+
+        let valueCookie = document.cookie("")
+
+            fetch("/post/", {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id : 1,
+                    pseudo: "pierre",
+                    message: "salut je m'appelle Pierre",
+                    like: 0,
+                    dislike: 0
+                })
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((res) => {
+                    console.log(res)
+                })
+    }
+
+
+</script>
 </body>
 </html>

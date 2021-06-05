@@ -21,12 +21,12 @@ type UserIdentity struct {
 }
 
 type Post struct {
-	IdUser     int
-	Pseudo     string
-	Message    string
-	Categories []string
+	IdUser     int      `json:"id"`
+	Pseudo     string   `json:"pseudo"`
+	Message    string   `json:"message"`
+	Categories []string `json:"categories"`
 	Date       string
 	Hour       string
-	Like       int
-	Dislike    int
+	Like       int `json:"like"`
+	Dislike    int `json:"dislike"`
 }

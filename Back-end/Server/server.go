@@ -1,13 +1,14 @@
 package server
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/forum/Back-end/authentification"
 	"github.com/forum/Back-end/database"
 	"github.com/forum/Back-end/structs"
-	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
@@ -16,7 +17,7 @@ import (
 func StartServer() {
 
 	fmt.Println("StartServer loading...")
-	router := mux.NewRouter()
+	router := mux.NewRouter().StrictSlash(true)
 
 	requestHTTP(router)
 
@@ -26,7 +27,7 @@ func StartServer() {
 		port = "8088"
 	}
 	fmt.Println(port)
-	http.ListenAndServe(":"+port, csrf.Protect([]byte("32-byte-long-auth-key"))(router))
+	http.ListenAndServe(":"+port, router)
 }
 
 func requestHTTP(router *mux.Router) {
@@ -38,6 +39,8 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/home/", newsRoute)
 	router.HandleFunc("/settings/", settingsRoute)
 	router.HandleFunc("/test/", testRoute)
+
+	router.HandleFunc("/post/", createPost).Methods("POST")
 }
 
 func staticFile(router *mux.Router) {
@@ -149,7 +152,7 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 	//valueCookie := ValueCookie(r,"user-id")
-	user := database.GetIdentityUser("1")
+	/*user := database.GetIdentityUser("1")
 	time := time.Now()
 
 	userPost := structs.Post{
@@ -163,11 +166,42 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Post : ")
 	fmt.Println(userPost)
 
-	database.InsertPost(userPost)
+	database.InsertPost(&userPost)
 
 	allPosts := database.GetAllPosts()
 
-	fmt.Println(allPosts)
+	fmt.Println(allPosts)*/
 
 	tmpl.Execute(w, nil)
+}
+
+func createPost(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var post structs.Post
+
+	unmarshallJSON(r, &post)
+
+	time := time.Now()
+	post.Date = time.Format("02-01-2006")
+	post.Hour = time.Format("15:04:05")
+
+	fmt.Println(post)
+
+	database.InsertPost(&post)
+
+	json.NewEncoder(w).Encode(post)
+}
+
+func unmarshallJSON(r *http.Request, API interface{}) {
+
+	body, err := ioutil.ReadAll(r.Body)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(0)
+	}
+	json.Unmarshal(body, &API)
 }

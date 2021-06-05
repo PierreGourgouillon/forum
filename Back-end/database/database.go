@@ -180,7 +180,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 	return user
 }
 
-func InsertPost(post structs.Post) {
+func InsertPost(post *structs.Post) {
 	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
 	if err != nil {
 		panic(err.Error())
