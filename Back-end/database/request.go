@@ -3,10 +3,11 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/forum/Back-end/password"
-	"github.com/forum/Back-end/structs"
 	"log"
 	"strconv"
+
+	"github.com/forum/Back-end/password"
+	"github.com/forum/Back-end/structs"
 )
 
 func GetEmailList() []string {
@@ -41,9 +42,7 @@ func InsertNewUser(user structs.Register) {
 	defer db.Close()
 
 	user.MotDePasse, _ = password.HashPassword(user.MotDePasse)
-	var date string = user.Year + "-" + user.Month + "-" + user.Day
-	fmt.Println(date)
-	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth) VALUES (?, ?, ?, ?)", user.Email, user.Pseudo, user.MotDePasse, date)
+	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth) VALUES (?, ?, ?, ?)", user.Email, user.Pseudo, user.MotDePasse, user.Birth)
 	if err != nil {
 		return
 	}
