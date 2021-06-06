@@ -55,6 +55,8 @@ func requestHTTP(router *mux.Router) {
 
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
+
+	router.HandleFunc("/user/", register).Methods("POST")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
 	router.HandleFunc("/post/{id}", postDelete).Methods("DELETE")
@@ -276,6 +278,25 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(jsonAllPost)
+}
+
+func register(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var user structs.Register
+	unmarshallJSON(r, &user)
+
+	fmt.Println(user)
+
+	success := authentification.DoInscription(user)
+	if success {
+		ID := database.GetIdByEmail(user.Email)
+		cookie.SetCookie(w, "PioutterID", ID, "/")
+		w.Write([]byte("{\"inscription\":\"true\"}"))
+	} else {
+		w.Write([]byte("{\"inscription\":\"false\"}"))
+	}
 }
 
 func postShow(w http.ResponseWriter, r *http.Request) {

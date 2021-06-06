@@ -8,24 +8,20 @@ import (
 	"github.com/forum/Back-end/structs"
 )
 
-func DoInscription(data structs.Register) (bool, string) {
+func DoInscription(data structs.Register) bool {
 	allEmail := database.GetEmailList()
 
 	fmt.Println(allEmail)
 
 	for _, mail := range allEmail {
 		if data.Email == mail {
-			return false, "Le mail est déja utilisé veuillez en choisir un autre"
+			return false
 		}
-	}
-
-	if data.MotDePasse != data.MotDePasseConf {
-		return false, "Les deux mot de passe ne correspondent pas"
 	}
 
 	database.InsertNewUser(data)
 
-	return true, "Let's Go"
+	return true
 }
 
 func CheckUser(email string, userPassword string) (bool, string) {
