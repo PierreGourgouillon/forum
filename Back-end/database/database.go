@@ -248,7 +248,7 @@ func GetAllPosts() []structs.Post {
 		panic(err.Error())
 	}
 
-	rows, error := db.Query("SELECT user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
+	rows, error := db.Query("SELECT post_id, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
 	defer db.Close()
 
 	if error != nil {
@@ -257,7 +257,8 @@ func GetAllPosts() []structs.Post {
 
 	for rows.Next() {
 		var post structs.Post
-		rows.Scan(&post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		rows.Scan(&post.PostId, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		fmt.Println(post.PostId)
 		allPost = append(allPost, post)
 	}
 

@@ -251,7 +251,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	idPost := database.InsertPost(&post)
 
-	post.PostId = idPost
+	post.PostId = int(idPost)
 
 	fmt.Println("Insertion du post :")
 	fmt.Println(post)
@@ -261,7 +261,18 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 }
 
 func getPost(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
 
+	postArray := database.GetAllPosts()
+
+	jsonAllPost, error := json.Marshal(postArray)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonAllPost)
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {

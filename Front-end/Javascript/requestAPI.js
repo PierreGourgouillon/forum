@@ -32,11 +32,19 @@ function createPost(){
 
 function postIndex(){
 
-
     fetch("/post/", {
         method : "GET",
         headers : {
             "Content-Type" : "application/json"
         }
     })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((res)=>{
+            console.log(res)
+        })
+        .catch((error)=>{
+            alert(error.message)
+        })
 }
