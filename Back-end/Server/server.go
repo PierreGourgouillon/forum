@@ -58,6 +58,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/post/", getPost).Methods("GET")
 
 	router.HandleFunc("/user/", register).Methods("POST")
+	router.HandleFunc("/users/", login).Methods("POST")
 }
 
 func staticFile(router *mux.Router) {
@@ -80,6 +81,11 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
+	if cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/home/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
@@ -87,30 +93,14 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	userLogin := structs.Login{
-		Email:    r.FormValue("email"),
-		Password: r.FormValue("password"),
-	}
-
-	fmt.Println("login ->")
-	fmt.Println(userLogin)
-
-	if userLogin.Email != "" {
-		success, message := authentification.CheckUser(userLogin.Email, userLogin.Password)
-		if success {
-			fmt.Println(message)
-			ID := database.GetIdByEmail(userLogin.Email)
-			cookie.SetCookie(w, "PioutterID", ID, "/")
-			homeRoute(w, r)
-			return
-		}
-		fmt.Println(message)
-	}
-
 	tmpl.Execute(w, nil)
 }
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
+	if cookie.ReadCookie(r, "PioutterID") {
+		cookie.DeleteCookie(r, "PioutterID")
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
 
 	if err != nil {
@@ -262,15 +252,35 @@ func register(w http.ResponseWriter, r *http.Request) {
 	var user structs.Register
 	unmarshallJSON(r, &user)
 
-	fmt.Println(user)
-
 	success := authentification.DoInscription(user)
 	if success {
 		ID := database.GetIdByEmail(user.Email)
 		cookie.SetCookie(w, "PioutterID", ID, "/")
-		w.Write([]byte("{\"inscription\":\"true\"}"))
+		w.Write([]byte("{\"register\":\"true\"}"))
 	} else {
-		w.Write([]byte("{\"inscription\":\"false\"}"))
+		w.Write([]byte("{\"register\":\"false\"}"))
+	}
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var user structs.Login
+
+	unmarshallJSON(r, &user)
+
+	success, message := authentification.CheckUser(user)
+	if success {
+		ID := database.GetIdByEmail(user.Email)
+		cookie.SetCookie(w, "PioutterID", ID, "/")
+		w.Write([]byte("{\"login\":\"login\"}"))
+	} else {
+		if message == "password" {
+			w.Write([]byte("{\"login\":\"password\"}"))
+		} else {
+			w.Write([]byte("{\"login\":\"email\"}"))
+		}
 	}
 }
 
