@@ -10,6 +10,11 @@ type Register struct {
 	Year           string
 }
 
+type Login struct {
+	Email    string
+	Password string
+}
+
 type UserIdentity struct {
 	ID         int
 	Pseudo     string

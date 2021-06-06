@@ -2,6 +2,8 @@ package server
 
 import (
 	"fmt"
+	"github.com/forum/Back-end/password"
+	"log"
 	"net/http"
 )
 
@@ -16,7 +18,7 @@ func SetCookie(w http.ResponseWriter, nameCookie, valueCookie, path string) {
 	fmt.Println("Le cookie " + nameCookie + " a été créé !")
 }
 
-func ReadCookie(r *http.Request, nameCookie string) bool {
+func readCookie(r *http.Request, nameCookie string) bool {
 	_, err := r.Cookie(nameCookie)
 	if err != nil {
 		fmt.Println("Le cookie " + nameCookie + " n'a pas été trouvé")

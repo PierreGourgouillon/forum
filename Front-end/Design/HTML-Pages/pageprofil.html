@@ -4,21 +4,12 @@
     <meta charset="UTF-8">
     <title>Accueil / Pioutter</title>
     <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
 </head>
 <body>
-<section class="left">
-    <img id="logo" src="/static/Design/Images/logo_light_mode.png"></img>
-    <div class="toolbox">
-        <a class="home" href="/home">Accueil</a>
-        <a class="profil" href="/profil">Profil</a>
-        <a class="option" href="/option">Option</a>
-        <a class="darkmode" href="/darkmode">Mode Sombre</a>
-    </div>
-    <div class="id">
-        <img class="avatar" src="/static/Design/Images/avatar.jpg">
-        <p class="name">Michel de la Compta</p>
-    </div>
-</section>
+
+{{template "header"}}
+
 <section class="middle">
     <div id="news">Fil d'actualité</div>
     <div class="newpost">
@@ -29,6 +20,7 @@
             <button id="publish">Publier</button>
         </div>
     </div>
+
     <div class="post">
         <img class="avatar" src="/static/Design/Images/avatar.jpg">
         <div class="content">
@@ -98,9 +90,15 @@
         </button>
     </div>
 </section>
-<section class="right">
-    <input class="searchbar" type="text" placeholder="Rechercher...">
-    <div class="filter">Filtrer les posts</div>
-</section>
+
+<footer role="banner">
+    <div class="container-footer">
+        <div class="container-tools">
+            <input class="container-searchbar" type="text" placeholder="Rechercher...">
+            <div class="container-filter">Filtrer les posts</div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

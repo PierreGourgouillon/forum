@@ -3,7 +3,6 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"strconv"
 
 	"github.com/forum/Back-end/password"
@@ -147,6 +146,44 @@ func InsertNewUser(user structs.Register) {
 	}
 
 	fmt.Println(data)
+}
+
+func GetPasswordByEmail(email string) string {
+	var password string
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	data := db.QueryRow("SELECT user_password FROM userIdentity WHERE user_email = ?", email)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	data.Scan(&password)
+	return password
+}
+
+func GetIdByEmail(email string) string {
+	var ID int
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	data := db.QueryRow("SELECT user_id FROM userIdentity WHERE user_email = ?", email)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	data.Scan(&ID)
+	return strconv.Itoa(ID)
 }
 
 func GetIdentityUser(valueCookie string) structs.UserIdentity {

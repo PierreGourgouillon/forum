@@ -3,9 +3,15 @@ package server
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"net/http"
+	"os"
+
 	"github.com/forum/Back-end/authentification"
+	"github.com/forum/Back-end/cookie"
 	"github.com/forum/Back-end/database"
 	"github.com/forum/Back-end/structs"
+	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"html/template"
 	"io/ioutil"
@@ -35,11 +41,21 @@ func StartServer() {
 func requestHTTP(router *mux.Router) {
 
 	staticFile(router)
-	router.HandleFunc("/", homeRoute)
+	//Authentification Route
+	router.HandleFunc("/", route)
 	router.HandleFunc("/login/", loginRoute)
 	router.HandleFunc("/register/", registerRoute)
-	router.HandleFunc("/home/", newsRoute)
+
+	//settings Route
 	router.HandleFunc("/settings/", settingsRoute)
+	router.HandleFunc("/settings/password/", changePasswordRoute)
+	router.HandleFunc("/settings/account/", accountInformations)
+	router.HandleFunc("/settings/account/pseudo/", accountChangePseudo)
+	router.HandleFunc("/settings/account/country/", accountChangeCountry)
+	router.HandleFunc("/settings/deactivate/", deactivateAccount)
+
+	//Home Route
+	router.HandleFunc("/home/", homeRoute)
 	router.HandleFunc("/test/", testRoute)
 
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -53,7 +69,7 @@ func staticFile(router *mux.Router) {
 		Handler(http.StripPrefix("/static/", fileServer))
 }
 
-func homeRoute(w http.ResponseWriter, r *http.Request) {
+func route(w http.ResponseWriter, r *http.Request) {
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
@@ -73,13 +89,25 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	cookieIsSet := ReadCookie(r, "user-id")
-
-	if !cookieIsSet {
-		SetCookie(w, "user-id", "15", "/")
+	userLogin := structs.Login{
+		Email:    r.FormValue("email"),
+		Password: r.FormValue("password"),
 	}
 
-	fmt.Println(ValueCookie(r, "user-id"))
+	fmt.Println("login ->")
+	fmt.Println(userLogin)
+
+	if userLogin.Email != "" {
+		success, message := authentification.CheckUser(userLogin.Email, userLogin.Password)
+		if success {
+			fmt.Println(message)
+			ID := database.GetIdByEmail(userLogin.Email)
+			cookie.SetCookie(w, "PioutterID", ID, "/")
+			homeRoute(w, r)
+			return
+		}
+		fmt.Println(message)
+	}
 
 	tmpl.Execute(w, nil)
 }
@@ -108,14 +136,7 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 		success, message := authentification.DoInscription(userRegister)
 		fmt.Println(success)
 		if success {
-			fmt.Println("Un nouvel utilisateur s'est inscrit")
-			tmpl2, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
-			if err != nil {
-				fmt.Println(err)
-				os.Exit(1)
-			}
-
-			tmpl2.Execute(w, nil)
+			homeRoute(w, r)
 			return
 		} else {
 			fmt.Println(message)
@@ -125,8 +146,8 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func newsRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil.html")
+func homeRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -137,7 +158,62 @@ func newsRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/settingsPage.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/settingsPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/password.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func accountInformations(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/accountInformations.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changePseudo.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changeCountry.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func deactivateAccount(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
