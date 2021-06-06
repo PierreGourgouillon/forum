@@ -1,9 +1,7 @@
-package server
+package cookie
 
 import (
 	"fmt"
-	"github.com/forum/Back-end/password"
-	"log"
 	"net/http"
 )
 

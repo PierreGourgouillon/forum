@@ -3,15 +3,10 @@ package server
 import (
 	"encoding/json"
 	"fmt"
-	"html/template"
-	"net/http"
-	"os"
-
 	"github.com/forum/Back-end/authentification"
 	"github.com/forum/Back-end/cookie"
 	"github.com/forum/Back-end/database"
 	"github.com/forum/Back-end/structs"
-	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"html/template"
 	"io/ioutil"
@@ -244,7 +239,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
-	valueCookie, err := strconv.Atoi(ValueCookie(r, "user-id"))
+	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "user-id"))
 
 	if err != nil {
 		log.Fatal(err)
