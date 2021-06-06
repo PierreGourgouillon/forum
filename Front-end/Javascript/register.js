@@ -7,7 +7,7 @@ function register() {
     const day = document.getElementById("day")
     const month = document.getElementById("month")
     const year = document.getElementById("year")
-    
+
     if(pseudo.value == "" || email.value == "" || password.value == "" || passwordConf.value == "" || day.value == "" || month.value == "" || year.value == "") {
         alert("Un des champs est vide")
         return
