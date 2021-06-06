@@ -1,0 +1,74 @@
+
+.absolute {
+    position: absolute;
+    width: 100%;
+}
+
+.border {
+    border-bottom: 1px solid red;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.mRight {
+    margin-right: 12px;
+}
+
+.mLeft {
+    margin-left: 12px;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+}
+
+.hover:hover{
+    background-color: rgba(121,75,196,0.1);
+}
+
+.like:hover{
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+    color: rgb(18, 224, 73);
+}
+
+.dislike:hover{
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+    color: rgb(224, 36, 94);
+}
