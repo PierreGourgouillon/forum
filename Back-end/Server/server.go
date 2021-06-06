@@ -55,6 +55,7 @@ func requestHTTP(router *mux.Router) {
 
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
+	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 }
 
 func staticFile(router *mux.Router) {
@@ -273,6 +274,18 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(jsonAllPost)
+}
+
+func postShow(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {
