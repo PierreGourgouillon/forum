@@ -127,7 +127,7 @@ func InsertPost(post *structs.Post) int64 {
 	}
 	defer db.Close()
 
-	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
+	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
 
 	if error != nil {
 		log.Fatal(error)
@@ -150,7 +150,7 @@ func GetAllPosts() []structs.Post {
 		panic(err.Error())
 	}
 
-	rows, error := db.Query("SELECT post_id, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
 	defer db.Close()
 
 	if error != nil {
@@ -159,10 +159,67 @@ func GetAllPosts() []structs.Post {
 
 	for rows.Next() {
 		var post structs.Post
-		rows.Scan(&post.PostId, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
-		fmt.Println(post.PostId)
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 		allPost = append(allPost, post)
 	}
 
 	return allPost
+}
+
+func FindPostById(id int) structs.Post {
+
+	var post structs.Post
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	query := "SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id= ?"
+
+	err = db.QueryRow(query, id).Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(post)
+
+	return post
+}
+
+func UpdatePost(id int, post *structs.Post) {
+	var postUpdate structs.Post
+	postBasic := FindPostById(id)
+
+	if post.Message != postBasic.Message && post.Message != "" {
+		postUpdate.Message = post.Message
+	} else {
+		postUpdate.Message = postBasic.Message
+	}
+
+	if post.Title != postBasic.Title && post.Title != "" {
+		postUpdate.Title = post.Title
+	} else {
+		postUpdate.Title = postBasic.Title
+	}
+
+	/*if !reflect.DeepEqual(post.Categories,postBasic.Message) && len(post.Categories) != 0 {
+		postUpdate.Categories = post.Categories
+	}else {
+		postUpdate.Categories = postBasic.Categories
+	}*/
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	query := "UPDATE allPosts SET user_message= ?, user_title= ? WHERE post_id= ?"
+
+	_, err = db.Exec(query, postUpdate.Message, postUpdate.Title, id)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }

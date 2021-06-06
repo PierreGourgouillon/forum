@@ -10,6 +10,7 @@ function createPost(){
             'content-type': 'application/json'
         },
         body: JSON.stringify({
+            title: "Le titre",
             pseudo: "pierre",
             message: input.value,
             like: 0,
@@ -47,4 +48,37 @@ function postIndex(){
         .catch((error)=>{
             alert(error.message)
         })
+}
+
+function findPostById(){
+
+    fetch("/post/5", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse)=>{
+            return reponse.json()
+        })
+        .then((res)=>{
+            console.log(res)
+        })
+        .catch((error)=>{
+            alert(error.message)
+        })
+}
+
+function updatePost(){
+
+    fetch("/post/5", {
+        method: "PUT",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            message: "Le message est modif ahah",
+            title: "Le titre est modif"
+        })
+    })
 }
