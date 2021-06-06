@@ -255,8 +255,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	success := authentification.DoInscription(user)
 	if success {
 		ID := database.GetIdByEmail(user.Email)
-		cookie.SetCookie(w, "PioutterID", ID, "/")
-		w.Write([]byte("{\"register\":\"true\"}"))
+		w.Write([]byte("{\"register\":\"true\", \"id\":\"" + ID + "\"}"))
 	} else {
 		w.Write([]byte("{\"register\":\"false\"}"))
 	}
@@ -273,8 +272,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	success, message := authentification.CheckUser(user)
 	if success {
 		ID := database.GetIdByEmail(user.Email)
-		cookie.SetCookie(w, "PioutterID", ID, "/")
-		w.Write([]byte("{\"login\":\"login\"}"))
+		w.Write([]byte("{\"login\":\"login\", \"id\":\"" + ID + "\"}"))
 	} else {
 		if message == "password" {
 			w.Write([]byte("{\"login\":\"password\"}"))

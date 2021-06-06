@@ -40,6 +40,7 @@ function register() {
     })
     .then((res) => {
         if(res.register == "true") {
+            document.cookie = `PioutterID=${res.id}, path=/`
             document.location.href = "/home/"
         } else {
             alert("L'email est déjà utilisé")
@@ -73,7 +74,7 @@ function login() {
     })
     .then((res) => {
         if(res.login == "login") {
-            // document.cookie = `PioutterID=${res.id}, path=/`
+            document.cookie = `PioutterID=${res.id}, path=/`
             document.location.href = "/home/"
         } else if(res.login == "password") {
             alert("Le mot de passe n'est pas bon")
