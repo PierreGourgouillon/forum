@@ -57,6 +57,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/post/", getPost).Methods("GET")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
+	router.HandleFunc("/post/{id}", postDelete).Methods("DELETE")
 }
 
 func staticFile(router *mux.Router) {
@@ -315,6 +316,27 @@ func postUpdate(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &post)
 
 	database.UpdatePost(id, &post)
+
+}
+
+func postDelete(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	isDelete := database.DeletePost(id)
+
+	if isDelete {
+		w.Write([]byte("{\"delete\": \"true\"}"))
+	} else {
+		w.Write([]byte("{\"delete\": \"false\"}"))
+	}
 
 }
 

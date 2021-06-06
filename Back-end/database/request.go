@@ -204,12 +204,6 @@ func UpdatePost(id int, post *structs.Post) {
 		postUpdate.Title = postBasic.Title
 	}
 
-	/*if !reflect.DeepEqual(post.Categories,postBasic.Message) && len(post.Categories) != 0 {
-		postUpdate.Categories = post.Categories
-	}else {
-		postUpdate.Categories = postBasic.Categories
-	}*/
-
 	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
 	if err != nil {
 		panic(err.Error())
@@ -222,4 +216,18 @@ func UpdatePost(id int, post *structs.Post) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func DeletePost(id int) bool {
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	query := "DELETE FROM allPosts WHERE post_id= ?"
+	_, err = db.Exec(query, id)
+	if err != nil {
+		return false
+	}
+
+	return true
 }

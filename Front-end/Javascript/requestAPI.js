@@ -82,3 +82,22 @@ function updatePost(){
         })
     })
 }
+
+function deletePost(){
+
+    fetch("/post/5",{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse)=>{
+            return reponse.json()
+        })
+        .then((res)=>{
+            console.log(res.delete)
+        })
+        .catch((error)=>{
+            alert(error.message)
+        })
+}
