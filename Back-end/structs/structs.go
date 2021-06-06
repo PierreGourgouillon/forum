@@ -1,13 +1,10 @@
 package structs
 
 type Register struct {
-	Pseudo         string
-	Email          string
-	MotDePasse     string
-	MotDePasseConf string
-	Day            string
-	Month          string
-	Year           string
+	Pseudo     string `json:"pseudo"`
+	Email      string `json:"email"`
+	MotDePasse string `json:"password"`
+	Birth      string `json:"birth"`
 }
 
 type Login struct {

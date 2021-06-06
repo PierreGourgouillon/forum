@@ -3,11 +3,6 @@ package server
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/forum/Back-end/authentification"
-	"github.com/forum/Back-end/cookie"
-	"github.com/forum/Back-end/database"
-	"github.com/forum/Back-end/structs"
-	"github.com/gorilla/mux"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -15,6 +10,12 @@ import (
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/forum/Back-end/authentification"
+	"github.com/forum/Back-end/cookie"
+	"github.com/forum/Back-end/database"
+	"github.com/forum/Back-end/structs"
+	"github.com/gorilla/mux"
 )
 
 func StartServer() {
@@ -55,6 +56,8 @@ func requestHTTP(router *mux.Router) {
 
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
+
+	router.HandleFunc("/user/", register).Methods("POST")
 }
 
 func staticFile(router *mux.Router) {
@@ -113,29 +116,6 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
-	}
-
-	userRegister := structs.Register{
-		Pseudo:         r.FormValue("username"),
-		Email:          r.FormValue("email"),
-		MotDePasse:     r.FormValue("password"),
-		MotDePasseConf: r.FormValue("confirmationpassword"),
-		Day:            r.FormValue("aniversaire_jour"),
-		Month:          r.FormValue("anniversaire_mois"),
-		Year:           r.FormValue("anniversaire_ans"),
-	}
-
-	fmt.Println(userRegister)
-
-	if userRegister.Pseudo != "" {
-		success, message := authentification.DoInscription(userRegister)
-		fmt.Println(success)
-		if success {
-			homeRoute(w, r)
-			return
-		} else {
-			fmt.Println(message)
-		}
 	}
 
 	tmpl.Execute(w, nil)
@@ -264,6 +244,25 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func register(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var user structs.Register
+	unmarshallJSON(r, &user)
+
+	fmt.Println(user)
+
+	success := authentification.DoInscription(user)
+	if success {
+		ID := database.GetIdByEmail(user.Email)
+		cookie.SetCookie(w, "PioutterID", ID, "/")
+		w.Write([]byte("{\"inscription\":\"true\"}"))
+	} else {
+		w.Write([]byte("{\"inscription\":\"false\"}"))
+	}
+}
+
 func unmarshallJSON(r *http.Request, API interface{}) {
 
 	body, err := ioutil.ReadAll(r.Body)
@@ -272,5 +271,6 @@ func unmarshallJSON(r *http.Request, API interface{}) {
 		fmt.Println(err.Error())
 		os.Exit(0)
 	}
+
 	json.Unmarshal(body, &API)
 }
