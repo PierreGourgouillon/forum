@@ -120,29 +120,6 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	userRegister := structs.Register{
-		Pseudo:         r.FormValue("username"),
-		Email:          r.FormValue("email"),
-		MotDePasse:     r.FormValue("password"),
-		MotDePasseConf: r.FormValue("confirmationpassword"),
-		Day:            r.FormValue("aniversaire_jour"),
-		Month:          r.FormValue("anniversaire_mois"),
-		Year:           r.FormValue("anniversaire_ans"),
-	}
-
-	fmt.Println(userRegister)
-
-	if userRegister.Pseudo != "" {
-		success, message := authentification.DoInscription(userRegister)
-		fmt.Println(success)
-		if success {
-			homeRoute(w, r)
-			return
-		} else {
-			fmt.Println(message)
-		}
-	}
-
 	tmpl.Execute(w, nil)
 }
 
@@ -244,7 +221,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
-	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "user-id"))
+	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
 
 	if err != nil {
 		log.Fatal(err)

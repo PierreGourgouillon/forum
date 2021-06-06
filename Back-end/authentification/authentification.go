@@ -2,7 +2,6 @@ package authentification
 
 import (
 	"fmt"
-
 	"github.com/forum/Back-end/database"
 	"github.com/forum/Back-end/password"
 	"github.com/forum/Back-end/structs"
