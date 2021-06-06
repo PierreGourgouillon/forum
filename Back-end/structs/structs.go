@@ -21,6 +21,7 @@ type UserIdentity struct {
 }
 
 type Post struct {
+	PostId     int64
 	IdUser     int
 	Pseudo     string   `json:"pseudo"`
 	Message    string   `json:"message"`

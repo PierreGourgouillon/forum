@@ -180,18 +180,26 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 	return user
 }
 
-func InsertPost(post *structs.Post) {
+func InsertPost(post *structs.Post) int64 {
 	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
 	if err != nil {
 		panic(err.Error())
 	}
 	defer db.Close()
 
-	_, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
+	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
 
 	if error != nil {
 		log.Fatal(error)
 	}
+
+	id, error := res.LastInsertId()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	return id
 }
 
 func GetAllPosts() []structs.Post {

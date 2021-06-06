@@ -43,6 +43,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/test/", testRoute)
 
 	router.HandleFunc("/post/", createPost).Methods("POST")
+	router.HandleFunc("/post/", getPost).Methods("GET")
 }
 
 func staticFile(router *mux.Router) {
@@ -153,26 +154,6 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	//valueCookie := ValueCookie(r,"user-id")
-	/*user := database.GetIdentityUser("1")
-	time := time.Now()
-
-	userPost := structs.Post{
-		IdUser:  user.ID,
-		Pseudo:  user.Pseudo,
-		Message: r.FormValue("message"),
-		Date:    time.Format("02-01-2006"),
-		Hour:    time.Format("15:04:05"),
-	}
-
-	fmt.Println("Post : ")
-	fmt.Println(userPost)
-
-	database.InsertPost(&userPost)
-
-	allPosts := database.GetAllPosts()
-
-	fmt.Println(allPosts)*/
 
 	tmpl.Execute(w, nil)
 }
@@ -197,12 +178,19 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	post.Date = time.Format("02-01-2006")
 	post.Hour = time.Format("15:04:05")
 
-	fmt.Println(post)
+	idPost := database.InsertPost(&post)
 
-	database.InsertPost(&post)
+	post.PostId = idPost
+
+	fmt.Println("Insertion du post :")
+	fmt.Println(post)
 
 	jsonPost, _ := json.Marshal(post)
 	w.Write(jsonPost)
+}
+
+func getPost(w http.ResponseWriter, r *http.Request) {
+
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {
