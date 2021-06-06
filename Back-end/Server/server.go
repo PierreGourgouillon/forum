@@ -61,7 +61,6 @@ func staticFile(router *mux.Router) {
 }
 
 func route(w http.ResponseWriter, r *http.Request) {
-
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
 	if err != nil {
@@ -73,6 +72,11 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
+	if cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/home/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
@@ -94,7 +98,7 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(message)
 			ID := database.GetIdByEmail(userLogin.Email)
 			cookie.SetCookie(w, "PioutterID", ID, "/")
-			homeRoute(w, r)
+			http.Redirect(w, r, "/home/", http.StatusSeeOther)
 			return
 		}
 		fmt.Println(message)
@@ -104,6 +108,10 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
+	if cookie.ReadCookie(r, "PioutterID") {
+		cookie.DeleteCookie(r, "PioutterID")
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
 
 	if err != nil {
@@ -127,7 +135,9 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 		success, message := authentification.DoInscription(userRegister)
 		fmt.Println(success)
 		if success {
-			homeRoute(w, r)
+			ID := database.GetIdByEmail(userRegister.Email)
+			cookie.SetCookie(w, "PioutterID", ID, "/")
+			http.Redirect(w, r, "/home/", http.StatusSeeOther)
 			return
 		} else {
 			fmt.Println(message)
