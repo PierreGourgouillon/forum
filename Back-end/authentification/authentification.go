@@ -23,17 +23,17 @@ func DoInscription(data structs.Register) bool {
 	return true
 }
 
-func CheckUser(email string, userPassword string) (bool, string) {
+func CheckUser(user structs.Login) (bool, string) {
 	allEmail := database.GetEmailList()
-
+	fmt.Println("eho")
 	for _, mail := range allEmail {
-		if email == mail {
-			passwordHash := database.GetPasswordByEmail(email)
-			if password.CheckPasswordHash(userPassword, passwordHash) {
-				return true, "Connexion établie sur le compte de l'utilisateur"
+		if user.Email == mail {
+			passwordHash := database.GetPasswordByEmail(user.Email)
+			if password.CheckPasswordHash(user.Password, passwordHash) {
+				return true, ""
 			}
-			return false, "Le mot de passe saisie n'est pas bon"
+			return false, "password"
 		}
 	}
-	return false, "Aucun compte n'est lié à cette adresse mail"
+	return false, "email"
 }

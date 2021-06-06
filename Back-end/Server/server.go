@@ -3,11 +3,6 @@ package server
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/forum/Back-end/authentification"
-	"github.com/forum/Back-end/cookie"
-	"github.com/forum/Back-end/database"
-	"github.com/forum/Back-end/structs"
-	"github.com/gorilla/mux"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -15,6 +10,12 @@ import (
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/forum/Back-end/authentification"
+	"github.com/forum/Back-end/cookie"
+	"github.com/forum/Back-end/database"
+	"github.com/forum/Back-end/structs"
+	"github.com/gorilla/mux"
 )
 
 func StartServer() {
@@ -34,12 +35,16 @@ func StartServer() {
 }
 
 func requestHTTP(router *mux.Router) {
-
 	staticFile(router)
+
 	//Authentification Route
 	router.HandleFunc("/", route)
 	router.HandleFunc("/login/", loginRoute)
 	router.HandleFunc("/register/", registerRoute)
+
+	//API Authentification
+	router.HandleFunc("/user/", register).Methods("POST")
+	router.HandleFunc("/users/", login).Methods("POST")
 
 	//settings Route
 	router.HandleFunc("/settings/", settingsRoute)
@@ -53,10 +58,9 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/home/", homeRoute)
 	router.HandleFunc("/test/", testRoute)
 
+	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
-
-	router.HandleFunc("/user/", register).Methods("POST")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
 	router.HandleFunc("/post/{id}", postDelete).Methods("DELETE")
@@ -70,7 +74,6 @@ func staticFile(router *mux.Router) {
 }
 
 func route(w http.ResponseWriter, r *http.Request) {
-
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
 	if err != nil {
@@ -82,6 +85,11 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
+	if cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/home/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
@@ -89,30 +97,14 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	userLogin := structs.Login{
-		Email:    r.FormValue("email"),
-		Password: r.FormValue("password"),
-	}
-
-	fmt.Println("login ->")
-	fmt.Println(userLogin)
-
-	if userLogin.Email != "" {
-		success, message := authentification.CheckUser(userLogin.Email, userLogin.Password)
-		if success {
-			fmt.Println(message)
-			ID := database.GetIdByEmail(userLogin.Email)
-			cookie.SetCookie(w, "PioutterID", ID, "/")
-			homeRoute(w, r)
-			return
-		}
-		fmt.Println(message)
-	}
-
 	tmpl.Execute(w, nil)
 }
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
+	if cookie.ReadCookie(r, "PioutterID") {
+		cookie.DeleteCookie(r, "PioutterID")
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
 
 	if err != nil {
@@ -212,12 +204,10 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func createPost(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
-
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
@@ -264,15 +254,32 @@ func register(w http.ResponseWriter, r *http.Request) {
 	var user structs.Register
 	unmarshallJSON(r, &user)
 
-	fmt.Println(user)
-
 	success := authentification.DoInscription(user)
 	if success {
 		ID := database.GetIdByEmail(user.Email)
-		cookie.SetCookie(w, "PioutterID", ID, "/")
-		w.Write([]byte("{\"inscription\":\"true\"}"))
+		w.Write([]byte("{\"register\":\"true\", \"id\":\"" + ID + "\"}"))
 	} else {
-		w.Write([]byte("{\"inscription\":\"false\"}"))
+		w.Write([]byte("{\"register\":\"false\"}"))
+	}
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var user structs.Login
+	unmarshallJSON(r, &user)
+
+	success, message := authentification.CheckUser(user)
+	if success {
+		ID := database.GetIdByEmail(user.Email)
+		w.Write([]byte("{\"login\":\"login\", \"id\":\"" + ID + "\"}"))
+	} else {
+		if message == "password" {
+			w.Write([]byte("{\"login\":\"password\"}"))
+		} else {
+			w.Write([]byte("{\"login\":\"email\"}"))
+		}
 	}
 }
 
@@ -310,7 +317,6 @@ func postUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var post structs.Post
-
 	unmarshallJSON(r, &post)
 
 	database.UpdatePost(id, &post)
@@ -339,7 +345,6 @@ func postDelete(w http.ResponseWriter, r *http.Request) {
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {
-
 	body, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
