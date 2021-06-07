@@ -125,17 +125,17 @@ function addAllPost(response, isNotSolo){
             let clone = document.importNode(template.content, true)
             let container = document.getElementById("containerPost")
 
-            let linkPost = clone.getElementById("link-post")
             let imageProfil = clone.getElementById("image-user")
             let pseudo = clone.getElementById("pseudo-user")
             let title = clone.getElementById("title-user")
             let messagePost = clone.getElementById("message-post")
             let like = clone.getElementById("like-post")
             let dislike = clone.getElementById("dislike-post")
+            let link = [...clone.querySelectorAll(".postLinkos")]
 
-            /*linkPost.addEventListener("click", ()=>{
-                document.location.href = `/status/${post.PostId}`
-            })*/
+            link.forEach((element)=>{
+                element.href = `/status/${post.PostId}`
+            })
 
             pseudo.textContent = post.pseudo
             title.textContent = post.title
@@ -153,7 +153,6 @@ function addAllPost(response, isNotSolo){
         let clone = document.importNode(template.content, true)
         let container = document.getElementById("containerPost")
 
-        let linkPost = clone.getElementById("link-post")
         let imageProfil = clone.getElementById("image-user")
         let pseudo = clone.getElementById("pseudo-user")
         let title = clone.getElementById("title-user")
@@ -161,10 +160,11 @@ function addAllPost(response, isNotSolo){
         let like = clone.getElementById("like-post")
         let dislike = clone.getElementById("dislike-post")
         let containerLike = clone.getElementById("container-like-post")
+        let link = [...clone.querySelectorAll(".postLinkos")]
 
-        /*linkPost.addEventListener("click", ()=>{
-            document.location.href = `/status/${response.PostId}`
-        })*/
+        link.forEach((element)=>{
+            element.href = `/status/${response.PostId}`
+        })
 
         pseudo.textContent = response.pseudo
         title.textContent = response.title
@@ -172,15 +172,12 @@ function addAllPost(response, isNotSolo){
         like.textContent = response.like
         dislike.textContent = response.dislike
 
-        containerLike.setAttribute("post_id", response.PostId)
         dislike.setAttribute("post_id", response.PostId)
         like.setAttribute("post_id", response.PostId)
 
         container.append(clone)
 
     }
-
-
 
 }
 
