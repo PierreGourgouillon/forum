@@ -1,3 +1,7 @@
+/*-----------------
+* Général
+-----------------*/
+
 *{
     margin : 0;
     padding : 0;
@@ -7,16 +11,18 @@ html { overflow-y: hidden;
     overflow-x: hidden;
 }
 
-/*-----------------------*/
-
 #general{
     display: flex;
     height: 100vh;
 }
 
+/*-----------------
+* Partie Gauche
+-----------------*/
+
 #gauche{
     background-color: #794BC4;
-    width: 65%;
+    width: 52%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,19 +30,22 @@ html { overflow-y: hidden;
 }
 
 #logo{
-    width: 450px;
+    width: 400px;
     aspect-ratio: 1/1.1;
-
 }
 
-/*-----------------------*/
+/*-----------------
+* Droite
+-----------------*/
 
 #droite{ 
     background-color: #15202B;
-    width: 45%;
+    width: 48%;
     display:flex;
     flex-direction: column;
     justify-content: center;
+    /* border: 3px solid blue; */
+    
 }
 
 #generalDroit{
@@ -47,20 +56,26 @@ html { overflow-y: hidden;
     width: 1000px;
     height: 1800px;
     
-    /* border: 3px solid blue; */
+    /* border: 3px solid rgb(149, 4, 168); */
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+/*-----------------
+* Partie Droite | texte
+-----------------*/
+
 #textDroit{
-    width: 60%;
+    position: relative;
+    left:50px;
+    width: 500px;
     height: 200px;
     margin-left:auto;
     margin-right: auto;
     /* margin:0 auto; */
     /* border: 3px solid green; */
-    text-align: center;
+    text-align: left;
 }
 
 h1{
@@ -81,7 +96,9 @@ h2{
     color: white;
 }
 
-/*---*/
+/*-----------------
+* Partie Droite | boutton
+-----------------*/
 
 #boutonDroit{
     width: 400px;
@@ -103,7 +120,7 @@ h2{
     border-radius: 40px;
     font-size: 200%;
 
-    width: 100%;
+    width: 400px;
     height: 90px;
     cursor: pointer;
 }
@@ -120,7 +137,7 @@ h2{
     border-radius: 40px;
     margin-top:20px;
 
-    width: 100%;
+    width: 400px;
     height: 90px;
     cursor: pointer;
 }
@@ -129,5 +146,3 @@ h2{
     color:#ffffff;
     border: 3px solid #531da8;
 }
-
-/*---*/
