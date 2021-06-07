@@ -27,7 +27,7 @@ async function createPost(){
             return response.json()
         })
         .then((res) => {
-            console.log(res)
+            addAllPost(res, false)
         })
         .catch((error)=>{
             message.value = ""
@@ -49,7 +49,7 @@ function postIndex(){
             return response.json()
         })
         .then((res)=>{
-            addAllPost(res)
+            addAllPost(res,true)
         })
         .catch((error)=>{
             alert(error.message)
@@ -75,18 +75,26 @@ function findPostById(){
         })
 }
 
-function updatePost(){
+function updatePost(id, message, title, like, dislike){
 
-    fetch("/post/5", {
+    return fetch(`/post/${id}`, {
         method: "PUT",
         headers:{
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            message: "Le message est modif ahah",
-            title: "Le titre est modif"
+            message: message,
+            title: title,
+            like: like,
+            dislike: dislike,
         })
     })
+        .then(()=>{
+        return true
+        })
+        .catch(()=>{
+            return false
+        })
 }
 
 function deletePost(){
@@ -109,9 +117,38 @@ function deletePost(){
 }
 
 
-function addAllPost(response){
+function addAllPost(response, isNotSolo){
 
-    response.forEach((post)=>{
+    if (isNotSolo){
+        response.forEach((post)=>{
+            let template = document.getElementById("postTemplate")
+            let clone = document.importNode(template.content, true)
+            let container = document.getElementById("containerPost")
+
+            let linkPost = clone.getElementById("link-post")
+            let imageProfil = clone.getElementById("image-user")
+            let pseudo = clone.getElementById("pseudo-user")
+            let title = clone.getElementById("title-user")
+            let messagePost = clone.getElementById("message-post")
+            let like = clone.getElementById("like-post")
+            let dislike = clone.getElementById("dislike-post")
+
+            /*linkPost.addEventListener("click", ()=>{
+                document.location.href = `/status/${post.PostId}`
+            })*/
+
+            pseudo.textContent = post.pseudo
+            title.textContent = post.title
+            messagePost.textContent += post.message
+            like.textContent = post.like
+            dislike.textContent = post.dislike
+
+            like.setAttribute("post_id", post.PostId)
+            dislike.setAttribute("post_id", post.PostId)
+
+            container.append(clone)
+        })
+    }else{
         let template = document.getElementById("postTemplate")
         let clone = document.importNode(template.content, true)
         let container = document.getElementById("containerPost")
@@ -123,16 +160,27 @@ function addAllPost(response){
         let messagePost = clone.getElementById("message-post")
         let like = clone.getElementById("like-post")
         let dislike = clone.getElementById("dislike-post")
+        let containerLike = clone.getElementById("container-like-post")
 
-        linkPost.href = `/post/${post.PostId}`
-        pseudo.textContent = post.pseudo
-        title.textContent = post.title
-        messagePost.textContent += post.message
-        like.textContent = post.like
-        dislike.textContent = post.dislike
+        /*linkPost.addEventListener("click", ()=>{
+            document.location.href = `/status/${response.PostId}`
+        })*/
+
+        pseudo.textContent = response.pseudo
+        title.textContent = response.title
+        messagePost.textContent += response.message
+        like.textContent = response.like
+        dislike.textContent = response.dislike
+
+        containerLike.setAttribute("post_id", response.PostId)
+        dislike.setAttribute("post_id", response.PostId)
+        like.setAttribute("post_id", response.PostId)
 
         container.append(clone)
-    })
+
+    }
+
+
 
 }
 
@@ -166,3 +214,28 @@ function getUser(id){
             alert(`error ${error}`)
         })
 }
+
+async function addReactions(e, reaction){
+    let parentDiv = e.target.parentNode
+    let likes = ""
+
+    for (let i = 0; i < parentDiv.children.length;i++){
+        if (parentDiv.children[i].tagName == "SPAN"){
+            likes = parentDiv.children[i]
+        }
+    }
+
+    let id = likes.getAttribute("post_id")
+    let isGood = ""
+
+    if (reaction) {
+        isGood = await updatePost(id,"","",parseInt(likes.textContent)+1, 0)
+    }else {
+        isGood = await updatePost(id,"","",0, parseInt(likes.textContent)+1)
+    }
+
+    if (isGood) {
+        likes.textContent = parseInt(likes.textContent) + 1
+    }
+}
+

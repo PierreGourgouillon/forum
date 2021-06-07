@@ -27,14 +27,13 @@
                 <div class="globalFLex transition hover">
                     <div class="globalFLex border cursor">
                         <div class="globalFLex">
-                            <a id="link-post">
-                                <article role="article" class="globalFLex paddingLeft paddingTop transition">
+                                <article role="article" class="globalFLex paddingLeft paddingTop transition" id="link-post">
                                     <div class="globalFLex grow shrink">
                                         <div class="globalFLex grow shrink">
                                             <div class="globalFLex">
                                                 <div class="RowFLex">
-                                                    <div class="RowFLex mRight" style="flex-basis: 48px">
-                                                        <div class="globalFLex shrink" style="height: 35px;width: 35px;flex-grow: 0">
+                                                    <div class="RowFLex mRight noUserSelect" style="flex-basis: 48px">
+                                                        <div class="globalFLex shrink noUserSelect" style="height: 35px;width: 35px;flex-grow: 0">
                                                             <img src="/static/Design/Images/avatar.jpg" id="image-user" class="radiusImage" style="width: 100%">
                                                         </div>
                                                     </div>
@@ -69,19 +68,15 @@
                                                                     <p class="styleMessage" id="message-post"></p>
                                                                 </div>
 
-                                                                <div class="RowFLex alignStart" style="margin-top: 12px">
-                                                                    <div class="RowFLex alignStart like">
-                                                                        <div class="icon">
-                                                                            <img src="/static/Design/Images/Icon/change_mode.svg">
-                                                                        </div>
-                                                                        <span style="margin-left: 5px" id="like-post"></span>
+                                                                <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
+                                                                    <div class="RowFLex alignStart like noUserSelect" onclick="javascript:addReactions(event,true)">
+                                                                        <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                        <span style="padding-left: 5px" id="like-post"></span>
                                                                     </div>
 
-                                                                    <div class="RowFLex alignStart dislike" style="margin-left: 20px">
-                                                                        <div class="icon">
-                                                                            <img src="/static/Design/Images/Icon/change_mode.svg">
-                                                                        </div>
-                                                                        <span style="margin-left: 5px" id="dislike-post"></span>
+                                                                    <div class="RowFLex alignStart dislike noUserSelect" style="margin-left: 20px" onclick="javascript:addReactions(event, false)">
+                                                                        <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                        <span style="padding-left: 5px" id="dislike-post"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -92,7 +87,6 @@
                                         </div>
                                     </div>
                                 </article>
-                            </a>
                         </div>
                     </div>
                 </div>

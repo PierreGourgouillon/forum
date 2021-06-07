@@ -203,14 +203,26 @@ func UpdatePost(id int, post *structs.Post) {
 		postUpdate.Title = postBasic.Title
 	}
 
+	if post.Like != postBasic.Like && post.Like != 0 {
+		postUpdate.Like = post.Like
+	} else {
+		postUpdate.Like = postBasic.Like
+	}
+
+	if post.Dislike != postBasic.Dislike && post.Dislike != 0 {
+		postUpdate.Dislike = post.Dislike
+	} else {
+		postUpdate.Dislike = postBasic.Dislike
+	}
+
 	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	query := "UPDATE allPosts SET user_message= ?, user_title= ? WHERE post_id= ?"
+	query := "UPDATE allPosts SET user_message= ?, user_title= ?, post_likes= ?, post_dislikes= ? WHERE post_id= ?"
 
-	_, err = db.Exec(query, postUpdate.Message, postUpdate.Title, id)
+	_, err = db.Exec(query, postUpdate.Message, postUpdate.Title, postUpdate.Like, postUpdate.Dislike, id)
 
 	if err != nil {
 		log.Fatal(err)
