@@ -1,0 +1,147 @@
+/*-----------------------
+* General
+-------------------------*/
+
+html {
+    font-family: 'Open Sans', Arial;
+}
+
+*{
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+
+body {
+    min-height: 100%;
+    background: #15202B;
+}
+
+#general{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 400px;
+    height: 670px;
+    /* border:1px solid white; */
+}
+
+/*-----------------------
+* Logo
+-------------------------*/
+#zoomImage{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    /* border:1px solid red; */
+}
+
+/*-----------------------
+* Formulaire
+-------------------------*/
+#formulaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    margin-top: -20px;
+    /* border:1px solid blue; */
+}
+
+.caseFormulaire{
+    /* border:1px solid blue; */
+    width: 400px;
+    height: 60px;
+
+    margin-top: 6px;
+}
+
+#dateNaissance{
+    margin-top: 15px;
+    color:rgb(94, 94, 94);
+}
+
+input{
+    width: 400px;
+    height: 60px;
+    margin-top:8px;
+    /* padding: 2.7%; */
+}
+
+/*-----------------------
+* buttons / features
+-------------------------*/
+.buttons{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 60px;
+    margin-top:10px;
+    /* border:1px solid blue; */
+}
+
+#bt{
+    width:300px;
+    height: 50px;
+
+    border:none;
+    border-radius: 40px;
+
+    background: #794BC4;
+    color:white;
+
+    cursor: pointer;
+}
+
+#bt:hover{
+    background: #ffffff;
+    border:1.5px solid #794BC4;
+    color:#794BC4;
+    
+}
+
+/*---*/
+
+.oeil{
+    position: relative;
+    top:-45px;
+    left:360px;
+    width: 30px;
+    height: 30px;
+    opacity: 80%;
+    cursor: pointer;
+}
+#oeil1{
+    position: relative;
+}
+
+.oeil:hover{
+    opacity: 100%;
+}
+
+#btRandom{
+    position: relative;
+    left:385px;
+    top:-50px;
+
+    border:none;
+    background-color: #794BC4;
+    color:white;
+    border-radius: 40px;
+
+    font-family: "montserrat";
+    font-size: 130%;
+
+    width: 50px;
+    height: 45px;
+    cursor: pointer;
+}
+
+#imgMdp{
+    width: 40px;
+    aspect-ratio: 1/1;
+}

@@ -1,0 +1,116 @@
+/*-----------------------
+* General
+-------------------------*/
+
+html {
+    font-family: 'Open Sans', Arial;
+}
+
+*{
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+
+body {
+    min-height: 100%;
+    background: #15202B;
+}
+
+#general{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 400px;
+    height: 700px;
+    /* border:1px solid white; */
+}
+
+/*-----------------------
+* Logo
+-------------------------*/
+#zoomImage{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+        
+}
+
+/*-----------------------
+* Formulaire
+-------------------------*/
+#formulaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    margin-top:20px;
+    /* border:1px solid blue; */
+}
+
+.caseFormulaire{
+    /* border:1px solid blue; */
+    width: 400px;
+    height: 60px;
+
+    margin-top: 6px;
+}
+
+input{
+    width: 400px;
+    height: 60px;
+    margin-top:8px;
+    /* padding: 2.7%; */
+}
+
+/*-----------------------
+* buttons / features
+-------------------------*/
+.buttons{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 60px;
+    margin-top:10px;
+    /* border:1px solid blue; */
+}
+
+#bt{
+    width:300px;
+    height: 50px;
+
+    border:none;
+    border-radius: 40px;
+
+    background: #794BC4;
+    color:white;
+
+    cursor: pointer;
+}
+
+#bt:hover{
+    background: #ffffff;
+    border:1.5px solid #794BC4;
+    color:#794BC4;
+    
+}
+
+/*---*/
+
+.oeil{
+    position: relative;
+    top:-45px;
+    left:360px;
+    width: 30px;
+    height: 30px;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.oeil:hover{
+    opacity: 100%;
+}
