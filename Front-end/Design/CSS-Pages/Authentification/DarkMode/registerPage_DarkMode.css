@@ -118,6 +118,7 @@ input{
 }
 #oeil1{
     position: relative;
+    top:-50px;
 }
 
 .oeil:hover{
@@ -143,6 +144,6 @@ input{
 }
 
 #imgMdp{
-    width: 40px;
+    width: 37px;
     aspect-ratio: 1/1;
 }
