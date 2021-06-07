@@ -22,9 +22,10 @@ body {
 #general{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 8%;
+    margin-bottom: 8%;
     width: 400px;
-    height: 700px;
+    height: 430px;
     /* border:1px solid white; */
 }
 
