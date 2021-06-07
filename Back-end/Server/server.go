@@ -44,6 +44,8 @@ func requestHTTP(router *mux.Router) {
 
 	//API Authentification
 	router.HandleFunc("/user/", register).Methods("POST")
+	router.HandleFunc("/user/{id}", getUsers).Methods("GET")
+
 	router.HandleFunc("/users/", login).Methods("POST")
 
 	//settings Route
@@ -341,6 +343,30 @@ func postDelete(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.Write([]byte("{\"delete\": \"false\"}"))
 	}
+}
+
+func getUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	idString := strconv.Itoa(id)
+
+	user := database.GetIdentityUser(idString)
+
+	jsonAllPost, error := json.Marshal(user)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonAllPost)
 
 }
 

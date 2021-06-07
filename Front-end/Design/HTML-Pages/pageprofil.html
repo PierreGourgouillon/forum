@@ -8,15 +8,20 @@
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage_lightMode.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+    <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
 </head>
-<body>
+<body onload="javascript:postIndex()">
 
 {{template "header"}}
 
 <main>
+    <input type="text" id="insert-title">
+    <input type="text" id="insert-message">
+    <button onclick="javascript:createPost()">click</button>
+
     <div class="container-main">
         <section class="globalFLex" style="align-items: center">
-            <div class="globalFLex" id="containerPost" style="border: 1px solid black;width: 70%;height: 500px;">
+            <div id="containerPost" style="width: 70%">
 
             <template id="postTemplate">
                 <div class="globalFLex transition hover">
@@ -39,7 +44,7 @@
                                                             <div class="RowFLex alignStart" style="justify-content: space-between">
                                                                 <div class="RowFLex shrink" style="align-items: baseline">
                                                                     <div class="globalFLex">
-                                                                        <span class="textStyle" id="pseudo-user">PierreG</span>
+                                                                        <span class="textStyle" id="pseudo-user"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -47,21 +52,21 @@
                                                             <div class="globalFLex">
                                                                 <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
                                                                     <div class="globalFLex">
-                                                                        <span class="textStyle" style="font-size: 12px" id="title-user">C'est le titre zeubi</span>
+                                                                        <span class="textStyle" style="font-size: 12px" id="title-user"></span>
                                                                     </div>
 
                                                                     <div class="mLeft RowFLex" style="justify-content: space-between; margin-left: 12px">
                                                                         <div class="globalFLex styleCategory" style="background-color: #794BC4">
-                                                                            <span>Sport</span>
+                                                                            <span></span>
                                                                         </div>
                                                                         <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
-                                                                            <span>Gaming</span>
+                                                                            <span></span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="globalFLex">
-                                                                    <p class="styleMessage" id="message-post">Mon ventre il veut pas maigrir ce gourmand ... ptn j’ai la rage. A quand la vie d’une skinny girl ? A quand ?</p>
+                                                                    <p class="styleMessage" id="message-post"></p>
                                                                 </div>
 
                                                                 <div class="RowFLex alignStart" style="margin-top: 12px">
@@ -69,14 +74,14 @@
                                                                         <div class="icon">
                                                                             <img src="/static/Design/Images/Icon/change_mode.svg">
                                                                         </div>
-                                                                        <span style="margin-left: 5px" id="like-post">0</span>
+                                                                        <span style="margin-left: 5px" id="like-post"></span>
                                                                     </div>
 
                                                                     <div class="RowFLex alignStart dislike" style="margin-left: 20px">
                                                                         <div class="icon">
                                                                             <img src="/static/Design/Images/Icon/change_mode.svg">
                                                                         </div>
-                                                                        <span style="margin-left: 5px" id="dislike-post">0</span>
+                                                                        <span style="margin-left: 5px" id="dislike-post"></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -93,22 +98,10 @@
                 </div>
             </template>
 
-
             </div>
-
         </section>
     </div>
 </main>
-
-<script type="text/javascript">
-
-    let template = document.getElementById("postTemplate")
-    let clone = document.importNode(template.content, true)
-    let con = document.getElementById("containerPost")
-
-    con.append(clone)
-
-</script>
 
 <footer role="banner">
     <div class="container-footer">
