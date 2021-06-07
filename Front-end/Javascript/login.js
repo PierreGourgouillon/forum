@@ -46,6 +46,7 @@ function register() {
             alert("L'email est déjà utilisé")
         }
     })
+
 }
 
 function login() {
@@ -84,58 +85,19 @@ function login() {
 }
 
 function AfficherMdp(){
-    let input1 = document.getElementById("Motdepasse"); 
-    let input2 = document.getElementById("confirmationMotdepasse"); 
+    let input = document.getElementById("Motdepasse"); 
 
-    if (input1.type === "password"){ 
-        input1.type = "text"; 
+    if (input.type === "password"){ 
+        input.type = "text"; 
     }else{
-        input1.type = "password"
-    }
-
-    if (input2.type === "password"){ 
-        input2.type = "text"; 
-    }else{
-        input2.type = "password"
+        input.type = "password"
     }
 } 
 
-//peut etre faire autrement qu'en js car visible sur inspecter l'element
-function strRandom() {
-    let sortie1 = document.getElementById("Motdepasse")
-    let sortie2 = document.getElementById("confirmationMotdepasse")
-    const b = 'abcdefghijklmnopqrstuvwxyz1234567890-*_'
-    let mdp = ''
-
-    for (let i=0; i < 10; i++) {
-      mdp += b[Math.floor(Math.random() * b.length)];
-    }
-    sortie1.value = mdp
-    sortie2.value = mdp
-}
-
-function validatePassword(){
-    let password = document.getElementById("Motdepasse")
-    let confirm_password = document.getElementById("confirmationMotdepasse");
-
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-    document.getElementById('Motdepasse').style.color = 'red';
-    document.getElementById('confirmationMotdepasse').style.color = 'red';
-    console.log("test")
-  } else {
-    confirm_password.setCustomValidity('');
-    document.getElementById('confirmationMotdepasse').style.color = 'black';
-    document.getElementById('Motdepasse').style.color = 'black';
-  }
-}
-
-
-/*permet de faire de la place pour mettre le message d'erreur*/
 function deplacerBt(){
-  messErreur= getElementById('messageErreur')
-  bt = getElementById('bt')
-  if(messErreur.value != ""){
-    bt.style.marginTop = '40px'
-  } 
-}
+    messErreur= getElementById('messageErreur')
+    bt = getElementById('bt')
+    if(messErreur.value != ""){
+      bt.style.marginTop = '40px'
+    } 
+  }
