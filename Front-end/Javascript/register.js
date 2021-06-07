@@ -46,7 +46,6 @@ function register() {
             alert("L'email est déjà utilisé")
         }
     })
-
 }
 
 function login() {
