@@ -61,7 +61,7 @@ body {
     margin-top: 6px;
 }
 
-#dateNaissance{
+#birth{
     margin-top: 15px;
     color:rgb(94, 94, 94);
 }
@@ -146,4 +146,14 @@ input{
 #imgMdp{
     width: 37px;
     aspect-ratio: 1/1;
+}
+
+/* Zone message d'erreur */
+
+#zoneMessErreur {
+    margin-top: 6px;
+    font-family: "montserrat";
+    color: red;
+    font-size: 18px;
+    text-align: center;
 }

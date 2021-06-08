@@ -18,15 +18,15 @@
 
             <div id="formulaire">
                 <div class="caseFormulaire">
-                    <input type="email" class="caseInput" id="E-mail" name="Email" placeholder="Adresse électronique" required>
+                    <input type="email" class="caseInput" id="email" name="Email" placeholder="Adresse électronique" required>
                 </div>
                 <div class="caseFormulaire">
-                    <input type="password" class="caseInput" id="Motdepasse" name="Mot de passe" placeholder="Mot de passe (6char min)"required>
+                    <input type="password" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de passe"required>
                     <img class="oeil" id="oeil1" onclick="AfficherMdp()" src="/static/Design/Images/Icon/eye_black.png">
                 </div>
                 <div id="zoneMessErreur"></div>
                 <div class="buttons">
-                    <input id="bt" type="submit" value="Envoyer" name="Envoyer">
+                    <input id="bt" type="submit" value="Se connecter" onclick="login()">
                 </div>
             </div>
         </div>
