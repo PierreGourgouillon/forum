@@ -114,3 +114,13 @@ input{
 .oeil:hover{
     opacity: 100%;
 }
+
+/* Zone message d'erreur */
+
+#zoneMessErreur {
+    margin-top: 6px;
+    font-family: "montserrat";
+    color: red;
+    font-size: 18px;
+    text-align: center;
+}
