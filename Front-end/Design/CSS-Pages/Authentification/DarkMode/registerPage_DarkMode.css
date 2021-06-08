@@ -22,7 +22,8 @@ body {
 #general{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 8%;
+    margin-bottom: 8%;
     width: 400px;
     height: 670px;
     /* border:1px solid white; */
@@ -60,7 +61,7 @@ body {
     margin-top: 6px;
 }
 
-#dateNaissance{
+#birth{
     margin-top: 15px;
     color:rgb(94, 94, 94);
 }
@@ -117,6 +118,7 @@ input{
 }
 #oeil1{
     position: relative;
+    top:-50px;
 }
 
 .oeil:hover{
@@ -142,6 +144,16 @@ input{
 }
 
 #imgMdp{
-    width: 40px;
+    width: 37px;
     aspect-ratio: 1/1;
+}
+
+/* Zone message d'erreur */
+
+#zoneMessErreur {
+    margin-top: 6px;
+    font-family: "montserrat";
+    color: red;
+    font-size: 18px;
+    text-align: center;
 }
