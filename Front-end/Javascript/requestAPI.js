@@ -1,9 +1,5 @@
 
 document.addEventListener("DOMContentLoaded",postIndex)
-document.getElementById("create-post").addEventListener("click", createPost)
-document.getElementById("container-post-like").addEventListener("click", addReactions(event, true))
-document.getElementById("container-post-dislike").addEventListener("click", addReactions(event, false))
-
 
 
 async function createPost(){
@@ -221,7 +217,6 @@ function getUser(id){
 
 function addReactions(e, isLike){
 
-    test()
     /*let likes = getIdPostInput(e)
 
     let idPost = likes.getAttribute("post_id")

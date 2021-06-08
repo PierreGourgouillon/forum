@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage_lightMode.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
-    <script type="module" src="/static/Javascript/requestAPI.js"></script>
+    <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
 </head>
-<body >
+<body>
 
 {{template "header"}}
 
 <main>
     <input type="text" id="insert-title">
     <input type="text" id="insert-message">
-    <button id="create-post">click</button>
+    <button onclick="javascript:createPost()">click</button>
 
     <div class="container-main">
         <section class="globalFLex" style="align-items: center">
@@ -79,12 +79,12 @@
 
 
                                                                 <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
-                                                                    <div class="RowFLex alignStart like noUserSelect" id="container-post-like" >
+                                                                    <div class="RowFLex alignStart like noUserSelect" onclick="javascript:addReactions(event,true)" >
                                                                         <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
                                                                         <span style="padding-left: 5px" id="like-post"></span>
                                                                     </div>
 
-                                                                    <div class="RowFLex alignStart dislike noUserSelect" id="container-post-dislike" style="margin-left: 20px" >
+                                                                    <div class="RowFLex alignStart dislike noUserSelect" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
                                                                         <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
                                                                         <span style="padding-left: 5px" id="dislike-post"></span>
                                                                     </div>
