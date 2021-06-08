@@ -1,4 +1,11 @@
 
+document.addEventListener("DOMContentLoaded",postIndex)
+document.getElementById("create-post").addEventListener("click", createPost)
+document.getElementById("container-post-like").addEventListener("click", addReactions(event, true))
+document.getElementById("container-post-dislike").addEventListener("click", addReactions(event, false))
+
+
+
 async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
@@ -212,7 +219,29 @@ function getUser(id){
         })
 }
 
-async function addReactions(e, reaction){
+function addReactions(e, isLike){
+
+    test()
+    /*let likes = getIdPostInput(e)
+
+    let idPost = likes.getAttribute("post_id")
+    let postIsUp = ""
+
+    let postReactions = await getReactionsPost(idPost)*/
+
+
+    /*if (isLike) {
+        postIsUp = await updatePost(idPost,"","",parseInt(likes.textContent)+1, 0)
+    }else {
+        postIsUp = await updatePost(idPost,"","",0, parseInt(likes.textContent)+1)
+    }
+
+    if (postIsUp) {
+        likes.textContent = parseInt(likes.textContent) + 1
+    }*/
+}
+
+function getIdPostInput(e){
     let parentDiv = e.target.parentNode
     let likes = ""
 
@@ -222,17 +251,5 @@ async function addReactions(e, reaction){
         }
     }
 
-    let id = likes.getAttribute("post_id")
-    let isGood = ""
-
-    if (reaction) {
-        isGood = await updatePost(id,"","",parseInt(likes.textContent)+1, 0)
-    }else {
-        isGood = await updatePost(id,"","",0, parseInt(likes.textContent)+1)
-    }
-
-    if (isGood) {
-        likes.textContent = parseInt(likes.textContent) + 1
-    }
+    return likes
 }
-

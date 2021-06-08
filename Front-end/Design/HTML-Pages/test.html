@@ -2,24 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="/static/Javascript/requestAPI.js"></script>
+    <script src="/static/Javascript/requestReactions.js"></script>
     <title>Test</title>
 </head>
 <body>
 
-<label>Message</label>
-<input type="text" id="postMessage">
-<button onclick="createPost()">Clique ici batard</button>
+<button onclick="javascript:getReactions()">get all reactions</button>
 
-<p id="test" style="color: black"></p>
+<button onclick="javascript:createReaction()">create Reaction</button>
 
-<button onclick="postIndex()">all post</button>
+<button onclick="javascript:getReactionsPost()">get reaction post 1</button>
 
-<button onclick="findPostById()">Post 145</button>
-
-<button onclick="updatePost()">Update</button>
-
-<button onclick="deletePost()">Delete</button>
+<button onclick="javascript:UpdateReactionOnePost()">Update post 7 user 15</button>
 
 </body>
 </html>

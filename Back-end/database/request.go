@@ -242,3 +242,83 @@ func DeletePost(id int) bool {
 
 	return true
 }
+
+func GetAllReactions() []structs.Reaction {
+	var reactions []structs.Reaction
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT post_id, user_id, user_like, user_dislike FROM postReactions")
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var reaction structs.Reaction
+		rows.Scan(&reaction.PostId, &reaction.IdUser, &reaction.Like, &reaction.Dislike)
+		reactions = append(reactions, reaction)
+	}
+
+	return reactions
+}
+
+func CreateReaction(reaction structs.Reaction) bool {
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	_, error := db.Exec("INSERT INTO postReactions (post_id, user_id, user_like, user_dislike) VALUES (?, ?, ?, ?)", reaction.PostId, reaction.IdUser, reaction.Like, reaction.Dislike)
+
+	if error != nil {
+		return false
+	}
+
+	return true
+}
+
+func GetReactionsOnePost(id int) []structs.Reaction {
+	var reactions []structs.Reaction
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT post_id, user_id, user_like, user_dislike FROM postReactions WHERE post_id= ?", id)
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var reaction structs.Reaction
+		rows.Scan(&reaction.PostId, &reaction.IdUser, &reaction.Like, &reaction.Dislike)
+		reactions = append(reactions, reaction)
+	}
+
+	return reactions
+}
+
+func UpdateReactionOnePost(idPost int, reactionpost structs.Reaction) bool {
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	query := "UPDATE postReactions SET user_like= ?, user_dislike= ? WHERE post_id= ? AND user_id= ?"
+
+	_, err = db.Exec(query, reactionpost.Like, reactionpost.Dislike, idPost, reactionpost.IdUser)
+
+	if err != nil {
+		return false
+	}
+	return true
+}

@@ -48,7 +48,7 @@ func CreateTable(nameDb string) {
 	defer db.Close()
 
 	//Création des tables
-	tableau := [7]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory}
+	tableau := [8]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory, tablePostReactions}
 	for j := range tableau {
 		_, error := db.Exec(tableau[j]) //A changer le mdp par la suite
 
@@ -104,3 +104,10 @@ const tablePostCategory = `CREATE TABLE IF NOT EXISTS postCategory (
 post_id INT NOT NULL,
 category_id INT NULL,
 post_category VARCHAR(50)NULL)`
+
+const tablePostReactions = `CREATE TABLE IF NOT EXISTS postReactions(
+post_id INT NOT NULL,
+user_id INT NOT NULL,
+user_like BOOLEAN NOT NULL,
+user_dislike BOOLEAN NOT NULL
+)`
