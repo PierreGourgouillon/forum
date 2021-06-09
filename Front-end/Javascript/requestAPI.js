@@ -1,7 +1,6 @@
 
 document.addEventListener("DOMContentLoaded",postIndex)
 
-
 async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
@@ -30,7 +29,7 @@ async function createPost(){
             return response.json()
         })
         .then((res) => {
-            addAllPost(res, false)
+            addAllPost([res])
         })
         .catch((error)=>{
             message.value = ""
@@ -52,10 +51,10 @@ function postIndex(){
             return response.json()
         })
         .then((res)=>{
-            addAllPost(res,true)
+            addAllPost(res)
         })
-        .catch((error)=>{
-            alert(error.message)
+        .catch(()=>{
+            document.location.href = "/error/"
         })
 }
 
@@ -119,18 +118,15 @@ function deletePost(){
         })
 }
 
-
-async function addAllPost(response, isNotSolo){
+async function addAllPost(response){
 
     let reactions = await getReactions()
     let idUser = parseInt(getCookie("PioutterID"))
 
-    if (isNotSolo){
         response.forEach((post)=>{
             let template = document.getElementById("postTemplate")
             let clone = document.importNode(template.content, true)
             let container = document.getElementById("containerPost")
-
             let imageProfil = clone.getElementById("image-user")
             let pseudo = clone.getElementById("pseudo-user")
             let title = clone.getElementById("title-user")
@@ -145,7 +141,11 @@ async function addAllPost(response, isNotSolo){
             divDislike.setAttribute("contDislike", "dislike")
 
             link.forEach((element)=>{
-                element.href = `/status/${post.PostId}`
+                if (element.classList.contains("pseudo-href")){
+                    element.href = `/profil/${post.IdUser}`
+                }else{
+                    element.href = `/status/${post.PostId}`
+                }
             })
 
             reactions.forEach((reaction)=>{
@@ -169,36 +169,7 @@ async function addAllPost(response, isNotSolo){
 
             container.append(clone)
         })
-    }else{
-        let template = document.getElementById("postTemplate")
-        let clone = document.importNode(template.content, true)
-        let container = document.getElementById("containerPost")
 
-        let imageProfil = clone.getElementById("image-user")
-        let pseudo = clone.getElementById("pseudo-user")
-        let title = clone.getElementById("title-user")
-        let messagePost = clone.getElementById("message-post")
-        let like = clone.getElementById("like-post")
-        let dislike = clone.getElementById("dislike-post")
-        let containerLike = clone.getElementById("container-like-post")
-        let link = [...clone.querySelectorAll(".postLinkos")]
-
-        link.forEach((element)=>{
-            element.href = `/status/${response.PostId}`
-        })
-
-        pseudo.textContent = response.pseudo
-        title.textContent = response.title
-        messagePost.textContent += response.message
-        like.textContent = response.like
-        dislike.textContent = response.dislike
-
-        dislike.setAttribute("post_id", response.PostId)
-        like.setAttribute("post_id", response.PostId)
-
-        container.append(clone)
-
-    }
 }
 
 function getCookie(cname) {
@@ -254,8 +225,7 @@ async function addReactions(e, isLike){
             let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, false)
 
             if (updatePostFinish && updateReactionFinish){
-                input.parentNode.classList.remove("filterLike")
-                input.textContent = parseInt(input.textContent) - 1
+                changeDesignReaction(likeInput,"filterLike", false)
             }
 
         }else if (isLike && reaction.like === false && reaction.dislike === false){ // si il veut like et que ca n'est pas like et dislike
@@ -264,8 +234,7 @@ async function addReactions(e, isLike){
             let updateReactionFinish = await updateReactionOnePost(idPost, userId, true, false)
 
             if (updatePostFinish && updateReactionFinish){
-                input.parentNode.classList.add("filterLike")
-                input.textContent = parseInt(input.textContent) + 1
+                changeDesignReaction(likeInput, "filterLike", true)
             }
 
         }else if (isLike && reaction.dislike === true){  // si il veut like alors que c'est deja dislike
@@ -274,13 +243,9 @@ async function addReactions(e, isLike){
             let updateReactionFinish = await updateReactionOnePost(idPost, userId, true, false)
 
             if (updatePostFinish && updateReactionFinish){
-                dislikeInput.parentNode.classList.remove("filterDislike")
-                dislikeInput.textContent = parseInt(dislikeInput.textContent) - 1
-
-                likeInput.parentNode.classList.add("filterLike")
-                likeInput.textContent = parseInt(likeInput.textContent) + 1
+                changeDesignReaction(dislikeInput,"filterDislike",false)
+                changeDesignReaction(likeInput,"filterLike",true)
             }
-
 
         }else if (!isLike && reaction.dislike === true){ // si il veut dislike alors que c'est deja dislike
 
@@ -288,8 +253,7 @@ async function addReactions(e, isLike){
             let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, false)
 
             if (updatePostFinish && updateReactionFinish){
-                input.parentNode.classList.remove("filterDislike")
-                input.textContent = parseInt(input.textContent) - 1
+                changeDesignReaction(dislikeInput,"filterDislike",false)
             }
 
         }else if (!isLike && reaction.like === false && reaction.dislike === false){ // si il veut dislike et que rien n'est coché
@@ -298,8 +262,7 @@ async function addReactions(e, isLike){
             let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, true)
 
             if (updatePostFinish && updateReactionFinish){
-                input.parentNode.classList.add("filterDislike")
-                input.textContent = parseInt(input.textContent) + 1
+                changeDesignReaction(dislikeInput, "filterDislike",true)
             }
 
         }else if (!isLike && reaction.like === true){ // si il veut dislike et que c'est deja like
@@ -308,11 +271,8 @@ async function addReactions(e, isLike){
             let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, true)
 
             if (updatePostFinish && updateReactionFinish){
-                dislikeInput.parentNode.classList.add("filterDislike")
-                dislikeInput.textContent = parseInt(dislikeInput.textContent) + 1
-
-                likeInput.parentNode.classList.remove("filterLike")
-                likeInput.textContent = parseInt(likeInput.textContent) - 1
+                changeDesignReaction(dislikeInput, "filterDislike",true)
+                changeDesignReaction(likeInput,"filterLike", false)
             }
 
         }else {
@@ -329,15 +289,24 @@ async function addReactions(e, isLike){
         }
 
         if (postIsUp && isLike) {
-            input.parentNode.classList.add("filterLike")
-            input.textContent = parseInt(input.textContent) + 1
+            changeDesignReaction(likeInput,"filterLike", true)
         }else if(postIsUp && !isLike){
-            input.parentNode.classList.add("filterDislike")
-            input.textContent = parseInt(input.textContent) + 1
+            changeDesignReaction(dislikeInput, "filterDislike", true)
         }
     }
 }
 
+function changeDesignReaction(input, classCSS, isAdd){
+
+    if (isAdd) {
+        input.parentNode.classList.add(classCSS)
+        input.textContent = parseInt(input.textContent) + 1
+    }else {
+        input.parentNode.classList.remove(classCSS)
+        input.textContent = parseInt(input.textContent) - 1
+    }
+
+}
 
 function verificationReactionInBDD(postReactions, userId){
     let isReactionInBDD = false

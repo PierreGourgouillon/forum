@@ -464,7 +464,7 @@ func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error404.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
 
 	if err != nil {
 		fmt.Println(err)
