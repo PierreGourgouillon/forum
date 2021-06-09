@@ -1,32 +1,34 @@
 <!DOCTYPE html>
-<html lang="fr">
+
+<html>
     <head>
         <meta charset="utf-8">
         <title>projet forum</title>
-        <link rel="icon" type="image/png" sizes="16x16" href="/static/Design/Images/iconHaut.png">
-        <script src="" type="text/javascript" charset="utf-8"></script>
-        <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/loginPage_LightMode.css">
+        <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+
+        <script src="/static/Javascript/login.js" type="text/javascript" charset="utf-8"></script>
+        <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/DarkMode/loginPage_DarkMode.css">
     </head>
-
-    <body>   
+  
+    <body>
         <div id="general">
-            <img id="logo" src="/static/Design/Images/Logo/dark_mode.png">
-            <form id="cadre">
-                <div class="field">
-                    <input class="test" name="email" type="text" placeholder="Email" required>
-                </div>
-                    
-                <div class="field" id="mdp">
-                    <input class="test"  name="password" type="text" placeholder="Mot de passe" required>
-                    <img id="oeil" src="/static/Design/Images/Icon/eye_black.png">
-                </div>
-                <button id="bt">Se connecter</button>
-            </form> 
-        </div>  
+            <div id="zoomImage">
+                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+            </div>
 
-        <a href="/">
-            <img id="retourViolet" src="/static/Design/Images/ggg.png">
-            <img id="retour" src="/static/Design/Images/retour2.png">
-        </a>  
+            <div id="formulaire">
+                <div class="caseFormulaire">
+                    <input type="email" class="caseInput" id="email" name="Email" placeholder="Adresse électronique" required>
+                </div>
+                <div class="caseFormulaire">
+                    <input type="password" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de passe"required>
+                    <img class="oeil" id="oeil1" onclick="AfficherMdp()" src="/static/Design/Images/Icon/eye_black.png">
+                </div>
+                <div id="zoneMessErreur"></div>
+                <div class="buttons">
+                    <input id="bt" type="submit" value="Se connecter" onclick="login()">
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/forum/Back-end/password"
-	"github.com/forum/Back-end/structs"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -67,7 +65,7 @@ user_id INT AUTO_INCREMENT PRIMARY KEY,
 user_email VARCHAR(50) NOT NULL,
 user_pseudo VARCHAR(30) NOT NULL,
 user_password VARCHAR(3000) NOT NULL,
-user_birth DATE NOT NULL)`
+user_birth VARCHAR(12) NOT NULL)`
 
 const tableUserProfile = `CREATE TABLE IF NOT EXISTS userProfile(
 user_id INT,
@@ -90,10 +88,11 @@ const tableAllPosts = `CREATE TABLE IF NOT EXISTS allPosts (
 post_id INT AUTO_INCREMENT PRIMARY KEY,
 user_pseudo VARCHAR(50) NOT NULL,
 user_id INT NOT NULL,
+user_title VARCHAR(50) NULL,
 user_message TEXT NULL,
 post_image BINARY,
-post_date DATE NULL,
-post_hour TIME NOT NULL,
+post_date VARCHAR(15) NULL,
+post_hour VARCHAR(15) NOT NULL,
 post_likes INT NULL,
 post_dislikes INT NULL)`
 
@@ -105,83 +104,3 @@ const tablePostCategory = `CREATE TABLE IF NOT EXISTS postCategory (
 post_id INT NOT NULL,
 category_id INT NULL,
 post_category VARCHAR(50)NULL)`
-
-func GetEmailList() []string {
-	EmailList := []string{}
-
-	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	data, err := db.Query("SELECT user_email FROM userIdentity")
-	defer db.Close()
-	if err != nil {
-		return []string{}
-	}
-
-	for data.Next() {
-		var email string
-		data.Scan(&email)
-		EmailList = append(EmailList, email)
-	}
-
-	return EmailList
-}
-
-func InsertNewUser(user structs.Register) {
-	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
-
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
-
-	user.MotDePasse, _ = password.HashPassword(user.MotDePasse)
-	var date string = user.Year + "-" + user.Month + "-" + user.Day
-	fmt.Println(date)
-	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth) VALUES (?, ?, ?, ?)", user.Email, user.Pseudo, user.MotDePasse, date)
-	if err != nil {
-		return
-	}
-
-	fmt.Println(data)
-}
-
-func GetPasswordByEmail(email string) string {
-	var password string
-	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
-
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
-
-	data := db.QueryRow("SELECT user_password FROM userIdentity WHERE user_email = ?", email)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	data.Scan(&password)
-	return password
-}
-
-func GetIdByEmail(email string) string {
-	var ID int
-	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
-
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
-
-	data := db.QueryRow("SELECT user_id FROM userIdentity WHERE user_email = ?", email)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	data.Scan(&ID)
-	return strconv.Itoa(ID)
-}

@@ -1,0 +1,136 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*-----------------------
+* General
+-------------------------*/
+
+*{
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+}
+
+
+body {
+    min-height: 100%;
+    background: #15202B;
+    font-family: "Open Sans", sans-serif;
+}
+
+#general{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    width: 400px;
+    height: 430px;
+    /* border:1px solid white; */
+}
+
+/*-----------------------
+* Logo
+-------------------------*/
+#zoomImage{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+        
+}
+
+/*-----------------------
+* Formulaire
+-------------------------*/
+#formulaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    margin-top:20px;
+    /* border:1px solid blue; */
+}
+
+.caseFormulaire{
+    /* border:1px solid blue; */
+    width: 400px;
+    height: 60px;
+
+    margin-top: 6px;
+}
+
+input{
+    width: 400px;
+    height: 60px;
+    margin-top:8px;
+    /* padding: 2.7%; */
+}
+
+/*-----------------------
+* buttons / features
+-------------------------*/
+.buttons{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 60px;
+    margin-top:10px;
+    /* border:1px solid blue; */
+}
+
+#bt{
+    width:300px;
+    height: 50px;
+
+    border:none;
+    border-radius: 40px;
+
+    background: #794BC4;
+    color:white;
+
+    cursor: pointer;
+}
+
+#bt:hover{
+    background: #ffffff;
+    border:1.5px solid #794BC4;
+    color:#794BC4;
+    
+}
+
+/*---*/
+
+.oeil{
+    position: relative;
+    top:-45px;
+    left:360px;
+    width: 30px;
+    height: 30px;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.oeil:hover{
+    opacity: 100%;
+}
+
+/* Zone message d'erreur */
+
+#zoneMessErreur {
+    margin-top: 6px;
+    font-family: "montserrat";
+    color: red;
+    font-size: 18px;
+    text-align: center;
+}

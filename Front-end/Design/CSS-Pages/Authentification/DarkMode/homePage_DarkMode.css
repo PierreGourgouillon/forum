@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*-----------------
 * Général
 -----------------*/
@@ -9,6 +22,10 @@
 
 html { overflow-y: hidden; 
     overflow-x: hidden;
+}
+
+body{
+    font-family: "Open Sans", sans-serif;
 }
 
 #general{
@@ -31,7 +48,7 @@ html { overflow-y: hidden;
 
 #logo{
     width: 40%;
-    aspect-ratio: 1/1.1;
+    aspect-ratio: 1/1;
 }
 
 /*-----------------
@@ -39,7 +56,7 @@ html { overflow-y: hidden;
 -----------------*/
 
 #droite{ 
-    background-color: white;
+    background-color: #15202B;
     width: 48%;
     display:flex;
     flex-direction: column;
@@ -67,8 +84,6 @@ html { overflow-y: hidden;
 -----------------*/
 
 #textDroit{
-    position: relative;
-    left:50px;
     width: 80%;
     height: 20%;
     margin-left:auto;
@@ -76,25 +91,21 @@ html { overflow-y: hidden;
     display: flex;
     flex-direction: column;
     /* border: 3px solid green; */
-    text-align: left;
+    text-align: center;
 }
 
 h1{
     position: relative;
     top:15%;
     color: white;
-    font-size: 250%;
-}
-
-#auMax{
-    position: relative;
-    top:15%;
+    font-size: 3vw;    
 }
 
 h2{
     position: relative;
     top:15%;
     color: white;
+    font-size:1vw;
 }
 
 /*-----------------
@@ -103,12 +114,11 @@ h2{
 
 #boutonDroit{
     width: 43.5%;
-    height: 20%;
+    height: 140px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     /* border: 3px solid red; */
-    margin-top: 5%;
     margin-left:auto;
     margin-right: auto;
     

@@ -27,6 +27,17 @@ func ReadCookie(r *http.Request, nameCookie string) bool {
 	return true
 }
 
+func ValueCookie(r *http.Request, nameCookie string) string {
+	cookie, err := r.Cookie(nameCookie)
+
+	if err != nil {
+		fmt.Println("Un problème est survenu lors de la récupération de la valeur du cookie")
+		return ""
+	}
+
+	return cookie.Value
+}
+
 func DeleteCookie(r *http.Request, nameCookie string) {
 	cookie, err := r.Cookie(nameCookie)
 	if err != nil {
