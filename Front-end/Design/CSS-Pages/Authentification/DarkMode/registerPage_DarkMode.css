@@ -15,6 +15,7 @@
 * General
 -------------------------*/
 
+
 *{
     box-sizing: border-box;
     color: inherit;
@@ -130,7 +131,8 @@ body{
     border:none;	
     outline:none;
     border-bottom:1px solid #3ce759;	
-   }
+}
+
 
 
 .caseInput::placeholder{
@@ -163,9 +165,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 #generalBtn{
 /* border:1px solid #555; */
-	width:115px;
-	height:35px;
-	margin-top:20px;
+	width:200px;
+	height:40px;
+	margin-top:10px;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -208,7 +210,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #btRandom{
     position: relative;
     left:415px;
-    top:-297px;
+    top:-317px;
     background: transparent;
 
     border:none;
@@ -227,9 +229,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Zone message d'erreur */
 
 #zoneMessErreur {
-    margin-top: 6px;
+    position: relative;
+
+    margin-top: -4px;
     font-family: "montserrat";
     color: red;
     font-size: 18px;
     text-align: center;
+    width: 332px;
+    height: 30px;
+    /* background:pink; */
+}
+
+#retour{
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+
+    width: 70px;
+    aspect-ratio: 1/1;
+}
+#imgRetour{
+    width: 100%;
+    aspect-ratio: 1/1;
+    filter: invert(0.8);
+    opacity: 40%;
+}
+
+#imgRetour:hover{
+    opacity: 100%;
 }
