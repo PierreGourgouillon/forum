@@ -84,6 +84,10 @@ func staticFile(router *mux.Router) {
 }
 
 func route(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
 	if err != nil {

@@ -1,22 +1,33 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*-----------------------
 * General
 -------------------------*/
 
-html {
-    font-family: 'Open Sans', Arial;
-}
 
 *{
     box-sizing: border-box;
     color: inherit;
-    font-family: inherit;
     font-size: inherit;
+    overflow: hidden;
 }
 
 
 body {
     min-height: 100%;
     background: #15202B;
+    font-family: "Open Sans", sans-serif;
 }
 
 #general{
@@ -24,94 +35,166 @@ body {
     margin-right: auto;
     margin-top: 8%;
     margin-bottom: 8%;
-    width: 400px;
-    height: 430px;
-    /* border:1px solid white; */
+    padding-top: 40px;
+    width: 500px;
+    height: 600px;
+    border:1px solid white;
+    border-radius: 6px;
 }
 
 /*-----------------------
 * Logo
 -------------------------*/
 #zoomImage{
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
     width: 400px;
     height: 200px;
-        
+    /* border:1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+#logo{
+    width: 50%;
+    aspect-ratio: 1/1;
+}
+
+#separation{
+    width: 100px;
+    height: 3px;
+    opacity: 70%;
+    background: #794BC4;
+
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:60px;
+    border-radius: 6px;
+
 }
 
 /*-----------------------
 * Formulaire
 -------------------------*/
-#formulaire{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 400px;
-    height: 200px;
-    margin-top:20px;
-    /* border:1px solid blue; */
+body{
+	font-family: 'Noto Sans', sans-serif;
+    background: #15202B;
 }
+
+/*-----*/
+
+#formulaire{
+    margin-left: auto;
+    margin-right: auto;
+	/* border:1px solid white; */
+	border-radius:3px;
+	padding-top:20px;
+	padding-left:80px;
+	padding-right:80px;
+	padding-bottom:50px;
+}
+
+/*---*/
 
 .caseFormulaire{
-    /* border:1px solid blue; */
-    width: 400px;
-    height: 60px;
-
-    margin-top: 6px;
+	width:320px;
+    margin-left:auto;
+	margin-right:auto;
 }
 
-input{
-    width: 400px;
-    height: 60px;
-    margin-top:8px;
-    /* padding: 2.7%; */
-}
-
-/*-----------------------
-* buttons / features
--------------------------*/
-.buttons{
-    display: flex;
-    justify-content: center;
-    width: 400px;
-    height: 60px;
-    margin-top:10px;
-    /* border:1px solid blue; */
-}
-
-#bt{
-    width:300px;
-    height: 50px;
-
-    border:none;
-    border-radius: 40px;
-
-    background: #794BC4;
-    color:white;
-
-    cursor: pointer;
-}
-
-#bt:hover{
-    background: #ffffff;
-    border:1.5px solid #794BC4;
-    color:#794BC4;
+.boxInput{
+    /* border:1px solid #555;  */
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
+    max-height: 40px;
     
 }
+
+.boxInput input{ 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#fff;
+}
+
+
+.boxInput input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+
+.boxInput input:valid{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;	
+}
+
+
+
+.caseInput::placeholder{
+    color:#fff;	
+}
+
+/* Placeholders */
+::-webkit-input-placeholder { opacity: 1; -webkit-transition: opacity .2s; transition: opacity .2s; }  /* Chrome 56, Safari 9 */
+:-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 4-18 */
+::-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 19-51 */
+:-ms-input-placeholder { opacity: 1; -ms-transition: opacity .2s; transition: opacity .2s; } /* IE 10+ */
+::placeholder { opacity: 1; transition: opacity .2s; } /* Modern Browsers */
+
+/* Focus */
+*:focus::-webkit-input-placeholder { opacity: 0; } /* Chrome 56, Safari 9 */
+*:focus:-moz-placeholder { opacity: 0; } /* FF 4-18 */
+*:focus::-moz-placeholder { opacity: 0; } /* FF 19-50 */
+*:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
+*:focus::placeholder { opacity: 0; } /* Modern Browsers */
+
+/*---*/
+
+#generalBtn{
+/* border:1px solid #555; */
+	width:200px;
+	height:40px;
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+.btn{
+    width: 100%;
+    height: 100%;
+	color:#fff;
+	background-color:#794BC4;
+	outline: none;
+    border: 0;
+	text-transform:uppercase;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+
+
+
+
 
 /*---*/
 
 .oeil{
     position: relative;
-    top:-45px;
-    left:360px;
+    left:290px;
+    top:-32px;
     width: 30px;
     height: 30px;
-    opacity: 80%;
+    opacity: 40%;
     cursor: pointer;
-}
+    filter: invert(0.8);
 
+}
 .oeil:hover{
     opacity: 100%;
 }
@@ -119,9 +202,33 @@ input{
 /* Zone message d'erreur */
 
 #zoneMessErreur {
-    margin-top: 6px;
+    position: relative;
+
+    margin-top: -4px;
     font-family: "montserrat";
     color: red;
     font-size: 18px;
     text-align: center;
+    width: 332px;
+    height: 30px;
+    /* background:pink; */
+}
+
+#retour{
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+
+    width: 70px;
+    aspect-ratio: 1/1;
+}
+#imgRetour{
+    width: 100%;
+    aspect-ratio: 1/1;
+    filter: invert(0.8);
+    opacity: 40%;
+}
+
+#imgRetour:hover{
+    opacity: 100%;
 }
