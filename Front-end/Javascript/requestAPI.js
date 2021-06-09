@@ -120,7 +120,10 @@ function deletePost(){
 }
 
 
-function addAllPost(response, isNotSolo){
+async function addAllPost(response, isNotSolo){
+
+    let reactions = await getReactions()
+    let idUser = parseInt(getCookie("PioutterID"))
 
     if (isNotSolo){
         response.forEach((post)=>{
@@ -135,9 +138,24 @@ function addAllPost(response, isNotSolo){
             let like = clone.getElementById("like-post")
             let dislike = clone.getElementById("dislike-post")
             let link = [...clone.querySelectorAll(".postLinkos")]
+            let divLike = clone.getElementById("like")
+            let divDislike = clone.getElementById("dislike")
+
+            divLike.setAttribute("contLike", "like")
+            divDislike.setAttribute("contDislike", "dislike")
 
             link.forEach((element)=>{
                 element.href = `/status/${post.PostId}`
+            })
+
+            reactions.forEach((reaction)=>{
+                if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                    if (reaction.like == true) {
+                        divLike.style.filter = "invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%)"
+                    }else if (reaction.dislike == true) {
+                        divDislike.style.filter = "invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%)"
+                    }
+                }
             })
 
             pseudo.textContent = post.pseudo
@@ -215,28 +233,52 @@ function getUser(id){
         })
 }
 
-function addReactions(e, isLike){
+async function addReactions(e, isLike){
 
-    /*let likes = getIdPostInput(e)
-
-    let idPost = likes.getAttribute("post_id")
+    let userId = parseInt(getCookie("PioutterID"))
+    let input = getReactionInput(e)
+    let idPost = input.getAttribute("post_id")
     let postIsUp = ""
+    let postReactions = await getReactionsPost(idPost)
+    let isReactionInBDD = verificationReactionInBDD(postReactions, userId)
 
-    let postReactions = await getReactionsPost(idPost)*/
+    if (isReactionInBDD){
 
+    }else{
+        let isCreate = await createReactionAPI(parseInt(idPost), userId, isLike)
 
-    /*if (isLike) {
-        postIsUp = await updatePost(idPost,"","",parseInt(likes.textContent)+1, 0)
-    }else {
-        postIsUp = await updatePost(idPost,"","",0, parseInt(likes.textContent)+1)
+        if (isCreate && isLike === true) {
+            postIsUp = await updatePost(idPost,"","",parseInt(input.textContent)+1, 0)
+        }else if (isCreate && isLike === false) {
+            postIsUp = await updatePost(idPost,"","",0, parseInt(input.textContent)+1)
+        }
+
+        if (postIsUp && isLike) {
+            input.parentNode.style.filter = "invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%)"
+            input.textContent = parseInt(input.textContent) + 1
+        }else if(postIsUp && !isLike){
+            input.parentNode.style.filter = "invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%)"
+            input.textContent = parseInt(input.textContent) + 1
+        }
     }
-
-    if (postIsUp) {
-        likes.textContent = parseInt(likes.textContent) + 1
-    }*/
 }
 
-function getIdPostInput(e){
+
+function verificationReactionInBDD(postReactions, userId){
+    let isReactionInBDD = false
+
+    if (postReactions != null){
+        for (let i=0; i < postReactions.length;i++){
+            if (postReactions[i].idUser === userId) {
+                isReactionInBDD = true
+            }
+        }
+    }
+
+    return isReactionInBDD
+}
+
+function getReactionInput(e){
     let parentDiv = e.target.parentNode
     let likes = ""
 
@@ -247,4 +289,101 @@ function getIdPostInput(e){
     }
 
     return likes
+}
+
+
+
+
+
+
+
+
+
+
+
+function getReactions(){
+    return fetch("/reaction/",{
+        method: "GET",
+        headers : {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((res)=>{
+            return res.json()
+        })
+        .catch((err)=>{
+            alert(err)
+        })
+}
+
+function createReactionAPI(idPost, idUser, isLike){
+
+    let like = false ;
+    let dislike = false ;
+
+    (isLike) ? like=true : dislike=true
+
+
+    return fetch("/reaction/", {
+        method: "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+            "idPost" : idPost ,
+            "idUser" : idUser ,
+            "like" : like ,
+            "dislike" : dislike
+        })
+    })
+        .then(()=>{
+            return true
+        })
+        .catch(()=>{
+            return false
+        })
+}
+
+function getReactionsPost(id){
+    return fetch(`/reaction/${id}`, {
+        method : "GET",
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((response)=>{
+            return response
+        })
+        .catch((err)=>{
+            alert(err)
+        })
+}
+
+function UpdateReactionOnePost (){
+
+    fetch("/reaction/1", {
+        method: "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            "idPost" : 1 ,
+            "idUser" : 18 ,
+            "like" : false ,
+            "dislike" : false
+        })
+    })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((response)=>{
+            console.log(response)
+        })
+        .catch((err)=>{
+            alert(err)
+        })
+
 }
