@@ -13,31 +13,33 @@
     <body>
         <div id="general">
             <div id="zoomImage">
-                <img id="logo" src="/static/Design/Images/Logo/dark_mode.png">
+                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
             </div>
 
             <div id="formulaire">
                 <div class="caseFormulaire">
-                    <input type="text" class="caseInput" id="Nom" name="Nom" placeholder="Nom (6char min | 10char max)" minlength="6" maxlength="10" required>
+                    <div class="boxInput">
+                        <input type="text" class="caseInput" id="pseudo" name="Nom"  minlength="6" maxlength="10" required>
+                        <label>Pseudo</label>		
+                    </div>
+                    <div class="boxInput">		
+                        <input type="email" class="caseInput" id="email" name="Email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="boxInput">		
+                        <input type="password" class="caseInput" id="password" name="Mot de passe"required>
+                        <label>Mot de passe</label>
+                    </div>
+                    <div class="boxInput">		
+                        <input type="password" class="caseInput" id="passwordConf" name="Confirmation Mot de passe" onkeyup='validatePassword();'required>
+                        <label>Confirmation Mot passe</label>
+                    </div>
+                    <div class="boxInput">		
+                        <input type="date" id="birth" min="23/05/1910" max="23/05/2010" required>
+                    </div>	
                 </div>
-                <div class="caseFormulaire">
-                    <input type="email" class="caseInput" id="E-mail" name="Email" placeholder="Adresse électronique" required>
-                </div>
-                <div class="caseFormulaire">
-                    <input type="password" class="caseInput" id="Motdepasse" name="Mot de passe" placeholder="Mot de passe (6char min)"required>
-                    <img class="oeil" id="oeil1" onclick="AfficherMdp()" src="/static/Design/Images/Icon/eye_black.png">
-                    <button id="btRandom" type="button" onclick="strRandom()" value="..." ><img id="imgMdp"src="/static/Design/Images/Icon/iconMdp.png"></button>
-                </div>
-                <div class="caseFormulaire">
-                    <input type="password" class="caseInput" id="confirmationMotdepasse" name="Confirmation Mot de passe" placeholder="confirmation mdp" onkeyup='validatePassword();'required>
-                    <img class="oeil" onclick="Afficher()" src="/static/Design/Images/Icon/eye_black.png">
-                </div>
-                <input type="date" id="dateNaissance" min="1960-05-23" max="2010-05-23" required>
-                <div id="zoneMessErreur"></div>
-
-                <div class="buttons">
-                    <input id="bt" type="submit" value="Envoyer" name="Envoyer">
-                    <!-- <button id="bt2"  type="reset" value=" " name="Reset"><img id="refreshFormulaire" src="/condition formulaire/image/refresh.png"></button> -->
+                <div id="generalBtn">
+                    <button type="button" class="btn">S'inscrire</button>
                 </div>
             </div>
         </div>
