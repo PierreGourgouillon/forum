@@ -58,12 +58,9 @@ func requestHTTP(router *mux.Router) {
 
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
-<<<<<<< HEAD
 
 	//Profil Route
 	router.HandleFunc("/profil/", profilRoute)
-=======
-	router.HandleFunc("/test/", testRoute)
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -71,7 +68,6 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
 	router.HandleFunc("/post/{id}", postDelete).Methods("DELETE")
->>>>>>> dev
 }
 
 func staticFile(router *mux.Router) {
@@ -82,13 +78,10 @@ func staticFile(router *mux.Router) {
 }
 
 func route(w http.ResponseWriter, r *http.Request) {
-<<<<<<< HEAD
-=======
 	if !cookie.ReadCookie(r, "PioutterMode") {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
 	}
 
->>>>>>> dev
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
 	if err != nil {
@@ -112,29 +105,6 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-<<<<<<< HEAD
-	userLogin := structs.Login{
-		Email:    r.FormValue("email"),
-		Password: r.FormValue("password"),
-	}
-
-	fmt.Println("login ->")
-	fmt.Println(userLogin)
-
-	if userLogin.Email != "" {
-		success, message := authentification.CheckUser(userLogin.Email, userLogin.Password)
-		if success {
-			fmt.Println(message)
-			ID := database.GetIdByEmail(userLogin.Email)
-			cookie.SetCookie(w, "PioutterID", ID, "/")
-			http.Redirect(w, r, "/home/", http.StatusSeeOther)
-			return
-		}
-		fmt.Println(message)
-	}
-
-=======
->>>>>>> dev
 	tmpl.Execute(w, nil)
 }
 
@@ -150,34 +120,6 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-<<<<<<< HEAD
-	userRegister := structs.Register{
-		Pseudo:         r.FormValue("username"),
-		Email:          r.FormValue("email"),
-		MotDePasse:     r.FormValue("password"),
-		MotDePasseConf: r.FormValue("confirmationpassword"),
-		Day:            r.FormValue("aniversaire_jour"),
-		Month:          r.FormValue("anniversaire_mois"),
-		Year:           r.FormValue("anniversaire_ans"),
-	}
-
-	fmt.Println(userRegister)
-
-	if userRegister.Pseudo != "" {
-		success, message := authentification.DoInscription(userRegister)
-		fmt.Println(success)
-		if success {
-			ID := database.GetIdByEmail(userRegister.Email)
-			cookie.SetCookie(w, "PioutterID", ID, "/")
-			http.Redirect(w, r, "/home/", http.StatusSeeOther)
-			return
-		} else {
-			fmt.Println(message)
-		}
-	}
-
-=======
->>>>>>> dev
 	tmpl.Execute(w, nil)
 }
 
@@ -258,13 +200,8 @@ func deactivateAccount(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-<<<<<<< HEAD
 func profilRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/profilPage.html")
-=======
-func testRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
->>>>>>> dev
 
 	if err != nil {
 		fmt.Println(err)
@@ -273,8 +210,6 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 
 	tmpl.Execute(w, nil)
 }
-<<<<<<< HEAD
-=======
 
 func createPost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
@@ -451,4 +386,3 @@ func unmarshallJSON(r *http.Request, API interface{}) {
 
 	json.Unmarshal(body, &API)
 }
->>>>>>> dev
