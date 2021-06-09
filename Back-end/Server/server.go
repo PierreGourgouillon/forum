@@ -59,8 +59,8 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/home/", homeRoute)
 
 	//Profil Route
-	router.HandleFunc("/profil/", profilRoute)
-	router.HandleFunc("/profil/{id}", getPostsUser).Methods("GET")
+	router.HandleFunc("/profil/{id}", profilRoute)
+	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -206,6 +206,13 @@ func profilRoute(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
+	}
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	nbrUsers := database.GetNumberOfUsers()
+	if id > nbrUsers || err != nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 
 	tmpl.Execute(w, nil)

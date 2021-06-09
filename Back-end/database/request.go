@@ -266,3 +266,19 @@ func GetPostsByUserID(id int) []structs.Post {
 
 	return allPost
 }
+
+func GetNumberOfUsers() int {
+	var nbr int
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	res := db.QueryRow("SELECT COUNT(*) FROM userIdentity")
+
+	res.Scan(&nbr)
+
+	return nbr
+}
