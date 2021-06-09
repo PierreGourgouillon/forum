@@ -45,6 +45,7 @@ func requestHTTP(router *mux.Router) {
 	//API Authentification
 	router.HandleFunc("/user/", register).Methods("POST")
 	router.HandleFunc("/user/{id}", getUsers).Methods("GET")
+
 	router.HandleFunc("/users/", login).Methods("POST")
 
 	//settings Route
@@ -57,7 +58,11 @@ func requestHTTP(router *mux.Router) {
 
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
-	router.HandleFunc("/test/", testRoute)
+
+	//Profil Route
+	router.HandleFunc("/profil/{id}", profilRoute)
+	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
+
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -206,12 +211,19 @@ func deactivateAccount(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func testRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
+func profilRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/profilPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
+	}
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	nbrUsers := database.GetNumberOfUsers()
+	if id > nbrUsers || err != nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 
 	tmpl.Execute(w, nil)
@@ -380,6 +392,28 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 
 	w.Write(jsonAllPost)
 
+}
+
+func getPostsUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	postsUser := database.GetPostsByUserID(id)
+
+	jsonPosts, error := json.Marshal(postsUser)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonPosts)
 }
 
 func getReactions(w http.ResponseWriter, r *http.Request) {

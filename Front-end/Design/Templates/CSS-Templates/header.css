@@ -24,13 +24,13 @@ a:hover,a:link,a:visited,a:active{
     text-decoration: none;
 }
 
-header{
+header {
     margin: 0;
     padding: 0;
     display: flex;
     flex-basis: auto;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     flex-grow: 1;
     position: relative;
     width: 20%;
@@ -41,7 +41,6 @@ header{
 .container-body{
     display: flex;
     height: 100%;
-
 }
 
 .container-header{
