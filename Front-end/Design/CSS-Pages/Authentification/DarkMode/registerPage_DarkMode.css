@@ -19,6 +19,7 @@
     box-sizing: border-box;
     color: inherit;
     font-size: inherit;
+    overflow: hidden;
 }
 
 

@@ -84,8 +84,6 @@ body{
 -----------------*/
 
 #textDroit{
-    position: relative;
-    left:50px;
     width: 80%;
     height: 20%;
     margin-left:auto;
@@ -93,25 +91,21 @@ body{
     display: flex;
     flex-direction: column;
     /* border: 3px solid green; */
-    text-align: left;
+    text-align: center;
 }
 
 h1{
     position: relative;
     top:15%;
     color: white;
-    font-size: 250%;
-}
-
-#auMax{
-    position: relative;
-    top:15%;
+    font-size: 3vw;    
 }
 
 h2{
     position: relative;
     top:15%;
     color: white;
+    font-size:1vw;
 }
 
 /*-----------------
@@ -120,12 +114,11 @@ h2{
 
 #boutonDroit{
     width: 43.5%;
-    height: 20%;
+    height: 140px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     /* border: 3px solid red; */
-    margin-top: 5%;
     margin-left:auto;
     margin-right: auto;
     
