@@ -1,282 +1,80 @@
-html {
-    font-family: 'Open Sans', Arial;
-}
-
-* {
-    box-sizing: border-box;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-
+*{
     margin: 0;
     padding: 0;
 }
-
-
-html,body {
-    padding: 0;
-    margin: 0;
-    min-height: 100%;
+body{
     background: #15202B;
 }
-
-a:focus, a:active, input:focus {
-    outline: 0;
-}
-
-a {
-    color: rgb(121, 75, 196);
-    text-decoration: none;
-}
-
-textarea{
-    position: relative;
-    top:-5px;
-
-    width: 479px;
-    height: 79px;
-    
-    overflow: visible;
-    resize : none;
-    border:none;
-    background:#ffffff11 ;
-    color:grey;
-
-    padding-top:-5px;
-    padding-left:4px;
-}
-
-textarea:focus{
-    border:none;
-    outline:none;
-    color:grey;
-}
-
-/*-----------------------
-*Séparation
--------------------------*/
-
-.separationGeneral{
-    width: 640px;
-    height: auto;
-
-    margin: 0 auto;
-
-    border:1px solid grey;
-    border-bottom:none;
-    border-top:none;
-}
-
-#flag{
-    margin-top: 117.2%;
-
-    width: 1px;
-    height: 1px;
-}
-
-/*-----------------------
-*Ecriture Post
--------------------------*/
-#ppZoneEcriture{
-    display: block;
+#post_add_area{
     position: absolute;
-    top:10px;
-    left:20px;
-    width:60px;
-    height:60px;
-    border-radius: 100%;
-    border:1px solid grey;
-    background: pink;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 200px;
+    background: #373737;
 }
-
-#ecritureTweet {
-    position: relative;
-    top:20px;
-
-    width: 639px;
-    height: 140px;
-
-    margin-left:auto;
-    margin-right:auto;
-
-    border-bottom:1px solid grey;;
-    
-    padding: 10px;
-}
-
-#textArea{
-  font-family: 'Open Sans', Arial;
-    width: 85%;
-    height: 80px;
-    resize: none;
-    margin-left: 85px;
-    padding-top:3px;
-    padding-left:4px;
-    outline:none;
-}
-
-.zoneEcriture{
-    user-select: text;
-}
-
-#iconImage{
-    margin-left:95px;
-    margin-top:8px;
-    background-color:cadetblue;
-    width: 25px;
-    height: 25px;
-}
-
-#iconEmoji{
-    position: relative;
-    margin-left:135px;
-    margin-top:-25px;
-    background-color:cadetblue;
-    width: 25px;
-    height: 25px;
-}
-
-#inputForm{
-    position: relative;
-    top:-30px;
-    margin-left:525px;
-    padding: 5px 15px;
-
-    border-radius: 5px;
+.post_text{
+    background: #4d4d4d;
+    position: absolute;
+    left: 50%; 
+    top:5px;
+    transform: translateX(-50%);
+    width: 500px;
+    height:150px;
     border: none;
-
-    background: #794BC4;
-    color: rgb(255, 255, 255);
-    
+    outline: none;
+    padding: 5px;
+    color: #fff;
+}
+.post_text::-webkit-scrollbar{
+    width: 10px;
+    background-color: #373737;
+}
+.post_text::-webkit-scrollbar-thumb{
+    background-color: #fff;
+}
+.submit{
     cursor: pointer;
+    background: #4d4d4d;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 30px;
+    width: 80px;
+    margin-top: 15px;
+    color: #000;
+    border: none;
 }
 
-
-/*-----------------------
-*actu
--------------------------*/
-
-#zonePostTweet{
+#post_view_area{
+    display : flex;
+    flex-direction: column-reverse ;
     position: relative;
-    top :0px;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 100%;
+    background: #373737;
+}
 
-    width: 620px;
-    height: auto;
-
-    margin-top:40px;
-    margin-left:auto;
-    margin-right:auto;
-
-    /* background: #373737; */
-
-    display: flex;
-    flex-direction: column-reverse;
+.post{
+    margin: auto;
+    margin-top: 15px;
+    top: 15px;
+    width: 350px;
+    height: 150px;
+    background: #4d4d4d;
     text-align: center;
+    border: 2px solid #000;
 }
-
-/*-----------------------
-*post
--------------------------*/
-
-.tweet{
-    position: relative;
-    left:-9px;
-    width:637px;
-    height:auto;
-    min-height:18%; 
-    margin-top: 20px;
-    margin-left:auto;
-    margin-right:auto;
-
-    background:#1b2a38;
-    border-top: 2px solid grey;
-    border-bottom: 2px solid grey;
-
-    border-radius: 8px;
+.post h1{
+    color: #000;
+    font-size: 20px;
 }
-  
-.pp{
-    display: block;
-    position: relative;
-    top:8px;
-    left:20px;
-    width:60px;
-    height:60px;
-    border-radius: 100%;
-    border:1px solid grey;
-    background: pink;
+.post p{
+    margin-top: 5px;
+    color: #fff;
 }
-  
-.name{
-    display: block;
-    position: relative;
-    top:-30px;
-    left:85px;
-    width:200px;
-    height:20px;
-    text-align: left;
-    color:rgb(182, 182, 182);
-}
-
-.logo{
-    position: relative;
-    left:250px;
-    top:-38px;
-    margin-top:-100px;
-    width: 50px;
-}
-  
-.contenue{
-    width:599px;
-    height:auto;
-    /* border:0.1px solid grey;
-    background :green; */
-    text-align: left;
-    padding-left: 22px;
-    padding-bottom: 15px;
-    margin-left :0px;
-    margin-top:-5px;
-    margin-bottom : 5px;    
-    color:rgb(182, 182, 182);
-}
-  
-.separation{
-    position: relative;
-    width:550px;
-    height:1px;
-    background-color: grey;
-    margin-left :auto;
-    margin-right: auto;
-    margin-top:auto;
-    margin-bottom : 20px;
-}
-  
-.like{
-    position: relative;
-    top:-10px;
-    left:-250px;
-
-
-    width:30px;
-    height:30px;
-/* 
-    border:0.1px solid grey; */
-    /* background :brown; */
-
-}
-
-.commentaire{
-    position: relative;
-    top:-10px;
-    left:-230px;
-
-    width:35px;
-    height:35px;
-    
-    /* border:0.1px solid grey;
-    background :blue; */
-
-
-}
-
 

@@ -1,36 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <script src="scriptpost.js"></script>
-        <title>Design - Post</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-        <!-- Style -->
-        <link rel="stylesheet" href="/post/postsstyle.css">
-    </head>
+    <!-- Style -->
+    <link rel="stylesheet" href="../tweet_perso/postsstyle.css">
+</head>
+<body>
+    <!-- Add Post -->
+    <!-- form ici -->
+    <div id="post_add_area">
+        <textarea name="" id="post__textarea" class="post_text"></textarea>
+        <button type="submit" class="submit" id="submit__btn">
+            Add Post
+        </button>
+    </div>
+    <!-- for fermer ici -->
 
-    <body>
-        <!-- form ici -->
-        <div class="separationGeneral">
-            <div id ="ecritureTweet">
-                <!-- form pour ecrire un tweet (changer <div zoneEcriture> par <form zoneEcriture) -->
-                <div id="ppZoneEcriture"></div>
-                <div class="zoneEcriture" id="zoneEcriture">
-                    <textarea id="textArea" spellcheck="false" placeholder="Ecrire un nouveau tweet..."></textarea>
-                </div>
-                <div id="iconImage"><label for="file1" class="label-file"><img src="/post/img/image-icon.png"></img></label><input id="file1" class="input-file" type="file" accept="image/png, image/jpeg"></div>
-                <div id="iconEmoji"><label for="file2" class="label-file"><img src="/post/img/gif-icon.png"></img></label><input id="file2" class="input-file" type="file" accept="image/gif"></div>
-                <!-- ce dernier input doit aussi prendre en compte les images et gifs -->
-                <input type="submit" id="inputForm"></input>
-                
-            </div>
-            <!-- for fermer ici -->
-
-            <div id="zonePostTweet">
-                
-
-            </div>
-            <div id="flag"></div>
+    <!-- Area View Post -->
+    <div id="post_view_area">
+        <div id="post1" class="post">
+            <h1>@CookieMaster</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quidem placeat ab amet eligendi labore minus, eveniet voluptates! Dolorem error ad obcaecati incidunt nemo accusamus consequuntur inventore perspiciatis distinctio quam!</p>
         </div>
-    </body>
+    </div>
+    <script src="scriptpost.js"></script>
+</body>
 </html>
