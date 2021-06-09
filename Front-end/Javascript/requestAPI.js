@@ -151,9 +151,9 @@ async function addAllPost(response, isNotSolo){
             reactions.forEach((reaction)=>{
                 if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
                     if (reaction.like == true) {
-                        divLike.style.filter = "invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%)"
+                        divLike.classList.add("filterLike")
                     }else if (reaction.dislike == true) {
-                        divDislike.style.filter = "invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%)"
+                        divDislike.classList.add("filterDislike")
                     }
                 }
             })
@@ -199,7 +199,6 @@ async function addAllPost(response, isNotSolo){
         container.append(clone)
 
     }
-
 }
 
 function getCookie(cname) {
@@ -240,24 +239,100 @@ async function addReactions(e, isLike){
     let idPost = input.getAttribute("post_id")
     let postIsUp = ""
     let postReactions = await getReactionsPost(idPost)
-    let isReactionInBDD = verificationReactionInBDD(postReactions, userId)
+    let arrayVerif = verificationReactionInBDD(postReactions, userId)
+    let isReactionInBDD = arrayVerif[0]
+    let reaction = arrayVerif[1]
+    let containerLikeDislike = input.parentNode.parentNode
+    let likeInput = containerLikeDislike.querySelector("#like-post")
+    let dislikeInput = containerLikeDislike.querySelector("#dislike-post")
 
     if (isReactionInBDD){
+
+        if (isLike && reaction.like === true && reaction.dislike === false){ // si il veut like alors que c'est deja like
+
+            let updatePostFinish = await updatePost(idPost,"","",parseInt(input.textContent) - 1 ,-1)
+            let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, false)
+
+            if (updatePostFinish && updateReactionFinish){
+                input.parentNode.classList.remove("filterLike")
+                input.textContent = parseInt(input.textContent) - 1
+            }
+
+        }else if (isLike && reaction.like === false && reaction.dislike === false){ // si il veut like et que ca n'est pas like et dislike
+
+            let updatePostFinish = await updatePost(idPost,"","",parseInt(input.textContent) + 1 ,-1)
+            let updateReactionFinish = await updateReactionOnePost(idPost, userId, true, false)
+
+            if (updatePostFinish && updateReactionFinish){
+                input.parentNode.classList.add("filterLike")
+                input.textContent = parseInt(input.textContent) + 1
+            }
+
+        }else if (isLike && reaction.dislike === true){  // si il veut like alors que c'est deja dislike
+
+            let updatePostFinish = await updatePost(idPost,"","",parseInt(likeInput.textContent) + 1 ,parseInt(dislikeInput.textContent) - 1)
+            let updateReactionFinish = await updateReactionOnePost(idPost, userId, true, false)
+
+            if (updatePostFinish && updateReactionFinish){
+                dislikeInput.parentNode.classList.remove("filterDislike")
+                dislikeInput.textContent = parseInt(dislikeInput.textContent) - 1
+
+                likeInput.parentNode.classList.add("filterLike")
+                likeInput.textContent = parseInt(likeInput.textContent) + 1
+            }
+
+
+        }else if (!isLike && reaction.dislike === true){ // si il veut dislike alors que c'est deja dislike
+
+            let updatePostFinish = await updatePost(idPost,"","",-1, parseInt(input.textContent) - 1)
+            let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, false)
+
+            if (updatePostFinish && updateReactionFinish){
+                input.parentNode.classList.remove("filterDislike")
+                input.textContent = parseInt(input.textContent) - 1
+            }
+
+        }else if (!isLike && reaction.like === false && reaction.dislike === false){ // si il veut dislike et que rien n'est coché
+
+            let updatePostFinish = await updatePost(idPost,"","",-1,parseInt(input.textContent) + 1)
+            let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, true)
+
+            if (updatePostFinish && updateReactionFinish){
+                input.parentNode.classList.add("filterDislike")
+                input.textContent = parseInt(input.textContent) + 1
+            }
+
+        }else if (!isLike && reaction.like === true){ // si il veut dislike et que c'est deja like
+
+            let updatePostFinish = await updatePost(idPost,"","",parseInt(likeInput.textContent) - 1 ,parseInt(dislikeInput.textContent) + 1)
+            let updateReactionFinish = await updateReactionOnePost(idPost, userId, false, true)
+
+            if (updatePostFinish && updateReactionFinish){
+                dislikeInput.parentNode.classList.add("filterDislike")
+                dislikeInput.textContent = parseInt(dislikeInput.textContent) + 1
+
+                likeInput.parentNode.classList.remove("filterLike")
+                likeInput.textContent = parseInt(likeInput.textContent) - 1
+            }
+
+        }else {
+
+        }
 
     }else{
         let isCreate = await createReactionAPI(parseInt(idPost), userId, isLike)
 
         if (isCreate && isLike === true) {
-            postIsUp = await updatePost(idPost,"","",parseInt(input.textContent)+1, 0)
+            postIsUp = await updatePost(idPost,"","",parseInt(input.textContent)+1, -1)
         }else if (isCreate && isLike === false) {
-            postIsUp = await updatePost(idPost,"","",0, parseInt(input.textContent)+1)
+            postIsUp = await updatePost(idPost,"","",-1, parseInt(input.textContent)+1)
         }
 
         if (postIsUp && isLike) {
-            input.parentNode.style.filter = "invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%)"
+            input.parentNode.classList.add("filterLike")
             input.textContent = parseInt(input.textContent) + 1
         }else if(postIsUp && !isLike){
-            input.parentNode.style.filter = "invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%)"
+            input.parentNode.classList.add("filterDislike")
             input.textContent = parseInt(input.textContent) + 1
         }
     }
@@ -266,16 +341,18 @@ async function addReactions(e, isLike){
 
 function verificationReactionInBDD(postReactions, userId){
     let isReactionInBDD = false
+    let reaction ;
 
     if (postReactions != null){
         for (let i=0; i < postReactions.length;i++){
             if (postReactions[i].idUser === userId) {
+                reaction = postReactions[i]
                 isReactionInBDD = true
             }
         }
     }
 
-    return isReactionInBDD
+    return [isReactionInBDD, reaction]
 }
 
 function getReactionInput(e){
@@ -362,28 +439,25 @@ function getReactionsPost(id){
         })
 }
 
-function UpdateReactionOnePost (){
+function updateReactionOnePost (idPost, idUser, like, dislike){
 
-    fetch("/reaction/1", {
+    return fetch(`/reaction/${idPost}`, {
         method: "PUT",
         headers : {
             "Content-Type" : "application/json"
         },
         body: JSON.stringify({
-            "idPost" : 1 ,
-            "idUser" : 18 ,
-            "like" : false ,
-            "dislike" : false
+            "idPost" : idPost ,
+            "idUser" : idUser ,
+            "like" : like ,
+            "dislike" : dislike
         })
     })
-        .then((res)=>{
-            return res.json()
+        .then(()=>{
+            return true
         })
-        .then((response)=>{
-            console.log(response)
-        })
-        .catch((err)=>{
-            alert(err)
+        .catch(()=>{
+            return false
         })
 
 }

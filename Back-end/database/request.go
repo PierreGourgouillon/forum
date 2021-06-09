@@ -203,13 +203,13 @@ func UpdatePost(id int, post *structs.Post) {
 		postUpdate.Title = postBasic.Title
 	}
 
-	if post.Like != postBasic.Like && post.Like != 0 {
+	if post.Like != postBasic.Like && post.Like != -1 {
 		postUpdate.Like = post.Like
 	} else {
 		postUpdate.Like = postBasic.Like
 	}
 
-	if post.Dislike != postBasic.Dislike && post.Dislike != 0 {
+	if post.Dislike != postBasic.Dislike && post.Dislike != -1 {
 		postUpdate.Dislike = post.Dislike
 	} else {
 		postUpdate.Dislike = postBasic.Dislike
