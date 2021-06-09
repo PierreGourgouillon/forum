@@ -32,11 +32,11 @@ body {
 #general{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8%;
+    margin-top: 5%;
     margin-bottom: 8%;
     padding-top: 40px;
     width: 500px;
-    height: 700px;
+    height: 750px;
     border:1px solid white;
     border-radius: 6px;
 }
@@ -58,6 +58,19 @@ body {
     aspect-ratio: 1/1;
 }
 
+#separation{
+    width: 100px;
+    height: 3px;
+    opacity: 70%;
+    background: #794BC4;
+
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:60px;
+    border-radius: 6px;
+
+}
+
 /*-----------------------
 * Formulaire
 -------------------------*/
@@ -69,12 +82,9 @@ body{
 /*-----*/
 
 #formulaire{
-	position:absolute;
-	left:50%;
-	top:50%;
-	transform: translate(-50%,-50%);
+    margin-left: auto;
+    margin-right: auto;
 	/* border:1px solid white; */
-    margin-top:150px;
 	border-radius:3px;
 	padding-top:20px;
 	padding-left:80px;
@@ -85,26 +95,18 @@ body{
 /*---*/
 
 .caseFormulaire{
-/* 	border:1px solid #555;  */
 	width:320px;
-	
+    margin-left:auto;
+	margin-right:auto;
 }
 
 .boxInput{
-	position:relative;
+    /* border:1px solid #555;  */
 	margin-left:auto;
 	margin-right:auto;
 	margin-bottom:25px;
-}
-
-.boxInput label{
-	position:absolute;
-	top:0px;
-	left:0px;
-	font-size:16px;
-	color:#fff;	
-    pointer-event:none;
-	transition: all 0.5s ease-in-out;
+    max-height: 40px;
+    
 }
 
 .boxInput input{ 
@@ -117,16 +119,22 @@ body{
   color:#fff;
 }
 
+
 .boxInput input:focus{ 
  border:none;	
  outline:none;
  border-bottom:1px solid #e74c3c;	
 }
 
-.boxInput input:focus ~ label,
-.boxInput input:valid ~ label{
-	top:-12px;
-	font-size:12px;
+.boxInput input:valid{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;	
+   }
+
+
+.caseInput::placeholder{
+    color:#fff;	
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -136,6 +144,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.6;
   filter: invert(0.8);
 }
+
+/* Placeholders */
+::-webkit-input-placeholder { opacity: 1; -webkit-transition: opacity .2s; transition: opacity .2s; }  /* Chrome 56, Safari 9 */
+:-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 4-18 */
+::-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 19-51 */
+:-ms-input-placeholder { opacity: 1; -ms-transition: opacity .2s; transition: opacity .2s; } /* IE 10+ */
+::placeholder { opacity: 1; transition: opacity .2s; } /* Modern Browsers */
+
+/* Focus */
+*:focus::-webkit-input-placeholder { opacity: 0; } /* Chrome 56, Safari 9 */
+*:focus:-moz-placeholder { opacity: 0; } /* FF 4-18 */
+*:focus::-moz-placeholder { opacity: 0; } /* FF 19-50 */
+*:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
+*:focus::placeholder { opacity: 0; } /* Modern Browsers */
 
 /*---*/
 
@@ -170,42 +192,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .oeil{
     position: relative;
-    top:-45px;
-    left:360px;
+    left:290px;
+    top:-32px;
     width: 30px;
     height: 30px;
-    opacity: 80%;
+    opacity: 40%;
     cursor: pointer;
-}
-#oeil1{
-    position: relative;
-    top:-50px;
-}
+    filter: invert(0.8);
 
+}
 .oeil:hover{
     opacity: 100%;
 }
 
 #btRandom{
     position: relative;
-    left:385px;
-    top:-50px;
+    left:415px;
+    top:-297px;
+    background: transparent;
 
     border:none;
-    background-color: #794BC4;
-    color:white;
-    border-radius: 40px;
-
-    font-family: "montserrat";
-    font-size: 130%;
-
-    width: 50px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    filter: invert(0.8);
+    opacity: 40%;
 }
 
 #imgMdp{
-    width: 37px;
+    width: 100%;
     aspect-ratio: 1/1;
 }
 
