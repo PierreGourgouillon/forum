@@ -136,7 +136,8 @@ body{
 
 
 .caseInput::placeholder{
-    color:#fff;	
+    color:rgb(122, 122, 122);	
+    opacity: 70%;
 }
 
 /* Placeholders */
