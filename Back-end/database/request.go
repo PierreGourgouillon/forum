@@ -242,3 +242,27 @@ func DeletePost(id int) bool {
 
 	return true
 }
+
+func GetPostsByUserID(id int) []structs.Post {
+	var allPost []structs.Post
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE user_id = ?", id)
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var post structs.Post
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		allPost = append(allPost, post)
+	}
+
+	return allPost
+}
