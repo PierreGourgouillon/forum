@@ -66,11 +66,14 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
 	router.HandleFunc("/post/{id}", postDelete).Methods("DELETE")
 
+	//Reaction Post (like, dislike)
 	router.HandleFunc("/reaction/", getReactions).Methods("GET")
 	router.HandleFunc("/reaction/", createReaction).Methods("POST")
-
 	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
 	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
+
+	//Page error
+	router.HandleFunc("/error/", errorRoute)
 }
 
 func staticFile(router *mux.Router) {
@@ -458,6 +461,17 @@ func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"isUpdate\": \"false\"}"))
 	}
 
+}
+
+func errorRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error404.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {

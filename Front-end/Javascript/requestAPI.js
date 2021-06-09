@@ -96,7 +96,7 @@ function updatePost(id, message, title, like, dislike){
         return true
         })
         .catch(()=>{
-            return false
+            document.location.href = "/error/"
         })
 }
 
@@ -316,7 +316,7 @@ async function addReactions(e, isLike){
             }
 
         }else {
-
+            document.location.href = "/error/"
         }
 
     }else{
