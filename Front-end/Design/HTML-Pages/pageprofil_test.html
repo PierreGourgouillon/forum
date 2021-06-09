@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
     <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
 </head>
-<body onload="javascript:postIndex()">
+<body>
 
 {{template "header"}}
 
@@ -45,7 +45,7 @@
 
                                                     <div class="globalFLex grow" style="justify-content: center;padding-bottom: 12px; width: 80%">
                                                         <div class="globalFLex">
-                                                            <a href="www.google.fr" class="postLinkos">
+                                                            <a href="" class="postLinkos pseudo-href">
                                                                 <div class="RowFLex alignStart" style="justify-content: space-between">
                                                                     <div class="RowFLex shrink" style="align-items: baseline">
                                                                         <div class="globalFLex">
@@ -56,7 +56,7 @@
                                                             </a>
 
                                                             <div class="globalFLex">
-                                                                <a href="www.google.fr" class="postLinkos">
+                                                                <a href="" class="postLinkos">
                                                                     <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
                                                                         <div class="globalFLex">
                                                                             <span class="textStyle" style="font-size: 12px" id="title-user"></span>
@@ -79,12 +79,12 @@
 
 
                                                                 <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
-                                                                    <div class="RowFLex alignStart like noUserSelect" onclick="javascript:addReactions(event,true)">
+                                                                    <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
                                                                         <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
                                                                         <span style="padding-left: 5px" id="like-post"></span>
                                                                     </div>
 
-                                                                    <div class="RowFLex alignStart dislike noUserSelect" style="margin-left: 20px" onclick="javascript:addReactions(event, false)">
+                                                                    <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
                                                                         <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
                                                                         <span style="padding-left: 5px" id="dislike-post"></span>
                                                                     </div>

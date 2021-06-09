@@ -58,12 +58,12 @@
     background-color: rgba(121,75,196,0.1);
 }
 
-.like:hover{
+#like:hover{
     filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
     color: rgb(18, 224, 73);
 }
 
-.dislike:hover{
+#dislike:hover{
     filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
     color: rgb(224, 36, 94);
 }
@@ -83,5 +83,13 @@
 
 .noUserSelect {
     user-select: none;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
 }
 

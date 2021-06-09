@@ -45,6 +45,7 @@ func requestHTTP(router *mux.Router) {
 	//API Authentification
 	router.HandleFunc("/user/", register).Methods("POST")
 	router.HandleFunc("/user/{id}", getUsers).Methods("GET")
+
 	router.HandleFunc("/users/", login).Methods("POST")
 
 	//settings Route
@@ -62,12 +63,22 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/profil/{id}", profilRoute)
 	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
 
+
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
 	router.HandleFunc("/post/{id}", postDelete).Methods("DELETE")
+
+	//Reaction Post (like, dislike)
+	router.HandleFunc("/reaction/", getReactions).Methods("GET")
+	router.HandleFunc("/reaction/", createReaction).Methods("POST")
+	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
+	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
+
+	//Page error
+	router.HandleFunc("/error/", errorRoute)
 }
 
 func staticFile(router *mux.Router) {
@@ -403,6 +414,102 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(jsonPosts)
+}
+
+func getReactions(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	reactions := database.GetAllReactions()
+
+	fmt.Println(reactions)
+
+	jsonReactions, err := json.Marshal(reactions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w.Write(jsonReactions)
+}
+
+func createReaction(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var reaction structs.Reaction
+
+	unmarshallJSON(r, &reaction)
+
+	isInsert := database.CreateReaction(reaction)
+
+	isInsertJson, error := json.Marshal(isInsert)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(isInsertJson)
+}
+
+func getReactionsOnePost(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reaction := database.GetReactionsOnePost(id)
+
+	reactionsPost, error := json.Marshal(reaction)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(reactionsPost)
+}
+
+func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var reactionPost structs.Reaction
+
+	vars := mux.Vars(r)
+
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	unmarshallJSON(r, &reactionPost)
+
+	isUpdate := database.UpdateReactionOnePost(id, reactionPost)
+
+	if isUpdate {
+		w.Write([]byte("{\"isUpdate\": \"true\"}"))
+	} else {
+		w.Write([]byte("{\"isUpdate\": \"false\"}"))
+	}
+
+}
+
+func errorRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
 }
 
 func unmarshallJSON(r *http.Request, API interface{}) {
