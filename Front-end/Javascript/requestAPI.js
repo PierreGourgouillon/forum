@@ -1,5 +1,10 @@
 
 document.addEventListener("DOMContentLoaded",postIndex)
+let button = document.getElementById("b")
+
+button.addEventListener("click", async()=>{
+    createPost()
+})
 
 async function createPost(){
     let title = document.getElementById("insert-title")
