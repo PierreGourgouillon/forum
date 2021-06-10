@@ -11,7 +11,7 @@
     </head>
   
     <body>
-        <div id="general">
+        <div id="general" onclick="lancement()">
             <div id="zoomImage">
                 <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
             </div>
@@ -23,15 +23,15 @@
                     <div class="boxInput" id="boxPseudo">		
                         <input type="text" autocomplete="off" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" onkeyup="validatePseudo()" required>
                     </div>
-                    <div class="boxInput">		
-                        <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                    <div class="boxInput" id="boxMail">		
+                        <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email" onkeyup="validateEmail()" required>
                     </div>
                     <div class="boxInput" id="boxPassword">		
-                        <input type="text" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" onclick="AfficherMdp1()" placeholder="Mot de Passe"required>
+                        <input type="text" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe"placeholder="Mot de Passe"required>
                         <img class="oeil" onclick="AfficherMdp1()"src="/static/Design/Images/Icon/eye_black.png">
                     </div>
                     <div class="boxInput" id="boxConfirmPassword">		
-                        <input type="text" autocomplete="off"class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe" onclick="AfficherMdp2()"onkeyup='validatePassword();'required>
+                        <input type="text" autocomplete="off"class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe"onkeyup='validatePassword();'required>
                         <img class="oeil"onclick="AfficherMdp2()"src="/static/Design/Images/Icon/eye_black.png">
                     </div>
                     <div class="boxInput">		
@@ -41,10 +41,10 @@
                 <div id="zoneMessErreur"></div>
                 <div id="generalBtn">
                     
-                    <button type="button" class="btn" >S'inscrire</button>
+                    <button type="button" class="btn" onclick="register()">S'inscrire</button>
                 </div>
             </div>
-            <button id="btRandom" type="button" onclick="register(), strRandom(),AfficherMdp1(), AfficherMdp2()"><img id="imgMdp"src="/static/Design/Images/Icon/iconMdp.png"></button> 
+            <button id="btRandom" type="button" onclick="strRandom(),AfficherMdp1(), AfficherMdp2()"><img id="imgMdp"src="/static/Design/Images/Icon/iconMdp.png"></button> 
         </div>
         
         <a href="/">

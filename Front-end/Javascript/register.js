@@ -50,6 +50,17 @@ function register() {
     })
 }
 
+let  flag=true;
+function lancement(){
+    if(!flag) return;
+    flag=false;
+
+    let input1 = document.getElementById('password');
+    let input2 = document.getElementById('passwordConf');
+    input1.type = "password"
+    input2.type = "password"
+}
+
 function AfficherMdp1() {
     let input = document.getElementById('password');
     
@@ -108,4 +119,22 @@ function validatePseudo(){
         pseudo.classList.remove("boxInputValid")
         pseudo.classList.add("boxInput")
       }
+}
+
+
+function validateEmail() {
+    let email = document.getElementById("email").value;
+    let boxMail = document.getElementById("boxMail")
+
+    if (checkEmail(email)) {
+        boxMail.classList.remove("boxInput")
+        boxMail.classList.add("boxInputValid")
+      } else {
+        boxMail.classList.remove("boxInputValid")
+        boxMail.classList.add("boxInput")
+      }
+}
+function checkEmail(email) {
+    const check = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return check.test(email);
 }
