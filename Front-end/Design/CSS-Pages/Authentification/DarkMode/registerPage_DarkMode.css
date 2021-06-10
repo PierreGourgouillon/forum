@@ -120,14 +120,19 @@ body{
   color:#fff;
 }
 
-
 .boxInput input:focus{ 
     border:none;	
     outline:none;
     border-bottom:1px solid #e74c3c;	
 }
 
-.boxInputValide input{
+.boxInputValid{
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
+    max-height: 40px;
+}
+.boxInputValid input{
     border:0;
     border-bottom:1px solid #555;  
     background:transparent;
@@ -137,19 +142,12 @@ body{
     color:#fff;
 
 }
-.boxInputValide input:focus{
+.boxInputValid input:focus{
     border:none;	
     outline:none;
     border-bottom:1px solid #3ce759;
 
 }
-
-/* .boxInput input:valid{ 
-    border:none;	
-    outline:none;
-    border-bottom:1px solid #3ce759;	
-} */
-
 
 
 .caseInput::placeholder{

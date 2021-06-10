@@ -10,12 +10,11 @@ function register() {
     const birthChange = `${tab[2]}/${tab[1]}/${tab[0]}`
 
     if(pseudo.value == "" || email.value == "" || password.value == "" || passwordConf.value == "" || birthChange == "undefined/undefined/") {
-        console.log('stop')
         error.textContent = "Un des champs est vide"
         return
     }
 
-    if(password.value.lenght < 12) {
+    if(password.value.length < 12) {
         error.textContent = "Le mot de passe est trop court"
         return
     }
@@ -86,35 +85,27 @@ function strRandom() {
 
 function validatePassword() {
     let password = document.getElementById("password")
-    let passwordConf = document.getElementById("passwordConf")
-    let boxpasswordConf = document.getElementById("boxConfirmPassword")
+    let passwordConf = document.getElementById("passwordConf");
+    let boxPassConf = document.getElementById("boxConfirmPassword")
 
-  if(passwordConf.value === password.value) {
-    // passwordConf.setCustomValidity("Passwords Don't Match");
-    boxpasswordConf.classList.remove
-    boxpasswordConf.classList.add("boxInputValide")
-    
-    console.log('p')
-    // passwordConf.style.color = 'red';
-  }else{
-    boxpasswordConf.classList.remove
-    boxpasswordConf.classList.add("boxInput")
-    console.log('a')
+  if(passwordConf.value == password.value) {
+    boxPassConf.classList.remove("boxInput")
+    boxPassConf.classList.add("boxInputValid")
+  } else {
+    boxPassConf.classList.remove("boxInputValid")
+    boxPassConf.classList.add("boxInput")
   }
 }
 
-function validatePseudo() {
-    let pseudo = document.getElementById("pseudo")
-    let pseudoValue = pseudo.value
-    console.log(pseudoValue)
-    console.log('longueur:', pseudoValue.lenght)
-  if(pseudoValue.lenght >= 6 ) {
-    pseudo.classList.remove
-    pseudo.classList.add("boxInputValide")
-    console.log('p')
-  }else{
-    pseudo.classList.remove
-    pseudo.classList.add("boxInput")
-    console.log('a')
-  }
+function validatePseudo(){
+    let pseudo = document.getElementById("boxPseudo")
+    let pseudoLength=document.getElementById("pseudo").value.length
+    console.log(pseudoLength)
+    if(pseudoLength >= 6){
+        pseudo.classList.remove("boxInput")
+        pseudo.classList.add("boxInputValid")
+      } else {
+        pseudo.classList.remove("boxInputValid")
+        pseudo.classList.add("boxInput")
+      }
 }
