@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*-----------------
 * Général
 -----------------*/
@@ -9,6 +22,7 @@
 
 html { overflow-y: hidden; 
     overflow-x: hidden;
+    font-family: "Open Sans", sans-serif;
 }
 
 #general{
