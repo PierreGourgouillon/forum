@@ -1,8 +1,5 @@
-body, html{
-    padding: 0;
-    margin: 0;
-    height: 100%;
-}
+
+/********** Font **********/
 
 @font-face {
     font-family: "Open-Sans-Extra";
@@ -19,9 +16,13 @@ body, html{
     src: url("http://localhost:8088/static/Fonts/Montserrat-Regular.ttf");
 }
 
-a:hover,a:link,a:visited,a:active{
-    color: black;
-    text-decoration: none;
+
+/********** Balises **********/
+
+body, html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
 header {
@@ -37,6 +38,9 @@ header {
     height: 100vh;
     border-right: 1px solid rgb(47, 51, 54);
 }
+
+
+/********** Container **********/
 
 .container-body{
     display: flex;
@@ -68,16 +72,6 @@ header {
     padding-left: 12px;
 }
 
-.logo{
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
-.logo img{
-    height: 40px;
-    width: 50px;
-}
-
 .container-list{
     padding-top: 15px;
 }
@@ -87,18 +81,6 @@ header {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-}
-
-.container-link-menu:hover .container-inlink{
-    background-color: rgba(121, 75, 195, 0.1);
-    border-radius: 100px;
-    color: #794BC4;
-    padding-left: 10px;
-    transition-duration: 0.2s;
-}
-
-.container-link-menu:hover img{
-    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
 .container-inlink {
@@ -161,10 +143,43 @@ header {
     cursor: pointer;
 }
 
+
+/********** Hover **********/
+
+a:hover,a:link,a:visited,a:active{
+    color: black;
+    text-decoration: none;
+}
+
+.container-link-menu:hover .container-inlink{
+    background-color: rgba(121, 75, 195, 0.1);
+    border-radius: 100px;
+    color: #794BC4;
+    padding-left: 10px;
+    transition-duration: 0.2s;
+}
+
+.container-link-menu:hover img{
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
 .container-prof:hover{
     background-color: rgba(121,75,195,0.1);
     border-radius: 999px;
     margin-right: 10px;
+}
+
+
+/********** Image **********/
+
+.logo{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.logo img{
+    height: 40px;
+    width: 50px;
 }
 
 .image-profile{
@@ -176,6 +191,19 @@ header {
     width: 35px;
     height: 35px;
 }
+
+
+/********** ID **********/
+
+#pseudoname{
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Open-Sans-SemiBold;
+}
+
+
+/********** Autre **********/
 
 .pseudo-profile{
     display: flex;
@@ -190,9 +218,82 @@ header {
     margin-left: 5px;
 }
 
-#pseudoname{
-    padding-bottom: 5px;
-    font-size: 15px;
-    font-weight: 700;
-    font-family: Open-Sans-SemiBold;
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    .container-link-menu {
+        justify-content: space-between;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding-left: 10px;
+    }
+
+    #margin {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container-inlink span {
+        font-size: 18px;
+    }
+
+    .container-link-menu {
+        justify-content: space-between;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding-left: 10px;
+    }
+
+    #margin {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 791px) and (max-width: 991px) {
+    .container-inlink span {
+        font-size: 14px;
+    }
+
+    .container-link-menu {
+        justify-content: space-between;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding-left: 10px;
+    }
+
+    #margin {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 790px) {
+    .response {
+        display: none;
+    }
+
+    .container-link-menu{
+        justify-content: center;
+    }
+
+    .container-inlink{
+        justify-content: center;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding: 10px;
+        border-radius: 999px;
+    }
+
+    #margin {
+        margin-bottom: 40px;
+    }
 }
