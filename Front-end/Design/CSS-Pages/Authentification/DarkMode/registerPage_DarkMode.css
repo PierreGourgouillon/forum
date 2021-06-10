@@ -153,12 +153,27 @@ body{
     color:#fff;	
 }
 
+.boxInput #birth:focus:valid{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;	
+}
+
+.boxInput #birth:focus:valid{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;	
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   border-radius: 4px;
   margin-right: 2px;
   opacity: 0.6;
   filter: invert(0.8);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover{
+    opacity:100%
 }
 
 /* Placeholders */
@@ -198,8 +213,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	cursor:pointer;
 	position:relative;
 }
+.btn:hover{
+    background-color:#5b3794;
+}
 
-/*---*/
+/* Oeil affichage Mdp */
 
 .oeil{
     position: relative;
@@ -216,6 +234,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 100%;
 }
 
+/* Bouton Random Mdp */
+
 #btRandom{
     position: relative;
     left:415px;
@@ -230,6 +250,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 40%;
 }
 
+#btRandom:hover{
+    opacity: 100%;
+}
+
 #imgMdp{
     width: 100%;
     aspect-ratio: 1/1;
@@ -242,13 +266,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     margin-top: -4px;
     font-family: "montserrat";
-    color: red;
+    color: #e74c3c;
     font-size: 18px;
     text-align: center;
     width: 332px;
     height: 30px;
     /* background:pink; */
 }
+
+/*-----------------------
+* Retour
+-------------------------*/
 
 #retour{
     position: absolute;
@@ -267,3 +295,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #imgRetour:hover{
     opacity: 100%;
 }
+
+
+
