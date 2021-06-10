@@ -237,6 +237,12 @@ a:hover,a:link,a:visited,a:active{
         margin-top: 12px;
         margin-bottom: 12px;
     }
+
+    .container-prof:hover{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
+        margin-right: 30%;
+    }
 }
 
 /* Landscape tablets and medium desktops */
@@ -257,6 +263,12 @@ a:hover,a:link,a:visited,a:active{
         margin-top: 12px;
         margin-bottom: 12px;
     }
+
+    .container-prof:hover{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
+        margin-right: 10%;
+    }
 }
 
 /* Portrait tablets and small desktops */
@@ -276,6 +288,11 @@ a:hover,a:link,a:visited,a:active{
     #margin {
         margin-top: 12px;
         margin-bottom: 12px;
+    }
+
+    .container-prof:hover .image-profile{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
     }
 }
 
@@ -300,5 +317,10 @@ a:hover,a:link,a:visited,a:active{
 
     #margin {
         margin-bottom: 40px;
+    }
+
+    .container-prof:hover .image-profile{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
     }
 }
