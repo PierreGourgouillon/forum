@@ -110,8 +110,8 @@ h2{
 -----------------*/
 
 #boutonDroit{
-    width: 400px;
-    height: 250px;
+    width: 55%;
+    height: 25%;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -122,6 +122,16 @@ h2{
     
 }
 
+#bt1{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+
+    /* border: 3px solid pink; */
+    margin-left:auto;
+    margin-right: auto;
+}
 #formeBt1{
     border:none;
     background: #794BC4;
@@ -129,14 +139,25 @@ h2{
     border-radius: 40px;
     font-size: 200%;
 
-    width: 400px;
-    height: 90px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 #formeBt1:hover{
     background: #531da8;
 }
 
+
+#bt2{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+    /* border: 3px solid pink; */
+    margin-top:20px;
+    margin-left:auto;
+    margin-right: auto;
+}
 #formeBt2{
 
     background: #f0f0f0;
@@ -144,10 +165,9 @@ h2{
     font-size: 200%;
     border: 3px solid #794BC4;
     border-radius: 40px;
-    margin-top:20px;
 
-    width: 400px;
-    height: 90px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 #formeBt2:hover{

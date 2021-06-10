@@ -87,10 +87,10 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
-	if cookie.ReadCookie(r, "PioutterID") {
-		http.Redirect(w, r, "/home/", http.StatusSeeOther)
-		return
-	}
+	// if cookie.ReadCookie(r, "PioutterID") {
+	// 	http.Redirect(w, r, "/home/", http.StatusSeeOther)
+	// 	return
+	// }
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
