@@ -1,0 +1,133 @@
+@font-face {
+    font-family: "Open-Sans-Extra";
+    src: url("http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Open-Sans-SemiBold";
+    src: url("http://localhost:8088/static/Fonts/open-sans-semibold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("http://localhost:8088/static/Fonts/Montserrat-Regular.ttf");
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.middle-container {
+    z-index: 2;
+    width: 60%;
+    background-color: white;
+}
+
+#up {
+    width: 100%;
+    height: 30%;
+    padding: 0;
+}
+
+#down {
+    width: 100%;
+    height: 67.5%;
+    padding: 0;
+    border-top: 1px solid black;
+    overflow-y: scroll;
+}
+
+.profil-container {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 95%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    background-color: black;
+    border-radius: 150px 15px 15px 150px;
+}
+
+.avatar-container {
+    margin-left: -2px;
+    aspect-ratio: 1/1;
+    height: 100%;
+    border-radius: 50%;
+    background-color: white;
+    
+}
+
+.avatar {
+    aspect-ratio: 1/1;
+    height: 100%;
+    background: url(../Images/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: white;
+    /* border: 1px solid red; */
+}
+
+.pseudo {
+    margin-left: 2.5%;
+    width: 97.5%;
+    height: 20%;
+    /* border: 1px solid brown; */
+}
+
+#pseudoid {
+    font-family: "Open-Sans-SemiBold";
+    font-size: 25px;
+}
+
+.country {
+    margin-left: 2.5%;
+    width: 97.5%;
+    /* border: 1px solid brown; */
+}
+
+#countryid {
+    font-family: "Montserrat-Regular";
+    font-size: 12px;
+}
+
+.bio {
+    margin-top: 5%;
+    margin-left: 2.5%;
+    width: 97.5%;
+    height: 75%;
+    /* border: 1px solid brown; */
+    overflow-y: scroll;
+}
+
+#bioid {
+    font-family: "Montserrat-Regular";
+    font-size: 13px;
+}
+
+.post-container {
+    margin-top: 2.5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.post {
+    width: 95%;
+    height: 100px;
+    margin-left: 2.5%;
+    border: 1px solid cyan;
+}
+
+footer {
+    width: 15%;
+    height: 100vh;
+    border-left: 1px solid black;
+}

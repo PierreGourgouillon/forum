@@ -34,3 +34,10 @@ type Post struct {
 	Like       int `json:"like"`
 	Dislike    int `json:"dislike"`
 }
+
+type Reaction struct {
+	PostId  int  `json:"idPost"`
+	IdUser  int  `json:"idUser"`
+	Like    bool `json:"like"`
+	Dislike bool `json:"dislike"`
+}
