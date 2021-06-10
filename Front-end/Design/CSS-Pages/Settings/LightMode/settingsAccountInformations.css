@@ -1,3 +1,8 @@
+/********** Font **********/
+
+
+/********** Balises **********/
+
 body, html{
     padding: 0;
     margin: 0;
@@ -7,8 +12,6 @@ body, html{
 body{
     overflow:auto scroll;
 }
-
-/*settings*/
 
 main{
     display: flex;
@@ -25,6 +28,13 @@ main{
     align-items: flex-start;
 }
 
+section{
+    height: 100%;
+}
+
+
+/********** Flexbox **********/
+
 .globalFLex{
     display: flex;
     flex-basis: auto;
@@ -38,55 +48,19 @@ main{
     z-index: 0;
 }
 
+
+/********** Container **********/
+
 .container-main{
     width: 990px;
     height: 100vh;
     border-right: 1px solid black;
 }
 
-section{
-    height: 100%;
-}
-
 .container-account{
     position: sticky;
     z-index: 1;
     backface-visibility: hidden;
-}
-
-.container-account h2{
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 800;
-    font-family: Open-Sans-Extra;
-}
-
-.explication-settings{
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    padding: 12px 16px;
-    font-family: Montserrat-Regular;
-    border-bottom: 1px solid rgb(47, 51, 54);
-    border-top: 1px solid rgb(47, 51, 54);
-}
-
-.link-in-main{
-    padding: 12px 16px;
-    justify-content: space-between;
-    outline-style: none;
-    border-bottom: 1px solid rgb(47, 51, 54);
-    min-height: calc(48px);
-}
-
-.link-in-main:hover{
-    background-color: rgba(121,75,195,0.1);
-    transition-duration: 0.2s;
-    color: #794bc4;
-}
-
-.link-in-main:hover img{
-    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
 .container-link-main{
@@ -103,6 +77,15 @@ section{
     justify-content: center;
 }
 
+/********** Textes **********/
+
+.container-account h2{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 800;
+    font-family: Open-Sans-Extra;
+}
+
 .style-link{
     font-size: 15px;
     font-weight: 400;
@@ -110,6 +93,25 @@ section{
     overflow-wrap: break-word;
     font-family: Montserrat-Regular;
 }
+
+.textStyle {
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.explication-settings{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 12px 16px;
+    font-family: Montserrat-Regular;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    border-top: 1px solid rgb(47, 51, 54);
+}
+
+
+/********** Hover **********/
 
 .image:hover{
     background-color: rgba(121,75,195,0.1);
@@ -119,10 +121,28 @@ section{
     padding-right: 5px;
 }
 
-.textStyle {
-    font-family: Montserrat-Regular;
-    font-size: 15px;
-    font-weight: 700;
+.link-in-main:hover{
+    background-color: rgba(121,75,195,0.1);
+    transition-duration: 0.2s;
+    color: #794bc4;
+}
+
+
+/********** Image **********/
+
+.link-in-main:hover img{
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
+
+/********** Reste **********/
+
+.link-in-main{
+    padding: 12px 16px;
+    justify-content: space-between;
+    outline-style: none;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    min-height: calc(48px);
 }
 
 .transition {

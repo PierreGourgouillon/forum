@@ -1,3 +1,14 @@
+
+/********** Font **********/
+
+@font-face {
+    font-family: "Montserrat-Thin";
+    src: url("http://localhost:8088/static/Fonts/Montserrat-Thin.ttf");
+}
+
+
+/********** Balises **********/
+
 body, html{
     padding: 0;
     margin: 0;
@@ -7,8 +18,6 @@ body, html{
 body{
     overflow:auto scroll;
 }
-
-/*settings*/
 
 main{
     display: flex;
@@ -25,6 +34,13 @@ main{
     align-items: flex-start;
 }
 
+section{
+    height: 100%;
+}
+
+
+/********** Flexbox **********/
+
 .globalFLex{
     display: flex;
     flex-basis: auto;
@@ -38,21 +54,8 @@ main{
     z-index: 0;
 }
 
-.container-main{
-    width: 990px;
-    height: 100vh;
-    border-right: 1px solid black;
-}
 
-section{
-    height: 100%;
-}
-
-.container-account{
-    position: sticky;
-    z-index: 1;
-    backface-visibility: hidden;
-}
+/********** Textes **********/
 
 .container-account h2{
     font-size: 20px;
@@ -71,36 +74,15 @@ section{
     border-top: 1px solid rgb(47, 51, 54);
 }
 
-.link-in-main{
-    padding: 12px 16px;
-    justify-content: space-between;
-    outline-style: none;
-    border-bottom: 1px solid rgb(47, 51, 54);
-    min-height: calc(48px);
-}
-
-.link-in-main:hover{
-    background-color: rgba(121,75,195,0.1);
-    transition-duration: 0.2s;
-    color: #794bc4;
-}
-
-.link-in-main:hover img{
-    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
-}
-
-.container-link-main{
-    flex-direction: row;
-    flex-grow: 1;
-    align-items: center;
-}
-
-.container-link-icon{
-    margin-right: 16px;
-    height: 48px;
-    width: 48px;
-    align-items: center;
-    justify-content: center;
+.submit-button{
+    padding: 10px 5px;
+    width: 15%;
+    border-radius: 999px;
+    border: none;
+    color: white;
+    background-color: rgba(121,75,196,0.5);
+    font-family: Open-Sans-Extra;
+    font-size: 15px;
 }
 
 .style-link{
@@ -111,32 +93,44 @@ section{
     font-family: Montserrat-Regular;
 }
 
-.image:hover{
-    background-color: rgba(121,75,195,0.1);
-    border-radius: 999px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 5px;
-}
-
 .textStyle {
     font-family: Montserrat-Regular;
     font-size: 15px;
     font-weight: 700;
 }
 
-.transition {
-    transition-duration: 0.2s;
+
+/********** Container **********/
+
+.container-main{
+    width: 990px;
+    height: 100vh;
+    border-right: 1px solid black;
 }
 
-@font-face {
-    font-family: "Montserrat-Thin";
-    src: url("http://localhost:8088/static/Fonts/Montserrat-Thin.ttf");
+.container-account{
+    position: sticky;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.container-link-main{
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
 }
 
 .input-container {
     position: relative;
     width: 50%;
+}
+
+.container-link-icon{
+    margin-right: 16px;
+    height: 48px;
+    width: 48px;
+    align-items: center;
+    justify-content: center;
 }
 
 input,select {
@@ -168,7 +162,23 @@ input,select, label {
     font-size: 1rem;
 }
 
-/* Interation */
+
+/********** Hover **********/
+
+.link-in-main:hover{
+    background-color: rgba(121,75,195,0.1);
+    transition-duration: 0.2s;
+    color: #794bc4;
+}
+
+.image:hover{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
 input:valid,input:focus {
     border-bottom: 2px solid #794BC4;
 }
@@ -180,7 +190,30 @@ input:valid + label, input:focus + label {
     pointer-events: none;
 }
 
-.link-in-mains {
+.submit-button:hover {
+    background-color: #794bc4;
+}
+
+
+/********** Image **********/
+
+.link-in-main:hover img{
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
+
+/********** Id **********/
+
+#passwordMiss{
+    font-family: Montserrat-Thin;
+    color: #794BC4;
+    font-size: 13px;
+}
+
+
+/********** Reste **********/
+
+.link-in-main{
     padding: 12px 16px;
     justify-content: space-between;
     outline-style: none;
@@ -188,23 +221,14 @@ input:valid + label, input:focus + label {
     min-height: calc(48px);
 }
 
-.submit-button{
-    padding: 10px 5px;
-    width: 15%;
-    border-radius: 999px;
-    border: none;
-    color: white;
-    background-color: rgba(121,75,196,0.5);
-    font-family: Open-Sans-Extra;
-    font-size: 15px;
+.transition {
+    transition-duration: 0.2s;
 }
 
-.submit-button:hover {
-    background-color: #794bc4;
-}
-
-#passwordMiss{
-    font-family: Montserrat-Thin;
-    color: #794BC4;
-    font-size: 13px;
+.link-in-mains {
+    padding: 12px 16px;
+    justify-content: space-between;
+    outline-style: none;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    min-height: calc(48px);
 }
