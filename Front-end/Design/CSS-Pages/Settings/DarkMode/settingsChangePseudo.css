@@ -17,6 +17,7 @@ body, html{
 
 body{
     overflow:auto scroll;
+    background-color: #15202B;
 }
 
 main{
@@ -32,6 +33,7 @@ main{
     position: relative;
     z-index: 0;
     align-items: flex-start;
+    color: white;
 }
 
 section{
@@ -120,7 +122,7 @@ input:valid + label, input:focus + label {
 .container-main{
     width: 990px;
     height: 100vh;
-    border-right: 1px solid black;
+    border-right: 1px solid rgb(47, 51, 54);
 }
 
 .container-account{
@@ -133,6 +135,7 @@ input:valid + label, input:focus + label {
     flex-direction: row;
     flex-grow: 1;
     align-items: center;
+    color: white;
 }
 
 .container-link-icon{
@@ -200,6 +203,9 @@ input:valid + label, input:focus + label {
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
+#border{
+    border-bottom: 1px solid rgb(47, 51, 54);
+}
 
 /********** Id **********/
 
@@ -207,10 +213,6 @@ input:valid + label, input:focus + label {
     font-family: Montserrat-Thin;
     color: #794BC4;
     font-size: 13px;
-}
-
-#border{
-    border-bottom: 1px solid black;
 }
 
 
