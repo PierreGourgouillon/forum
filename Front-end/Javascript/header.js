@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     let accueil = document.getElementById("accueil")
     let profil = document.getElementById("profil")
+    let settings = document.getElementById("settings")
     let darkMode = document.getElementById("mode")
 
     accueil.addEventListener('click', ()=>{
@@ -16,6 +17,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }else {
             document.location.href = `/profil/${idUser}`
         }
+    })
+
+    settings.addEventListener("click", ()=>{
+        document.location.href = "/settings/"
     })
 
 })
