@@ -116,6 +116,7 @@ body {
     margin-left: 2.5%;
     width: 97.5%;
     height: 70%;
+    word-wrap: break-word;
     overflow-y: scroll;
 }
 
@@ -128,11 +129,13 @@ body {
     width: 30px;
     height: 30px;
     left: 97.5%;
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
 .setBio {
     display: flex;
     flex-direction: row;
+    flex-basis: 10px;
     justify-content: space-between;
     width: 97.5%;
     margin-left: 2.5%;
@@ -159,10 +162,14 @@ body {
 
 #newBio {
     width: 75%;
-    grid-area: 1/1;
+    flex: 1 1 auto;
+    font-family: "Monserrat-Regular";
+    resize: none;
 }
 
 #send {
+    flex: 1 1 auto;
+    margin-top: 5px;
     background: url(../Images/Icon/arrow_right.svg);
     background-repeat: no-repeat;
     background-position: center;

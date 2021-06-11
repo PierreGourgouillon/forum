@@ -9,7 +9,7 @@ function login() {
     let error = document.getElementById("zoneMessErreur")
 
     if(email.value == "" || password.value == "") {
-        alert("Un des champs est vide")
+        error.textContent = "Un des champs est vide"
         return
     }
 

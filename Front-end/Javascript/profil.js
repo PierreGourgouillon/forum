@@ -82,6 +82,11 @@ function updateBio() {
     const bio = document.getElementById("bioid")
     const newBio = document.getElementById("newBio")
 
+    if(newBio.value  == "") {
+        console.log("nop")
+        return
+    }
+
     const div = document.getElementById("setBio")
     const gear = document.getElementById("gear")
 
