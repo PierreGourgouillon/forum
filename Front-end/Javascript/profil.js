@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", getPostsUser)
 document.addEventListener("DOMContentLoaded", getProfilUser)
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("gear").addEventListener("click", inputBio)
-    document.getElementById("send").addEventListener("click", updateBio)
+    const isDelete = deleteGear()
+    if(!isDelete) {
+        document.getElementById("gear").addEventListener("click", inputBio)
+        document.getElementById("send").addEventListener("click", updateBio)
+    }
 })
 
 function getPostsUser() {
@@ -116,6 +119,20 @@ function updateBio() {
     .catch((error) => {
         console.log("O post")
     })
+}
+
+function deleteGear() {
+    const urlcourante = document.location.href
+    const start = urlcourante.indexOf("/profil/") + 8
+    const id = urlcourante.substring(start)
+    const cookieID = valueOfCookie("PioutterID")
+
+    if(id != cookieID) {
+        document.getElementById("gear").style.display = "none"
+        return true
+    }
+
+    return false
 }
 
 function valueOfCookie(cookie) {
