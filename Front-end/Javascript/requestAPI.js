@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)

@@ -8,12 +8,10 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var db *sql.DB
-
 func CreateAndSelectDB(name string) {
 	//Connexion au docker sql en root
 	var err error
-	db, err = sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/")
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/")
 
 	if err != nil {
 		panic(err.Error())
