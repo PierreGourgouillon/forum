@@ -1,0 +1,49 @@
+{{define "footer"}}
+    <footer>
+        <div class="globalFLex">
+            <div class="RowFLex container-searchbar">
+                <input id="search-input" type="search" placeholder="Rechercher...">
+                <button id="search-button">
+                    <img src="/static/Design/Images/Icon/search_white.svg">
+                </button>
+            </div>
+            <div class="globalFLex container-filter">
+                <div class="RowFLex">
+                    <span id="filter-text">Filtrer les posts</span>
+                    <button id="filter-button" type="submit">
+                        <img id="img-filter-button" src="/static/Design/Images/Icon/arrow_down.svg">
+                    </button>
+                </div>
+                <div class="RowFLex box-design-filter">
+                    <input type="checkbox" id="opt1">
+                    <label for="opt1" class="filter-checkbox">Les plus récents</label>
+                </div>
+                <div class="RowFLex box-design-filter">
+                    <input type="checkbox" id="opt2">
+                    <label for="opt2" class="filter-checkbox">Les plus populaires</label>
+                </div>
+                <div class="RowFLex box-design-filter">
+                    <input type="checkbox" id="opt3">
+                    <label for="opt3" class="filter-checkbox">Les plus commentés</label>
+                </div>
+                <div class="RowFLex box-design-filter">
+                    <input type="checkbox" id="opt4">
+                    <label for="opt4" class="filter-checkbox">Les moins récents</label>
+                </div>
+                <div class="RowFLex box-design-filter hidden-filter">
+                    <input type="checkbox" id="opt5">
+                    <label for="opt5" class="filter-checkbox">Les moins populaires</label>
+                </div>
+                <div class="RowFLex box-design-filter hidden-filter">
+                    <input type="checkbox" id="opt6">
+                    <label for="opt6" class="filter-checkbox">Les moins commentés</label>
+                </div>
+                <div class="RowFLex">
+                    <button id="show-more-button">
+                        <span id="show-more-text">Voir plus</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+{{end}}

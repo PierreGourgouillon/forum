@@ -122,7 +122,7 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func homeRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil_test.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/home_page.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
 		fmt.Println(err)
