@@ -50,9 +50,19 @@ function register() {
     })
 }
 
-function AfficherMdp(elem) {
-    let input = document.getElementById(elem); 
+function AfficherMdp1() {
+    let input = document.getElementById('password');
+    
+    if(input.type === "password") { 
+        input.type = "text"; 
+    } else {
+        input.type = "password"
+    }
+} 
 
+function AfficherMdp2() {
+    let input = document.getElementById('passwordConf');
+    
     if(input.type === "password") { 
         input.type = "text"; 
     } else {
