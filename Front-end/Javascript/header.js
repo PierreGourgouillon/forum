@@ -1,16 +1,17 @@
 
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', async ()=>{
     let accueil = document.getElementById("accueil")
     let profil = document.getElementById("profil")
     let settings = document.getElementById("settings")
     let darkMode = document.getElementById("mode")
+    let pseudo = document.getElementById("pseudoname")
+    let idUser = parseInt(getCookie("PioutterID"))
 
     accueil.addEventListener('click', ()=>{
         document.location.href = "/home/"
     })
 
     profil.addEventListener('click', ()=>{
-        let idUser = parseInt(getCookie("PioutterID"))
 
         if (idUser === 0) {
             document.location.href = "/register/"
@@ -23,6 +24,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.location.href = "/settings/"
     })
 
+    if(idUser === 0){
+        pseudo.textContent = "Inconnu"
+    }else {
+        fetch(`/user/${idUser}`, {
+            method: "GET",
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        })
+            .then((response)=>{
+                return response.json()
+            })
+            .then((res)=>{
+                pseudo.textContent = res.Pseudo
+            })
+            .catch(()=>{
+                document.location.href = "/"
+            })
+    }
 })
 
 function getCookie(cname) {
