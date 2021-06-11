@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="/static/Javascript/requestReactions.js"></script>
     <title>Test</title>
 </head>
 <body>
 
-<button onclick="javascript:getReactions()">get all reactions</button>
+<input type="file" id="input">
 
-<button onclick="javascript:createReaction()">create Reaction</button>
+<script type="text/javascript">
+    document.getElementById("input").addEventListener('change', ()=>{
+        let input = document.getElementById("input").files[0]
 
-<button onclick="javascript:getReactionsPost()">get reaction post 1</button>
+        const reader = new FileReader()
+        reader.onloadend= ()=>{
+            const base64String = reader.result
+            .replace("data", "")
+                .replace(/^.+,/, "");
+        }
+        reader.readAsDataURL(input)
+    })
 
-<button onclick="javascript:updateReactionOnePost()">Update post 7 user 15</button>
-
+</script>
 </body>
 </html>

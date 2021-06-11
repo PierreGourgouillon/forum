@@ -63,7 +63,6 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/profil/{id}", profilRoute)
 	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
 
-
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
@@ -79,6 +78,9 @@ func requestHTTP(router *mux.Router) {
 
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
+
+	router.HandleFunc("/test/", testRoute)
+
 }
 
 func staticFile(router *mux.Router) {
@@ -503,6 +505,17 @@ func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func testRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
 
 	if err != nil {
 		fmt.Println(err)
