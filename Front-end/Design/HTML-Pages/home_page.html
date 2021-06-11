@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil | Pioutter</title>
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/home_page_light_mode.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/footer.css" type="text/css">
+    <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
+</head>
+<body class="RowFlex" onload="javascript:postIndex()">
+
+{{template "header"}}
+
+<main>
+  <div class="globalFLex border">
+    <div id="home-banner">
+      <span id="home-text">Page d'Accueil</span>
+    </div>
+    <div class="globalFLex scroll-div" id="">
+      <div class="RowFlex border" id="container-publish">
+        <div class="container-avatar">
+          <div class="border-avatar">
+            <img src="/static/Design/Images/avatar.jpg">
+          </div>
+        </div>
+        <div class="globalFLex" id="container-publishInputs">
+          <div class="border">
+            <div id="container-titlePost">
+              <input type="text" id="insert-title">
+            </div>
+          </div>
+          <div class="border">
+            <div id="container-messagePost" class="RowFlex">
+              <input type="text" id="insert-message">
+              <div id="container-publishButton" class="border">
+                <button type="submit" id="publishButton">
+                  <img src="/static/Design/Images/Icon/arrow_right.svg">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="globalFLex border" id="category">
+          <div class="globalFLex" id="titleBox-category">
+            <span id="title-text">Catégorie</span>
+          </div>
+          <div class="scroll-div">
+            <div class="category-box border globalFLex">
+              <button class="category-button RowFlex">
+                <span class="text-category">Actualité</span>
+                <div class="colorBox-category border" id="colorBox1">
+                </div>
+              </button>
+            </div>
+            <div class="category-box border RowFlex">
+              <button class="category-button">
+                <span class="text-category">Sport</span>
+                <div class="colorBox-category">
+                  <div id="colorBox2"></div>
+                </div>
+              </button>
+            </div>
+            <div class="category-box border RowFlex">
+              <button class="category-button">
+                <span class="text-category">Humour</span>
+                <div class="colorBox-category">
+                  <div id="colorBox3"></div>
+                </div>
+              </button>
+            </div>
+            <div class="category-box border RowFlex">
+              <button class="category-button">
+                <span class="text-category">Cinéma</span>
+                <div class="colorBox-category">
+                  <div id="colorBox4"></div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{template "footer"}}
+</body>
+</html>
