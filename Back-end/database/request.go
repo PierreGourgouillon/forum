@@ -47,7 +47,17 @@ func InsertNewUser(user structs.Register) {
 		return
 	}
 
-	fmt.Println(data)
+	id, err2 := data.LastInsertId()
+	if err2 != nil {
+		return
+	}
+
+	data2, err3 := db.Exec("INSERT INTO userProfile (user_id) VALUES (?)", id)
+	if err3 != nil {
+		return
+	}
+
+	fmt.Println(data, data2)
 }
 
 func GetPasswordByEmail(email string) string {
@@ -361,4 +371,40 @@ func GetNumberOfUsers() int {
 	res.Scan(&nbr)
 
 	return nbr
+}
+
+func GetProfilByUserID(id int) structs.ProfilUser {
+	var profil structs.ProfilUser
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	data := db.QueryRow("SELECT user_pseudo FROM userIdentity WHERE user_id = ?", id)
+	data.Scan(&profil.Pseudo)
+
+	data = db.QueryRow("SELECT user_location, user_bio FROM userProfile WHERE user_id = ?", id)
+	data.Scan(&profil.Location, &profil.Bio)
+
+	return profil
+}
+
+func UpdateBioByUserID(id int, bio string) bool {
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	query := "UPDATE userProfile SET user_bio= ? WHERE user_id= ?"
+
+	_, err = db.Exec(query, bio, id)
+
+	if err != nil {
+		return false
+	}
+
+	return true
 }

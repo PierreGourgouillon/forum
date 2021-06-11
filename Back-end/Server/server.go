@@ -61,8 +61,9 @@ func requestHTTP(router *mux.Router) {
 
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
-	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
-
+	router.HandleFunc("/profilposts/{id}", getPostsUser).Methods("GET")
+	router.HandleFunc("/profiluser/{id}", getProfilUser).Methods("GET")
+	router.HandleFunc("/profiluser/{id}", updateProfilUser).Methods("PUT")
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -499,6 +500,57 @@ func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"isUpdate\": \"false\"}"))
 	}
 
+}
+
+func getProfilUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("id")
+	fmt.Println(id)
+
+	profilUser := database.GetProfilByUserID(id)
+
+	jsonProfil, error := json.Marshal(profilUser)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonProfil)
+}
+
+func updateProfilUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var json structs.ProfilUser
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	unmarshallJSON(r, &json)
+
+	fmt.Println(json.Choice)
+
+	if json.Choice == "bio" {
+		check := database.UpdateBioByUserID(id, json.Bio)
+		if check {
+			w.Write([]byte("{\"isUpdate\": \"true\"}"))
+		} else {
+			w.Write([]byte("{\"isUpdate\": \"false\"}"))
+		}
+	}
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {

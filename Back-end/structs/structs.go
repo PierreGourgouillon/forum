@@ -41,3 +41,10 @@ type Reaction struct {
 	Like    bool `json:"like"`
 	Dislike bool `json:"dislike"`
 }
+
+type ProfilUser struct {
+	Pseudo   string `json:"pseudo"`
+	Location string `json:"location"`
+	Bio      string `json:"bio"`
+	Choice   string `json:"choice"`
+}

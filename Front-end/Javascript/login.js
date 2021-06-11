@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("login").addEventListener("click", login)
+    document.getElementById("eye").addEventListener("click", AfficherMdp)
+})
+
 function login() {
     const email = document.getElementById("email")
     const password = document.getElementById("password")
@@ -35,7 +40,7 @@ function login() {
 }
 
 function AfficherMdp(){
-    let input = document.getElementById("Motdepasse"); 
+    let input = document.getElementById("password"); 
 
     if (input.type === "password"){ 
         input.type = "text"; 

@@ -1,5 +1,7 @@
-
-document.addEventListener("DOMContentLoaded",postIndex)
+document.addEventListener("DOMContentLoaded",()=>{
+    postIndex()
+    document.getElementById("b").addEventListener('click', createPost)
+})
 
 async function createPost(){
     let title = document.getElementById("insert-title")
@@ -148,15 +150,17 @@ async function addAllPost(response){
                 }
             })
 
-            reactions.forEach((reaction)=>{
-                if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
-                    if (reaction.like == true) {
-                        divLike.classList.add("filterLike")
-                    }else if (reaction.dislike == true) {
-                        divDislike.classList.add("filterDislike")
+            if(reactions != null) {
+                reactions.forEach((reaction)=>{
+                    if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                        if (reaction.like == true) {
+                            divLike.classList.add("filterLike")
+                        }else if (reaction.dislike == true) {
+                            divDislike.classList.add("filterDislike")
+                        }
                     }
-                }
-            })
+                })
+            }
 
             pseudo.textContent = post.pseudo
             title.textContent = post.title
