@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage_lightMode.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/pagepost.css" type="text/css">
+    <title>Page Post</title>
+</head>
+<body>
+
+    {{template "header"}}
+    
+    <main>
+
+        <div class="globalFLex transition colorPost" id="principalPost">
+         <div class="globalFLex border cursor">
+             <div class="globalFLex">
+                     <article role="article" class="globalFLex paddingLeft paddingTop transition" id="link-post">
+                         <div class="globalFLex grow shrink">
+                                <div class="globalFLex grow shrink">
+                                    <div class="globalFLex">
+                                     <div class="RowFLex">
+                                         <div class="RowFLex mRight noUserSelect">
+                                             <a class="postLinkos">
+                                                    <div class="RowFLex mRight noUserSelect" style="flex-basis: 60px">
+                                                        <div class="globalFLex shrink noUserSelect mRight" style="height: 35px;width: 35px;flex-grow: 0">
+                                                         <img src="/static/Design/Images/avatar.jpg" id="image-user" class="radiusImage" style="width: 100%">
+                                                        </div>
+                                                 </div>
+                                             </a>
+                                         </div>
+
+
+                                            <div class="globalFLex grow" style="justify-content: center;padding-bottom: 12px; width: 70%">
+                                             <div class="globalFLex">
+                                                 <a href="" class="postLinkos pseudo-href">
+                                                     <div class="RowFLex alignStart" style="justify-content: space-between">
+                                                            <div class="RowFLex shrink" style="align-items: baseline">
+                                                              <div class="globalFLex">
+                                                                 <span class="textStyle" id="pseudo-user"></span>
+                                                             </div>
+                                                         </div>
+                                                        </div>
+                                                     </a>
+
+                                                    <div class="globalFLex">
+                                                        <a href="" class="postLinkos">
+                                                         <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
+                                                             <div class="globalFLex">
+                                                                    <span class="textStyle" style="font-size: 12px" id="title-user"></span>
+                                                             </div>
+
+                                                             <div class="mLeft RowFLex" style="justify-content: space-between; margin-left: 12px">
+                                                                 <div class="globalFLex styleCategory" style="background-color: #794BC4">
+                                                                        <span></span>
+                                                                    </div>
+                                                                    <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
+                                                                     <span></span>
+                                                                 </div>
+                                                             </div>
+                                                            </div>
+
+                                                            <div class="globalFLex">
+                                                             <p class="styleMessage" id="message-post">Salut les amis!</p>
+                                                             
+                                                         </div>
+                                                        </a>
+                                                        
+                                                        
+                                                        <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
+                                                            <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
+                                                                <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                <span style="padding-left: 5px" id="like-post"></span>
+                                                            </div>
+                                                            
+                                                            <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
+                                                                <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                <span style="padding-left: 5px" id="dislike-post"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="post_add_area">
+                                                    <input name="" id="post__textarea" class="post_text" type="text" placeholder="pioutter votre reponse!">
+                                                    <button type="submit" class="submit" id="submit__btn">
+                                                        Add commentary
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+                                </div>
+                            </div>
+                        </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="globalFLex transition colorPost" >
+            <div class="globalFLex border cursor">
+                <div class="globalFLex">
+                        <article role="article" class="gloGlFLex paddingLeft paddingTop transition" id="link-post">
+                            <div class="globalFLex grow shrink">
+                                   <div class="globalFLex grow shrink">
+                                       <div class="globalFLex">
+                                        <div class="RowFLex">
+                                            <div class="RowFLex mRight noUserSelect">
+                                                <a class="postLinkos">
+                                                       <div class="RowFLex mRight noUserSelect" style="flex-basis: 48px">
+                                                           <div class="globalFLex shrink noUserSelect mRight" style="height: 35px;width: 35px;flex-grow: 0">
+                                                            <img src="/static/Design/Images/avatar.jpg" id="image-user" class="radiusImage" style="width: 100%">
+                                                           </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+   
+   
+                                               <div class="globalFLex grow" style="justify-content: center;padding-bottom: 12px; width: 80%">
+                                                <div class="globalFLex">
+                                                    <a href="" class="postLinkos pseudo-href">
+                                                        <div class="RowFLex alignStart" style="justify-content: space-between">
+                                                               <div class="RowFLex shrink" style="align-items: baseline">
+                                                                 <div class="globalFLex">
+                                                                    <span class="textStyle" id="pseudo-user"></span>
+                                                                </div>
+                                                            </div>
+                                                           </div>
+                                                        </a>
+   
+                                                       <div class="globalFLex">
+                                                           <a href="" class="postLinkos">
+                                                            <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
+                                                                <div class="globalFLex">
+                                                                       <span class="textStyle" style="font-size: 12px" id="title-user"></span>
+                                                                </div>
+   
+                                                                <div class="mLeft RowFLex" style="justify-content: space-between; margin-left: 12px">
+                                                                    <div class="globalFLex styleCategory" style="background-color: #794BC4">
+                                                                           <span></span>
+                                                                       </div>
+                                                                       <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
+                                                                        <span></span>
+                                                                    </div>
+                                                                </div>
+                                                               </div>
+   
+                                                               <div class="globalFLex">
+                                                                <p class="styleCommentary" id="message-post"> Ca va et toi mon bro?</p>
+                                                            </div>
+                                                           </a>
+   
+                                                           <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
+                                                               <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
+                                                                   <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                <span style="padding-left: 5px" id="like-post"></span>
+                                                               </div>
+   
+                                                               <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
+                                                                <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                <span style="padding-left: 5px" id="dislike-post"></span>
+                                                            </div>
+                                                        </div>
+                                                       </div>
+                                                </div>
+                                               </div>
+                                           </div>
+                                    </div>
+                                   </div>
+                               </div>
+                           </article>
+                   </div>
+               </div>
+           </div>
+    </main>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Umbrella_Corporation_logo.svg/1024px-Umbrella_Corporation_logo.svg.png" style="width: 300px; height: 300px">
+</body>
+</html>
