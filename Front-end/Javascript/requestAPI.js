@@ -1,4 +1,3 @@
-
 async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
@@ -235,4 +234,32 @@ async function addReactions(e, reaction){
         likes.textContent = parseInt(likes.textContent) + 1
     }
 }
+function deactivateAccount(){
+    let idUser = parseInt(getCookie("PioutterID"))
+    console.log("cookie:", idUser)
 
+    fetch(`/profiluser/${idUser}`, {
+        method: "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            "idUser": idUser,
+            "deactivate" : true,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    }).then((res)=>{
+        console.log('test')
+        if (res.delete){
+            document.location.href="/"
+        }else{
+            alerte("compte non supprimé")
+        }
+    })
+    .catch(()=>{
+        return false
+    })
+
+}

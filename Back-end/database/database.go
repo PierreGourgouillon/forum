@@ -8,12 +8,10 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var db *sql.DB
-
 func CreateAndSelectDB(name string) {
 	//Connexion au docker sql en root
 	var err error
-	db, err = sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/")
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/")
 
 	if err != nil {
 		panic(err.Error())
@@ -48,7 +46,7 @@ func CreateTable(nameDb string) {
 	defer db.Close()
 
 	//Création des tables
-	tableau := [7]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory}
+	tableau := [8]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory, tablePostReactions}
 	for j := range tableau {
 		_, error := db.Exec(tableau[j]) //A changer le mdp par la suite
 
@@ -61,12 +59,12 @@ func CreateTable(nameDb string) {
 }
 
 const tableUserIdentity = `CREATE TABLE IF NOT EXISTS userIdentity(
-user_id INT AUTO_INCREMENT PRIMARY KEY,
-user_email VARCHAR(50) NOT NULL,
-user_pseudo VARCHAR(30) NOT NULL,
-user_password VARCHAR(3000) NOT NULL,
-user_birth VARCHAR(12) NOT NULL,
-deactivate BOOLEAN NOT NULL)`
+	user_id INT AUTO_INCREMENT PRIMARY KEY,
+	user_email VARCHAR(50) NOT NULL,
+	user_pseudo VARCHAR(30) NOT NULL,
+	user_password VARCHAR(3000) NOT NULL,
+	user_birth VARCHAR(12) NOT NULL,
+	deactivate BOOLEAN NOT NULL)`
 
 const tableUserProfile = `CREATE TABLE IF NOT EXISTS userProfile(
 user_id INT,
@@ -105,3 +103,10 @@ const tablePostCategory = `CREATE TABLE IF NOT EXISTS postCategory (
 post_id INT NOT NULL,
 category_id INT NULL,
 post_category VARCHAR(50)NULL)`
+
+const tablePostReactions = `CREATE TABLE IF NOT EXISTS postReactions(
+post_id INT NOT NULL,
+user_id INT NOT NULL,
+user_like BOOLEAN NOT NULL,
+user_dislike BOOLEAN NOT NULL
+)`

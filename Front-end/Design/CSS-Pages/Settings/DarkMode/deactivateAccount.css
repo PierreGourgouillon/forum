@@ -11,6 +11,7 @@ body, html{
 
 body{
     overflow:auto scroll;
+    background-color: #15202B;
 }
 
 main{
@@ -26,6 +27,7 @@ main{
     position: relative;
     z-index: 0;
     align-items: flex-start;
+    color: white;
 }
 
 section{
@@ -67,7 +69,7 @@ section{
 .container-main{
     width: 990px;
     height: 100vh;
-    border-right: 1px solid black;
+    border-right: 1px solid rgb(47, 51, 54);
 }
 
 .container-account{
@@ -164,6 +166,11 @@ section{
 
 /********** Id **********/
 
+#lineDeactivate {
+    color: white;
+    border-top: 1px solid rgb(47, 51, 54);
+}
+
 #lineDeactivate:hover {
     background-color: rgba(121, 75, 195, 0.1);
 }
@@ -175,10 +182,6 @@ section{
 #buttonDeactivAcc{
     background-color: transparent;
     border: 0px solid transparent;
-}
-
-#border{
-    border-top: 1px solid black;
 }
 
 
@@ -196,4 +199,7 @@ section{
     transition-duration: 0.2s;
 }
 
+#border{
+    border-top: 1px solid rgb(47, 51, 54);
+}
 

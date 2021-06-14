@@ -47,7 +47,17 @@ func InsertNewUser(user structs.Register) {
 		return
 	}
 
-	fmt.Println(data)
+	id, err2 := data.LastInsertId()
+	if err2 != nil {
+		return
+	}
+
+	data2, err3 := db.Exec("INSERT INTO userProfile (user_id) VALUES (?)", id)
+	if err3 != nil {
+		return
+	}
+
+	fmt.Println(data, data2)
 }
 
 func GetPasswordByEmail(email string) string {
@@ -203,13 +213,13 @@ func UpdatePost(id int, post *structs.Post) {
 		postUpdate.Title = postBasic.Title
 	}
 
-	if post.Like != postBasic.Like && post.Like != 0 {
+	if post.Like != postBasic.Like && post.Like != -1 {
 		postUpdate.Like = post.Like
 	} else {
 		postUpdate.Like = postBasic.Like
 	}
 
-	if post.Dislike != postBasic.Dislike && post.Dislike != 0 {
+	if post.Dislike != postBasic.Dislike && post.Dislike != -1 {
 		postUpdate.Dislike = post.Dislike
 	} else {
 		postUpdate.Dislike = postBasic.Dislike
@@ -236,6 +246,178 @@ func DeletePost(id int) bool {
 	}
 	query := "DELETE FROM allPosts WHERE post_id= ?"
 	_, err = db.Exec(query, id)
+	if err != nil {
+		return false
+	}
+
+	return true
+}
+
+func GetAllReactions() []structs.Reaction {
+	var reactions []structs.Reaction
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT post_id, user_id, user_like, user_dislike FROM postReactions")
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var reaction structs.Reaction
+		rows.Scan(&reaction.PostId, &reaction.IdUser, &reaction.Like, &reaction.Dislike)
+		reactions = append(reactions, reaction)
+	}
+
+	return reactions
+}
+
+func CreateReaction(reaction structs.Reaction) bool {
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	_, error := db.Exec("INSERT INTO postReactions (post_id, user_id, user_like, user_dislike) VALUES (?, ?, ?, ?)", reaction.PostId, reaction.IdUser, reaction.Like, reaction.Dislike)
+
+	if error != nil {
+		return false
+	}
+
+	return true
+}
+
+func GetReactionsOnePost(id int) []structs.Reaction {
+	var reactions []structs.Reaction
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT post_id, user_id, user_like, user_dislike FROM postReactions WHERE post_id= ?", id)
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var reaction structs.Reaction
+		rows.Scan(&reaction.PostId, &reaction.IdUser, &reaction.Like, &reaction.Dislike)
+		reactions = append(reactions, reaction)
+	}
+
+	return reactions
+}
+
+func UpdateReactionOnePost(idPost int, reactionpost structs.Reaction) bool {
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	query := "UPDATE postReactions SET user_like= ?, user_dislike= ? WHERE post_id= ? AND user_id= ?"
+
+	_, err = db.Exec(query, reactionpost.Like, reactionpost.Dislike, idPost, reactionpost.IdUser)
+
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+func GetPostsByUserID(id int) []structs.Post {
+	var allPost []structs.Post
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE user_id = ?", id)
+	defer db.Close()
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	for rows.Next() {
+		var post structs.Post
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		allPost = append(allPost, post)
+	}
+
+	return allPost
+}
+
+func GetNumberOfUsers() int {
+	var nbr int
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	res := db.QueryRow("SELECT COUNT(*) FROM userIdentity")
+
+	res.Scan(&nbr)
+
+	return nbr
+}
+
+func GetProfilByUserID(id int) structs.ProfilUser {
+	var profil structs.ProfilUser
+
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	data := db.QueryRow("SELECT user_pseudo FROM userIdentity WHERE user_id = ?", id)
+	data.Scan(&profil.Pseudo)
+
+	data = db.QueryRow("SELECT user_location, user_bio FROM userProfile WHERE user_id = ?", id)
+	data.Scan(&profil.Location, &profil.Bio)
+
+	return profil
+}
+
+func UpdateBioByUserID(id int, bio string) bool {
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	query := "UPDATE userProfile SET user_bio= ? WHERE user_id= ?"
+
+	_, err = db.Exec(query, bio, id)
+
+	if err != nil {
+		return false
+	}
+
+	return true
+}
+
+func DeactivateProfil(user *structs.UserIdentity, id int)bool{
+	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	query := "UPDATE userIdentity SET deactivate = ? WHERE user_id= ?"
+	_, err = db.Exec(query, user.Deactivate ,  id)
+
 	if err != nil {
 		return false
 	}

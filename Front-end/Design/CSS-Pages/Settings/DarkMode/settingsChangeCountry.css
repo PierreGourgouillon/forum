@@ -1,0 +1,243 @@
+
+/********** Font **********/
+
+@font-face {
+    font-family: "Montserrat-Thin";
+    src: url("http://localhost:8088/static/Fonts/Montserrat-Thin.ttf");
+}
+
+
+/********** Balises **********/
+
+body, html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body{
+    overflow:auto scroll;
+    background-color: #15202B;
+}
+
+main{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 1;
+    flex-grow: 1;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    align-items: flex-start;
+    color: white;
+}
+
+section{
+    height: 100%;
+}
+
+
+/********** Flexbox **********/
+
+.globalFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+
+/********** Textes **********/
+
+.container-account h2{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 800;
+    font-family: Open-Sans-Extra;
+}
+
+.explication-settings{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 12px 16px;
+    font-family: Montserrat-Regular;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    border-top: 1px solid rgb(47, 51, 54);
+}
+
+.submit-button{
+    padding: 10px 5px;
+    width: 15%;
+    border-radius: 999px;
+    border: none;
+    color: white;
+    background-color: rgba(121,75,196,0.5);
+    font-family: Open-Sans-Extra;
+    font-size: 15px;
+}
+
+.style-link{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    overflow-wrap: break-word;
+    font-family: Montserrat-Regular;
+}
+
+.textStyle {
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/********** Container **********/
+
+.container-main{
+    width: 990px;
+    height: 100vh;
+    border-right: 1px solid rgb(47, 51, 54);
+}
+
+.container-account{
+    position: sticky;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.container-link-main{
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.input-container {
+    position: relative;
+    width: 50%;
+}
+
+.container-link-icon{
+    margin-right: 16px;
+    height: 48px;
+    width: 48px;
+    align-items: center;
+    justify-content: center;
+}
+
+input,select {
+    border: 0;
+    border-bottom: 2px solid #9e9e9e;
+    outline: none;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+label {
+    top: 0;
+    left: 0; right: 0;
+    color: #616161;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 0.5rem;
+    cursor: text;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+    font-family: Montserrat-Regular;
+}
+
+input,select, label {
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+}
+
+
+/********** Hover **********/
+
+.link-in-main:hover{
+    background-color: rgba(121,75,195,0.1);
+    transition-duration: 0.2s;
+    color: #794bc4;
+}
+
+.image:hover{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+input:valid,input:focus {
+    border-bottom: 2px solid #794BC4;
+}
+
+input:valid + label, input:focus + label {
+    color: #794BC4;
+    font-size: .7rem;
+    top: -20px;
+    pointer-events: none;
+}
+
+.submit-button:hover {
+    background-color: #794bc4;
+}
+
+
+/********** Image **********/
+
+.link-in-main:hover img{
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
+
+/********** Id **********/
+
+#passwordMiss{
+    font-family: Montserrat-Thin;
+    color: #794BC4;
+    font-size: 13px;
+}
+
+#border{
+    border-bottom: 1px solid rgb(47, 51, 54);
+}
+
+/********** Reste **********/
+
+.link-in-main{
+    padding: 12px 16px;
+    justify-content: space-between;
+    outline-style: none;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    min-height: calc(48px);
+}
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+.link-in-mains {
+    padding: 12px 16px;
+    justify-content: space-between;
+    outline-style: none;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    min-height: calc(48px);
+}
+
+.input{
+    color: white;
+}

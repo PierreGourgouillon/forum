@@ -3,58 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="/static/Design/Images/logo.png">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/profilPage.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
+    <script src="/static/Javascript/profil.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="/static/Design/CSS-Pages/profilPage_lightMode.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Header-Footer/header.css" type="text/css">
+    <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <title>Home</title>
 </head>
 
 <body>
 <div class="container-body">
-    <header role="banner">
-        <div class="container-header">
-            <div class="container-menu">
-                <div class="logo"><img src="/static/Design/Images/Logo/pioutter.png"></div>
-                <div class="container-list">
-                    <nav>
-                        <a class="container-link-menu">
-                            <div class="container-inlink">
-                                <div><img src="/static/Design/Images/Icon/home.svg"></div>
-                                <span>Accueil</span>
-                            </div>
-                        </a>
-                        <a class="container-link-menu">
-                            <div class="container-inlink">
-                                <div><img src="/static/Design/Images/Icon/profile.svg"></div>
-                                <span>Profil</span>
-                            </div>
-                        </a>
-                        <a class="container-link-menu">
-                            <div class="container-inlink">
-                                <div><img src="/static/Design/Images/Icon/change_mode.svg"></div>
-                                <span>Mode Sombre</span>
-                            </div>
-                        </a>
-                    </nav>
-                </div>
-            </div>
-            <div class="container-profile" style="margin-top: 12px;margin-bottom: 12px;">
-                <div class="container-prof">
-                    <div class="container-in-profile">
-                        <div class="image-profile container-profile">
-                            <img src="/static/Design/Images/Logo/light_mode.png">
-                        </div>
-                        <div class="pseudo-profile">
-                            <span id="pseudoname">PierreG</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <div class="fuck"></div>
+    {{template "header"}}
 
     <div class="middle-container">
+        <div id="home-banner">
+            <span id="home-text">Profil</span>
+        </div>
         <div id="up">
             <div class="profil-container">
                 <div class="avatar-container">
@@ -62,13 +33,18 @@
                 </div>
                 <div class="info-container">
                     <div class="pseudo">
-                        <span id="pseudoid">Quel magnifique pseudo</span>
+                        <span id="pseudoid"></span>
                     </div>
                     <div class="country">
-                        <span id="countryid">Quel magnifique pays</span>
+                        <span id="countryid"></span>
                     </div>
                     <div class="bio">
-                        <span id="bioid">Quelle magnifique bio, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</span>
+                        <span id="bioid"></span>
+                    </div>
+                    <div class="icon-bio gear" id="gear"></div>
+                    <div class="setBio" id="setBio" style="display: none">
+                        <textarea id="newBio" type="text" placeholder="Entrez votre nouvelle bio"></textarea>
+                        <div class="icon-bio" id="send"></div>
                     </div>
                 </div>
 
@@ -76,39 +52,85 @@
         </div>
 
         <div id="down">
-            <div class="post-container">
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
-                <div class="post"></div>
+            <div id="containerPost">
+                <template id="postTemplate">
+                    <div class="globalFLex transition hover">
+                        <div class="globalFLex border cursor">
+                            <div class="globalFLex">
+                                    <article role="article" class="globalFLex paddingLeft paddingTop transition" id="link-post">
+                                        <div class="globalFLex grow shrink">
+                                            <div class="globalFLex grow shrink">
+                                                <div class="globalFLex">
+                                                    <div class="RowFLex">
+                                                        <div class="RowFLex mRight noUserSelect">
+                                                            <a class="postLinkos">
+                                                                <div class="RowFLex mRight noUserSelect" style="flex-basis: 48px">
+                                                                    <div class="globalFLex shrink noUserSelect mRight" style="height: 35px;width: 35px;flex-grow: 0">
+                                                                        <img src="/static/Design/Images/avatar.jpg" id="image-user" class="radiusImage" style="width: 100%">
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <div class="globalFLex grow" style="justify-content: center;padding-bottom: 12px; width: 80%">
+                                                            <div class="globalFLex">
+                                                                <a href="www.google.fr" class="postLinkos">
+                                                                    <div class="RowFLex alignStart" style="justify-content: space-between">
+                                                                        <div class="RowFLex shrink" style="align-items: baseline">
+                                                                            <div class="globalFLex">
+                                                                                <span class="textStyle" id="pseudo-user"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+
+                                                                <div class="globalFLex">
+                                                                    <a href="www.google.fr" class="postLinkos">
+                                                                        <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
+                                                                            <div class="globalFLex">
+                                                                                <span class="textStyle" style="font-size: 12px" id="title-user"></span>
+                                                                            </div>
+
+                                                                            <div class="mLeft RowFLex" style="justify-content: space-between; margin-left: 12px">
+                                                                                <div class="globalFLex styleCategory" style="background-color: #794BC4">
+                                                                                    <span></span>
+                                                                                </div>
+                                                                                <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
+                                                                                    <span></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="globalFLex">
+                                                                            <p class="styleMessage" id="message-post"></p>
+                                                                        </div>
+                                                                    </a>
+
+
+                                                                    <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
+                                                                        <div class="RowFLex alignStart like noUserSelect" onclick="javascript:addReactions(event,true)">
+                                                                            <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                            <span style="padding-left: 5px" id="like-post"></span>
+                                                                        </div>
+
+                                                                        <div class="RowFLex alignStart dislike noUserSelect" style="margin-left: 20px" onclick="javascript:addReactions(event, false)">
+                                                                            <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                                                                            <span style="padding-left: 5px" id="dislike-post"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -116,5 +138,6 @@
     <footer>
     </footer>
 </div>
+
 </body>
 </html>

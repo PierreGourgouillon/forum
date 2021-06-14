@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("register").addEventListener("click", register)
+    document.getElementById("eye1").addEventListener("click", AfficherMdp1)
+    document.getElementById("eye2").addEventListener("click", AfficherMdp2)
+    document.getElementById("btRandom").addEventListener("click", strRandom)
+    document.getElementById("passwordConf").addEventListener("keyup", validatePassword)
+})
+
 function register() {
     const pseudo = document.getElementById("pseudo")
     const email = document.getElementById("email")
@@ -14,7 +22,7 @@ function register() {
         return
     }
 
-    if(password.value.length < 12) {
+    if(password.lenght < 12) {
         error.textContent = "Le mot de passe est trop court"
         return
     }
@@ -48,17 +56,6 @@ function register() {
             error.textContent = "L'email est déjà utilisé"
         }
     })
-}
-
-let  flag=true;
-function lancement(){
-    if(!flag) return;
-    flag=false;
-
-    let input1 = document.getElementById('password');
-    let input2 = document.getElementById('passwordConf');
-    input1.type = "password"
-    input2.type = "password"
 }
 
 function AfficherMdp1() {
@@ -97,45 +94,12 @@ function strRandom() {
 function validatePassword() {
     let password = document.getElementById("password")
     let passwordConf = document.getElementById("passwordConf");
-    let boxPassConf = document.getElementById("boxConfirmPassword")
 
-  if(passwordConf.value == password.value) {
-    boxPassConf.classList.remove("boxInput")
-    boxPassConf.classList.add("boxInputValid")
+  if(passwordConf.value != password.value) {
+    passwordConf.setCustomValidity("Passwords Don't Match");
+    passwordConf.style.color = 'red';
   } else {
-    boxPassConf.classList.remove("boxInputValid")
-    boxPassConf.classList.add("boxInput")
+    passwordConf.setCustomValidity('');
+    passwordConf.style.color = 'green';
   }
 }
-
-function validatePseudo(){
-    let pseudo = document.getElementById("boxPseudo")
-    let pseudoLength=document.getElementById("pseudo").value.length
-    console.log(pseudoLength)
-    if(pseudoLength >= 6){
-        pseudo.classList.remove("boxInput")
-        pseudo.classList.add("boxInputValid")
-      } else {
-        pseudo.classList.remove("boxInputValid")
-        pseudo.classList.add("boxInput")
-      }
-}
-
-
-function validateEmail() {
-    let email = document.getElementById("email").value;
-    let boxMail = document.getElementById("boxMail")
-
-    if (checkEmail(email)) {
-        boxMail.classList.remove("boxInput")
-        boxMail.classList.add("boxInputValid")
-      } else {
-        boxMail.classList.remove("boxInputValid")
-        boxMail.classList.add("boxInput")
-      }
-}
-function checkEmail(email) {
-    const check = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return check.test(email);
-}
-

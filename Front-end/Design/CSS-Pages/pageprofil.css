@@ -4,12 +4,14 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "montserrat";
     src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
+
 body{
     display: flex;
     flex-direction: row;
@@ -41,7 +43,6 @@ header{
 .container-body{
     display: flex;
     height: 100%;
-
 }
 
 .container-header{

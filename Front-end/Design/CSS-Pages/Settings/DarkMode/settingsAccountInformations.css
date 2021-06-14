@@ -11,6 +11,7 @@ body, html{
 
 body{
     overflow:auto scroll;
+    background-color: #15202B;
 }
 
 main{
@@ -25,8 +26,7 @@ main{
     padding: 0;
     position: relative;
     z-index: 0;
-    align-items: flex-start;
-}
+    align-items: flex-start;}
 
 section{
     height: 100%;
@@ -48,26 +48,13 @@ section{
     z-index: 0;
 }
 
-.RowFLex{
-    display: flex;
-    flex-basis: auto;
-    flex-direction: row;
-    flex-shrink: 0;
-    margin: 0;
-    min-height: 0px;
-    min-width: 0px;
-    padding: 0;
-    position: relative;
-    z-index: 0;
-}
-
 
 /********** Container **********/
 
 .container-main{
     width: 990px;
     height: 100vh;
-    border-right: 1px solid black;
+    border-right: 1px solid rgb(47, 51, 54);
 }
 
 .container-account{
@@ -90,6 +77,9 @@ section{
     justify-content: center;
 }
 
+.link-in-main {
+    color: white;
+}
 
 /********** Textes **********/
 
@@ -98,16 +88,7 @@ section{
     line-height: 24px;
     font-weight: 800;
     font-family: Open-Sans-Extra;
-}
-
-.explication-settings{
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    padding: 12px 16px;
-    font-family: Montserrat-Regular;
-    border-bottom: 1px solid rgb(47, 51, 54);
-    border-top: 1px solid rgb(47, 51, 54);
+    color: white;
 }
 
 .style-link{
@@ -124,14 +105,18 @@ section{
     font-weight: 700;
 }
 
+.explication-settings{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 12px 16px;
+    font-family: Montserrat-Regular;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    border-top: 1px solid rgb(47, 51, 54);
+}
+
 
 /********** Hover **********/
-
-.link-in-main:hover{
-    background-color: rgba(121,75,195,0.1);
-    transition-duration: 0.2s;
-    color: #794bc4;
-}
 
 .image:hover{
     background-color: rgba(121,75,195,0.1);
@@ -141,17 +126,10 @@ section{
     padding-right: 5px;
 }
 
-
-/********** Espacements **********/
-
-.paddingTop{
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-.paddingLeft {
-    padding-right: 16px;
-    padding-left: 16px;
+.link-in-main:hover{
+    background-color: rgba(121,75,195,0.1);
+    transition-duration: 0.2s;
+    color: #794bc4;
 }
 
 
@@ -159,26 +137,6 @@ section{
 
 .link-in-main:hover img{
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
-}
-
-
-/********** Id **********/
-
-#lineDeactivate:hover {
-    background-color: rgba(121, 75, 195, 0.1);
-}
-
-#deactivateAcc:hover {
-    background-color: rgba(224, 36, 94, 0.1);
-}
-
-#buttonDeactivAcc{
-    background-color: transparent;
-    border: 0px solid transparent;
-}
-
-#border{
-    border-top: 1px solid black;
 }
 
 
@@ -196,4 +154,29 @@ section{
     transition-duration: 0.2s;
 }
 
+#border{
+    border-bottom: 1px solid rgb(47, 51, 54);
+}
 
+
+
+
+.link-in-main img{
+    filter: invert(100%) sepia(5%) saturate(7500%) hue-rotate(174deg) brightness(104%) contrast(104%);
+}
+
+#imageHover {
+    color: white;
+}
+
+#imageHover:hover {
+    color: #794BC4;
+}
+
+#imageHovera {
+    color: white;
+}
+
+#imageHovera:hover {
+    color: #794BC4;
+}

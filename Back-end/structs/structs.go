@@ -20,7 +20,7 @@ type UserIdentity struct {
 	Image      string
 	Biographie string
 	Birth      string
-	deactivate bool `json:"deactivate"`
+	Deactivate bool	`json:"deactivate"`
 }
 
 type Post struct {
@@ -34,4 +34,18 @@ type Post struct {
 	Hour       string
 	Like       int `json:"like"`
 	Dislike    int `json:"dislike"`
+}
+
+type Reaction struct {
+	PostId  int  `json:"idPost"`
+	IdUser  int  `json:"idUser"`
+	Like    bool `json:"like"`
+	Dislike bool `json:"dislike"`
+}
+
+type ProfilUser struct {
+	Pseudo   string `json:"pseudo"`
+	Location string `json:"location"`
+	Bio      string `json:"bio"`
+	Choice   string `json:"choice"`
 }
