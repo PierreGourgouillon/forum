@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*-----------------
 * Général
 -----------------*/
@@ -7,8 +20,10 @@
     padding : 0;
 }
 
-html { overflow-y: hidden; 
+html { 
+    overflow-y: hidden; 
     overflow-x: hidden;
+    font-family: "Open Sans", sans-serif;
 }
 
 #general{
@@ -30,7 +45,7 @@ html { overflow-y: hidden;
 }
 
 #logo{
-    width: 40%;
+    width: 400px;
     aspect-ratio: 1/1.1;
 }
 
@@ -49,12 +64,11 @@ html { overflow-y: hidden;
 }
 
 #generalDroit{
-    
     margin-top:-150px;
     margin-left:auto;
     margin-right: auto;
-    width: 100%;
-    height: 110%;
+    width: 80%;
+    height: 1800px;
     
     /* border: 3px solid rgb(149, 4, 168); */
     display: flex;
@@ -67,34 +81,28 @@ html { overflow-y: hidden;
 -----------------*/
 
 #textDroit{
-    position: relative;
-    left:50px;
     width: 80%;
-    height: 20%;
+    height: 10%;
     margin-left:auto;
     margin-right: auto;
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 30px;
+    /* margin:0 auto; */
     /* border: 3px solid green; */
-    text-align: left;
+    text-align: center;
 }
 
 h1{
     position: relative;
     top:15%;
-    color: white;
-    font-size: 250%;
-}
-
-#auMax{
-    position: relative;
-    top:15%;
+    color: rgb(48, 48, 48);
+    font-size: 2.5vw;
 }
 
 h2{
     position: relative;
     top:15%;
-    color: white;
+    color: rgb(48, 48, 48);
+    font-size:1vw;
 }
 
 /*-----------------
@@ -102,34 +110,54 @@ h2{
 -----------------*/
 
 #boutonDroit{
-    width: 43.5%;
-    height: 20%;
+    width: 55%;
+    height: 25%;
     display:flex;
     flex-direction: column;
     justify-content: center;
     /* border: 3px solid red; */
-    margin-top: 5%;
+    margin-top: 10px;
     margin-left:auto;
     margin-right: auto;
     
 }
 
+#bt1{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+
+    /* border: 3px solid pink; */
+    margin-left:auto;
+    margin-right: auto;
+}
 #formeBt1{
+    border:none;
     background: #794BC4;
-    border: 3px solid #794BC4;
     color:white;
     border-radius: 40px;
     font-size: 200%;
 
     width: 100%;
-    height: 150%;
+    height: 100%;
     cursor: pointer;
 }
 #formeBt1:hover{
     background: #531da8;
-    border: 3px solid #531da8;
 }
 
+
+#bt2{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+    /* border: 3px solid pink; */
+    margin-top:20px;
+    margin-left:auto;
+    margin-right: auto;
+}
 #formeBt2{
 
     background: #f0f0f0;
@@ -137,10 +165,9 @@ h2{
     font-size: 200%;
     border: 3px solid #794BC4;
     border-radius: 40px;
-    margin-top:10%;
 
     width: 100%;
-    height: 90%;
+    height: 100%;
     cursor: pointer;
 }
 #formeBt2:hover{
