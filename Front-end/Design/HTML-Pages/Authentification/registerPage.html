@@ -19,11 +19,11 @@
 
             <div id="formulaire">
                 <div class="caseFormulaire">
-                    <div class="boxInput">
-                        <input type="text" autocomplete="off" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" required>
+                    <div class="boxInput" id="boxInputPseudo">
+                        <input type="text" autocomplete="off" onkeyup="validatePseudo()" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" required>
                     </div>
-                    <div class="boxInput">
-                        <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                    <div class="boxInput" id="boxInputEmail">
+                        <input type="text" autocomplete="off" onkeyup="validateMail()" class="caseInput" id="email" name="Email" placeholder="Email"required>
                     </div>
                     <div class="boxInput" id="boxPassword">
                         <input type="password" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>

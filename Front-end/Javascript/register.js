@@ -91,15 +91,48 @@ function strRandom() {
     sortie2.value = mdp
 }
 
+function validatePseudo(){
+    const pseudo = document.getElementById("pseudo")
+    const box = document.getElementById("boxInputPseudo")
+    console.log(pseudo.value.length)
+    if(pseudo.value.length>=6){
+        console.log("win")
+        box.classList.remove
+        box.classList = "boxInputValid"
+    }else{
+        console.log("ca avance")
+        box.classList.remove
+        box.classList = "boxInput"
+    }
+
+}
+
+function validateMail() {
+    const email = document.getElementById("email")
+    const box = document.getElementById("boxInputEmail")
+
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value))
+         {
+            console.log("win")
+            box.classList.remove
+            box.classList = "boxInputValid"
+        }else{
+            console.log("ca avance")
+            box.classList.remove
+            box.classList = "boxInput"
+        }
+}
+
 function validatePassword() {
-    let password = document.getElementById("password")
-    let passwordConf = document.getElementById("passwordConf");
+    const password = document.getElementById("password")
+    const passwordConf = document.getElementById("passwordConf");
+    const box = document.getElementById("boxConfirmPassword")
 
   if(passwordConf.value != password.value) {
-    passwordConf.setCustomValidity("Passwords Don't Match");
-    passwordConf.style.color = 'red';
+    box.classList.remove
+    box.classList = "boxInput"
   } else {
-    passwordConf.setCustomValidity('');
-    passwordConf.style.color = 'green';
+    box.classList.remove
+    box.classList = "boxInputValid"
   }
 }
