@@ -94,13 +94,10 @@ function strRandom() {
 function validatePseudo(){
     const pseudo = document.getElementById("pseudo")
     const box = document.getElementById("boxInputPseudo")
-    console.log(pseudo.value.length)
     if(pseudo.value.length>=6){
-        console.log("win")
         box.classList.remove
         box.classList = "boxInputValid"
     }else{
-        console.log("ca avance")
         box.classList.remove
         box.classList = "boxInput"
     }
@@ -113,11 +110,9 @@ function validateMail() {
 
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value))
          {
-            console.log("win")
             box.classList.remove
             box.classList = "boxInputValid"
         }else{
-            console.log("ca avance")
             box.classList.remove
             box.classList = "boxInput"
         }
