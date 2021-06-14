@@ -10,7 +10,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+::-webkit-scrollbar{
+    width: 0px;
+}
 .RowFlex{
     display: flex;
     flex-basis: auto;
@@ -41,9 +43,15 @@
 .scroll-div{
     overflow-y: scroll;
 }
+body, #main-box{
+    overflow: hidden;
+}
 main{
     width: 50%;
     min-height: 100vh;
+}
+#main-box{
+    height: 90vh;
 }
 #home-banner{
     background-color: #A266FC;
@@ -93,47 +101,63 @@ main{
     border: none;
     font-size: 18px;
 }
-#insert-title:active{
-    text-decoration: none;
-}
 #container-messagePost{
     height: 115px;
     width: 100%;
 }
 #insert-message{
-    height: 98%;
-    width: 90%;
+    height: 96%;
+    width: 94%;
     border: none;
     font-size: 18px;
+    resize: none;
 }
 #container-publishButton{
-    width: 10%;
+    width: 6%;
     height: 100%;
     margin-top: -1px;
     margin-right: -1px;
 }
-#publishButton{
+#b{
     height: 99%;
     width: 99%;
     border: none;
     cursor: pointer;
     padding: 0;
 }
+#publishButton img{
+    color: #8A3DFE;
+}
 #category{
     height: 155px;
     width: 25%;
-    border-radius: 5px;
+    border: 2px solid #707070;
+    border-radius: 11px;
+    background-color: #A266FC;
 }
 #titleBox-category{
-    background-color: #794BC4;
+    background-color: #A266FC;
     height: 40px;
+    border-bottom: 1px solid #707070;
+    border-radius: 9px 9px 0 0;
     justify-content: center;
 }
 #title-text{
+    font-family: "Open Sans", sans-serif;
+    padding-left: 15px;
     color: white;
     font-size: 18px;
 }
+#category-boxs{
+    border-radius: 0 0 9px 9px;
+}
 .category-box{
+    height: 30px;
+    border-bottom: 2px solid #707070;
+    background-color: white;
+    justify-content: center;
+}
+#lastCategory-box{
     height: 30px;
     background-color: white;
     justify-content: center;
@@ -148,11 +172,14 @@ main{
 
 }
 .text-category{
+    padding-left: 5px;
     font-size: 18px;
     color: #794BC4;
 }
 .colorBox-category{
+    border: 2px solid #707070;
     border-radius: 50px;
+    margin-top: 4px;
     height: 10px;
     width: 30px;
 }
