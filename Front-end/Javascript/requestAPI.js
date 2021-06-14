@@ -12,7 +12,6 @@ async function createPost(){
 
     let user = await getUser(valueCookie)
 
-
     fetch("/post/", {
         method: 'POST',
         headers: {
@@ -39,7 +38,6 @@ async function createPost(){
             title.value = ""
             alert(`Un problème est survenue : ${error.message}`)
         })
-
 }
 
 function postIndex(){
@@ -95,7 +93,7 @@ function updatePost(id, message, title, like, dislike){
         })
     })
         .then(()=>{
-        return true
+            return true
         })
         .catch(()=>{
             document.location.href = "/error/"
@@ -151,7 +149,7 @@ async function addAllPost(response){
                 }
             })
 
-            if (reactions != null) {
+            if(reactions != null) {
                 reactions.forEach((reaction)=>{
                     if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
                         if (reaction.like == true) {

@@ -5,12 +5,15 @@
     <link rel="icon" type="image/png" href="/static/Design/Images/logo.png">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/profilPage.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
     <script src="/static/Javascript/profil.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/profilPage_lightMode.css" type="text/css">
+    <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <title>Home</title>
 </head>
 
@@ -20,6 +23,9 @@
     {{template "header"}}
 
     <div class="middle-container">
+        <div id="home-banner">
+            <span id="home-text">Profil</span>
+        </div>
         <div id="up">
             <div class="profil-container">
                 <div class="avatar-container">
@@ -27,13 +33,18 @@
                 </div>
                 <div class="info-container">
                     <div class="pseudo">
-                        <span id="pseudoid">Quel magnifique pseudo</span>
+                        <span id="pseudoid"></span>
                     </div>
                     <div class="country">
-                        <span id="countryid">Quel magnifique pays</span>
+                        <span id="countryid"></span>
                     </div>
                     <div class="bio">
-                        <span id="bioid">Quelle magnifique bio, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</span>
+                        <span id="bioid"></span>
+                    </div>
+                    <div class="icon-bio gear" id="gear"></div>
+                    <div class="setBio" id="setBio" style="display: none">
+                        <textarea id="newBio" type="text" placeholder="Entrez votre nouvelle bio"></textarea>
+                        <div class="icon-bio" id="send"></div>
                     </div>
                 </div>
 

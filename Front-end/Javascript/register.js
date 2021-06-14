@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("register").addEventListener("click", register)
+    document.getElementById("eye1").addEventListener("click", AfficherMdp1)
+    document.getElementById("eye2").addEventListener("click", AfficherMdp2)
+    document.getElementById("btRandom").addEventListener("click", strRandom)
+    document.getElementById("passwordConf").addEventListener("keyup", validatePassword)
+})
+
 function register() {
     const pseudo = document.getElementById("pseudo")
     const email = document.getElementById("email")
@@ -52,8 +60,8 @@ function register() {
 
 function AfficherMdp1() {
     let input = document.getElementById('password');
-    
-    if(input.type === "password") { 
+
+    if(input.type === "password") {
         input.type = "text"; 
     } else {
         input.type = "password"
