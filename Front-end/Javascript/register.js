@@ -22,7 +22,12 @@ function register() {
         return
     }
 
-    if(password.lenght < 12) {
+    if(pseudo.value.length <= 6){
+        error.textContent = "Le pseudo est trop court"
+        return
+    }
+
+    if(password.length <= 10) {
         error.textContent = "Le mot de passe est trop court"
         return
     }
@@ -119,6 +124,20 @@ function validateMail() {
 }
 
 function validatePassword() {
+    const password = document.getElementById("password")
+    const box = document.getElementById("boxPassword")
+    console.log(password.value.length)
+
+  if(password.value.length >= 10) {
+    box.classList.remove
+    box.classList = "boxInputValid"
+  } else {
+    box.classList.remove
+    box.classList = "boxInput"
+  }
+}
+
+function validatePasswordConf() {
     const password = document.getElementById("password")
     const passwordConf = document.getElementById("passwordConf");
     const box = document.getElementById("boxConfirmPassword")
