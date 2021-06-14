@@ -10,46 +10,53 @@
     </head>
   
     <body>
-        <div id="general">
-            <div id="zoomImage">
-                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+        <div class="globalFLex" id="container">
+            <div id="general">
+                <div id="zoomImage">
+                    <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+                </div>
+
+                <div id="separation"></div>
+
+                <div id="formulaire">
+                    <div class="caseFormulaire">
+                        <div class="boxInput">
+                            <input type="text" autocomplete="off" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" required>
+                        </div>
+                        <div class="boxInput">
+                            <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                        </div>
+                        <div class="boxInput RowFLex" id="boxPassword">
+                            <div>
+                                <input type="password" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
+                                <img id="eye1" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
+                            </div>
+
+                        </div>
+                        <div class="boxInput" id="boxConfirmPassword">
+                            <input type="password" autocomplete="off" class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe" required>
+                            <img id="eye2" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
+                        </div>
+                        <div class="boxInput">
+                            <input type="date" id="birth" min="23/05/1910" max="23/05/2010" required>
+                        </div>
+                    </div>
+                    <div id="zoneMessErreur"></div>
+                    <div id="generalBtn">
+
+                        <button id="register" type="button" class="btn" >S'inscrire</button>
+                    </div>
+                </div>
+                <button id="btRandom" type="button"><img id="imgMdp"src="/static/Design/Images/Icon/iconMdp.png"></button>
             </div>
 
-            <div id="separation"></div>
-
-            <div id="formulaire">
-                <div class="caseFormulaire">
-                    <div class="boxInput">		
-                        <input type="text" autocomplete="off" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" required>
+            <div class="globalFLex" style="width: 100%; justify-content: flex-end" >
+                <a href="/" class="globalFLex"style="width: 70px; margin-left: 90%">
+                    <div id="retour">
+                        <img id="imgRetour"src="/static/Design/Images/Icon/retour.png">
                     </div>
-                    <div class="boxInput">		
-                        <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
-                    </div>
-                    <div class="boxInput" id="boxPassword">		
-                        <input type="password" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
-                        <img id="eye1" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
-                    </div>
-                    <div class="boxInput" id="boxConfirmPassword">		
-                        <input type="password" autocomplete="off" class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe" required>
-                        <img id="eye2" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
-                    </div>
-                    <div class="boxInput">		
-                        <input type="date" id="birth" min="23/05/1910" max="23/05/2010" required>
-                    </div>	
-                </div>
-                <div id="zoneMessErreur"></div>
-                <div id="generalBtn">
-                    
-                    <button id="register" type="button" class="btn" >S'inscrire</button>
-                </div>
+                </a>
             </div>
-            <button id="btRandom" type="button"><img id="imgMdp"src="/static/Design/Images/Icon/iconMdp.png"></button> 
         </div>
-        
-        <a href="/">
-            <div id="retour">
-                <img id="imgRetour"src="/static/Design/Images/Icon/retour.png">
-            </div>
-        </a>
     </body>
 </html>

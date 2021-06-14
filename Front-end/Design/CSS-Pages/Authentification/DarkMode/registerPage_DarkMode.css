@@ -27,15 +27,14 @@ body {
     min-height: 100%;
     background: #15202B;
     font-family: "Open Sans", sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    background: #15202B;
 }
 
 #general{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3%;
     padding-top: 20px;
     width: 500px;
-    height: 60%;
+    height: 75%;
     border:1px solid white;
     border-radius: 6px;
 }
@@ -73,11 +72,6 @@ body {
 /*-----------------------
 * Formulaire
 -------------------------*/
-
-body{
-	font-family: 'Noto Sans', sans-serif;
-    background: #15202B;
-}
 
 /*-----*/
 
@@ -239,9 +233,8 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover{
 #btRandom{
     position: relative;
     left:415px;
-    top:-235px;
+    top:-385px;
     background: transparent;
-
     border:none;
     width: 40px;
     height: 40px;
@@ -263,7 +256,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover{
 
 #zoneMessErreur {
     position: relative;
-
     margin-top: -4px;
     font-family: "montserrat";
     color: #e74c3c;
@@ -279,10 +271,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover{
 -------------------------*/
 
 #retour{
-    position: absolute;
-    right: 40px;
-    bottom: 40px;
-
     width: 70px;
     aspect-ratio: 1/1;
 }
@@ -296,5 +284,22 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover{
     opacity: 100%;
 }
 
+.globalFLex{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
 
-
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}

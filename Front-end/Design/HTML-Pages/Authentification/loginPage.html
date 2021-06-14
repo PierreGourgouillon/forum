@@ -10,33 +10,41 @@
     </head>
   
     <body>
-        <div id="general">
-            <div id="zoomImage">
-                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
-            </div>
-
-            <div id="separation"></div>
-
-            <div id="formulaire">
-                <div class="caseFormulaire">
-                    <div class="boxInput">		
-                        <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+        <div class="globalFLex" id="container">
+            <div class="globalFLex" style="justify-content: center; align-items: center">
+                <div id="general">
+                    <div id="zoomImage">
+                        <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
                     </div>
-                    <div class="boxInput" id="boxPassword">		
-                        <input type="text" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
-                        <img class="oeil" id="eye" src="/static/Design/Images/Icon/eye_black.png">
+
+                    <div id="separation"></div>
+
+                    <div id="formulaire">
+                        <div class="caseFormulaire">
+                            <div class="boxInput">
+                                <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                            </div>
+                            <div class="boxInput" id="boxPassword">
+                                <input type="text" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
+                                <img class="oeil" id="eye" src="/static/Design/Images/Icon/eye_black.png">
+                            </div>
+                            <div id="zoneMessErreur"></div>
+                            <div id="generalBtn">
+                                <button type="button" id="logins" class="btn" >Se Connecter</button>
+                            </div>
+                        </div>
                     </div>
-                <div id="zoneMessErreur"></div>
-                <div id="generalBtn">
-                    <button type="button" id="logins" class="btn" >Se Connecter</button>
                 </div>
             </div>
-        </div>
-        
-        <a href="/">
-            <div id="retour">
-                <img id="imgRetour"src="/static/Design/Images/Icon/retour.png">
+
+
+            <div class="globalFLex" style="width: 100%; justify-content: flex-end" >
+                    <a href="/" class="globalFLex"style="width: 70px; margin-left: 90%">
+                        <div id="retour">
+                            <img id="imgRetour"src="/static/Design/Images/Icon/retour.png">
+                        </div>
+                    </a>
             </div>
-        </a>
+        </div>
     </body>
 </html>
