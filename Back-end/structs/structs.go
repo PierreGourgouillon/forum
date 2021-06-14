@@ -20,6 +20,7 @@ type UserIdentity struct {
 	Image      string
 	Biographie string
 	Birth      string
+	deactivate bool `json:"deactivate"`
 }
 
 type Post struct {
