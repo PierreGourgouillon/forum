@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("login").addEventListener("click", login)
+    document.getElementById("logins").addEventListener("click", login)
     document.getElementById("eye").addEventListener("click", AfficherMdp)
 })
 
