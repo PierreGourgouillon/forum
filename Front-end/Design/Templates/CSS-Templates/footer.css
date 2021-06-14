@@ -26,7 +26,6 @@
     display: flex;
     flex-basis: auto;
     flex-direction: column;
-    flex-shrink: 0;
     margin: 0;
     min-height: 0px;
     min-width: 0px;
@@ -44,8 +43,10 @@ footer{
     color: #707070;
     font-weight: 500;
 }
-#container-footer{
+.container-footer{
     padding-left: 17.95%;
+    height: 100vh;
+    justify-content: space-around;
 }
 #container-searchbar{
     height: 50px;
@@ -74,7 +75,7 @@ footer{
     width: 30px;
     aspect-ratio: 1/1;
 }
-#container-filter{
+#container-filter, #container-sort{
     width: 70%;
     border-radius: 20px;
     background-color: white;
@@ -92,27 +93,24 @@ footer{
     display: flex;
     justify-content: space-between;
 }
-#filter-text{
+#filter-text, #sort-text{
     justify-content: center;
 }
-#filter-button{
+#filter-button, #sort-button{
     border: none;
     background-color: white;
 }
-#filter-button img{
+#filter-button img, #sort-button img{
     height: 30px;
     aspect-ratio: 1/1;
 }
-#showMore-filterBox{
+#showMore-filterBox, #showMore-sortBox{
     padding: 10px 10px 10px 25px;
 }
-#showMore-button{
+#showMore-filterButton, #showMore-sortButton{
     color: #8A3DFE;
     background-color: white;
     border: none;
     font-size: 16px;
     cursor: pointer;
-}
-#hidden{
-    transform: translateY(20px);
 }

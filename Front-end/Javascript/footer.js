@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function showMore(){
-    let hidden = document.getElementById("hidden")
-    let more_less = document.getElementById("showMore-text")
+    let hidden = document.getElementById("hiddenFilter")
+    let more_less = document.getElementById("showMore-filterText")
     if(hidden.style.display === "none"){
         hidden.style.display = ""
         more_less.innerText = "Voir moins"
