@@ -116,11 +116,6 @@
 
 /********** Reste **********/
 
-.absolute {
-    position: absolute;
-    width: 100%;
-}
-
 .border {
     border-bottom: 1px solid red;
 }

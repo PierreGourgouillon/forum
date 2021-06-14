@@ -43,15 +43,17 @@
 .scroll-div{
     overflow-y: scroll;
 }
+
 body, #main-box{
     overflow: hidden;
 }
+
 main{
     width: 50%;
     min-height: 100vh;
 }
 #main-box{
-    height: 90vh;
+    height: 100vh;
 }
 #home-banner{
     background-color: #A266FC;
@@ -195,3 +197,271 @@ main{
 #colorBox4{
     background-color: #4900BB;
 }
+
+
+
+
+
+
+
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+
+/********** Espacements **********/
+
+.paddingTop{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.paddingLeft {
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.mRight {
+    margin-right: 12px;
+}
+
+.mLeft {
+    margin-left: 12px;
+}
+
+/********** Id **********/
+
+#like:hover{
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+    color: rgb(18, 224, 73);
+}
+
+#dislike:hover{
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+    color: rgb(224, 36, 94);
+}
+
+#containerPost {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column-reverse;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+
+/********** Texte **********/
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+}
+
+
+/********** Hover **********/
+
+.hover:hover{
+    background-color: rgba(121,75,196,0.1);
+}
+
+
+/********** Reste **********/
+
+.absolute {
+    position: absolute;
+    width: 100%;
+}
+
+.border {
+    border-bottom: 1px solid red;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.noUserSelect {
+    user-select: none;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+
+
+/*tesssssssssssssssssssssssssssssssssssssssssssssssssst*/
+
+
+/********** Flexbox **********/
+
+.RowFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+
+/********** Espacements **********/
+
+.paddingTop{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.paddingLeft {
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.mRight {
+    margin-right: 12px;
+}
+
+.mLeft {
+    margin-left: 12px;
+}
+
+/********** Id **********/
+
+#like:hover{
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+    color: rgb(18, 224, 73);
+}
+
+#dislike:hover{
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+    color: rgb(224, 36, 94);
+}
+
+#containerPost {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column-reverse;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+
+/********** Texte **********/
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+}
+
+
+/********** Hover **********/
+
+.hover:hover{
+    background-color: rgba(121,75,196,0.1);
+}
+
+
+/********** Reste **********/
+
+.border {
+    border-bottom: 1px solid red;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.noUserSelect {
+    user-select: none;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+
