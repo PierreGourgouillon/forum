@@ -15,7 +15,6 @@
 * General
 -------------------------*/
 
-
 *{
     box-sizing: border-box;
     color: inherit;
@@ -33,11 +32,10 @@ body {
 #general{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    padding-top: 40px;
+    margin-top: 3%;
+    padding-top: 20px;
     width: 500px;
-    height: 750px;
+    height: 60%;
     border:1px solid white;
     border-radius: 6px;
 }
@@ -45,6 +43,7 @@ body {
 /*-----------------------
 * Logo
 -------------------------*/
+
 #zoomImage{
     margin: 0 auto;
     width: 400px;
@@ -67,14 +66,14 @@ body {
 
     margin-left:auto;
     margin-right: auto;
-    margin-top:60px;
+    margin-top:30px;
     border-radius: 6px;
-
 }
 
 /*-----------------------
 * Formulaire
 -------------------------*/
+
 body{
 	font-family: 'Noto Sans', sans-serif;
     background: #15202B;
@@ -83,14 +82,15 @@ body{
 /*-----*/
 
 #formulaire{
+    position:relative;
+    top:20px;
+    height: 80%;
     margin-left: auto;
     margin-right: auto;
 	/* border:1px solid white; */
 	border-radius:3px;
-	padding-top:20px;
 	padding-left:80px;
 	padding-right:80px;
-	padding-bottom:50px;
 }
 
 /*---*/
@@ -120,23 +120,49 @@ body{
   color:#fff;
 }
 
-
 .boxInput input:focus{ 
- border:none;	
- outline:none;
- border-bottom:1px solid #e74c3c;	
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #e74c3c;	
 }
 
-.boxInput input:valid{ 
+.boxInputValid{
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
+    max-height: 40px;
+}
+.boxInputValid input{
+    border:0;
+    border-bottom:1px solid #555;  
+    background:transparent;
+    width:100%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color:#fff;
+
+}
+.boxInputValid input:focus{
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;
+
+}
+
+.caseInput::placeholder{
+    color:#fff;	
+}
+
+.boxInput #birth:focus:valid{ 
     border:none;	
     outline:none;
     border-bottom:1px solid #3ce759;	
 }
 
-
-
-.caseInput::placeholder{
-    color:#fff;	
+.boxInput #birth:focus:valid{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;	
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -145,6 +171,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-right: 2px;
   opacity: 0.6;
   filter: invert(0.8);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover{
+    opacity:100%
 }
 
 /* Placeholders */
@@ -167,11 +196,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* border:1px solid #555; */
 	width:200px;
 	height:40px;
-	margin-top:10px;
+	margin-top:-5px;
 	margin-left:auto;
 	margin-right:auto;
 }
-
 
 .btn{
     width: 100%;
@@ -185,12 +213,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	cursor:pointer;
 	position:relative;
 }
+.btn:hover{
+    background-color:#5b3794;
+}
 
-
-
-
-
-/*---*/
+/* Oeil affichage Mdp */
 
 .oeil{
     position: relative;
@@ -207,10 +234,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 100%;
 }
 
+/* Bouton Random Mdp */
+
 #btRandom{
     position: relative;
     left:415px;
-    top:-317px;
+    top:-235px;
     background: transparent;
 
     border:none;
@@ -219,6 +248,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     filter: invert(0.8);
     opacity: 40%;
+}
+
+#btRandom:hover{
+    opacity: 100%;
 }
 
 #imgMdp{
@@ -233,13 +266,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     margin-top: -4px;
     font-family: "montserrat";
-    color: red;
+    color: #e74c3c;
     font-size: 18px;
     text-align: center;
     width: 332px;
     height: 30px;
     /* background:pink; */
 }
+
+/*-----------------------
+* Retour
+-------------------------*/
 
 #retour{
     position: absolute;
@@ -255,7 +292,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(0.8);
     opacity: 40%;
 }
-
 #imgRetour:hover{
     opacity: 100%;
 }
+
+
+
