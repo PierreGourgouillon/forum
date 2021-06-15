@@ -137,6 +137,7 @@ async function addAllPost(response){
             let link = [...clone.querySelectorAll(".postLinkos")]
             let divLike = clone.getElementById("like")
             let divDislike = clone.getElementById("dislike")
+            let dots = clone.getElementById("dots")
 
             divLike.setAttribute("contLike", "like")
             divDislike.setAttribute("contDislike", "dislike")
@@ -167,6 +168,7 @@ async function addAllPost(response){
             like.textContent = post.like
             dislike.textContent = post.dislike
 
+            dots.setAttribute("post_id", post.PostId)
             like.setAttribute("post_id", post.PostId)
             dislike.setAttribute("post_id", post.PostId)
 

@@ -264,7 +264,6 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	postArray := database.GetAllPosts()
-
 	jsonAllPost, error := json.Marshal(postArray)
 
 	if error != nil {
@@ -554,7 +553,7 @@ func updateProfilUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
 
 	if err != nil {
 		fmt.Println(err)

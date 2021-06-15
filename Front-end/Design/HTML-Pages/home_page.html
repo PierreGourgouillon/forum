@@ -9,8 +9,39 @@
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
     <script type="text/javascript" src="/static/Javascript/footer.js"></script>
+    <script type="text/javascript" src="/static/Javascript/post.js"></script>
+
+  <link rel="stylesheet" href="/static/Design/CSS-Pages/test.css">
 </head>
-<body class="RowFlex" onload="javascript:postIndex()">
+<body class="RowFlex"><div id="popUp-update">
+  <div class="container-popUp-update">
+    <div class="block-popUp-update">
+      <div class="globalFLex">
+        <div class="RowFlex" id="bandeau" style="padding-top: 5px;padding-bottom: 5px; align-items: baseline">
+          <div class="RowFlex title-popUp" style="flex-basis: 92%; justify-content: center"><span style="padding-left: 25px">Modifier le post</span></div>
+            <div class="RowFlex" id="image-close"><img src="/static/Design/Images/icon/close.svg"></div>
+        </div>
+        <div class="globalFLex" style="justify-content: center; align-items: center; height: 550px">
+          <div class="globalFLex" style="width: 90%">
+            <div class="globalFLex">
+              <input class="textArea" type="text"  placeholder="Changer le titre">
+            </div>
+
+            <div class="globalFLex" style="margin-top: 20px">
+              <textarea class="textArea" placeholder="Changer le message"></textarea>
+            </div>
+
+            <div class="RowFlex style-button-popUp">
+              <div class="div-button">
+                <span>Modifier</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{template "header"}}
 
@@ -88,8 +119,24 @@
 </main>
 {{template "footer"}}
 
+  <div class="globalFLex popUpList" id="pop-up">
+    <div class="globalFLex popUpList">
+      <div class="RowFLex popUpList">
+        <div class="globalFLex popUpList"><img class="popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
+        <span class="popUpList" id="updatePost">Modifier le post</span>
+      </div>
+    </div>
+    <div class="globalFLex popUpList">
+      <div class="RowFLex popUpList">
+        <div class="globalFLex popUpList"><img class="popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
+        <span class="popUpList" id="deletePost">Supprimer le post</span>
+      </div>
+    </div>
+  </div>
+
+
 <template id="postTemplate">
-  <div class="globalFLex transition hover">
+  <div class="globalFLex transition hover" id="post-parent">
     <div class="globalFLex border cursor">
       <div class="globalFLex">
         <article role="article" class="globalFLex paddingLeft paddingTop transition" id="link-post">
@@ -99,7 +146,7 @@
                 <div class="RowFLex">
                   <div class="RowFLex mRight noUserSelect">
                     <a class="postLinkos">
-                      <div class="RowFLex mRight noUserSelect" style="flex-basis: 48px">
+                      <div class="RowFLex mRight noUserSelect" style="flex-basis: 48px;margin-left: 7px;margin-top: 10px">
                         <div class="globalFLex shrink noUserSelect mRight" style="height: 35px;width: 35px;flex-grow: 0;padding-top: 5px ">
                           <img src="/static/Design/Images/avatar.jpg" id="image-user" class="radiusImage" style="width: 100%">
                         </div>
@@ -109,15 +156,16 @@
 
                   <div class="globalFLex grow" style="justify-content: center;padding-bottom: 12px; width: 80%">
                     <div class="globalFLex">
-                      <a href="" class="postLinkos pseudo-href">
-                        <div class="RowFLex alignStart" style="justify-content: space-between">
+                        <div class="RowFLex alignStart" style="justify-content: space-between; align-items: center">
+                          <a href="" class="postLinkos pseudo-href" style="width: min-content">
                           <div class="RowFLex shrink" style="align-items: baseline">
                             <div class="globalFLex">
                               <span class="textStyle" id="pseudo-user"></span>
                             </div>
                           </div>
+                          </a>
+                          <div class="RowFLex imgHover popUpList" id="dots" style="align-items: center; width: 25px; margin-right: 20px; margin-top: 10px" onclick="javascript:popUp(event)"><img class="images popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
                         </div>
-                      </a>
 
                       <div class="globalFLex">
                         <a href="" class="postLinkos">

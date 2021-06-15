@@ -415,6 +415,16 @@ main{
     z-index: 0;
 }
 
+#message-post{
+    width: 90%;
+}
+
+#pop-up{
+    display: none;
+    position: absolute;
+    width: 250px;
+    background: #794BC4;
+}
 
 /********** Texte **********/
 
@@ -437,6 +447,10 @@ main{
 
 .hover:hover{
     background-color: rgba(121,75,196,0.1);
+}
+
+.pseudo-href:hover {
+    text-decoration: underline;
 }
 
 
@@ -470,4 +484,12 @@ main{
     transition-duration: 0.2s;
 }
 
+.images{
+    width: 100%;
+}
+
+.imgHover:hover{
+    background: #794BC4;
+    border-radius: 999px;
+}
 
