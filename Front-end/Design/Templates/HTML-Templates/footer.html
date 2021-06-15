@@ -1,66 +1,122 @@
 {{define "footer"}}
-    <footer>
-        <div class="globalFLex" id="container-footer">
-            <div class="RowFLex border" id="container-searchbar">
-                <input id="search-input" type="search" placeholder="Rechercher...">
-                <button id="search-button">
-                    <img src="/static/Design/Images/Icon/search_white.svg">
-                </button>
-            </div>
-            <div class="globalFLex border" id="container-filter">
-                <div class="globalFLex filter-box">
-                    <div class="RowFLex filterBox-text">
-                        <span class="globalFLex" id="filter-text">Filtrer les posts</span>
-                        <button id="filter-button" type="submit">
-                            <img src="/static/Design/Images/Icon/arrow_down.svg">
-                        </button>
-                    </div>
-                </div>
-                <div class="globalFLex filter-box">
-                    <div class="RowFLex content-filterBox">
-                        <input type="checkbox" id="opt1" class="filterCheckbox" style="background-color: #F00; color: #0F0;">
-                        <label for="opt1" class="filterCheckbox-text">Les plus récents</label>
-                    </div>
-                </div>
-                <div class="globalFLex filter-box">
-                    <div class="RowFLex content-filterBox">
-                        <input type="checkbox" id="opt2" class="filterCheckbox">
-                        <label for="opt2" class="filterCheckbox-text">Les plus populaires</label>
-                    </div>
-                </div>
-                <div class="globalFLex filter-box">
-                    <div class="RowFLex content-filterBox">
-                        <input type="checkbox" id="opt3" class="filterCheckbox">
-                        <label for="opt3" class="filterCheckbox-text">Les plus commentés</label>
-                    </div>
-                </div>
-                <div class="globalFLex filter-box">
-                    <div class="RowFLex content-filterBox">
-                        <input type="checkbox" id="opt4" class="filterCheckbox">
-                        <label for="opt4" class="filterCheckbox-text">Les moins récents</label>
-                    </div>
-                </div>
-                <div id="hidden" style="display: none;">
-                    <div class="globalFLex filter-box">
-                        <div class="RowFLex hidden-filter content-filterBox">
-                            <input type="checkbox" id="opt5" class="filterCheckbox">
-                            <label for="opt5" class="filterCheckbox-text">Les moins populaires</label>
-                        </div>
-                    </div>
-                    <div class="globalFLex filter-box">
-                        <div class="RowFLex content-filterBox">
-                            <input type="checkbox" id="opt6" class="filterCheckbox">
-                            <label for="opt6" class="filterCheckbox-text">Les moins commentés</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="RowFLex" id="showMore-filterBox">
-                    <button id="showMore-button">
-                        <span id="showMore-text">Voir plus</span>
+<footer>
+    <div class="globalFLex container-footer">
+        <div class="RowFLex border" id="container-searchbar">
+            <input id="search-input" type="search" placeholder="Rechercher...">
+            <button id="search-button">
+                <img src="/static/Design/Images/Icon/search_white.svg">
+            </button>
+        </div>
+        <div class="globalFLex border" id="container-filter">
+            <div class="globalFLex filter-box">
+                <div class="RowFLex filterBox-text">
+                    <span class="globalFLex" id="filter-text">Filtrer les posts</span>
+                    <button id="filter-button" type="submit">
+                        <img src="/static/Design/Images/Icon/arrow_down.svg">
                     </button>
                 </div>
             </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt1.1" class="filterCheckbox">
+                    <label for="opt1.1" class="filterCheckbox-text">Les plus récents</label>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt2.1" class="filterCheckbox">
+                    <label for="opt2.1" class="filterCheckbox-text">Les plus populaires</label>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt3.1" class="filterCheckbox">
+                    <label for="opt3.1" class="filterCheckbox-text">Les plus commentés</label>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt4.1" class="filterCheckbox">
+                    <label for="opt4.1" class="filterCheckbox-text">Les moins récents</label>
+                </div>
+            </div>
+            <div id="hiddenFilter" style="display: none;">
+                <div class="globalFLex filter-box">
+                    <div class="RowFLex hidden-filter content-filterBox">
+                        <input type="checkbox" id="opt5.1" class="filterCheckbox">
+                        <label for="opt5.1" class="filterCheckbox-text">Les moins populaires</label>
+                    </div>
+                </div>
+                <div class="globalFLex filter-box">
+                    <div class="RowFLex content-filterBox">
+                        <input type="checkbox" id="opt6.1" class="filterCheckbox">
+                        <label for="opt6.1" class="filterCheckbox-text">Les moins commentés</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="RowFLex" id="showMore-filterBox">
+                <button id="showMore-filterButton">
+                    <span id="showMore-filterText">Voir plus</span>
+                </button>
+            </div>
         </div>
-    </footer>
+
+
+        <div class="globalFLex border" id="container-sort">
+            <div class="globalFLex filter-box">
+                <div class="RowFLex filterBox-text">
+                    <span class="globalFLex" id="sort-text">Trier les posts</span>
+                    <button id="sort-button" type="submit">
+                        <img src="/static/Design/Images/Icon/arrow_down.svg">
+                    </button>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt1.2" class="filterCheckbox" style="background-color: #F00; color: #0F0;">
+                    <label for="opt1.2" class="filterCheckbox-text">Les plus récents</label>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt2.2" class="filterCheckbox">
+                    <label for="opt2.2" class="filterCheckbox-text">Les plus populaires</label>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt3.2" class="filterCheckbox">
+                    <label for="opt3.2" class="filterCheckbox-text">Les plus commentés</label>
+                </div>
+            </div>
+            <div class="globalFLex filter-box">
+                <div class="RowFLex content-filterBox">
+                    <input type="checkbox" id="opt4.2" class="filterCheckbox">
+                    <label for="opt4.2" class="filterCheckbox-text">Les moins récents</label>
+                </div>
+            </div>
+            <div id="hiddenSort" style="display: none;">
+                <div class="globalFLex filter-box">
+                    <div class="RowFLex hidden-filter content-filterBox">
+                        <input type="checkbox" id="opt5.2" class="filterCheckbox">
+                        <label for="opt5.2" class="filterCheckbox-text">Les moins populaires</label>
+                    </div>
+                </div>
+                <div class="globalFLex filter-box">
+                    <div class="RowFLex content-filterBox">
+                        <input type="checkbox" id="opt6.2" class="filterCheckbox">
+                        <label for="opt6.2" class="filterCheckbox-text">Les moins commentés</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="RowFLex" id="showMore-sortBox">
+                <button id="showMore-sortButton">
+                    <span id="showMore-sortText">Voir plus</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
 {{end}}
