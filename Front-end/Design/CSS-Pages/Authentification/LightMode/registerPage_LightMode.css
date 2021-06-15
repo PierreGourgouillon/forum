@@ -1,3 +1,7 @@
+/*-----------------------
+* Police
+-------------------------*/
+
 @font-face {
     font-family: "Open Sans", sans-serif;
     src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
@@ -181,7 +185,11 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover{
 *:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
 *:focus::placeholder { opacity: 0; } /* Modern Browsers */
 
-/*---*/
+/*-----------------------
+* Bouton
+-------------------------*/
+
+/*-- Btn Login --*/
 
 #generalBtn{
 /* border:1px solid #555; */
@@ -263,9 +271,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover{
     /* background:pink; */
 }
 
-/*-----------------------
-* Retour
--------------------------*/
+/*-- Btn Retour --*/
 
 #retour{
     position: absolute;

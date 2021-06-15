@@ -1,3 +1,7 @@
+/*-----------------------
+* Police
+-------------------------*/
+
 @font-face {
     font-family: "Open Sans", sans-serif;
     src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
@@ -138,7 +142,11 @@ body {
 *:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
 *:focus::placeholder { opacity: 0; } /* Modern Browsers */
 
-/*---*/
+/*-----------------------
+* Bouton
+-------------------------*/
+
+/*-- Bouton Login --*/
 
 #generalBtn{
 /* border:1px solid #555; */
@@ -165,7 +173,7 @@ body {
     background-color:#5b3794;
 }
 
-/* Oeil affichage Mdp */
+/*-- Oeil affichage Mdp --*/
 
 .oeil{
     position: relative;
@@ -181,7 +189,7 @@ body {
     filter: invert(0);
 }
 
-/* Zone message d'erreur */
+/*-- Zone message d'erreur --*/
 
 #zoneMessErreur {
     position: relative;
@@ -196,9 +204,7 @@ body {
     /* background:pink; */
 }
 
-/*-----------------------
-* Retour
--------------------------*/
+/*-- Btn Retour --*/
 
 #retour{
     position: absolute;
