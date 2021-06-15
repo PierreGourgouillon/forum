@@ -35,7 +35,7 @@ header{
     align-items: flex-end;
     flex-grow: 1;
     position: relative;
-    width: 26%;
+    width: 25%;
     height: 100vh;
     overflow-y: hidden;
 }
@@ -46,7 +46,7 @@ header{
 }
 
 .container-header{
-    border-right: 1px solid rgb(47, 51, 54);
+    border-right: 0px solid rgb(47, 51, 54);
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -345,11 +345,23 @@ footer{
 
 main{
     position: relative;
-    width: 75%;
+    width: 50%;
     border: 1px solid black;
-    margin-left: -1px;
-    margin-right: 30%;
+
     
+}
+
+aside{
+    width: 25%;
+    
+}
+
+.aside-block{
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 15px;
+
 }
 
 .styleMessage{
@@ -363,7 +375,7 @@ main{
     right: 5px;
     height: 30px;
     width: 80px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     color: #000;
     border: none;
 }
@@ -382,21 +394,42 @@ main{
 }
  .post_text{
      width: 80%;
-     height: 100%;
-     border-radius: 10px;
+     height: 40px;
+     border-radius: 10px 0px 0px 10px;
+     resize: none;
+     border: none;
+     background-color: #CACACA;
+     padding: 10px 15px;
+     outline: none;
+     color: #531da8;
  }
 
  #post_add_area{
+     display: flex;
      margin-top: 2%;
      padding-bottom: 1%;
+     /* background-color: purple; */
  }
 
+
  #submit__btn{
+     padding: 0px;
+     margin: 0px;
+     border: none;
      color: #FFFFFF;
-     background-color: #531da8;
+     background-color: #32043b;
      width: 15%;
      height: 100%;
-     border-radius: 10px;
+     border-radius: 0px 10px 10px 0px;
+     font-size: 17px;
+     font-weight: 800;
+ }
+
+ .post_data{
+    flex-basis: 100%;
+     display:flex;
+     align-items: center;
+     justify-content: space-between;
  }
 
 /*  TOOLBOX plus haute
