@@ -4,15 +4,18 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "montserrat";
     src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
+
 ::-webkit-scrollbar{
     width: 0px;
 }
+
 .RowFlex{
     display: flex;
     flex-basis: auto;
@@ -24,6 +27,7 @@
     position: relative;
     z-index: 0;
 }
+
 .globalFLex{
     display: flex;
     flex-basis: auto;
@@ -505,6 +509,7 @@ main{
 
 .hoverpop:hover {
     background: rgba(245,245,245,0.2);
+    cursor: pointer;
 }
 
 .spanPopUp {

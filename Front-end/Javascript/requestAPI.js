@@ -347,16 +347,6 @@ function getReactionInput(e){
     return likes
 }
 
-
-
-
-
-
-
-
-
-
-
 function getReactions(){
     return fetch("/reaction/",{
         method: "GET",

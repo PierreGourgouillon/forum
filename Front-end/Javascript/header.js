@@ -43,6 +43,13 @@ document.addEventListener('DOMContentLoaded', async ()=>{
                 document.location.href = "/"
             })
     }
+
+
+    document.getElementById("margin").addEventListener("click", ()=>{
+        console.log("hello")
+        let userID = parseInt(getCookie("PioutterID"))
+        document.location.href = `/profil/${userID}`
+    })
 })
 
 function getCookie(cname) {
