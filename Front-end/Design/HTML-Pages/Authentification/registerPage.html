@@ -6,7 +6,7 @@
         <title>projet forum</title>
         <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
         <script src="/static/Javascript/register.js" type="text/javascript" charset="utf-8"></script>
-        <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/DarkMode/registerPage_DarkMode.css">
+        <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/registerPage_LightMode.css">
     </head>
   
     <body>
@@ -19,22 +19,22 @@
 
             <div id="formulaire">
                 <div class="caseFormulaire">
-                    <div class="boxInput">
-                        <input type="text" autocomplete="off" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" required>
+                    <div class="boxInput" id="boxInputPseudo">
+                        <input type="text" autocomplete="off" onkeyup="validatePseudo()" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" maxlength="10" required>
                     </div>
-                    <div class="boxInput">
-                        <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                    <div class="boxInput" id="boxInputEmail">
+                        <input type="text" autocomplete="off" onkeyup="validateMail()" class="caseInput" id="email" name="Email" placeholder="Email"required>
                     </div>
                     <div class="boxInput" id="boxPassword">
-                        <input type="password" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
+                        <input type="password" autocomplete="false" onkeyup="validatePassword()"value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
                         <img id="eye1" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
                     </div>
                     <div class="boxInput" id="boxConfirmPassword">
-                        <input type="password" autocomplete="off" class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe" required>
+                        <input type="password" autocomplete="off" onkeyup="validatePasswordConf()" class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe" required>
                         <img id="eye2" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
                     </div>
                     <div class="boxInput">
-                        <input type="date" id="birth" min="23/05/1910" max="23/05/2010" required>
+                        <input type="date" id="birth" min="1930-01-01" max="2012-01-01" required>
                     </div>
                 </div>
                 <div id="zoneMessErreur"></div>
