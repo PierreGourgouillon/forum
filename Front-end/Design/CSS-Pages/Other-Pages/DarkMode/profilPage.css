@@ -22,7 +22,6 @@ body {
 }
 
 .middle-container {
-    z-index: 2;
     width: 50%;
     background-color: #15202B;
 }
@@ -148,16 +147,7 @@ body {
 
 .gear {
     position: relative;
-    background: url(../Images/Icon/settingsGear.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    cursor: pointer;
-}
-
-.close {
-    position: relative;
-    background: url(../Images/Icon/close_black.svg);
+    background: url(../../../Images/Icon/settingsGear.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

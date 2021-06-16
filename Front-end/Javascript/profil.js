@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", getPostsUser)
 document.addEventListener("DOMContentLoaded", getProfilUser)
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('image-close').addEventListener('click', () => {
+        let divPopUp = document.getElementById("popUp-update")
+        divPopUp.style.display = "none"
+    })
     const isDelete = deleteGear()
     if(!isDelete) {
         document.getElementById("gear").addEventListener("click", inputBio)
@@ -82,8 +86,6 @@ function updateBio() {
 
     if(newBio.value  == "") {
         return
-    } else {
-
     }
 
     fetch(`/profiluser/${id}`, {
@@ -102,6 +104,8 @@ function updateBio() {
     .then((res) => {
         if(res.isUpdate == "true") {
             bio.textContent = newBio.value
+            document.getElementById("popUp-update").style.display = "none"
+
         }
     })
     .catch((error) => {
