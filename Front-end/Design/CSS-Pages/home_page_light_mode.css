@@ -21,7 +21,6 @@
     margin: 0;
     min-height: 0px;
     min-width: 0px;
-    padding: 0;
     position: relative;
     z-index: 0;
 }
@@ -33,7 +32,6 @@
     margin: 0;
     min-height: 0px;
     min-width: 0px;
-    padding: 0;
     position: relative;
     z-index: 0;
 }
@@ -423,7 +421,13 @@ main{
     display: none;
     position: absolute;
     width: 250px;
-    background: #794BC4;
+    background: #A266FC;
+    border-radius: 5px;
+    border: 2px solid #707070;
+}
+
+#pop-up span{
+    color: white;
 }
 
 /********** Texte **********/
@@ -493,3 +497,12 @@ main{
     border-radius: 999px;
 }
 
+.hoverpop:hover {
+    background: rgba(245,245,245,0.2);
+}
+
+.spanPopUp {
+    margin-left: 10px;
+    font-family: Open-Sans-SemiBold;
+    font-size: 13px;
+}

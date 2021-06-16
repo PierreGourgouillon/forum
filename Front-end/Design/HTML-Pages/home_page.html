@@ -24,15 +24,19 @@
         <div class="globalFLex" style="justify-content: center; align-items: center; height: 550px">
           <div class="globalFLex" style="width: 90%">
             <div class="globalFLex">
-              <input class="textArea" type="text"  placeholder="Changer le titre">
+              <input id="popUp-title-update" class="textArea" type="text"  placeholder="Changer le titre">
             </div>
 
             <div class="globalFLex" style="margin-top: 20px">
-              <textarea class="textArea" placeholder="Changer le message"></textarea>
+              <textarea id="popUp-message-update" class="textArea" placeholder="Changer le message"></textarea>
+            </div>
+
+            <div class="globalFLex errorUpdate" >
+                <span id="id-error-update"></span>
             </div>
 
             <div class="RowFlex style-button-popUp">
-              <div class="div-button">
+              <div class="div-button" id="modif-post">
                 <span>Modifier</span>
               </div>
             </div>
@@ -121,16 +125,16 @@
 
 
   <div class="globalFLex popUpList" id="pop-up">
-    <div class="globalFLex popUpList">
+    <div class="globalFLex popUpList paddingTop paddingLeft hoverpop" style="cursor: pointer" id="updatePost">
       <div class="RowFLex popUpList">
-        <div class="globalFLex popUpList"><img class="popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
-        <span class="popUpList" id="updatePost">Modifier le post</span>
+        <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/edit.svg"></div>
+        <span class="popUpList spanPopUp" >Modifier le post</span>
       </div>
     </div>
-    <div class="globalFLex popUpList">
+    <div class="paddingTop paddingLeft globalFLex popUpList hoverpop" style="cursor: pointer" id="deletePost">
       <div class="RowFLex popUpList">
-        <div class="globalFLex popUpList"><img class="popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
-        <span class="popUpList" id="deletePost">Supprimer le post</span>
+        <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/delete.svg"></div>
+        <span class="popUpList spanPopUp" >Supprimer le post</span>
       </div>
     </div>
   </div>
@@ -193,12 +197,12 @@
 
                         <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
                           <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
-                            <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                            <img src="/static/Design/Images/Icon/like.svg" style="width: 25px;height: 25px;">
                             <span style="padding-left: 5px" id="like-post"></span>
                           </div>
 
                           <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
-                            <img src="/static/Design/Images/Icon/change_mode.svg" style="width: 25px;height: 25px;">
+                            <img src="/static/Design/Images/Icon/dislike.svg" style="width: 25px;height: 25px;">
                             <span style="padding-left: 5px" id="dislike-post"></span>
                           </div>
                         </div>

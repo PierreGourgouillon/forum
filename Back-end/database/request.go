@@ -142,7 +142,7 @@ func FindPostById(id int) structs.Post {
 	return post
 }
 
-func UpdatePost(id int, post *structs.Post) {
+func UpdatePost(id int, post *structs.Post) bool {
 	var postUpdate structs.Post
 	postBasic := FindPostById(id)
 
@@ -175,8 +175,10 @@ func UpdatePost(id int, post *structs.Post) {
 	_, err := db.Exec(query, postUpdate.Message, postUpdate.Title, postUpdate.Like, postUpdate.Dislike, id)
 
 	if err != nil {
-		log.Fatal(err)
+		return false
 	}
+
+	return true
 }
 
 func DeletePost(id int) bool {

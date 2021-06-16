@@ -79,7 +79,7 @@ function findPostById(){
 }
 
 function updatePost(id, message, title, like, dislike){
-
+    console.log("hello")
     return fetch(`/post/${id}`, {
         method: "PUT",
         headers:{

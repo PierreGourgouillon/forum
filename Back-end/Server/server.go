@@ -345,8 +345,13 @@ func postUpdate(w http.ResponseWriter, r *http.Request) {
 	var post structs.Post
 	unmarshallJSON(r, &post)
 
-	database.UpdatePost(id, &post)
+	isUpdate := database.UpdatePost(id, &post)
 
+	if isUpdate {
+		w.Write([]byte("{\"update\":\"true\"}"))
+	} else {
+		w.Write([]byte("{\"update\":\"false\"}"))
+	}
 }
 
 func postDelete(w http.ResponseWriter, r *http.Request) {

@@ -30,6 +30,7 @@ body, html {
     height: 100%;
     background: rgba(91, 112, 131, 0.4);
     backdrop-filter: blur(2px);
+    transition: 0.5s;
 }
 
 .container-popUp-update {
@@ -108,4 +109,12 @@ body, html {
 #bandeau{
     background: #A266FC;
     border-radius: 18px 18px 0px 0px;
+}
+
+.errorUpdate{
+    margin-top: 30px;
+    text-align: center;
+    color: red;
+    font-family: Montserrat-Regular;
+    font-size: 15px;
 }
