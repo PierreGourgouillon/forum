@@ -1,0 +1,435 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #E0E0E0;
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    overflow-y: hidden;
+}
+a:hover,a:link,a:visited,a:active{
+    color: black;
+    text-decoration: none;
+}
+
+header{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    position: relative;
+    width: 25%;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.container-body{
+    display: flex;
+    height: 100%;
+}
+
+.container-header{
+    border-right: 0px solid rgb(47, 51, 54);
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: start;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.logo{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.logo img{
+    height: 40px;
+    width: 50px;
+}
+
+.container-list{
+    padding-top: 15px;
+}
+
+.container-link-menu{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.container-link-menu:hover .container-inlink{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 100px;
+    color: #794BC4;
+    padding-left: 10px;
+    transition-duration: 0.2s;
+}
+
+.container-link-menu:hover img{
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
+.container-inlink {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.container-inlink div{
+    height: 100%;
+}
+
+.container-inlink span{
+    font-size: 20px;
+    padding-top: 1px;
+    margin-left: 20px;
+    margin-right: 16px;
+    font-family: Open-Sans-Extra;
+}
+
+.container-profile{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+.container-in-profile{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 12px;
+    position: relative;
+    z-index: 0;
+    align-items: center;
+}
+
+.container-prof{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 0;
+    align-items: center;
+    cursor: pointer;
+}
+
+/*.container-prof:hover{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 999px;
+    margin-right: 10px;
+}*/
+
+.image-profile{
+    border-radius: 999px;
+}
+
+.image-profile img{
+    border-radius: 999px;
+    width: 35px;
+    height: 35px;
+}
+
+.pseudo-profile{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    margin-left: 5px;
+}
+
+#pseudoname{
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Open-Sans-SemiBold;
+}
+
+
+
+/* ------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+*/
+
+
+
+
+#news{
+    top: 0;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    font-size: 26px;
+}
+.newpost{
+    padding: 10px;
+    height: 110px;
+    border: 1px solid #707070;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.avatar{
+    height: 50px;
+    aspect-ratio: 1/1;
+    border: 1px solid #707070;
+    border-radius: 50px;
+}
+.newtext{
+    width: 65%;
+    height: 70%;
+}
+.button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#category{
+    width: 150px;
+    aspect-ratio: 5/1;
+    background-color: #FFFFFF;
+    font-size: 15px;
+}
+#publish{
+    width: 150px;
+    aspect-ratio: 4/1;
+    border: none;
+    border-radius: 50px;
+    background-color: #794BC4;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+.post{
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    border: 1px solid #707070;
+}
+.content{
+    margin-left: 25px;
+}
+.name{
+    font-weight: bold;
+    font-size: 18px;
+}
+.text{
+    font-family: "montserrat";
+    font-size: 15px;
+}
+.react{
+    border: 1px solid #707070;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.plus, .minus, .comment, .editpost{
+
+    width: 25px;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.comment img, .editpost img{
+    width: 23px;
+}
+footer{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    position: relative;
+    width: 26%;
+    height: 100vh;
+}
+
+.container-footer{
+    border-left: 1px solid rgb(47, 51, 54);
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    height: 100%;
+}
+
+.container-searchbar{
+    border-radius: 50px;
+    height: 60px;
+    font-size: 20px;
+    text-align: center;
+}
+.container-filter{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60px;
+    font-size: 20px;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+main{
+    position: relative;
+    width: 50%;
+    border: 1px solid black;
+
+    
+}
+
+aside{
+    width: 25%;
+    
+}
+
+.aside-block{
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 15px;
+
+}
+
+.styleMessage{
+    font-size: 40px;
+}
+
+.submit{
+    cursor: pointer;
+    background: #4d4d4d;
+    bottom: 5px;
+    right: 5px;
+    height: 30px;
+    width: 80px;
+    /* margin-top: 15px; */
+    color: #000;
+    border: none;
+}
+
+.styleCommentary{
+    font-size: 12px;
+
+}
+
+#principalPost{
+    margin-bottom: 2%;
+}
+
+.colorPost{
+    background-color: rgb(255, 255, 255);
+}
+ .post_text{
+     width: 80%;
+     height: 40px;
+     border-radius: 10px 0px 0px 10px;
+     resize: none;
+     border: none;
+     background-color: #CACACA;
+     padding: 10px 15px;
+     outline: none;
+     color: #531da8;
+     margin: 0px;
+ }
+
+ #post_add_area{
+     display: flex;
+     margin-top: 2%;
+     padding-bottom: 1%;
+     
+ }
+
+
+ #submit__btn{
+     border: none;
+     color: #FFFFFF;
+     background-color: #32043b;
+     width: 15%;
+     height: 60px;
+     border-radius: 0px 10px 10px 0px;
+     font-size: 17px;
+     font-weight: 800;
+ }
+
+ .post_data{
+    flex-basis: 100%;
+     display:flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+/*  TOOLBOX plus haute
+    LOGO plus gros et centré*/
