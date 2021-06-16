@@ -12,32 +12,37 @@ async function createPost(){
 
     let user = await getUser(valueCookie)
 
-    fetch("/post/", {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            pseudo: user.Pseudo,
-            message: message.value,
-            like: 0,
-            dislike: 0
+    if (title.value.length === 0 || message.value.length === 0){
+        title.style.border = "2px solid red"
+        message.style.border = "2px solid red"
+    }else{
+        fetch("/post/", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title.value,
+                pseudo: user.Pseudo,
+                message: message.value,
+                like: 0,
+                dislike: 0
+            })
         })
-    })
-        .then((response) => {
-            message.value = ""
-            title.value = ""
-            return response.json()
-        })
-        .then((res) => {
-            addAllPost([res])
-        })
-        .catch((error)=>{
-            message.value = ""
-            title.value = ""
-            alert(`Un problème est survenue : ${error.message}`)
-        })
+            .then((response) => {
+                message.value = ""
+                title.value = ""
+                return response.json()
+            })
+            .then((res) => {
+                addAllPost([res])
+            })
+            .catch((error)=>{
+                message.value = ""
+                title.value = ""
+                alert(`Un problème est survenue : ${error.message}`)
+            })
+    }
 }
 
 function postIndex(){

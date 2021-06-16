@@ -250,12 +250,10 @@ main{
 
 #like:hover{
     filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
-    color: rgb(18, 224, 73);
 }
 
 #dislike:hover{
     filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
-    color: rgb(224, 36, 94);
 }
 
 #containerPost {
@@ -392,12 +390,10 @@ main{
 
 #like:hover{
     filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
-    color: rgb(18, 224, 73);
 }
 
 #dislike:hover{
     filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
-    color: rgb(224, 36, 94);
 }
 
 #containerPost {
@@ -493,7 +489,7 @@ main{
 }
 
 .imgHover:hover{
-    background: #794BC4;
+    background: rgba(121, 76, 196, 0.7);
     border-radius: 999px;
 }
 
@@ -505,4 +501,16 @@ main{
     margin-left: 10px;
     font-family: Open-Sans-SemiBold;
     font-size: 13px;
+}
+
+#pseudo-user{
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Open-Sans-SemiBold;
+}
+
+#title-user{
+    position: relative;
+    font-family: Open-Sans-Extra;
+    font-size: 15px;
 }
