@@ -48,3 +48,8 @@ type ProfilUser struct {
 	Bio      string `json:"bio"`
 	Choice   string `json:"choice"`
 }
+
+type SearchBar struct {
+	Users  []string `json:"users"`
+	Titles []string `json:"titles"`
+}

@@ -78,6 +78,9 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
 	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
 
+	//Footer Route
+	router.HandleFunc("/search/", getSearchBar).Methods("GET")
+
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
 }
@@ -516,15 +519,13 @@ func getProfilUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("id")
-	fmt.Println(id)
 
 	profilUser := database.GetProfilByUserID(id)
 
 	jsonProfil, error := json.Marshal(profilUser)
 
 	if error != nil {
-		log.Fatal(error)
+		fmt.Println(error)
 	}
 
 	w.Write(jsonProfil)
@@ -555,6 +556,24 @@ func updateProfilUser(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte("{\"isUpdate\": \"false\"}"))
 		}
 	}
+}
+
+func getSearchBar(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var SearchBar structs.SearchBar
+
+	SearchBar.Users = database.GetUsers()
+	SearchBar.Titles = database.GetTitles()
+
+	SearchBarJson, error := json.Marshal(SearchBar)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	w.Write(SearchBarJson)
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
