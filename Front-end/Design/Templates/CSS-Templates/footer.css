@@ -63,6 +63,7 @@ footer{
     width: 70%;
     border: none;
     margin-left: 22px;
+    outline: none;
 }
 #search-button{
     height: 50px;
@@ -70,6 +71,7 @@ footer{
     border: none;
     background-color: #8A3DFE;
     border-radius: 0 23px 23px 0;
+    cursor: pointer;
 }
 #search-button img{
     width: 30px;

@@ -13,7 +13,6 @@ function login() {
         return
     }
 
-    console.log("alu")
     fetch("/users/", {
         method: 'POST',
         headers: {

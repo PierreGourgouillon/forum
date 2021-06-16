@@ -49,7 +49,7 @@ function getProfilUser() {
         profilUser(res)
     })
     .catch((error) => {
-        console.log("O post")
+        console.log("Profil non trouvé")
     })
 }
 
@@ -64,16 +64,11 @@ function profilUser(profil) {
 }
 
 function inputBio() {
-    let div = document.getElementById("setBio")
-    let gear = document.getElementById("gear")
+    let div = document.getElementById("popUp-update")
     if(div.style.display == "none") {
-        div.style.display = ""
-        gear.classList.remove("gear")
-        gear.classList.add("close")
+        div.style.display = "block"
     } else {
         div.style.display = "none"
-        gear.classList.remove("close")
-        gear.classList.add("gear")
     }
 }
 
@@ -86,14 +81,11 @@ function updateBio() {
     const newBio = document.getElementById("newBio")
 
     if(newBio.value  == "") {
-        console.log("nop")
         return
+    } else {
+
     }
 
-    const div = document.getElementById("setBio")
-    const gear = document.getElementById("gear")
-
-    console.log("new bio ", newBio.value)
     fetch(`/profiluser/${id}`, {
         method: "PUT",
         headers: {
@@ -108,12 +100,8 @@ function updateBio() {
         return reponse.json()
     })
     .then((res) => {
-        console.log(res)
         if(res.isUpdate == "true") {
             bio.textContent = newBio.value
-            div.style.display = "none"
-            gear.classList.remove("close")
-            gear.classList.add("gear")
         }
     })
     .catch((error) => {

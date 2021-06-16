@@ -3,17 +3,13 @@ document.addEventListener("DOMContentLoaded", () => document.getElementById("mod
 
 function changeMode() {
     let value = valueOfCookie("PioutterMode")
-    let head = document.head
-    let css = head.querySelector("link")
     
     if(value === "L") {
-        const regEx = new RegExp("DarkMode", "g")
-        css.href = css.href.replace(regEx, "LightMode")
         document.cookie = "PioutterMode=D; path=/"
     } else if(value === "D") {
-        const regEx = new RegExp("LightMode", "g")
-        css.href = css.href.replace(regEx, "DarkMode")
         document.cookie = "PioutterMode=L; path=/"
+    } else {
+        document.cookie = "PioutterMode=L; path=/"        
     }
 
     document.location.reload()
@@ -21,12 +17,21 @@ function changeMode() {
 
 function chargeMode() {
     let head = document.head
-    let css = head.querySelector("link")
+    let css = head.querySelectorAll("link")
     let value = valueOfCookie("PioutterMode")
     
-    if(value === "D") {
+    if(value == "L") {
+        console.log("eho")
+    } else if(value === "D") {
         const regEx = new RegExp("LightMode", "g")
-        css.href = css.href.replace(regEx, "DarkMode")
+        css.forEach((elem, i) => {
+            console.log(i)
+            elem.href = elem.href.replace(regEx, "DarkMode")
+        })
+        document.getElementById("modePage").textContent = "Mode Clair"
+    } else {
+        document.cookie = "PioutterMode=L; path=/"
+        document.location.reload()
     }
 }
 
