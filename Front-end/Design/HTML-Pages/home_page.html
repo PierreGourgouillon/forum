@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil | Pioutter</title>
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/home_page_light_mode.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/footer.css" type="text/css">
+    <script type="text/javascript" src="/static/Javascript/header.js"></script>
+    <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
+    <script type="text/javascript" src="/static/Javascript/footer.js"></script>
+    <script type="text/javascript" src="/static/Javascript/post.js"></script>
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/test.css">
+</head>
+<body class="RowFlex">
+<div id="popUp-update">
+  <div class="container-popUp-update">
+    <div class="block-popUp-update">
+      <div class="globalFLex">
+        <div class="RowFlex" id="bandeau" style="padding-top: 5px;padding-bottom: 5px; align-items: baseline">
+          <div class="RowFlex title-popUp" style="flex-basis: 92%; justify-content: center"><span style="padding-left: 25px">Modifier le post</span></div>
+            <div class="RowFlex" id="image-close"><img src="/static/Design/Images/icon/close.svg"></div>
+        </div>
+        <div class="globalFLex" style="justify-content: center; align-items: center; height: 550px">
+          <div class="globalFLex" style="width: 90%">
+            <div class="globalFLex">
+              <input id="popUp-title-update" class="textArea" type="text"  placeholder="Changer le titre">
+            </div>
+
+            <div class="globalFLex" style="margin-top: 20px">
+              <textarea id="popUp-message-update" class="textArea" placeholder="Changer le message"></textarea>
+            </div>
+
+            <div class="globalFLex errorUpdate" >
+                <span id="id-error-update"></span>
+            </div>
+
+            <div class="RowFlex style-button-popUp">
+              <div class="div-button" id="modif-post">
+                <span>Modifier</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{template "header"}}
+
+<main>
+    <div class="globalFLex border" id="main-box">
+      <div id="home-banner">
+        <span id="home-text">Page d'Accueil</span>
+      </div>
+      <div class="globalFLex scroll-div" style="height: 100vh">
+        <div class="RowFlex border" id="container-publish">
+          <div class="container-avatar">
+            <div class="border-avatar">
+              <img src="/static/Design/Images/avatar.jpg">
+            </div>
+          </div>
+          <div class="globalFLex" id="container-publishInputs">
+            <div class="border">
+              <div id="container-titlePost">
+                <input type="text" id="insert-title">
+              </div>
+            </div>
+            <div class="border">
+              <div id="container-messagePost" class="RowFlex">
+                <textarea id="insert-message" placeholder="Laissez parler votre imagination"></textarea>
+                <div id="container-publishButton" class="border">
+                  <button type="submit" id="b">
+                    <img src="/static/Design/Images/Icon/arrow_right.svg">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="globalFLex" id="category">
+            <div class="globalFLex" id="titleBox-category">
+              <span id="title-text">Catégorie</span>
+            </div>
+            <div class="scroll-div" id="category-boxs">
+              <div class="category-box globalFLex">
+                <button class="category-button RowFlex">
+                  <span class="text-category">Actualité</span>
+                  <div class="colorBox-category" id="colorBox1"></div>
+                </button>
+              </div>
+              <div class="category-box globalFLex">
+                <button class="category-button RowFlex">
+                  <span class="text-category">Sport</span>
+                  <div class="colorBox-category" id="colorBox2"></div>
+                </button>
+              </div>
+              <div class="category-box globalFLex">
+                <button class="category-button RowFlex">
+                  <span class="text-category">Humour</span>
+                  <div class="colorBox-category" id="colorBox3"></div>
+                </button>
+              </div>
+              <div class="globalFLex" id="lastCategory-box">
+                <button class="category-button RowFlex">
+                  <span class="text-category">Cinéma</span>
+                  <div class="colorBox-category" id="colorBox4"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="containerPost"></div>
+      </div>
+    </div>
+</main>
+{{template "footer"}}
+
+
+  <div class="globalFLex popUpList" id="pop-up">
+    <div class="globalFLex popUpList paddingTop paddingLeft hoverpop" style="cursor: pointer" id="updatePost">
+      <div class="RowFLex popUpList">
+        <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/edit.svg"></div>
+        <span class="popUpList spanPopUp" >Modifier le post</span>
+      </div>
+    </div>
+    <div class="paddingTop paddingLeft globalFLex popUpList hoverpop" style="cursor: pointer" id="deletePost">
+      <div class="RowFLex popUpList">
+        <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/delete.svg"></div>
+        <span class="popUpList spanPopUp" >Supprimer le post</span>
+      </div>
+    </div>
+  </div>
+
+
+<template id="postTemplate">
+  <div class="globalFLex transition hover" id="post-parent">
+    <div class="globalFLex border cursor">
+      <div class="globalFLex">
+        <article role="article" class="globalFLex paddingLeft paddingTop transition" id="link-post">
+          <div class="globalFLex grow shrink">
+            <div class="globalFLex grow shrink">
+              <div class="globalFLex">
+                <div class="RowFLex">
+                  <div class="RowFLex mRight noUserSelect">
+                    <a class="postLinkos">
+                      <div class="RowFLex mRight noUserSelect" style="flex-basis: 48px;margin-left: 7px;margin-top: 10px">
+                        <div class="globalFLex shrink noUserSelect mRight" style="height: 35px;width: 35px;flex-grow: 0;padding-top: 5px ">
+                          <img src="/static/Design/Images/avatar.jpg" id="image-user" class="radiusImage" style="width: 100%">
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="globalFLex grow" style="justify-content: center;padding-bottom: 12px; width: 80%">
+                    <div class="globalFLex">
+                        <div class="RowFLex alignStart" style="justify-content: space-between; align-items: center">
+                          <a href="" class="postLinkos pseudo-href" style="width: min-content">
+                          <div class="RowFLex shrink" style="align-items: baseline">
+                            <div class="globalFLex">
+                              <span class="textStyle" id="pseudo-user"></span>
+                            </div>
+                          </div>
+                          </a>
+                          <div class="RowFLex imgHover popUpList" id="dots" style="width: 25px; margin: 5px" onclick="javascript:popUp(event)"><img class="images popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
+                        </div>
+
+                      <div class="globalFLex" style="margin-top: -18px">
+                        <a href="" class="postLinkos">
+                          <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
+                            <div class="globalFLex">
+                              <span class="textStyle" id="title-user"></span>
+                            </div>
+
+                            <div class="mLeft RowFLex" style="justify-content: space-between; margin-left: 12px">
+                              <div class="globalFLex styleCategory" style="background-color: #794BC4">
+                                <span></span>
+                              </div>
+                              <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
+                                <span></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="globalFLex">
+                            <p class="styleMessage" id="message-post"></p>
+                          </div>
+                        </a>
+
+
+                        <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
+                          <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
+                            <img src="/static/Design/Images/Icon/like.svg" style="width: 25px;height: 25px;">
+                            <span style="padding-left: 5px" id="like-post"></span>
+                          </div>
+
+                          <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
+                            <img src="/static/Design/Images/Icon/dislike.svg" style="width: 25px;height: 25px;">
+                            <span style="padding-left: 5px" id="dislike-post"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</template>
+
+</body>
+</html>

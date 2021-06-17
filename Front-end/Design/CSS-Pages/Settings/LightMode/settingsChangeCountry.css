@@ -210,6 +210,10 @@ input:valid + label, input:focus + label {
     font-size: 13px;
 }
 
+#border{
+    border-bottom: 1px solid black;
+}
+
 
 /********** Reste **********/
 

@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage_lightMode.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/pagepost.css" type="text/css">
+    <script type="text/js" src="home/miaou/Téléchargements/forum/function.js"></script>
+    <script>function popup(){
+        document.getElementById("pop-up").style.display = "block";
+        console.log("merde")
+    }</script>
     <title>Page Post</title>
 </head>
 <body>
@@ -16,7 +21,20 @@
     {{template "header"}}
     
     <main>
-
+        <div class="globalFLex popUpList" id="pop-up">
+            <div class="globalFLex popUpList paddingTop paddingLeft hoverpop" style="cursor: pointer" id="updatePost">
+              <div class="RowFLex popUpList">
+                <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/edit.svg"></div>
+                <span class="popUpList spanPopUp" >Modifier le post</span>
+              </div>
+            </div>
+            <div class="paddingTop paddingLeft globalFLex popUpList hoverpop" style="cursor: pointer" id="deletePost">
+              <div class="RowFLex popUpList">
+                <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/delete.svg"></div>
+                <span class="popUpList spanPopUp" >Supprimer le post</span>
+              </div>
+            </div>
+        </div>
         <div class="globalFLex transition colorPost" id="principalPost">
          <div class="globalFLex border cursor">
              <div class="globalFLex">
@@ -75,8 +93,7 @@
                                                     </div>
                                                 </div>
                                                 <div id="post_add_area">
-                                                    <textarea name="" id="post__textarea" class="post_text" type="text" placeholder="pioutter votre reponse!"></textarea>
-                                                    <button type="submit" class="submit" id="submit__btn">
+                                                    <button type="submit" class="submit" id="submit__btn" onclick="popup();">
                                                         Add commentary
                                                     </button>
                                                 </div>

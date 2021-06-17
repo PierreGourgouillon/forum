@@ -20,11 +20,9 @@
     padding : 0;
 }
 
-html { overflow-y: hidden; 
+html { 
+    overflow-y: hidden; 
     overflow-x: hidden;
-}
-
-body{
     font-family: "Open Sans", sans-serif;
 }
 
@@ -47,8 +45,8 @@ body{
 }
 
 #logo{
-    width: 40%;
-    aspect-ratio: 1/1;
+    width: 400px;
+    aspect-ratio: 1/1.1;
 }
 
 /*-----------------
@@ -66,12 +64,11 @@ body{
 }
 
 #generalDroit{
-    
     margin-top:-150px;
     margin-left:auto;
     margin-right: auto;
-    width: 100%;
-    height: 110%;
+    width: 80%;
+    height: 1800px;
     
     /* border: 3px solid rgb(149, 4, 168); */
     display: flex;
@@ -85,11 +82,11 @@ body{
 
 #textDroit{
     width: 80%;
-    height: 20%;
+    height: 10%;
     margin-left:auto;
     margin-right: auto;
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 30px;
+    /* margin:0 auto; */
     /* border: 3px solid green; */
     text-align: center;
 }
@@ -98,7 +95,7 @@ h1{
     position: relative;
     top:15%;
     color: white;
-    font-size: 3vw;    
+    font-size: 2.5vw;
 }
 
 h2{
@@ -113,33 +110,54 @@ h2{
 -----------------*/
 
 #boutonDroit{
-    width: 43.5%;
-    height: 140px;
+    width: 55%;
+    height: 25%;
     display:flex;
     flex-direction: column;
     justify-content: center;
     /* border: 3px solid red; */
+    margin-top: 10px;
     margin-left:auto;
     margin-right: auto;
     
 }
 
+#bt1{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+
+    /* border: 3px solid pink; */
+    margin-left:auto;
+    margin-right: auto;
+}
 #formeBt1{
+    border:none;
     background: #794BC4;
-    border: 3px solid #794BC4;
     color:white;
     border-radius: 40px;
     font-size: 200%;
 
     width: 100%;
-    height: 150%;
+    height: 100%;
     cursor: pointer;
 }
 #formeBt1:hover{
     background: #531da8;
-    border: 3px solid #531da8;
 }
 
+
+#bt2{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+    /* border: 3px solid pink; */
+    margin-top:20px;
+    margin-left:auto;
+    margin-right: auto;
+}
 #formeBt2{
 
     background: #f0f0f0;
@@ -147,10 +165,9 @@ h2{
     font-size: 200%;
     border: 3px solid #794BC4;
     border-radius: 40px;
-    margin-top:10%;
 
     width: 100%;
-    height: 90%;
+    height: 100%;
     cursor: pointer;
 }
 #formeBt2:hover{

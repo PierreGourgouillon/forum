@@ -1,5 +1,8 @@
 
-document.addEventListener("DOMContentLoaded",postIndex)
+document.addEventListener("DOMContentLoaded",()=>{
+    postIndex()
+    document.getElementById("b").addEventListener('click', createPost)
+})
 
 async function createPost(){
     let title = document.getElementById("insert-title")
@@ -9,34 +12,37 @@ async function createPost(){
 
     let user = await getUser(valueCookie)
 
-
-    fetch("/post/", {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            pseudo: user.Pseudo,
-            message: message.value,
-            like: 0,
-            dislike: 0
+    if (title.value.length === 0 || message.value.length === 0){
+        title.style.border = "2px solid red"
+        message.style.border = "2px solid red"
+    }else{
+        fetch("/post/", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title.value,
+                pseudo: user.Pseudo,
+                message: message.value,
+                like: 0,
+                dislike: 0
+            })
         })
-    })
-        .then((response) => {
-            message.value = ""
-            title.value = ""
-            return response.json()
-        })
-        .then((res) => {
-            addAllPost([res])
-        })
-        .catch((error)=>{
-            message.value = ""
-            title.value = ""
-            alert(`Un problème est survenue : ${error.message}`)
-        })
-
+            .then((response) => {
+                message.value = ""
+                title.value = ""
+                return response.json()
+            })
+            .then((res) => {
+                addAllPost([res])
+            })
+            .catch((error)=>{
+                message.value = ""
+                title.value = ""
+                alert(`Un problème est survenue : ${error.message}`)
+            })
+    }
 }
 
 function postIndex(){
@@ -78,7 +84,7 @@ function findPostById(){
 }
 
 function updatePost(id, message, title, like, dislike){
-
+    console.log("hello")
     return fetch(`/post/${id}`, {
         method: "PUT",
         headers:{
@@ -92,7 +98,7 @@ function updatePost(id, message, title, like, dislike){
         })
     })
         .then(()=>{
-        return true
+            return true
         })
         .catch(()=>{
             document.location.href = "/error/"
@@ -136,6 +142,7 @@ async function addAllPost(response){
             let link = [...clone.querySelectorAll(".postLinkos")]
             let divLike = clone.getElementById("like")
             let divDislike = clone.getElementById("dislike")
+            let dots = clone.getElementById("dots")
 
             divLike.setAttribute("contLike", "like")
             divDislike.setAttribute("contDislike", "dislike")
@@ -148,15 +155,17 @@ async function addAllPost(response){
                 }
             })
 
-            reactions.forEach((reaction)=>{
-                if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
-                    if (reaction.like == true) {
-                        divLike.classList.add("filterLike")
-                    }else if (reaction.dislike == true) {
-                        divDislike.classList.add("filterDislike")
+            if(reactions != null) {
+                reactions.forEach((reaction)=>{
+                    if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                        if (reaction.like == true) {
+                            divLike.classList.add("filterLike")
+                        }else if (reaction.dislike == true) {
+                            divDislike.classList.add("filterDislike")
+                        }
                     }
-                }
-            })
+                })
+            }
 
             pseudo.textContent = post.pseudo
             title.textContent = post.title
@@ -164,6 +173,7 @@ async function addAllPost(response){
             like.textContent = post.like
             dislike.textContent = post.dislike
 
+            dots.setAttribute("post_id", post.PostId)
             like.setAttribute("post_id", post.PostId)
             dislike.setAttribute("post_id", post.PostId)
 
@@ -336,16 +346,6 @@ function getReactionInput(e){
 
     return likes
 }
-
-
-
-
-
-
-
-
-
-
 
 function getReactions(){
     return fetch("/reaction/",{

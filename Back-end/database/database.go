@@ -36,16 +36,15 @@ func CreateAndSelectDB(name string) {
 	} else {
 		fmt.Println("DB selected successfully..")
 	}
-}
 
-func CreateTable(nameDb string) {
-	//Connexion à la bd sur le docker
-	db, err := sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/"+nameDb)
+	db, err = sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
 
 	if err != nil {
-		panic(err.Error())
+		panic(err)
 	}
-	defer db.Close()
+}
+
+func CreateTable() {
 
 	//Création des tables
 	tableau := [8]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory, tablePostReactions}

@@ -1,0 +1,320 @@
+/********** Font **********/
+@font-face {
+    font-family: "Open-Sans-Extra";
+    src: url("http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Open-Sans-SemiBold";
+    src: url("http://localhost:8088/static/Fonts/open-sans-semibold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("http://localhost:8088/static/Fonts/Montserrat-Regular.ttf");
+}
+
+
+/********** Balises **********/
+
+body, html{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+    width: 25%;
+    height: 100vh;
+    border-right: 1px solid rgb(47, 51, 54);
+}
+
+
+/********** Container **********/
+
+.container-body{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.container-header{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    height: 100%;
+}
+
+.container-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: start;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.container-list{
+    padding-top: 15px;
+}
+
+.container-link-menu{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.container-inlink {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.container-inlink div{
+    height: 100%;
+}
+
+.container-inlink span{
+    font-size: 20px;
+    padding-top: 1px;
+    margin-left: 20px;
+    margin-right: 16px;
+    font-family: Open-Sans-Extra;
+}
+
+.container-profile{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+.container-in-profile{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 12px;
+    position: relative;
+    z-index: 0;
+    align-items: center;
+}
+
+.container-prof{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 0;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/********** Hover **********/
+
+a:hover,a:link,a:visited,a:active{
+    color: black;
+    text-decoration: none;
+}
+
+.container-link-menu:hover .container-inlink{
+    background-color: rgba(121, 75, 195, 0.1);
+    border-radius: 100px;
+    color: #794BC4;
+    padding-left: 10px;
+    transition-duration: 0.2s;
+}
+
+.container-link-menu:hover img{
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
+.container-prof:hover{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 999px;
+}
+
+
+/********** Image **********/
+
+.logo{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.logo img{
+    height: 50px;
+    aspect-ratio: 1/1;
+}
+
+.image-profile{
+    border-radius: 999px;
+}
+
+.image-profile img{
+    border-radius: 999px;
+    width: 35px;
+    height: 35px;
+}
+
+
+/********** ID **********/
+
+#pseudoname{
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Open-Sans-SemiBold;
+}
+
+
+/********** Autre **********/
+
+.pseudo-profile{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    margin-left: 5px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    .container-link-menu {
+        justify-content: space-between;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding-left: 10px;
+    }
+
+    #margin {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .container-prof:hover{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
+        margin-right: 30%;
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container-inlink span {
+        font-size: 18px;
+    }
+
+    .container-link-menu {
+        justify-content: space-between;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding-left: 10px;
+    }
+
+    #margin {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+
+    .container-prof:hover{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
+        margin-right: 10%;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 791px) and (max-width: 991px) {
+    .container-inlink span {
+        font-size: 14px;
+    }
+
+    .container-link-menu {
+        justify-content: space-between;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding-left: 10px;
+    }
+
+    #margin {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .container-prof:hover .image-profile{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 790px) {
+    .response {
+        display: none;
+    }
+
+    .container-link-menu{
+        justify-content: center;
+    }
+
+    .container-inlink{
+        justify-content: center;
+    }
+
+    .container-link-menu:hover .container-inlink {
+        padding: 10px;
+        border-radius: 999px;
+    }
+
+    #margin {
+        margin-bottom: 40px;
+    }
+
+    .container-prof:hover .image-profile{
+        background-color: rgba(121,75,195,0.1);
+        border-radius: 999px;
+    }
+}

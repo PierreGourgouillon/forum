@@ -61,7 +61,13 @@ func requestHTTP(router *mux.Router) {
 
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
+<<<<<<< HEAD
 	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
+=======
+	router.HandleFunc("/profilposts/{id}", getPostsUser).Methods("GET")
+	router.HandleFunc("/profiluser/{id}", getProfilUser).Methods("GET")
+	router.HandleFunc("/profiluser/{id}", updateProfilUser).Methods("PUT")
+>>>>>>> dev
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -75,6 +81,9 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/reaction/", createReaction).Methods("POST")
 	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
 	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
+
+	//Footer Route
+	router.HandleFunc("/search/", getSearchBar).Methods("GET")
 
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
@@ -117,10 +126,10 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
-	if cookie.ReadCookie(r, "PioutterID") {
-		http.Redirect(w, r, "/home/", http.StatusSeeOther)
-		return
-	}
+	// if cookie.ReadCookie(r, "PioutterID") {
+	// 	http.Redirect(w, r, "/home/", http.StatusSeeOther)
+	// 	return
+	// }
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
@@ -148,7 +157,7 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func homeRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pageprofil_test.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/home_page.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -276,7 +285,6 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	postArray := database.GetAllPosts()
-
 	jsonAllPost, error := json.Marshal(postArray)
 
 	if error != nil {
@@ -358,8 +366,13 @@ func postUpdate(w http.ResponseWriter, r *http.Request) {
 	var post structs.Post
 	unmarshallJSON(r, &post)
 
-	database.UpdatePost(id, &post)
+	isUpdate := database.UpdatePost(id, &post)
 
+	if isUpdate {
+		w.Write([]byte("{\"update\":\"true\"}"))
+	} else {
+		w.Write([]byte("{\"update\":\"false\"}"))
+	}
 }
 
 func postDelete(w http.ResponseWriter, r *http.Request) {
@@ -514,8 +527,75 @@ func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func getProfilUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	profilUser := database.GetProfilByUserID(id)
+
+	jsonProfil, error := json.Marshal(profilUser)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	w.Write(jsonProfil)
+}
+
+func updateProfilUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var json structs.ProfilUser
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	unmarshallJSON(r, &json)
+
+	fmt.Println(json.Choice)
+
+	if json.Choice == "bio" {
+		check := database.UpdateBioByUserID(id, json.Bio)
+		if check {
+			w.Write([]byte("{\"isUpdate\": \"true\"}"))
+		} else {
+			w.Write([]byte("{\"isUpdate\": \"false\"}"))
+		}
+	}
+}
+
+func getSearchBar(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var SearchBar structs.SearchBar
+
+	SearchBar.Users = database.GetUsers()
+	SearchBar.Titles = database.GetTitles()
+
+	SearchBarJson, error := json.Marshal(SearchBar)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	w.Write(SearchBarJson)
+}
+
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
 
 	if err != nil {
 		fmt.Println(err)

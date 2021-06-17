@@ -1,14 +1,18 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("logins").addEventListener("click", login)
+    document.getElementById("eye").addEventListener("click", AfficherMdp)
+})
+
 function login() {
     const email = document.getElementById("email")
     const password = document.getElementById("password")
     let error = document.getElementById("zoneMessErreur")
 
     if(email.value == "" || password.value == "") {
-        alert("Un des champs est vide")
+        error.textContent = "Un des champs est vide"
         return
     }
 
-    console.log("alu")
     fetch("/users/", {
         method: 'POST',
         headers: {
@@ -35,7 +39,7 @@ function login() {
 }
 
 function AfficherMdp(){
-    let input = document.getElementById("Motdepasse"); 
+    let input = document.getElementById("password"); 
 
     if (input.type === "password"){ 
         input.type = "text"; 
