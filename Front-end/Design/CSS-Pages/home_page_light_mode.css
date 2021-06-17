@@ -520,12 +520,16 @@ main{
 
 #pseudo-user{
     font-size: 15px;
-    font-weight: 700;
-    font-family: Open-Sans-SemiBold;
+    color: #A266FC;
+    font-family: Open-Sans-Extra;
 }
 
 #title-user{
     position: relative;
-    font-family: Open-Sans-Extra;
+    font-family: Open-Sans-SemiBold;
     font-size: 15px;
+}
+
+#link-post {
+    padding: 5px 12px 5px 12px;
 }
