@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", getPostsUser)
 document.addEventListener("DOMContentLoaded", getProfilUser)
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('image-close').addEventListener('click', () => {
+        let divPopUp = document.getElementById("popUp-update")
+        divPopUp.style.display = "none"
+    })
     const isDelete = deleteGear()
     if(!isDelete) {
         document.getElementById("gear").addEventListener("click", inputBio)
@@ -49,7 +53,7 @@ function getProfilUser() {
         profilUser(res)
     })
     .catch((error) => {
-        console.log("O post")
+        console.log("Profil non trouvé")
     })
 }
 
@@ -64,16 +68,11 @@ function profilUser(profil) {
 }
 
 function inputBio() {
-    let div = document.getElementById("setBio")
-    let gear = document.getElementById("gear")
+    let div = document.getElementById("popUp-update")
     if(div.style.display == "none") {
-        div.style.display = ""
-        gear.classList.remove("gear")
-        gear.classList.add("close")
+        div.style.display = "block"
     } else {
         div.style.display = "none"
-        gear.classList.remove("close")
-        gear.classList.add("gear")
     }
 }
 
@@ -86,14 +85,9 @@ function updateBio() {
     const newBio = document.getElementById("newBio")
 
     if(newBio.value  == "") {
-        console.log("nop")
         return
     }
 
-    const div = document.getElementById("setBio")
-    const gear = document.getElementById("gear")
-
-    console.log("new bio ", newBio.value)
     fetch(`/profiluser/${id}`, {
         method: "PUT",
         headers: {
@@ -108,12 +102,10 @@ function updateBio() {
         return reponse.json()
     })
     .then((res) => {
-        console.log(res)
         if(res.isUpdate == "true") {
             bio.textContent = newBio.value
-            div.style.display = "none"
-            gear.classList.remove("close")
-            gear.classList.add("gear")
+            document.getElementById("popUp-update").style.display = "none"
+
         }
     })
     .catch((error) => {

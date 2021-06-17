@@ -142,7 +142,7 @@ func FindPostById(id int) structs.Post {
 	return post
 }
 
-func UpdatePost(id int, post *structs.Post) {
+func UpdatePost(id int, post *structs.Post) bool {
 	var postUpdate structs.Post
 	postBasic := FindPostById(id)
 
@@ -175,8 +175,10 @@ func UpdatePost(id int, post *structs.Post) {
 	_, err := db.Exec(query, postUpdate.Message, postUpdate.Title, postUpdate.Like, postUpdate.Dislike, id)
 
 	if err != nil {
-		log.Fatal(err)
+		return false
 	}
+
+	return true
 }
 
 func DeletePost(id int) bool {
@@ -284,8 +286,11 @@ func GetProfilByUserID(id int) structs.ProfilUser {
 	data := db.QueryRow("SELECT user_pseudo FROM userIdentity WHERE user_id = ?", id)
 	data.Scan(&profil.Pseudo)
 
-	data = db.QueryRow("SELECT user_location, user_bio FROM userProfile WHERE user_id = ?", id)
-	data.Scan(&profil.Location, &profil.Bio)
+	data2 := db.QueryRow("SELECT user_location FROM userProfile WHERE user_id = ?", id)
+	data2.Scan(&profil.Location)
+
+	data3 := db.QueryRow("SELECT user_bio FROM userProfile WHERE user_id = ?", id)
+	data3.Scan(&profil.Bio)
 
 	return profil
 }
@@ -301,4 +306,42 @@ func UpdateBioByUserID(id int, bio string) bool {
 	}
 
 	return true
+}
+
+func GetTitles() []string {
+	var Titles []string
+
+	data, err := db.Query("SELECT user_title FROM allPosts")
+
+	if err != nil {
+		fmt.Println(err)
+		return []string{}
+	}
+
+	for data.Next() {
+		var title string
+		data.Scan(&title)
+		Titles = append(Titles, title)
+	}
+
+	return Titles
+}
+
+func GetUsers() []string {
+	var Users []string
+
+	data, err := db.Query("SELECT user_pseudo FROM userIdentity")
+
+	if err != nil {
+		fmt.Println(err)
+		return []string{}
+	}
+
+	for data.Next() {
+		var user string
+		data.Scan(&user)
+		Users = append(Users, user)
+	}
+
+	return Users
 }

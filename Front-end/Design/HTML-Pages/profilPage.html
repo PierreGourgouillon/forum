@@ -2,23 +2,48 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+
     <link rel="icon" type="image/png" href="/static/Design/Images/logo.png">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/profilPage.css" type="text/css">
+
     <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/header.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/pageprofil.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/profilPage.css" type="text/css">
+    <script src="/static/Javascript/requestAPI.js" type="text/javascript"></script>
     <script src="/static/Javascript/profil.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/profilPage_lightMode.css" type="text/css">
-    <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <title>Home</title>
 </head>
 
 <body>
 <div class="container-body">
+
+    <div id="popUp-update">
+        <div class="container-popUp-update">
+            <div class="block-popUp-update">
+                <div class="globalFLex">
+                    <div class="RowFlex" id="bandeau" style="padding-top: 5px;padding-bottom: 5px; align-items: baseline">
+                        <div class="RowFlex title-popUp" style="flex-basis: 92%; justify-content: center"><span style="padding-left: 25px">Modifier votre profil</span></div>
+                            <div class="RowFlex" id="image-close"><img src="/static/Design/Images/icon/close.svg"></div>
+                        </div>
+                    <div class="globalFLex" style="justify-content: center; align-items: center; height: 550px">
+                        <div class="globalFLex" style="width: 90%">
+
+                            <div class="globalFLex" style="margin-top: 20px">
+                                <textarea id="newBio" class="textArea" placeholder="Écrivez votre nouvelle bio !"></textarea>
+                            </div>
+
+                            <div class="RowFlex style-button-popUp">
+                                <div id="send" class="div-button">
+                                    <span>Modifier</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{template "header"}}
 
@@ -28,8 +53,8 @@
         </div>
         <div id="up">
             <div class="profil-container">
-                <div class="avatar-container">
-                    <div class="avatar"></div>
+                <div class="Avatar-Container">
+                    <div class="Avatar"></div>
                 </div>
                 <div class="info-container">
                     <div class="pseudo">
@@ -42,10 +67,6 @@
                         <span id="bioid"></span>
                     </div>
                     <div class="icon-bio gear" id="gear"></div>
-                    <div class="setBio" id="setBio" style="display: none">
-                        <textarea id="newBio" type="text" placeholder="Entrez votre nouvelle bio"></textarea>
-                        <div class="icon-bio" id="send"></div>
-                    </div>
                 </div>
 
             </div>

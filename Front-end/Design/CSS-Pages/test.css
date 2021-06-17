@@ -1,0 +1,120 @@
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "Open-Sans-Extra";
+    src: url("http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("http://localhost:8088/static/Fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Open-Sans-SemiBold";
+    src: url("http://localhost:8088/static/Fonts/open-sans-semibold.ttf");
+}
+@font-face {
+    font-family: "Montserrat-Thin";
+    src: url("http://localhost:8088/static/Fonts/Montserrat-Thin.ttf");
+}
+
+#popUp-update {
+    display: none;
+    position: absolute;
+    z-index: 1500;
+    width: 100%;
+    height: 100%;
+    background: rgba(91, 112, 131, 0.4);
+    backdrop-filter: blur(2px);
+    transition: 0.5s;
+}
+
+.container-popUp-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.block-popUp-update{
+    width: 500px;
+    height: 600px;
+    background: whitesmoke;
+    border-radius: 20px;
+}
+
+.title-popUp{
+    font-size: 24px;
+    font-family: Open-Sans-Extra;
+    color: #FFFFFF;
+}
+
+#image-close{
+    filter: invert(100%) sepia(2%) saturate(7475%) hue-rotate(128deg) brightness(110%) contrast(99%);
+    cursor: pointer;
+}
+
+.textArea{
+    resize: none;
+    font-size: 18px;
+}
+
+.textArea[type="text"] {
+    font-family: Open-Sans-Extra;
+    height: 40px;
+}
+
+.textArea{
+    font-family: Montserrat-Regular;
+    outline: none;
+    border: none;
+    height: 100px;
+    background: white;
+}
+
+.textArea::placeholder{
+    color: #A266FC;
+    font-family: Open-Sans-Extra;
+    font-size: 15px;
+}
+
+.style-button-popUp{
+    justify-content: center;
+}
+
+.div-button{
+    margin-top: 100px;
+    padding: 10px 20px 10px 20px;
+    background: #A266FC;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.div-button span{
+    font-family: 'Open-Sans-Extra';
+}
+
+.div-button:hover{
+    background: rgba(121, 75, 196, 1);
+    transition: 0.2s;
+}
+
+#bandeau{
+    background: #A266FC;
+    border-radius: 18px 18px 0px 0px;
+}
+
+.errorUpdate{
+    margin-top: 30px;
+    text-align: center;
+    color: red;
+    font-family: Montserrat-Regular;
+    font-size: 15px;
+}

@@ -61,9 +61,13 @@ func requestHTTP(router *mux.Router) {
 
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
+<<<<<<< HEAD
+	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
+=======
 	router.HandleFunc("/profilposts/{id}", getPostsUser).Methods("GET")
 	router.HandleFunc("/profiluser/{id}", getProfilUser).Methods("GET")
 	router.HandleFunc("/profiluser/{id}", updateProfilUser).Methods("PUT")
+>>>>>>> dev
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
@@ -78,8 +82,25 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
 	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
 
+	//Footer Route
+	router.HandleFunc("/search/", getSearchBar).Methods("GET")
+
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
+
+	//miaou page
+	router.HandleFunc("/miaou/", miaou)
+}
+
+func miaou(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
 }
 
 func staticFile(router *mux.Router) {
@@ -105,10 +126,10 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
-	if cookie.ReadCookie(r, "PioutterID") {
-		http.Redirect(w, r, "/home/", http.StatusSeeOther)
-		return
-	}
+	// if cookie.ReadCookie(r, "PioutterID") {
+	// 	http.Redirect(w, r, "/home/", http.StatusSeeOther)
+	// 	return
+	// }
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
@@ -264,7 +285,6 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	postArray := database.GetAllPosts()
-
 	jsonAllPost, error := json.Marshal(postArray)
 
 	if error != nil {
@@ -346,8 +366,13 @@ func postUpdate(w http.ResponseWriter, r *http.Request) {
 	var post structs.Post
 	unmarshallJSON(r, &post)
 
-	database.UpdatePost(id, &post)
+	isUpdate := database.UpdatePost(id, &post)
 
+	if isUpdate {
+		w.Write([]byte("{\"update\":\"true\"}"))
+	} else {
+		w.Write([]byte("{\"update\":\"false\"}"))
+	}
 }
 
 func postDelete(w http.ResponseWriter, r *http.Request) {
@@ -512,15 +537,13 @@ func getProfilUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("id")
-	fmt.Println(id)
 
 	profilUser := database.GetProfilByUserID(id)
 
 	jsonProfil, error := json.Marshal(profilUser)
 
 	if error != nil {
-		log.Fatal(error)
+		fmt.Println(error)
 	}
 
 	w.Write(jsonProfil)
@@ -553,8 +576,26 @@ func updateProfilUser(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func getSearchBar(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var SearchBar structs.SearchBar
+
+	SearchBar.Users = database.GetUsers()
+	SearchBar.Titles = database.GetTitles()
+
+	SearchBarJson, error := json.Marshal(SearchBar)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	w.Write(SearchBarJson)
+}
+
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/test.html")
 
 	if err != nil {
 		fmt.Println(err)

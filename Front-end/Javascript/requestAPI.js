@@ -1,4 +1,6 @@
 
+var compteur = false
+
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)
@@ -12,32 +14,37 @@ async function createPost(){
 
     let user = await getUser(valueCookie)
 
-    fetch("/post/", {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            pseudo: user.Pseudo,
-            message: message.value,
-            like: 0,
-            dislike: 0
+    if (title.value.length === 0 || message.value.length === 0){
+        title.style.border = "2px solid red"
+        message.style.border = "2px solid red"
+    }else{
+        fetch("/post/", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: title.value,
+                pseudo: user.Pseudo,
+                message: message.value,
+                like: 0,
+                dislike: 0
+            })
         })
-    })
-        .then((response) => {
-            message.value = ""
-            title.value = ""
-            return response.json()
-        })
-        .then((res) => {
-            addAllPost([res])
-        })
-        .catch((error)=>{
-            message.value = ""
-            title.value = ""
-            alert(`Un problème est survenue : ${error.message}`)
-        })
+            .then((response) => {
+                message.value = ""
+                title.value = ""
+                return response.json()
+            })
+            .then((res) => {
+                addAllPost([res])
+            })
+            .catch((error)=>{
+                message.value = ""
+                title.value = ""
+                alert(`Un problème est survenue : ${error.message}`)
+            })
+    }
 }
 
 function postIndex(){
@@ -59,9 +66,9 @@ function postIndex(){
         })
 }
 
-function findPostById(){
+function findPostById(idUser){
 
-    fetch("/post/5", {
+    return fetch(`/post/${idUser}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -70,16 +77,13 @@ function findPostById(){
         .then((reponse)=>{
             return reponse.json()
         })
-        .then((res)=>{
-            console.log(res)
-        })
-        .catch((error)=>{
-            alert(error.message)
+        .catch(()=>{
+            return "error"
         })
 }
 
 function updatePost(id, message, title, like, dislike){
-
+    console.log("hello")
     return fetch(`/post/${id}`, {
         method: "PUT",
         headers:{
@@ -137,6 +141,7 @@ async function addAllPost(response){
             let link = [...clone.querySelectorAll(".postLinkos")]
             let divLike = clone.getElementById("like")
             let divDislike = clone.getElementById("dislike")
+            let dots = clone.getElementById("dots")
 
             divLike.setAttribute("contLike", "like")
             divDislike.setAttribute("contDislike", "dislike")
@@ -167,12 +172,67 @@ async function addAllPost(response){
             like.textContent = post.like
             dislike.textContent = post.dislike
 
+            if (idUser !== post.IdUser){
+                clone.getElementById("dotsImg").remove()
+                dots.onclick = ""
+            }else{
+                dots.setAttribute("post_id", post.PostId)
+            }
+
             like.setAttribute("post_id", post.PostId)
             dislike.setAttribute("post_id", post.PostId)
 
+            clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
+
+                setTimeout(()=>{
+                    let divPost = event.target.closest("#post-parent")
+                    let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
+                    findPostById(idPost)
+                        .then((post)=>{
+                        printPopUpImages(post.IdUser, event)
+                    })
+                        .catch(()=>{
+                            document.location.href = "/error/"
+                        })
+                },500)
+            })
+
             container.append(clone)
         })
+}
 
+function printPopUpImages(idUser, event){
+    let divPopUp = document.getElementById("jsPopupImages")
+
+    divPopUp.addEventListener('mouseover', ()=>{
+        compteur = true
+    })
+
+    let position = event.target.getBoundingClientRect()
+    divPopUp.style.left = `${position.left - 125}px`
+
+    if((screen.height - position.top) <= 200 ){
+        divPopUp.style.bottom = `${position.top}px`
+    }else{
+        divPopUp.style.top = `${position.top + 50}px`
+    }
+
+    divPopUp.style.display = "block"
+    let pseudo = document.getElementById("title-user-popUp-Image")
+    let bio = document.getElementById("biography-popUp-Image")
+
+    getUserProfil(idUser)
+        .then((profil)=>{
+        pseudo.innerText = profil.pseudo
+        bio.innerText = profil.bio
+    })
+        .catch(()=>{
+            document.location.href = "/error/"
+        })
+
+    divPopUp.addEventListener("mouseleave", ()=>{
+        divPopUp.style.display = "none"
+    })
 }
 
 function getCookie(cname) {
@@ -340,16 +400,6 @@ function getReactionInput(e){
     return likes
 }
 
-
-
-
-
-
-
-
-
-
-
 function getReactions(){
     return fetch("/reaction/",{
         method: "GET",
@@ -433,3 +483,21 @@ function updateReactionOnePost (idPost, idUser, like, dislike){
         })
 
 }
+
+
+function getUserProfil(idUser) {
+
+    return fetch(`/profiluser/${idUser}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .catch(() => {
+            return "error"
+        })
+}
+

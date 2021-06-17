@@ -1,0 +1,138 @@
+/*-----------------------
+* Général 
+-------------------------*/
+
+html {
+    font-family: 'Open Sans', Arial;
+}
+
+* {
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+
+    margin: 0;
+    padding: 0;
+}
+
+html,body {
+    padding: 0;
+    margin: 0;
+    background: #15202B;
+}
+
+.zoneCentral{
+    width: 640px;
+    min-height: 920px;
+    height: auto;
+
+    margin: 0 auto;
+
+
+    border:1px solid grey;
+    border-bottom:none;
+    border-top:none;
+
+}
+
+/*-----------------------
+* Main Post
+-------------------------*/
+
+#mainPost{
+    width: 600px;
+    min-height: 250px;
+    
+    margin: 0 auto;
+}
+
+#ppMainPost{
+    display: block;
+    position: absolute;
+    top:10px;
+    left:20px;
+    width:60px;
+    height:60px;
+    border-radius: 100%;
+    border:1px solid grey;
+    background: pink;
+}
+
+#ecritureTweet{
+    position: relative;
+    top:20px;
+
+    width: 600px;
+    min-height: 140px;
+    height: auto;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    border-bottom:1px solid grey;;
+    color:rgb(182, 182, 182);
+    padding: 10px;
+}
+.contenueMainPost{
+    margin-top: -10px;
+    margin-left: 85px;
+    width: 500px;
+    min-height: 100px;
+    height: auto;
+    user-select: text;
+}
+
+/*-----------------------
+* Réaction
+-------------------------*/
+
+#reaction{
+    margin-top: 20px;
+
+    width: 600px;
+    height: 40px;
+
+    border-bottom:1px solid grey;
+
+}
+
+#likePostUnique{
+    width: 30px;
+    height: 30px;
+
+    margin-top: 30px;
+    background-color: cadetblue;
+}
+#commentairePostUnique{
+    width: 30px;
+    height: 30px;
+    margin-left:40px;
+    margin-top: -30px;
+    background-color: cadetblue;
+}
+
+#temporalite{
+    width: 120px;
+    height: 20px;
+    margin-left:480px;
+    margin-top: -25px;
+    /* background-color: cadetblue; */
+    color:rgb(182, 182, 182);
+}
+
+
+
+/*-----------------------
+* Feed Reponse
+-------------------------*/
+
+.feedReponse{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    min-height: 150px;
+    height: auto;
+    background-color: blueviolet;
+}

@@ -35,7 +35,7 @@ header{
     align-items: flex-end;
     flex-grow: 1;
     position: relative;
-    width: 26%;
+    width: 25%;
     height: 100vh;
     overflow-y: hidden;
 }
@@ -46,7 +46,7 @@ header{
 }
 
 .container-header{
-    border-right: 1px solid rgb(47, 51, 54);
+    border-right: 0px solid rgb(47, 51, 54);
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -165,11 +165,11 @@ header{
     cursor: pointer;
 }
 
-.container-prof:hover{
+/*.container-prof:hover{
     background-color: rgba(121,75,195,0.1);
     border-radius: 999px;
     margin-right: 10px;
-}
+}*/
 
 .image-profile{
     border-radius: 999px;
@@ -341,6 +341,193 @@ footer{
     border-radius: 50px;
     background-color: #FFFFFF;
     text-align: center;
+}
+
+main{
+    position: relative;
+    width: 50%;
+    border: 1px solid black;
+
+    
+}
+
+aside{
+    width: 25%;
+    
+}
+
+.aside-block{
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 15px;
+
+}
+
+.styleMessage{
+    font-size: 40px;
+}
+
+.submit{
+    cursor: pointer;
+    background: #4d4d4d;
+    bottom: 5px;
+    right: 5px;
+    height: 30px;
+    width: 80px;
+    /* margin-top: 15px; */
+    color: #000;
+    border: none;
+}
+
+.styleCommentary{
+    font-size: 12px;
+
+}
+
+
+.colorPost{
+    background-color: rgb(255, 255, 255);
+}
+ .post_text{
+     width: 80%;
+     height: 40px;
+     border-radius: 10px 0px 0px 10px;
+     resize: none;
+     border: none;
+     background-color: #CACACA;
+     padding: 10px 15px;
+     outline: none;
+     color: #531da8;
+     margin: 0px;
+ }
+
+ #post_add_area{
+     display: flex;
+     margin-top: 2%;
+     padding-bottom: 1%;
+     
+ }
+
+
+ #submit__btn{
+     border: none;
+     color: #FFFFFF;
+     background-color: #32043b;
+     width: 15%;
+     height: 60px;
+     border-radius: 0px 10px 10px 0px;
+     font-size: 17px;
+     font-weight: 800;
+ }
+
+ .post_data{
+    flex-basis: 100%;
+     display:flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ #pop-up{
+    display: block;
+    position: absolute;
+    width: 250px;
+    background: #A266FC;
+    border-radius: 5px;
+    border: 2px solid #707070;
+}
+
+#pop-up span{
+    color: white;
+}
+
+/********** Texte **********/
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+}
+
+
+/********** Hover **********/
+
+.hover:hover{
+    background-color: rgba(121,75,196,0.1);
+}
+
+.pseudo-href:hover {
+    text-decoration: underline;
+}
+
+
+/********** Reste **********/
+
+.border {
+    border-bottom: 1px solid rgb(161, 148, 148);
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.noUserSelect {
+    user-select: none;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+.images{
+    width: 100%;
+}
+
+.imgHover:hover{
+    background: rgba(121, 76, 196, 0.7);
+    border-radius: 999px;
+}
+
+.hoverpop:hover {
+    background: rgba(245,245,245,0.2);
+}
+
+.spanPopUp {
+    margin-left: 10px;
+    font-family: Open-Sans-SemiBold;
+    font-size: 13px;
+}
+
+#pseudo-user{
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Open-Sans-SemiBold;
+}
+
+#title-user{
+    position: relative;
+    font-family: Open-Sans-Extra;
+    font-size: 15px;
 }
 
 /*  TOOLBOX plus haute
