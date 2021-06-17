@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .container-popUp-Images{
     display: none;
@@ -5,7 +11,7 @@
     left: 30px;
     top: 30px;
     width: 270px;
-    border: 1px solid red;
+    border: 2px solid #A266FC;
     border-radius: 13px;
     z-index: 5;
     background: whitesmoke;
@@ -23,7 +29,6 @@
     width: 50px;
     height: 50px;
     border-radius: 999px;
-    border: 1px solid #A266FC;
     padding: 0;
     margin: 0;
 }
@@ -51,4 +56,6 @@
 
 .container-biographie-popUp span{
     word-break: break-word;
+    font-family: Montserrat-Regular;
+    font-size: 14px;
 }
