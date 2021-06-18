@@ -591,7 +591,7 @@ func getSearchBar(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)
