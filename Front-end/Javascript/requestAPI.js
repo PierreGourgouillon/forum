@@ -233,21 +233,6 @@ function printPopUpImages(idUser, event){
     divPopUp.addEventListener("mouseleave", ()=>{
         divPopUp.style.display = "none"
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 function getCookie(cname) {
