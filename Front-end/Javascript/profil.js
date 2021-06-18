@@ -48,7 +48,7 @@ function displayPosts() {
     let ol = document.getElementById("onglet-reactions")
 
     l.style.display = "none"
-    if(valueOfCookie("PioutterID") === "L") {
+    if(valueOfCookie("PioutterMode") === "L") {
         ol.style.color = "black"
     } else {
         ol.style.color = "white"
