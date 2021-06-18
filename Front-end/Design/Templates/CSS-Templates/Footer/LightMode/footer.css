@@ -1,12 +1,12 @@
 @font-face {
     font-family: "Open Sans", sans-serif;
-    src: url('../../../Fonts/open-sans-semibold.ttf') format('ttf');
+    src: url('../../../../../Fonts/open-sans-semibold.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: "montserrat";
-    src: url('../../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    src: url('../../../../../Fonts/Montserrat-Regular.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -34,15 +34,13 @@
 .border{
     border: 1px solid #707070;
 }
-
-footer {
+footer{
     height: 100vh;
     width: 25%;
     background-color: #F5F5F5;
     color: #707070;
     font-weight: 500;
 }
-
 .container-footer{
     padding-left: 17.95%;
     height: 100vh;
@@ -82,14 +80,35 @@ footer {
     border-radius: 20px;
     background-color: white;
 }
-.filter-box{
+.toolBox{
     height: 60px;
     border-bottom: 1px solid #707070;
     justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
     font-size: 18px;
     font-family: "montserrat";
+}
+.toolBox-title{
+    padding: 20px;
+    justify-content: space-between;
+}
+.toolBox-content{
+    height: 100%;
+    width: 100%;
+}
+.toolBox-button:hover{
+    background-color: rgba(121,75,195,0.1);
+    color: #8A3DFE;
+    transition-duration: 0.2s;
+}
+.toolBox-button{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    border:none;
+    background-color: white;
+    cursor: pointer;
+    color: #707070;
+    font-size: 18px;
 }
 .filterBox-text{
     display: flex;
@@ -102,9 +121,30 @@ footer {
     border: none;
     background-color: white;
 }
-#filter-button img, #sort-button img{
+#filter-button img, #sort-button{
     height: 30px;
     aspect-ratio: 1/1;
+    transform: rotate(270deg);
+    cursor: pointer;
+}
+
+#filter-button img:hover, #sort-button:hover{
+    background-color: rgba(121,75,195,0.1);
+    border-radius: 50px;
+    transform: translateX(5px);
+    padding: 5px;
+    transition-duration: 0.2s;
+}
+.content-filterBox{
+    cursor: pointer;
+}
+.filterBox:hover{
+    background-color: rgba(121,75,195,0.1);
+    color: #8A3DFE;
+    transition-duration: 0.2s;
+}
+.filterCheckbox-text{
+    padding-left: 10px;
 }
 #showMore-filterBox, #showMore-sortBox{
     padding: 10px 10px 10px 25px;
