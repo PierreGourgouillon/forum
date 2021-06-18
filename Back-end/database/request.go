@@ -328,6 +328,9 @@ func GetProfilByUserID(id int) structs.ProfilUser {
 	data3 := db.QueryRow("SELECT user_bio FROM userProfile WHERE user_id = ?", id)
 	data3.Scan(&profil.Bio)
 
+	data4 := db.QueryRow("SELECT user_image FROM userProfile WHERE user_id = ?", id)
+	data4.Scan(&profil.Image)
+
 	return profil
 }
 
@@ -380,4 +383,16 @@ func GetUsers() []string {
 	}
 
 	return Users
+}
+
+func ChangeImageUser(idUser int, file string) bool {
+	query := "UPDATE userProfile SET user_image= ? WHERE user_id= ?"
+
+	_, err := db.Exec(query, file, idUser)
+
+	if err != nil {
+		return false
+	}
+
+	return true
 }

@@ -4,6 +4,7 @@ var compteur = false
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)
+    addImageProfil()
 })
 
 async function createPost(){
@@ -143,6 +144,11 @@ async function addAllPost(response){
             let divDislike = clone.getElementById("dislike")
             let dots = clone.getElementById("dots")
 
+            getProfilImage(post.IdUser)
+                .then((file)=>{
+                    imageProfil.src = "data:image/png;base64," + file
+                })
+
             divLike.setAttribute("contLike", "like")
             divDislike.setAttribute("contDislike", "dislike")
 
@@ -220,6 +226,10 @@ function printPopUpImages(idUser, event){
     divPopUp.style.display = "block"
     let pseudo = document.getElementById("title-user-popUp-Image")
     let bio = document.getElementById("biography-popUp-Image")
+    getProfilImage(idUser)
+        .then((file)=>{
+            document.getElementById("popUp-Image").src = "data:image/png;base64," + file
+        })
 
     getUserProfil(idUser)
         .then((profil)=>{
@@ -498,6 +508,36 @@ function getUserProfil(idUser) {
         })
         .catch(() => {
             return "error"
+        })
+}
+
+function addImageProfil(){
+    let idUser = parseInt(getCookie("PioutterID"))
+    getProfilImage(idUser)
+        .then((file)=>{
+            document.getElementById("create-post-image").src = "data:image/png;base64," + file
+            document.getElementById("headerImage").src = "data:image/png;base64," + file
+        })
+}
+
+
+function getProfilImage(id) {
+
+    return fetch(`/profiluser/${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .then((res)=>{
+            console.log(res, "hello")
+            return res.image
+        })
+        .catch((error) => {
+            console.log("Profil non trouvé")
         })
 }
 

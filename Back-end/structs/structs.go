@@ -46,6 +46,7 @@ type ProfilUser struct {
 	Pseudo   string `json:"pseudo"`
 	Location string `json:"location"`
 	Bio      string `json:"bio"`
+	Image    string `json:"image"`
 	Choice   string `json:"choice"`
 }
 

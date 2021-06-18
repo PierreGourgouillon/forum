@@ -96,11 +96,11 @@ body {
 .Avatar {
     aspect-ratio: 1/1;
     height: 100%;
-    background: url(../../../Images/logo.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     border: none;
+    border-radius: 999px;
 }
 
 .info-container {

@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getProfilUser()
     getPostsUser()
-    getPostsLikedUser()
+
+    setImageProfil()
 })
 
 function displayReactions() {
@@ -116,6 +117,8 @@ function profilUser(profil) {
 function inputBio() {
     let div = document.getElementById("popUp-update")
     div.style.display = "block"
+
+    changeImageProfil()
 }
 
 function updateBio() {
@@ -210,6 +213,11 @@ async function addAllPost(response, choice) {
         let divLike = clone.getElementById("like")
         let divDislike = clone.getElementById("dislike")
         let dots = clone.getElementById("dots")
+
+        getProfilImage(post.IdUser)
+            .then((file)=>{
+                imageProfil.src = "data:image/png;base64," + file
+            })
 
         divLike.setAttribute("contLike", "like")
         divDislike.setAttribute("contDislike", "dislike")
@@ -520,4 +528,89 @@ function updatePost(id, message, title, like, dislike){
     .catch(() => {
         document.location.href = "/error/"
     })
+}
+
+function changeImageProfil(){
+    let idUser = parseInt(getCookie('PioutterID'))
+    // get a reference to the file input
+    const fileInput = document.querySelector("#fileChange");
+
+    fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64String = reader.result
+                .replace("data:", "")
+                .replace(/^.+,/, "");
+
+            APIChangeImage(idUser, base64String)
+                .then((isUpdate)=>{
+                    if (isUpdate){
+                        document.getElementById("imageUser").src = "data:image/png;base64," + base64String
+                        document.location.reload()
+                    }else{
+                        alert("Un problème est apparu")
+                    }
+                })
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function APIChangeImage(idUser, file){
+    return fetch(`/profiluser/${idUser}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body : JSON.stringify({
+            image : file,
+            choice: "image",
+        })
+    })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((res)=>{
+            if (res.isUpdate === "true"){
+                return true
+            }else {
+                return false
+            }
+        })
+        .catch(()=>{
+            document.location.href = "/error/"
+        })
+}
+
+function setImageProfil(){
+    getProfilImage()
+        .then((file)=>{
+            document.getElementById("imageUser").src = "data:image/png;base64," + file
+            document.getElementById("profilImage").src = "data:image/png;base64," + file
+            document.getElementById("headerImage").src = "data:image/png;base64," + file
+        })
+}
+
+
+function getProfilImage() {
+    let id = parseInt(getCookie("PioutterID"))
+
+    return fetch(`/profiluser/${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .then((res)=>{
+            console.log(res, "hello")
+            return res.image
+        })
+        .catch((error) => {
+            console.log("Profil non trouvé")
+        })
 }
