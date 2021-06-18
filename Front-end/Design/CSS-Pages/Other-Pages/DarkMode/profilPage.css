@@ -18,6 +18,7 @@
 }
 
 body {
+    overflow: hidden;
     background-color: whitesmoke;
 }
 
@@ -27,15 +28,15 @@ body {
 }
 
 #home-banner{
-    background-color: #A266FC;
-    height: 50px;
+    height: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #A266FC;
 }
 
 #home-text{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open-Sans-Extra", sans-serif;
     font-weight: bold;
     font-size: 24px;
     color: #ffffff;
@@ -44,14 +45,32 @@ body {
 
 #up {
     width: 100%;
-    height: 20%;
-    padding: 0;
+    height: 22.5%;
+}
+
+.onglet {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid rgb(47, 51, 54);
+}
+
+.onglet div {
+    color: white;
+    font-size:30px;
+    font-family: "Montserrat-Regular";
+    cursor: pointer;
+}
+
+#onglet-post {
+    color: #A266FC;
 }
 
 #down {
     width: 100%;
-    height: 67.5%;
-    padding: 0;
+    height: 66.4%;
     border-top: 1px solid rgb(47, 51, 54);
     overflow-y: scroll;
 }
@@ -135,16 +154,6 @@ body {
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
-.setBio {
-    display: flex;
-    flex-direction: row;
-    flex-basis: 10px;
-    justify-content: space-between;
-    width: 97.5%;
-    margin-left: 2.5%;
-    margin-left: 2.5%;
-}
-
 .gear {
     position: relative;
     background: url(../../../Images/Icon/settingsGear.svg);
@@ -157,7 +166,7 @@ body {
 .post-container {
     margin-top: 2.5%;
     display: flex;
-    flex-direction: scolumn;
+    flex-direction: column;
     width: 100%;
 }
 

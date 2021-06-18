@@ -108,10 +108,10 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
-	// if cookie.ReadCookie(r, "PioutterID") {
-	// 	http.Redirect(w, r, "/home/", http.StatusSeeOther)
-	// 	return
-	// }
+	if cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/home/", http.StatusSeeOther)
+		return
+	}
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
@@ -406,6 +406,8 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
+	var PageProfil structs.PostsPageProfil
+
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 
@@ -413,9 +415,12 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 
-	postsUser := database.GetPostsByUserID(id)
+	PageProfil.PostsUser = database.GetPostsByUserID(id)
+	PageProfil.PostsLiked = database.GetPostsLikedByUserID(id)
 
-	jsonPosts, error := json.Marshal(postsUser)
+	fmt.Println(PageProfil.PostsLiked)
+
+	jsonPosts, error := json.Marshal(PageProfil)
 
 	if error != nil {
 		log.Fatal(error)

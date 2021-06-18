@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     fillSearchBar()
-    document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
-    document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
     document.getElementById("search-button").addEventListener("click", goToPost)
 })
 
@@ -60,6 +58,7 @@ function fillSearchBar() {
 }
 
 function goToPost() {
+    console.log("click")
     let input = document.getElementById("search-input")
     input = input.value
     let data = document.getElementById("searchBar").options

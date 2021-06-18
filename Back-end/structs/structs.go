@@ -53,3 +53,8 @@ type SearchBar struct {
 	Users  []string `json:"users"`
 	Titles []string `json:"titles"`
 }
+
+type PostsPageProfil struct {
+	PostsUser  []Post `json:"postsuser"`
+	PostsLiked []Post `json:"postsliked"`
+}
