@@ -52,7 +52,7 @@ function addEventUpdatePost(idPost){
                     title.value = ""
                     message.value = ""
                     divPopUp.style.display = "none"
-                    postIndex()
+                    document.location.reload()
                 }else{
                     title.value = ""
                     message.value = ""
