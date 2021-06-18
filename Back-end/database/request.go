@@ -270,6 +270,42 @@ func GetPostsByUserID(id int) []structs.Post {
 	return allPost
 }
 
+func GetPostsLikedByUserID(id int) []structs.Post {
+	var allPost []structs.Post
+	var tab []int
+
+	data, err := db.Query("SELECT post_id FROM postReactions WHERE user_id = ? AND (user_like > 0 OR user_dislike > 0)", id)
+	if err != nil {
+		fmt.Print("err 2 and => ")
+		fmt.Println(err)
+		return allPost
+	}
+
+	for data.Next() {
+		var num int
+		data.Scan(&num)
+		tab = append(tab, num)
+	}
+
+	allPost = getPostWithArray(tab)
+
+	return allPost
+}
+
+func getPostWithArray(tab []int) []structs.Post {
+	var allPost []structs.Post
+
+	for _, num := range tab {
+		var post structs.Post
+
+		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
+		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		allPost = append(allPost, post)
+	}
+
+	return allPost
+}
+
 func GetNumberOfUsers() int {
 	var nbr int
 
@@ -291,6 +327,9 @@ func GetProfilByUserID(id int) structs.ProfilUser {
 
 	data3 := db.QueryRow("SELECT user_bio FROM userProfile WHERE user_id = ?", id)
 	data3.Scan(&profil.Bio)
+
+	data4 := db.QueryRow("SELECT user_image FROM userProfile WHERE user_id = ?", id)
+	data4.Scan(&profil.Image)
 
 	return profil
 }
@@ -344,4 +383,16 @@ func GetUsers() []string {
 	}
 
 	return Users
+}
+
+func ChangeImageUser(idUser int, file string) bool {
+	query := "UPDATE userProfile SET user_image= ? WHERE user_id= ?"
+
+	_, err := db.Exec(query, file, idUser)
+
+	if err != nil {
+		return false
+	}
+
+	return true
 }

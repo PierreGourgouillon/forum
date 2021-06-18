@@ -1,7 +1,10 @@
 
+var compteur = false
+
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)
+    addImageProfil()
 })
 
 async function createPost(){
@@ -64,9 +67,9 @@ function postIndex(){
         })
 }
 
-function findPostById(){
+function findPostById(idUser){
 
-    fetch("/post/5", {
+    return fetch(`/post/${idUser}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -75,11 +78,8 @@ function findPostById(){
         .then((reponse)=>{
             return reponse.json()
         })
-        .then((res)=>{
-            console.log(res)
-        })
-        .catch((error)=>{
-            alert(error.message)
+        .catch(()=>{
+            return "error"
         })
 }
 
@@ -144,6 +144,11 @@ async function addAllPost(response){
             let divDislike = clone.getElementById("dislike")
             let dots = clone.getElementById("dots")
 
+            getProfilImage(post.IdUser)
+                .then((file)=>{
+                    imageProfil.src = "data:image/png;base64," + file
+                })
+
             divLike.setAttribute("contLike", "like")
             divDislike.setAttribute("contDislike", "dislike")
 
@@ -173,13 +178,71 @@ async function addAllPost(response){
             like.textContent = post.like
             dislike.textContent = post.dislike
 
-            dots.setAttribute("post_id", post.PostId)
+            if (idUser !== post.IdUser){
+                clone.getElementById("dotsImg").remove()
+                dots.onclick = ""
+            }else{
+                dots.setAttribute("post_id", post.PostId)
+            }
+
             like.setAttribute("post_id", post.PostId)
             dislike.setAttribute("post_id", post.PostId)
 
+            clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
+
+                setTimeout(()=>{
+                    let divPost = event.target.closest("#post-parent")
+                    let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
+                    findPostById(idPost)
+                        .then((post)=>{
+                        printPopUpImages(post.IdUser, event)
+                    })
+                        .catch(()=>{
+                            document.location.href = "/error/"
+                        })
+                },500)
+            })
+
             container.append(clone)
         })
+}
 
+function printPopUpImages(idUser, event){
+    let divPopUp = document.getElementById("jsPopupImages")
+
+    divPopUp.addEventListener('mouseover', ()=>{
+        compteur = true
+    })
+
+    let position = event.target.getBoundingClientRect()
+    divPopUp.style.left = `${position.left - 125}px`
+
+    if((screen.height - position.top) <= 200 ){
+        divPopUp.style.bottom = `${position.top}px`
+    }else{
+        divPopUp.style.top = `${position.top + 50}px`
+    }
+
+    divPopUp.style.display = "block"
+    let pseudo = document.getElementById("title-user-popUp-Image")
+    let bio = document.getElementById("biography-popUp-Image")
+    getProfilImage(idUser)
+        .then((file)=>{
+            document.getElementById("popUp-Image").src = "data:image/png;base64," + file
+        })
+
+    getUserProfil(idUser)
+        .then((profil)=>{
+        pseudo.innerText = profil.pseudo
+        bio.innerText = profil.bio
+    })
+        .catch(()=>{
+            document.location.href = "/error/"
+        })
+
+    divPopUp.addEventListener("mouseleave", ()=>{
+        divPopUp.style.display = "none"
+    })
 }
 
 function getCookie(cname) {
@@ -430,3 +493,51 @@ function updateReactionOnePost (idPost, idUser, like, dislike){
         })
 
 }
+
+
+function getUserProfil(idUser) {
+
+    return fetch(`/profiluser/${idUser}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .catch(() => {
+            return "error"
+        })
+}
+
+function addImageProfil(){
+    let idUser = parseInt(getCookie("PioutterID"))
+    getProfilImage(idUser)
+        .then((file)=>{
+            document.getElementById("create-post-image").src = "data:image/png;base64," + file
+            document.getElementById("headerImage").src = "data:image/png;base64," + file
+        })
+}
+
+
+function getProfilImage(id) {
+
+    return fetch(`/profiluser/${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .then((res)=>{
+            console.log(res, "hello")
+            return res.image
+        })
+        .catch((error) => {
+            console.log("Profil non trouvé")
+        })
+}
+

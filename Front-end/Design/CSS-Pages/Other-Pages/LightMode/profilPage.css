@@ -18,21 +18,21 @@
 }
 
 body {
+    overflow: hidden;
     background-color: whitesmoke;
 }
 
 .middle-container {
-    z-index: 2;
-    width: 60%;
-    background-color: white;
+    width: 50%;
+    background-color: whitesmoke;
 }
 
 #home-banner{
-    background-color: #A266FC;
-    height: 50px;
+    height: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #A266FC;
 }
 
 #home-text{
@@ -45,14 +45,32 @@ body {
 
 #up {
     width: 100%;
-    height: 20%;
-    padding: 0;
+    height: 25%;
+}
+
+.onglet {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid black;
+}
+
+.onglet div {
+    color: black;
+    font-size:30px;
+    font-family: "Montserrat-Regular";
+    cursor: pointer;
+}
+
+#onglet-post {
+    color: #A266FC;
 }
 
 #down {
     width: 100%;
-    height: 67.5%;
-    padding: 0;
+    height: 68.9%;
     border-top: 1px solid black;
     overflow-y: scroll;
 }
@@ -64,7 +82,6 @@ body {
     height: 95%;
     margin-left: 2.5%;
     margin-top: 1%;
-    background-color: white;
     border-radius: 150px 15px 15px 150px;
 }
 
@@ -79,11 +96,11 @@ body {
 .Avatar {
     aspect-ratio: 1/1;
     height: 100%;
-    background: url(../../../Images/logo.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     border: none;
+    border-radius: 999px;
 }
 
 .info-container {
@@ -136,28 +153,9 @@ body {
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
-.setBio {
-    display: flex;
-    flex-direction: row;
-    flex-basis: 10px;
-    justify-content: space-between;
-    width: 97.5%;
-    margin-left: 2.5%;
-    margin-left: 2.5%;
-}
-
 .gear {
     position: relative;
-    background: url(../Images/Icon/settingsGear.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    cursor: pointer;
-}
-
-.close {
-    position: relative;
-    background: url(../Images/Icon/close_black.svg);
+    background: url(../../../Images/Icon/settingsGear.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -292,3 +290,4 @@ footer {
     background: #A266FC;
     border-radius: 18px 18px 0px 0px;
 }
+

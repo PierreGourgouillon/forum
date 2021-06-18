@@ -60,7 +60,7 @@ func CreateTable() {
 }
 
 const tableUserIdentity = `CREATE TABLE IF NOT EXISTS userIdentity(
-user_id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT AUTO_INCREMENT PRIMARY 		KEY,
 user_email VARCHAR(50) NOT NULL,
 user_pseudo VARCHAR(30) NOT NULL,
 user_password VARCHAR(3000) NOT NULL,
@@ -69,7 +69,7 @@ user_birth VARCHAR(12) NOT NULL)`
 const tableUserProfile = `CREATE TABLE IF NOT EXISTS userProfile(
 user_id INT,
 user_location VARCHAR(50) NULL,
-user_image BINARY NULL,
+user_image LONGBLOB NULL,
 user_bio TEXT NULL )`
 
 const tableUserPost = `CREATE TABLE IF NOT EXISTS userPost(

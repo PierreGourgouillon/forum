@@ -46,10 +46,16 @@ type ProfilUser struct {
 	Pseudo   string `json:"pseudo"`
 	Location string `json:"location"`
 	Bio      string `json:"bio"`
+	Image    string `json:"image"`
 	Choice   string `json:"choice"`
 }
 
 type SearchBar struct {
 	Users  []string `json:"users"`
 	Titles []string `json:"titles"`
+}
+
+type PostsPageProfil struct {
+	PostsUser  []Post `json:"postsuser"`
+	PostsLiked []Post `json:"postsliked"`
 }
