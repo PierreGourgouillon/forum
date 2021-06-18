@@ -61,13 +61,12 @@ func requestHTTP(router *mux.Router) {
 
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
-<<<<<<< HEAD
+
 	router.HandleFunc("/profiluser/{id}", getPostsUser).Methods("GET")
-=======
+
 	router.HandleFunc("/profilposts/{id}", getPostsUser).Methods("GET")
 	router.HandleFunc("/profiluser/{id}", getProfilUser).Methods("GET")
 	router.HandleFunc("/profiluser/{id}", updateProfilUser).Methods("PUT")
->>>>>>> dev
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
