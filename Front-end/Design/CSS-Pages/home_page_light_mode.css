@@ -337,10 +337,6 @@ main{
     width: 100%;
 }
 
-.border {
-    border-bottom: 1px solid red;
-}
-
 .cursor {
     cursor: pointer;
 }
