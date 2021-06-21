@@ -45,7 +45,6 @@ func CreateAndSelectDB(name string) {
 }
 
 func CreateTable() {
-
 	//Création des tables
 	tableau := [8]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory, tablePostReactions}
 	for j := range tableau {
@@ -57,8 +56,6 @@ func CreateTable() {
 			fmt.Println("Table " + strconv.Itoa(j+1) + " is create")
 		}
 	}
-
-	fillTableCategories()
 }
 
 const tableUserIdentity = `CREATE TABLE IF NOT EXISTS userIdentity(
@@ -66,7 +63,8 @@ user_id INT AUTO_INCREMENT PRIMARY 		KEY,
 user_email VARCHAR(50) NOT NULL,
 user_pseudo VARCHAR(30) NOT NULL,
 user_password VARCHAR(3000) NOT NULL,
-user_birth VARCHAR(12) NOT NULL)`
+user_birth VARCHAR(12) NOT NULL,
+deactivate BOOLEAN NOT NULL)`
 
 const tableUserProfile = `CREATE TABLE IF NOT EXISTS userProfile(
 user_id INT,
@@ -112,21 +110,3 @@ user_id INT NOT NULL,
 user_like BOOLEAN NOT NULL,
 user_dislike BOOLEAN NOT NULL
 )`
-
-func fillTableCategories() {
-	tabCat := []string{"Actualité", "Sport", "Humour", "Cinéma", "Jeux Vidéos", "Santé", "Internet", "Nourriture", "Art", "Histoire"}
-	row := db.QueryRow("SELECT category_name FROM categories WHERE category_id = 1")
-
-	var empty string
-	row.Scan(&empty)
-
-	if empty == "" {
-		for _, cat := range tabCat {
-			_, error := db.Exec("INSERT INTO categories (category_name) VALUES (?)", cat)
-			if error != nil {
-				fmt.Println(error)
-			}
-		}
-	}
-
-}

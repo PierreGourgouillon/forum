@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+    <script src="/static/Javascript/requestAPI.js" type="text/javascript"></script>
     <title>Votre compte</title>
 </head>
 <body>
@@ -57,9 +58,7 @@
 
                     <div class="globalFLex paddingTop paddingLeft transition" id="deactivateAcc" style="justify-content: center;margin-top: 25px;">
                         <div class="globalFLex" style="text-align: center">
-                            <form method="get" action="/">
-                                <button value="true" type="submit" id="buttonDeactivAcc" class="textStyle" style="color:rgb(224, 36, 94);font-size: 15px;font-weight: 400;">Désactiver votre compte</button>
-                            </form>
+                                <button value="true" type="submit" id="buttonDeactivAcc" class="textStyle" style="color:rgb(224, 36, 94);font-size: 15px;font-weight: 400;"onclick="deactivateAccount()">Désactiver votre compte</button>
                         </div>
                     </div>
 
