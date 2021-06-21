@@ -396,3 +396,31 @@ func ChangeImageUser(idUser int, file string) bool {
 
 	return true
 }
+
+func GetCommentaryPost(postId int) ([]structs.Commentary, bool) {
+	var commentaries []structs.Commentary
+
+	rows, error := db.Query("SELECT commentary_id, user_id, post_id, commentary_date, commentary_message  FROM allCommentary WHERE post_id = ?", postId)
+
+	if error != nil {
+		return commentaries, true
+	}
+
+	for rows.Next() {
+		var commentary structs.Commentary
+		rows.Scan(&commentary.CommentaryID, &commentary.UserID, &commentary.PostID, &commentary.Date, &commentary.Message)
+		commentaries = append(commentaries, commentary)
+	}
+
+	return commentaries, false
+}
+
+func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) {
+	insert, error := db.Exec("INSERT INTO allCommentary (user_id, post_id, commentary_date, commentary_message) VALUES (?, ?, ?, ?)", commentary.UserID, commentary.PostID, commentary.Date, commentary.Message)
+	if error != nil {
+		return false, commentary
+	}
+	commentary.CommentaryID, _ = insert.LastInsertId()
+
+	return true, commentary
+}

@@ -78,8 +78,17 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
 	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
 
+	//Commentary Route
+
+	router.HandleFunc("/commentary/{id}", getCommentaryPost).Methods("GET")
+	router.HandleFunc("/commentary/", createCommentary).Methods("POST")
+
 	//Footer Route
 	router.HandleFunc("/search/", getSearchBar).Methods("GET")
+
+	router.HandleFunc("/test/", testRoute)
+
+	router.HandleFunc("/status/{id}", postPage)
 
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
@@ -591,7 +600,18 @@ func getSearchBar(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func testRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -610,4 +630,56 @@ func unmarshallJSON(r *http.Request, API interface{}) {
 	}
 
 	json.Unmarshal(body, &API)
+}
+
+func getCommentaryPost(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	commentaries, error := database.GetCommentaryPost(id)
+
+	if !error {
+		jsonCommentary, _ := json.Marshal(commentaries)
+		w.Write(jsonCommentary)
+	} else {
+		w.Write([]byte("{\"error\": \"true\"}"))
+	}
+}
+
+func createCommentary(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	var commentary structs.Commentary
+
+	unmarshallJSON(r, &commentary)
+
+	time := time.Now()
+	commentary.Date = time.Format("02-01-2006")
+
+	isInsert, newCommentary := database.CreateCommentary(commentary)
+
+	if isInsert {
+		commentaryJSON, _ := json.Marshal(newCommentary)
+		w.Write(commentaryJSON)
+	} else {
+		w.Write([]byte("{\"create\": \"false\"}"))
+	}
+}
+
+func postPage(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
 }

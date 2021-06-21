@@ -464,7 +464,7 @@ main{
 }
 
 .pseudo-href:hover {
-    text-decoration: underline;
+    text-decoration: #A266FC underline;
 }
 
 
@@ -516,6 +516,12 @@ main{
     margin-left: 10px;
     font-family: Open-Sans-SemiBold;
     font-size: 13px;
+}
+
+#pseudo-user{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open-Sans-Extra;
 }
 
 #pseudo-user{

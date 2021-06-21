@@ -80,8 +80,8 @@ const tableAllCommentary = `CREATE TABLE IF NOT EXISTS allCommentary(
 commentary_id INT AUTO_INCREMENT PRIMARY KEY,
 user_id INT NOT NULL,
 post_id INT NOT NULL,
-commentary_date DATE NOT NULL,
-commentary_message TEXT NULL )`
+commentary_date VARCHAR(15) NOT NULL,
+commentary_message TEXT NOT NULL )`
 
 const tableAllPosts = `CREATE TABLE IF NOT EXISTS allPosts (
 post_id INT AUTO_INCREMENT PRIMARY KEY,
