@@ -48,6 +48,7 @@
 
 body{
     overflow: hidden;
+    background-color: #15202B;
 }
 
 main{
@@ -111,6 +112,7 @@ main{
     border: none;
     border-radius: 3px 3px 0 0;
     font-size: 18px;
+    color: white;
     padding: 0;
     outline: none;
     background-color: #1C2834;
@@ -127,6 +129,7 @@ main{
     width: 94%;
     border: none;
     font-size: 18px;
+    color: white;
     resize: none;
     outline: none;
     background-color: #1C2834;

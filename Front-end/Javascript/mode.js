@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => document.getElementById("mod
 
 function changeMode() {
     let value = valueOfCookie("PioutterMode")
-    
     if(value === "L") {
         document.cookie = "PioutterMode=D; path=/"
     } else if(value === "D") {
