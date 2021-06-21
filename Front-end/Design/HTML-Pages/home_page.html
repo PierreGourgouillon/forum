@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/post.css">
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
+    <script type="text/javascript" src="/static/Javascript/home.js"></script>
     <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
     <script type="text/javascript" src="/static/Javascript/footer.js"></script>
     <script type="text/javascript" src="/static/Javascript/post.js"></script>
@@ -80,64 +81,71 @@
 {{template "header"}}
 
 <main>
-    <div class="globalFLex border" id="main-box">
-      <div id="home-banner">
-        <span id="home-text">Page d'Accueil</span>
-      </div>
-      <div class="globalFLex scroll-div" style="height: 100vh">
-        <div class="RowFlex border" id="container-publish">
-          <div class="container-avatar">
-            <div class="border-avatar">
-              <img src="" id="create-post-image">
+  <div class="globalFLex border" id="main-box">
+    <div id="home-banner">
+      <span id="home-text">Page d'Accueil</span>
+    </div>
+    <div class="globalFLex scroll-div" style="height: 100vh">
+      <div class="RowFlex border" id="container-publish">
+        <div class="container-avatar">
+          <div class="border-avatar">
+            <img src="" id="create-post-image">
+          </div>
+        </div>
+        <div class="globalFLex" id="container-publishInputs">
+          <div class="border" style="border-radius: 5px 5px 0 0">
+            <div id="container-titlePost">
+              <input type="text" id="insert-title" placeholder="Insérer un titre...">
             </div>
           </div>
-          <div class="globalFLex" id="container-publishInputs">
-            <div class="border">
-              <div id="container-titlePost">
-                <input type="text" id="insert-title">
-              </div>
-            </div>
-            <div class="border">
-              <div id="container-messagePost" class="RowFlex">
-                <textarea id="insert-message" placeholder="Laissez parler votre imagination"></textarea>
-                <div id="container-publishButton" class="border">
-                  <button type="submit" id="b">
-                    <img src="/static/Design/Images/Icon/arrow_right.svg">
-                  </button>
+          <div class="border" style="border-radius: 0 0 5px 5px; margin-top: -1px">
+            <div id="container-messagePost" class="RowFlex" style="border-radius: 0 0 3px 3px">
+              <textarea id="insert-message" placeholder="Laissez parler votre imagination"></textarea>
+              <div id="container-publishButton">
+                <div id="b" class="globalFLex" style="justify-content: center; visibility: hidden">
+                  <img src="/static/Design/Images/Icon/arrow_right.svg">
                 </div>
               </div>
             </div>
           </div>
-          <div class="globalFLex" id="category">
-            <div class="globalFLex" id="titleBox-category">
-              <span id="title-text">Catégorie</span>
-            </div>
-            <div class="scroll-div" id="category-boxs">
-              <div class="category-box globalFLex">
-                <button class="category-button RowFlex">
+        </div>
+        <div class="globalFLex" id="category">
+          <div class="globalFLex" id="titleBox-category">
+            <span id="title-text">Catégorie</span>
+          </div>
+
+          <div class="scroll-div" id="category-boxs">
+
+            <div class="category-box globalFLex">
+              <div class="globalFLex" style="height: 30px; justify-content: center">
+                <div class="category-button RowFlex">
                   <span class="text-category">Actualité</span>
                   <div class="colorBox-category" id="colorBox1"></div>
-                </button>
+                </div>
               </div>
-              <div class="category-box globalFLex">
-                <button class="category-button RowFlex">
+            </div>
+
+            <div class="category-box globalFLex">
+              <div class="globalFLex" style="height: 30px; justify-content: center">
+                <div class="category-button RowFlex">
                   <span class="text-category">Sport</span>
                   <div class="colorBox-category" id="colorBox2"></div>
-                </button>
+                </div>
               </div>
-              <div class="category-box globalFLex">
-                <button class="category-button RowFlex">
+            </div>
+            <div class="category-box globalFLex">
+              <div class="globalFLex" style="height: 30px; justify-content: center">
+                <div class="category-button RowFlex">
                   <span class="text-category">Humour</span>
                   <div class="colorBox-category" id="colorBox3"></div>
-                </button>
+                </div>
               </div>
-              <div class="globalFLex" id="lastCategory-box">
-                <button class="category-button RowFlex">
+            </div>
+            <div class="category-box globalFLex">
+              <div class="globalFLex" style="height: 30px; justify-content: center">
+                <div class="category-button RowFlex">
                   <span class="text-category">Cinéma</span>
                   <div class="colorBox-category" id="colorBox4"></div>
-<<<<<<< HEAD
-                </button>
-=======
                 </div>
               </div>
             </div>
@@ -187,16 +195,15 @@
                   <span class="text-category">Histoire</span>
                   <div class="colorBox-category" id="colorBox10"></div>
                 </div>
->>>>>>> feature/add_categories
               </div>
             </div>
           </div>
         </div>
-
-
-        <div id="containerPost"></div>
       </div>
+
+      <div id="containerPost"></div>
     </div>
+  </div>
 </main>
 {{template "footer"}}
 

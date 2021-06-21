@@ -106,14 +106,20 @@ main{
     width: 100%;
 }
 #insert-title{
-    width: 99%;
+    width: 100%;
     height: 100%;
     border: none;
+    border-radius: 3px 3px 0 0;
     font-size: 18px;
+    padding: 0;
+    outline: none;
+    font-family: "Open-Sans-SemiBold";
+    font-weight: 400;
 }
 #container-messagePost{
     height: 115px;
     width: 100%;
+    background-color: white;
 }
 #insert-message{
     height: 96%;
@@ -121,12 +127,17 @@ main{
     border: none;
     font-size: 18px;
     resize: none;
+    outline: none;
 }
 #container-publishButton{
     width: 6%;
     height: 100%;
     margin-top: -1px;
     margin-right: -1px;
+}
+#b:hover{
+    background-color: rgba(121,75,195,0.1);
+    transition-duration: 0.2s;
 }
 #b{
     height: 99%;
@@ -143,7 +154,7 @@ main{
     width: 25%;
     border: 2px solid #707070;
     border-radius: 11px;
-    background-color: #A266FC;
+    background-color: white;
 }
 #titleBox-category{
     background-color: #A266FC;
@@ -167,8 +178,6 @@ main{
     background-color: white;
     justify-content: center;
 }
-<<<<<<< HEAD
-=======
 .category-button{
      padding-left: 10px;
      padding-right: 25px;
@@ -186,21 +195,12 @@ main{
 .text-category:hover{
     filter:none;
 }
->>>>>>> feature/add_categories
 #lastCategory-box{
     height: 30px;
     background-color: white;
     justify-content: center;
 }
-.category-button{
-    padding-left: 10px;
-    padding-right: 25px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    justify-content: space-between;
 
-}
 .text-category{
     padding-left: 5px;
     font-size: 18px;
@@ -225,12 +225,24 @@ main{
 #colorBox4{
     background-color: #4900BB;
 }
-
-
-
-
-
-
+#colorBox5{
+    background-color: #3ce759;
+}
+#colorBox6{
+    background-color: #e74c3c;
+}
+#colorBox7{
+    background-color: yellow;
+}
+#colorBox8{
+    background-color: black;
+}
+#colorBox9{
+    background-color: darkcyan;
+}
+#colorBox10{
+    background-color: orange;
+}
 
 
 .grow {
