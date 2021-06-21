@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("insert-message").addEventListener("keyup", showButton)
-    document.getElementById("category-boxs").addEventListener("click", chooseCategory)
+    const cats = [...document.getElementsByClassName("category-box")]
+    cats.forEach((cat) => cat.addEventListener("click", () => {
+        chooseCategory(cat)
+    }))
 })
+
 function showButton(){
     let button = document.getElementById("b")
     let message = document.getElementById("insert-message")
@@ -12,6 +16,27 @@ function showButton(){
     }
 }
 
-function chooseCategory(){
-    let category = document.getElementById("cat")
+let tabCat = []
+
+function chooseCategory(cat){
+    const len = document.getElementById(("category-boxs")).querySelectorAll('.active').length
+    let category = cat.querySelector('span')
+    if(cat.classList.value.includes('active')) {
+        cat.classList.remove('active')
+        category.classList.remove('selected-category')
+        tabCat.forEach((elem, idx) => {
+            if(elem == cat) {
+                tabCat.splice(idx, 1)
+            }
+        })
+    } else {
+        if(len >= 2) {
+            tabCat[0].classList.remove('active')
+            category.classList.remove('selected-category')
+            tabCat.shift()
+        }
+        cat.classList.add('active')
+        category.classList.add('selected-category')
+        tabCat.push(cat)
+    }
 }
