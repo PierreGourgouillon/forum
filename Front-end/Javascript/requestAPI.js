@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
+    let categories = [...document.getElementsByClassName("selected-category")]
+    let cats = categories.map((elem) => {
+        return elem.outerText
+    })
 
     let valueCookie = getCookie("PioutterID")
 
@@ -29,7 +33,8 @@ async function createPost(){
                 pseudo: user.Pseudo,
                 message: message.value,
                 like: 0,
-                dislike: 0
+                dislike: 0,
+                categories: cats
             })
         })
             .then((response) => {
@@ -130,6 +135,8 @@ async function addAllPost(response){
     let idUser = parseInt(getCookie("PioutterID"))
 
         response.forEach((post)=>{
+            console.log("les catégories du post sont :", post.categories)
+
             let template = document.getElementById("postTemplate")
             let clone = document.importNode(template.content, true)
             let container = document.getElementById("containerPost")
@@ -143,6 +150,13 @@ async function addAllPost(response){
             let divLike = clone.getElementById("like")
             let divDislike = clone.getElementById("dislike")
             let dots = clone.getElementById("dots")
+            let cats = [...clone.querySelectorAll(".styleCategory")]
+
+            if(post.categories != null) {
+                cats.forEach((elem, idx) => {
+                    elem.classList.add(`colorBox${post.categories[idx]}`)
+                })
+            }
 
             getProfilImage(post.IdUser)
                 .then((file)=>{
@@ -533,7 +547,6 @@ function getProfilImage(id) {
             return reponse.json()
         })
         .then((res)=>{
-            console.log(res, "hello")
             return res.image
         })
         .catch((error) => {

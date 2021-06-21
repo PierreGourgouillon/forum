@@ -100,11 +100,29 @@ func InsertPost(post *structs.Post) int64 {
 
 	id, error := res.LastInsertId()
 
+	for i := 0; i < len(post.Categories); i++ {
+		insertCategories(int(id), post.Categories[i])
+	}
+
 	if error != nil {
 		log.Fatal(error)
 	}
 
 	return id
+}
+
+func insertCategories(id int, cat string) {
+	var catId int
+
+	fmt.Println(cat)
+
+	rows := db.QueryRow("SELECT category_id FROM categories WHERE category_name = ?", cat)
+	rows.Scan(&catId)
+
+	_, error := db.Exec("INSERT INTO postCategory (post_id, category_id, post_category) VALUES (?, ?, ?)", id, catId, cat)
+	if error != nil {
+		fmt.Println(error)
+	}
 }
 
 func GetAllPosts() []structs.Post {
@@ -113,12 +131,30 @@ func GetAllPosts() []structs.Post {
 	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
 
 	if error != nil {
-		log.Fatal(error)
+		fmt.Println(error)
 	}
 
 	for rows.Next() {
+
 		var post structs.Post
 		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if error != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+		fmt.Print("cats => ")
+		fmt.Println(post.Categories)
+
 		allPost = append(allPost, post)
 	}
 
