@@ -93,7 +93,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 func InsertPost(post *structs.Post) int64 {
 
 	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
-
+	println("dd:", post.Pseudo)
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -386,6 +386,12 @@ func GetProfilByUserID(id int) structs.ProfilUser {
 	data4 := db.QueryRow("SELECT user_image FROM userProfile WHERE user_id = ?", id)
 	data4.Scan(&profil.Image)
 
+	data5 := db.QueryRow("SELECT user_email FROM userIdentity WHERE user_id = ?", id)
+	data5.Scan(&profil.Email)
+
+	data6 := db.QueryRow("SELECT user_birth FROM userIdentity WHERE user_id = ?", id)
+	data6.Scan(&profil.Birth)
+
 	return profil
 }
 
@@ -449,5 +455,46 @@ func ChangeImageUser(idUser int, file string) bool {
 		return false
 	}
 
+	return true
+}
+
+func DeactivateProfil(user *structs.UserIdentity, id int)bool{
+
+	query := "UPDATE userIdentity SET deactivate = ? WHERE user_id= ?"
+	db.Exec(query, user.Deactivate ,  id)
+
+	return true
+}
+
+func GetPasswordById(id int) string {
+	var password string
+
+	data := db.QueryRow("SELECT user_password FROM userIdentity WHERE user_id= ?", id)
+
+	data.Scan(&password)
+	return password
+}
+
+func UpdatePasswordByUserID(user *structs.Login, id int)bool{
+
+	user.Password, _ = password.HashPassword(user.Password)
+	query := "UPDATE userIdentity SET user_password = ? WHERE user_id= ?"
+	db.Exec(query, user.Password ,  id)
+
+	return true
+}
+
+func ChangePseudo(user *structs.UserIdentity, id int)bool{
+	query1 := "UPDATE allPosts SET user_pseudo = ? WHERE user_id= ?"
+	query2 := "UPDATE userIdentity SET user_pseudo = ? WHERE user_id= ?"
+	db.Exec(query1, user.Pseudo ,  id)
+	db.Exec(query2, user.Pseudo ,  id)
+
+	return true
+}
+
+func UpdateLocationByUserID(location string, id int)bool{
+	query := "UPDATE userProfile SET user_location= ? WHERE user_id= ?"
+	db.Exec(query, location, id)
 	return true
 }

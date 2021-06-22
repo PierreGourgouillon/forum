@@ -10,16 +10,19 @@ type Register struct {
 type Login struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+	ActualPassword string `json:"actualPassword"`
 }
 
 type UserIdentity struct {
 	ID         int
-	Pseudo     string
+	Pseudo     string `json:"pseudo"`
 	Email      string
 	Location   string
 	Image      string
 	Biographie string
 	Birth      string
+	Deactivate bool `json:"deactivate"`
+
 }
 
 type Post struct {
@@ -48,6 +51,8 @@ type ProfilUser struct {
 	Bio      string `json:"bio"`
 	Image    string `json:"image"`
 	Choice   string `json:"choice"`
+	Email 	 string `json:"email"`
+	Birth	 string `json:"birth"`
 }
 
 type SearchBar struct {

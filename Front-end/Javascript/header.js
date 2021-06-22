@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     let accueil = document.getElementById("accueil")
     let profil = document.getElementById("profil")
     let settings = document.getElementById("settings")
-    let darkMode = document.getElementById("mode")
+    // let darkMode = document.getElementById("mode")
     let pseudo = document.getElementById("pseudoname")
     let idUser = parseInt(getCookie("PioutterID"))
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
                 return response.json()
             })
             .then((res)=>{
-                pseudo.textContent = res.Pseudo
+                pseudo.textContent = res.pseudo
             })
             .catch(()=>{
                 document.location.href = "/"

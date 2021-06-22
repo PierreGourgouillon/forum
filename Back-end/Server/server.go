@@ -14,6 +14,7 @@ import (
 	"github.com/forum/Back-end/authentification"
 	"github.com/forum/Back-end/cookie"
 	"github.com/forum/Back-end/database"
+	"github.com/forum/Back-end/password"
 	"github.com/forum/Back-end/structs"
 	"github.com/gorilla/mux"
 )
@@ -56,6 +57,11 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/settings/account/country/", accountChangeCountry)
 	router.HandleFunc("/settings/deactivate/", deactivateAccount)
 
+	router.HandleFunc("/profildeactivate/{id}", deactivateRoute).Methods("PUT")
+	router.HandleFunc("/profilpassword/{id}", updateProfilPassword).Methods("PUT")
+	router.HandleFunc("/profilpseudo/{id}", updateProfilPseudo).Methods("PUT")
+	router.HandleFunc("/profillocation/{id}", updateProfilLocation).Methods("PUT")
+
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
 
@@ -77,6 +83,19 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/reaction/", createReaction).Methods("POST")
 	router.HandleFunc("/reaction/{id}", getReactionsOnePost).Methods("GET")
 	router.HandleFunc("/reaction/{id}", updateReactionOnePost).Methods("PUT")
+
+	//Error Route
+	router.HandleFunc("/profilpassword/valid", passwordRouteValid)
+	router.HandleFunc("/profilpassword/nonValid", passwordRouteNonValid)
+	
+	router.HandleFunc("/profilpseudo/valid", profilPseudoValid)
+	router.HandleFunc("/profilpseudo/nonValid", profilPseudoNonValid)
+	
+	router.HandleFunc("/profildeactive/valid", profilDeactiveValid)
+	router.HandleFunc("/profildeactive/nonValid", profilDeactiveNonValid)
+	
+	router.HandleFunc("/profillocation/valid", profilLocationValid)
+	router.HandleFunc("/profillocation/nonValid", profilLocationNonValid)
 
 	//Footer Route
 	router.HandleFunc("/search/", getSearchBar).Methods("GET")
@@ -111,7 +130,6 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 	if !cookie.ReadCookie(r, "PioutterMode") {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
 	}
-
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
@@ -119,8 +137,9 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	tmpl.Execute(w, nil)
-}
+	tmpl.Execute(w, nil)}
+
+
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
 	if !cookie.ReadCookie(r, "PioutterMode") {
@@ -309,6 +328,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
+	println("paul",post.Pseudo)
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
@@ -321,7 +341,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	post.IdUser = valueCookie
 	post.Date = time.Format("02-01-2006")
 	post.Hour = time.Format("15:04:05")
-
+	
 	idPost := database.InsertPost(&post)
 
 	post.PostId = int(idPost)
@@ -688,4 +708,205 @@ func unmarshallJSON(r *http.Request, API interface{}) {
 	}
 
 	json.Unmarshal(body, &API)
+}
+
+
+func passwordRouteValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePassword/redirectionChangePasswordValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func passwordRouteNonValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePassword/redirectionChangePasswordNonValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func profilDeactiveValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccountValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func profilDeactiveNonValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/errorDeactiveAccount/redirectionDeactiveAccountNonValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func profilPseudoValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePseudo/redirectionChangePseudoValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func profilPseudoNonValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePseudo/redirectionChangePseudoNonValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func profilLocationValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangeLocation/redirectionChangeLocationValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func profilLocationNonValid(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangeLocation/redirectionChangeLocationNonValid.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(w, nil)
+}
+
+func updateProfilLocation(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var json structs.ProfilUser
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	unmarshallJSON(r, &json)
+
+
+	isUpdate := database.UpdateLocationByUserID(json.Location, id)
+	if isUpdate {
+		w.Write([]byte("{\"change\": \"true\"}"))
+	} else {
+		w.Write([]byte("{\"change\": \"false\"}"))
+	}
+
+}
+
+
+
+
+
+
+
+func deactivateRoute(w http.ResponseWriter, r *http.Request) {
+	println("id:")
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	println("id:", id)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(0)
+	}
+
+	var deactive structs.UserIdentity
+	unmarshallJSON(r, &deactive)
+	isDelete := database.DeactivateProfil(&deactive, id)
+	
+
+	if isDelete {
+		if cookie.ReadCookie(r, "PioutterID") {
+			cookie.DeleteCookie(r, "PioutterID")
+		}
+		w.Write([]byte("{\"delete\": \"true\"}"))
+
+	} else {
+		w.Write([]byte("{\"delete\": \"false\"}"))
+	}
+
+}
+
+func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(0)
+	}
+
+	var structPassword structs.Login
+	unmarshallJSON(r, &structPassword)
+	println(&structPassword)
+
+	var passwordHash = database.GetPasswordById(id)
+
+	if password.CheckPasswordHash(structPassword.ActualPassword, passwordHash){
+
+		isChange := database.UpdatePasswordByUserID(&structPassword, id)
+		if isChange {
+			w.Write([]byte("{\"change\": \"true\"}"))
+		} else {
+			w.Write([]byte("{\"change\": \"false\"}"))
+		}
+	}else{
+		w.Write([]byte("{\"change\": \"false\"}"))
+	}
+}
+
+func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(0)
+	}
+
+	var pseudoStruct structs.UserIdentity
+	unmarshallJSON(r, &pseudoStruct)
+	isValid := database.ChangePseudo(&pseudoStruct, id)
+
+	if isValid{
+		w.Write([]byte("{\"valid\": \"true\"}"))
+		println("cest ok")
+
+	} else {
+		w.Write([]byte("{\"valid\": \"false\"}"))
+	}
+
 }

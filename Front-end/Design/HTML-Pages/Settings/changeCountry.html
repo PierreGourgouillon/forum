@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsChangeCountry.css" type="text/css">
+    <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/requestAPI.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
     <title>Votre compte</title>
 </head>
 <body>
@@ -32,7 +36,7 @@
                         <form method="get">
                             <div class="globalFLex link-in-mains">
                                 <div class="input-container">
-                                    <select class="input" name="pays">
+                                    <select class="input" id="input" name="pays">
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Afrique_du_Sud">Afrique du Sud</option>
                                         <option value="Albanie">Albanie</option>
@@ -230,7 +234,7 @@
                                 </div>
 
                                 <div class="globalFLex" style="flex-direction: row; justify-content: center;margin-top: 40px">
-                                    <button class="submit-button transition" type="submit">Sauvegarder</button>
+                                    <button class="submit-button transition" onclick="changeLocation()" type="submit">Sauvegarder</button>
                                 </div>
                             </div>
                         </form>

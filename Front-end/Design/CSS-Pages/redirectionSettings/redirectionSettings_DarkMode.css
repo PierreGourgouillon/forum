@@ -1,0 +1,98 @@
+/*-----------------------
+* Police
+-------------------------*/
+
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "montserrat";
+    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*-----------------------
+* General
+-------------------------*/
+
+*{
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+    overflow: hidden;
+}
+
+
+body {
+    min-height: 100%;
+    background: #15202B;
+	font-family: 'Noto Sans', sans-serif;
+
+}
+
+#general{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5%;
+    padding-top: 20px;
+    width: 500px;
+    height: 500px;
+    /* border:1px solid #555; */
+    border-radius: 6px;
+}
+
+/*-----------------------
+* Logo
+-------------------------*/
+
+#zoomImage{
+    margin: 0 auto;
+    width: 400px;
+    height: 200px;
+    /* border:1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+#logo{
+    width: 50%;
+    aspect-ratio: 1/1;
+}
+
+#separation{
+    width: 100px;
+    height: 3px;
+    opacity: 70%;
+    background: #794BC4;
+
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:30px;
+    border-radius: 6px;
+}
+
+
+#titre{
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+    color:#E0E0E0;
+}
+
+a{
+    color:#5E5E5E;
+}
+#retour{
+    font-size: 20px;
+   text-align: center;
+   font-weight: bold;
+   color:#5E5E5E;
+}
+
+
+
+

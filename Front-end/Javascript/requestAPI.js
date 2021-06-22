@@ -18,6 +18,7 @@ async function createPost(){
     let valueCookie = getCookie("PioutterID")
 
     let user = await getUser(valueCookie)
+    console.log("test:",user.pseudo)
 
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
@@ -30,7 +31,7 @@ async function createPost(){
             },
             body: JSON.stringify({
                 title: title.value,
-                pseudo: user.Pseudo,
+                pseudo: user.pseudo,
                 message: message.value,
                 like: 0,
                 dislike: 0,
@@ -187,6 +188,7 @@ async function addAllPost(response){
                 })
             }
 
+            console.log(post)
             pseudo.textContent = post.pseudo
             title.textContent = post.title
             messagePost.textContent += post.message
@@ -555,3 +557,137 @@ function getProfilImage(id) {
         })
 }
 
+function deactivateAccount(){
+    let idUser = parseInt(getCookie("PioutterID"))
+    console.log("cookie:", idUser)
+
+    fetch(`/profildeactivate/${idUser}`, {
+        method: "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            "idUser": idUser,
+            "deactivate" : true,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    }).then((res)=>{
+        console.log('valid')
+        if (res.delete){
+            document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.location.href="/profildeactive/valid"
+        }else{
+            document.location.href="/profildeactive/nonValid"
+            console.log("nonValid")
+        }
+    })
+    .catch(()=>{
+        document.location.href="/profildeactive/nonValid"
+        console.log("catch")
+        return false
+    })
+
+}
+
+function changePassword(){
+    let newPassword = document.getElementById("newPassword").value
+    let actualPassword = document.getElementById("passwordActuel").value
+
+    console.log(actualPassword)
+    
+    if (testGeneral()){
+        let idUser = parseInt(getCookie("PioutterID"))
+        fetch(`/profilpassword/${idUser}`, {
+            method: "PUT",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                "password" : newPassword,
+                "actualPassword" : actualPassword,
+            })
+        })
+        .then((response)=>{
+            return response.json()
+        }).then((res)=>{
+            if (res.change){
+                document.location.href="/profilpassword/valid"
+                console.log('redirection ...')
+            }else{
+                document.location.href="/profilpassword/nonValid"
+                console.log('mdp actuel différent')
+            }
+        })
+        .catch(()=>{
+            return false
+        })
+    }
+}
+
+function changePseudo(){
+    let idUser = parseInt(getCookie("PioutterID"))
+    const newPseudo = document.getElementById("passwordActuel").value
+
+    fetch(`/profilpseudo/${idUser}`, {
+        method: "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            "idUser": idUser,
+            "pseudo" : newPseudo,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    }).then((res)=>{
+        if (res.valid){
+            console.log("valid")
+            document.location.href="/profilpseudo/valid"
+
+        }else{
+            console.log("nonValid")
+            document.location.href="/profilpseudo/nonValid"
+        }
+    })
+    .catch(()=>{
+        console.log("catch")
+        return false
+    })
+
+}
+
+function changeLocation(){
+    let idUser = parseInt(getCookie("PioutterID"))
+    const newLocation = document.getElementById("input").value
+
+    fetch(`/profillocation/${idUser}`, {
+        method: "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            "idUser": idUser,
+            "location" : newLocation,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    }).then((res)=>{
+        if (res.change){
+            console.log("valid")
+            document.location.href="/profillocation/valid"
+
+        }else{
+            console.log("nonValid")
+            document.location.href="/profillocation/nonValid"
+        }
+    })
+    .catch(()=>{
+        console.log("catch")
+        return false
+    })
+
+}
