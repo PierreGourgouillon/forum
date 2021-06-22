@@ -238,3 +238,7 @@ input:valid + label, input:focus + label {
     border-bottom: 1px solid rgb(47, 51, 54);
     min-height: calc(48px);
 }
+
+.error{
+    color:#c4634b;
+}
