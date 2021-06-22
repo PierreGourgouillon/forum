@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("search-button").addEventListener("click", goToPost)
     document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
     document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
+    /*const filters = [...document.getElementsByClassName("filter")]
+    filters.forEach((filter) => filter.addEventListener("click", () => {
+        chooseFilter(filter)
+    }))*/
 })
 
 function showMoreFilter(){
@@ -77,3 +81,28 @@ function goToPost() {
         }
     }
 }
+/*
+let tabFilter = []
+
+function chooseFilter(filter){
+    const len = document.getElementById(("category-boxs")).querySelectorAll('.active').length
+    let fil = filter.querySelector('button')
+    if(filter.classList.value.includes('active')) {
+        filter.classList.remove('active')
+        fil.classList.remove('selected-category')
+        tabFilter.forEach((elem, idx) => {
+            if(elem == filter) {
+                tabFilter.splice(idx, 1)
+            }
+        })
+    } else {
+        if(len >= 2) {
+            tabFilter[0].classList.remove('active')
+            fil.classList.remove('selected-category')
+            tabFilter.shift()
+        }
+        filter.classList.add('active')
+        fil.classList.add('selected-category')
+        tabFilter.push(filter)
+    }
+}*/
