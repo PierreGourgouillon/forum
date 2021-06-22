@@ -36,7 +36,7 @@
                         <span>Consultez les informations sur votre compte ou découvrez les options <br> de désactivation de votre compte</span>
                     </div>
 
-                    <a href="/settings/account/" id="infoCompte" class="globalFLex link-in-main">
+                    <a onclick="verifConnectInfoAccount()"  class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/profile.svg">
@@ -49,11 +49,11 @@
                                     <span>Consultez les informations de votre compte telles que votre numéro de téléphone et votre adresse e-mail.</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" id="infoCompte" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
-                    <a href="/settings/password/" id="changeMdp" class="globalFLex link-in-main">
+                    <a onclick="verifConnectChangMdp()" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/password.svg">
@@ -66,11 +66,11 @@
                                     <span>Changez votre mot de passe à tout moment.</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" id="changeMdp" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
-                    <a href="/settings/deactivate/" id="deaCompte" class="globalFLex link-in-main">
+                    <a onclick="verifConnectDeaAccount()" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/desactivate_account.svg">
@@ -83,7 +83,7 @@
                                     <span>Désactiver ou supprimer votre compte</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img class="image" src="/static/Design/Images/Icon/arrow_right.svg" id="deaCompte" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
