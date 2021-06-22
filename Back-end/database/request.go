@@ -30,7 +30,7 @@ func GetEmailList() []string {
 func InsertNewUser(user structs.Register) {
 
 	user.MotDePasse, _ = password.HashPassword(user.MotDePasse)
-	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth) VALUES (?, ?, ?, ?)", user.Email, user.Pseudo, user.MotDePasse, user.Birth)
+	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth, deactivate) VALUES (?, ?, ?, ?, false)", user.Email, user.Pseudo, user.MotDePasse, user.Birth)
 	if err != nil {
 		return
 	}
