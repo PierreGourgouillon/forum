@@ -257,6 +257,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
+	println("paul",post.Pseudo)
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
@@ -269,7 +270,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	post.IdUser = valueCookie
 	post.Date = time.Format("02-01-2006")
 	post.Hour = time.Format("15:04:05")
-
+	
 	idPost := database.InsertPost(&post)
 
 	post.PostId = int(idPost)

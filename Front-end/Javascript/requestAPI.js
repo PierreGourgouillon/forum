@@ -18,6 +18,7 @@ async function createPost(){
     let valueCookie = getCookie("PioutterID")
 
     let user = await getUser(valueCookie)
+    console.log("test:",user.Pseudo)
 
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
@@ -30,7 +31,7 @@ async function createPost(){
             },
             body: JSON.stringify({
                 title: title.value,
-                pseudo: user.Pseudo,
+                pseudo: user.pseudo,
                 message: message.value,
                 like: 0,
                 dislike: 0,
@@ -186,6 +187,7 @@ async function addAllPost(response){
                 })
             }
 
+            console.log(post)
             pseudo.textContent = post.pseudo
             title.textContent = post.title
             messagePost.textContent += post.message

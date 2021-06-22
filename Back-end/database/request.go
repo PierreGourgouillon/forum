@@ -93,7 +93,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 func InsertPost(post *structs.Post) int64 {
 
 	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
-
+	println("dd:", post.Pseudo)
 	if error != nil {
 		log.Fatal(error)
 	}
