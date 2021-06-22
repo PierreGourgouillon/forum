@@ -63,7 +63,7 @@ function register() {
         if(res.register == "true") {
             console.log(res.id)
             document.cookie = `PioutterID=${res.id}; path=/`
-            // document.location.href = "/home/"
+            document.location.href = "/home/"
         } else {
             error.textContent = "L'email est déjà utilisé"
         }

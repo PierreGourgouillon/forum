@@ -178,8 +178,6 @@ func GetAllPosts() []structs.Post {
 			cats = append(cats, cat)
 		}
 		post.Categories = cats
-		fmt.Print("cats => ")
-		fmt.Println(post.Categories)
 
 		allPost = append(allPost, post)
 	}
@@ -332,6 +330,21 @@ func GetPostsByUserID(id int) []structs.Post {
 	for rows.Next() {
 		var post structs.Post
 		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
 		allPost = append(allPost, post)
 	}
 
@@ -368,6 +381,21 @@ func getPostWithArray(tab []int) []structs.Post {
 
 		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
 		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
 		allPost = append(allPost, post)
 	}
 

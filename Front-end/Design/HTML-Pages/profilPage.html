@@ -5,11 +5,12 @@
 
     <link rel="icon" type="image/png" href="/static/Design/Images/logo.png">
 
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/profilPage.css" type="text/css">
-    <script src="/static/Javascript/requestAPI.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/pop_up_Image.css">
+
     <script src="/static/Javascript/profil.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="/static/Javascript/post.js"></script>
@@ -21,6 +22,27 @@
 
 <body>
 <div class="container-body">
+
+    <div class="container-popUp-Images" id="jsPopupImages">
+        <div class="globalFLex">
+            <div class="container-images-popUp">
+                <div class="width-images-popUp"><img src="" id="popUp-Image"></div>
+            </div>
+
+            <div class="globalFLex">
+                <div class="container-span-popUp">
+                    <span id="title-user-popUp-Image"></span>
+                </div>
+            </div>
+
+            <div class="globalFLex">
+                <div class="container-biographie-popUp">
+                    <span id="biography-popUp-Image"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="popUp-update">
         <div class="container-popUp-update">
@@ -123,16 +145,16 @@
 
                                         <div class="globalFLex" style="margin-top: -18px">
                                             <a href="" class="postLinkos">
-                                            <div class="RowFLex shrink" style="padding-top: 5px; align-items: baseline">
+                                            <div id="divTitleUser" class="RowFLex shrink" style="padding-top: 10px;">
                                                 <div class="globalFLex">
                                                 <span class="textStyle" id="title-user"></span>
                                                 </div>
 
                                                 <div class="mLeft RowFLex" style="justify-content: space-between; margin-left: 12px">
-                                                <div class="globalFLex styleCategory" style="background-color: #794BC4">
+                                                <div class="globalFLex styleCategory">
                                                     <span></span>
                                                 </div>
-                                                <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
+                                                <div class="globalFLex mLeft styleCategory">
                                                     <span></span>
                                                 </div>
                                                 </div>
@@ -170,6 +192,21 @@
             </div>
             <div id="containerPostLiked" style="display: none">
             </div>
+        </div>
+    </div>
+
+     <div class="globalFLex popUpList" id="pop-up">
+        <div class="globalFLex popUpList paddingTop paddingLeft hoverpop" style="cursor: pointer" id="updatePost">
+        <div class="RowFLex popUpList">
+            <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/edit.svg"></div>
+            <span class="popUpList spanPopUp" >Modifier le post</span>
+        </div>
+        </div>
+        <div class="paddingTop paddingLeft globalFLex popUpList hoverpop" style="cursor: pointer" id="deletePost">
+        <div class="RowFLex popUpList">
+            <div class="globalFLex popUpList" style="width: 20px;"><img class="popUpList" src="/static/Design/Images/Icon/delete.svg"></div>
+            <span class="popUpList spanPopUp" >Supprimer le post</span>
+        </div>
         </div>
     </div>
 
