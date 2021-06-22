@@ -15,6 +15,7 @@ func GetEmailList() []string {
 	data, err := db.Query("SELECT user_email FROM userIdentity")
 
 	if err != nil {
+		fmt.Println("err GEL")
 		return []string{}
 	}
 
@@ -28,14 +29,15 @@ func GetEmailList() []string {
 }
 
 func InsertNewUser(user structs.Register) {
-
 	user.MotDePasse, _ = password.HashPassword(user.MotDePasse)
-	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth) VALUES (?, ?, ?, ?)", user.Email, user.Pseudo, user.MotDePasse, user.Birth)
+	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth, deactivate) VALUES (?, ?, ?, ?, false)", user.Email, user.Pseudo, user.MotDePasse, user.Birth)
 	if err != nil {
 		return
 	}
 
 	id, err2 := data.LastInsertId()
+	fmt.Print("id => ")
+	fmt.Print(id)
 	if err2 != nil {
 		return
 	}
@@ -56,13 +58,24 @@ func GetPasswordByEmail(email string) string {
 	return password
 }
 
-func GetIdByEmail(email string) (string, string) {
+func GetIdByEmail(email string) string {
 	var ID int
 
 	data := db.QueryRow("SELECT user_id FROM userIdentity WHERE user_email = ?", email)
 
 	data.Scan(&ID)
-	return strconv.Itoa(ID), ""
+	return strconv.Itoa(ID)
+}
+
+func IsDeactivate(id int) bool {
+	var isDeactivate bool
+
+	data := db.QueryRow("SELECT deactivate FROM userIdentity WHERE user_id = ?", id)
+
+	data.Scan(&isDeactivate)
+
+	return isDeactivate
+
 }
 
 func GetIdentityUser(valueCookie string) structs.UserIdentity {
@@ -458,10 +471,16 @@ func ChangeImageUser(idUser int, file string) bool {
 	return true
 }
 
-func DeactivateProfil(user *structs.UserIdentity, id int)bool{
-
+func DeactivateProfil(user *structs.UserIdentity, id int) bool {
 	query := "UPDATE userIdentity SET deactivate = ? WHERE user_id= ?"
-	db.Exec(query, user.Deactivate ,  id)
+	db.Exec(query, user.Deactivate, id)
+
+	return true
+}
+
+func ReactivateProfil(user structs.UserIdentity, id int) bool {
+	query := "UPDATE userIdentity SET deactivate = ? WHERE user_id= ?"
+	db.Exec(query, user.Deactivate, id)
 
 	return true
 }
@@ -475,25 +494,25 @@ func GetPasswordById(id int) string {
 	return password
 }
 
-func UpdatePasswordByUserID(user *structs.Login, id int)bool{
+func UpdatePasswordByUserID(user *structs.Login, id int) bool {
 
 	user.Password, _ = password.HashPassword(user.Password)
 	query := "UPDATE userIdentity SET user_password = ? WHERE user_id= ?"
-	db.Exec(query, user.Password ,  id)
+	db.Exec(query, user.Password, id)
 
 	return true
 }
 
-func ChangePseudo(user *structs.UserIdentity, id int)bool{
+func ChangePseudo(user *structs.UserIdentity, id int) bool {
 	query1 := "UPDATE allPosts SET user_pseudo = ? WHERE user_id= ?"
 	query2 := "UPDATE userIdentity SET user_pseudo = ? WHERE user_id= ?"
-	db.Exec(query1, user.Pseudo ,  id)
-	db.Exec(query2, user.Pseudo ,  id)
+	db.Exec(query1, user.Pseudo, id)
+	db.Exec(query2, user.Pseudo, id)
 
 	return true
 }
 
-func UpdateLocationByUserID(location string, id int)bool{
+func UpdateLocationByUserID(location string, id int) bool {
 	query := "UPDATE userProfile SET user_location= ? WHERE user_id= ?"
 	db.Exec(query, location, id)
 	return true

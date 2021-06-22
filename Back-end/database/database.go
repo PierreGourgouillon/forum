@@ -56,6 +56,8 @@ func CreateTable() {
 			fmt.Println("Table " + strconv.Itoa(j+1) + " is create")
 		}
 	}
+
+	fillTableCategories()
 }
 
 const tableUserIdentity = `CREATE TABLE IF NOT EXISTS userIdentity(
@@ -112,7 +114,14 @@ user_dislike BOOLEAN NOT NULL
 )`
 
 func fillTableCategories() {
-	tabCat := []string{"Actualité", "Sport", "Humour", "Cinéma", "Jeux Vidéo", "Santé", "Internet", "Nourriture", "Art", "Histoire"}
+	var err error
+	db, err = sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		fmt.Print("fill db => ")
+		fmt.Println(err)
+	}
+
+	tabCat := []string{"Actualité", "Art", "Cinéma", "Histoire", "Humour", "Internet", "Jeux Vidéo", "Nourriture", "Santé", "Sport"}
 	row := db.QueryRow("SELECT category_name FROM categories WHERE category_id = 1")
 
 	var empty string

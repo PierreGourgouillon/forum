@@ -362,7 +362,7 @@ async function addReactions(e, isLike) {
             }
 
         } else {
-            document.location.href = "/error/"
+            // document.location.href = "/error/"
         }
 
     } else {
@@ -526,7 +526,7 @@ function updatePost(id, message, title, like, dislike){
         return true
     })
     .catch(() => {
-        document.location.href = "/error/"
+        // document.location.href = "/error/"
     })
 }
 
@@ -580,7 +580,7 @@ function APIChangeImage(idUser, file){
             }
         })
         .catch(()=>{
-            document.location.href = "/error/"
+            // document.location.href = "/error/"
         })
 }
 

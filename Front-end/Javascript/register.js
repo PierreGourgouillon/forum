@@ -1,10 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+    delCookie()
     document.getElementById("register").addEventListener("click", register)
     document.getElementById("eye1").addEventListener("click", AfficherMdp1)
     document.getElementById("eye2").addEventListener("click", AfficherMdp2)
     document.getElementById("btRandom").addEventListener("click", strRandom)
     document.getElementById("passwordConf").addEventListener("keyup", validatePassword)
 })
+
+function delCookie(){
+    document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    console.log("cookie delete")
+}
 
 function register() {
     const pseudo = document.getElementById("pseudo")
@@ -55,8 +61,9 @@ function register() {
     })
     .then((res) => {
         if(res.register == "true") {
+            console.log(res.id)
             document.cookie = `PioutterID=${res.id}; path=/`
-            document.location.href = "/home/"
+            // document.location.href = "/home/"
         } else {
             error.textContent = "L'email est déjà utilisé"
         }
