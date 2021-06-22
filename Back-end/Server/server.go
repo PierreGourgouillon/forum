@@ -867,10 +867,6 @@ func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 	var deactive structs.UserIdentity
 	unmarshallJSON(r, &deactive)
 	isDelete := database.DeactivateProfil(&deactive, id)
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
 
 	if isDelete {
 		if cookie.ReadCookie(r, "PioutterID") {
