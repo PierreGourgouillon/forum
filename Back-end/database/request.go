@@ -56,13 +56,13 @@ func GetPasswordByEmail(email string) string {
 	return password
 }
 
-func GetIdByEmail(email string) string {
+func GetIdByEmail(email string) (string, string) {
 	var ID int
 
 	data := db.QueryRow("SELECT user_id FROM userIdentity WHERE user_email = ?", email)
 
 	data.Scan(&ID)
-	return strconv.Itoa(ID)
+	return strconv.Itoa(ID), ""
 }
 
 func GetIdentityUser(valueCookie string) structs.UserIdentity {
@@ -234,6 +234,12 @@ func DeletePost(id int) bool {
 
 	query := "DELETE FROM allPosts WHERE post_id= ?"
 	_, err := db.Exec(query, id)
+	if err != nil {
+		return false
+	}
+
+	query = "DELETE FROM postReactions WHERE post_id= ?"
+	_, err = db.Exec(query, id)
 	if err != nil {
 		return false
 	}
