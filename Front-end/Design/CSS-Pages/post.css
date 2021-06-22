@@ -88,8 +88,10 @@
 .styleCategory {
     font-size: 13px;
     border-radius: 15px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -133,60 +135,41 @@
 /********** Catégories **********/
 
 .colorBox1 {
-    width: 10px;
-    height: 10px;
     background-color: #6600FF;
 }
 
-.colorBox2 {
-    width: 10px;
-    height: 10px;
+.colorBox2 {  
     background-color: #8A3DFE;
 }
 
-.colorBox3 {
-    width: 10px;
-    height: 10px;
+.colorBox3 { 
     background-color: #AC74FF;
 }
 
 .colorBox4 {
-    width: 10px;
-    height: 10px;
     background-color: #4900BB;
 }
-.colorBox5 {
-    width: 10px;
-    height: 10px;
+
+.colorBox5 { 
     background-color: #3ce759;
 }
 
 .colorBox6 {
-    width: 10px;
-    height: 10px;
     background-color: #e74c3c;
 }
 
 .colorBox7 {
-    width: 10px;
-    height: 10px;
     background-color: yellow;
 }
 
-.colorBox8 {
-    width: 10px;
-    height: 10px;
+.colorBox8 { 
     background-color: black;
 }
 
 .colorBox9 {
-    width: 10px;
-    height: 10px;
     background-color: darkcyan;
 }
 
 .colorBox10 {
-    width: 10px;
-    height: 10px;
     background-color: orange;
 }

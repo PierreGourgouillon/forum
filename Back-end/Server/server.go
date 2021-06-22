@@ -255,6 +255,14 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	post.PostId = int(idPost)
 
+	fmt.Print("cate1")
+	fmt.Println(post.Categories)
+
+	post.Categories = database.GetCategoriesID(post.Categories)
+
+	fmt.Print("cate2")
+	fmt.Println(post.Categories)
+
 	fmt.Println("Insertion du post :")
 	fmt.Println(post)
 

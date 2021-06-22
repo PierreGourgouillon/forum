@@ -125,6 +125,19 @@ func insertCategories(id int, cat string) {
 	}
 }
 
+func GetCategoriesID(cats []string) []string {
+	var tabCatsID []string
+
+	for _, cat := range cats {
+		var id int
+		catRow := db.QueryRow("SELECT category_id FROM categories WHERE category_name = ?", cat)
+		catRow.Scan(&id)
+		tabCatsID = append(tabCatsID, strconv.Itoa(id))
+	}
+
+	return tabCatsID
+}
+
 func GetAllPosts() []structs.Post {
 	var allPost []structs.Post
 
@@ -141,7 +154,7 @@ func GetAllPosts() []structs.Post {
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
-		if error != nil {
+		if err != nil {
 			fmt.Println(err)
 		}
 

@@ -1,4 +1,4 @@
-
+let tabCats = {"1": "Actualité","2": "Sport","3": "Humour","4": "Cinéma","5": "Jeux Vidéo","6": "Santé","7": "Internet","8": "Nourriture", "9": "Art", "10": "Histoire"}
 var compteur = false
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -155,6 +155,7 @@ async function addAllPost(response){
             if(post.categories != null) {
                 cats.forEach((elem, idx) => {
                     elem.classList.add(`colorBox${post.categories[idx]}`)
+                    elem.querySelector('span').textContent = tabCats[post.categories[idx]]
                 })
             }
 

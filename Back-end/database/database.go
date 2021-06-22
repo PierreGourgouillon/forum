@@ -114,7 +114,7 @@ user_dislike BOOLEAN NOT NULL
 )`
 
 func fillTableCategories() {
-	tabCat := []string{"Actualité", "Sport", "Humour", "Cinéma", "Jeux Vidéos", "Santé", "Internet", "Nourriture", "Art", "Histoire"}
+	tabCat := []string{"Actualité", "Sport", "Humour", "Cinéma", "Jeux Vidéo", "Santé", "Internet", "Nourriture", "Art", "Histoire"}
 	row := db.QueryRow("SELECT category_name FROM categories WHERE category_id = 1")
 
 	var empty string
