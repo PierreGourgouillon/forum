@@ -97,14 +97,11 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/profillocation/valid", profilLocationValid)
 	router.HandleFunc("/profillocation/nonValid", profilLocationNonValid)
 
-<<<<<<< HEAD
 	router.HandleFunc("/introuvable/", profilDeactiveRoute)
-=======
 	//Commentary Route
 
 	router.HandleFunc("/commentary/{id}", getCommentaryPost).Methods("GET")
 	router.HandleFunc("/commentary/", createCommentary).Methods("POST")
->>>>>>> dev
 
 	//Footer Route
 	router.HandleFunc("/search/", getSearchBar).Methods("GET")
@@ -346,10 +343,6 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
-<<<<<<< HEAD
-	println("paul", post.Pseudo)
-=======
->>>>>>> dev
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
@@ -367,14 +360,11 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	post.PostId = int(idPost)
 
-<<<<<<< HEAD
 	post.Categories = database.GetCategoriesID(post.Categories)
 
 	fmt.Println("Insertion du post :")
 	fmt.Println(post)
 
-=======
->>>>>>> dev
 	jsonPost, _ := json.Marshal(post)
 	w.Write(jsonPost)
 }
