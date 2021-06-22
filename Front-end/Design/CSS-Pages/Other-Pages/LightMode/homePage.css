@@ -1,0 +1,247 @@
+@font-face {
+    font-family: "Open Sans", sans-serif;
+    src: url('../../../../Fonts/open-sans-semibold.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "montserrat";
+    src: url('../../../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+.RowFlex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+
+.globalFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+.border{
+    border: 1px solid #707070;
+}
+.scroll-div{
+    overflow-y: scroll;
+}
+
+body{
+    overflow: hidden;
+}
+
+main{
+    width: 50%;
+    min-height: 100vh;
+}
+#main-box{
+    height: 100vh;
+    width: 100%;
+}
+#home-banner{
+    background-color: #A266FC;
+    height: 50px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+}
+#home-text{
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+#container-publish{
+    margin-left: -1px;
+    background-color: #F6F6F6;
+    height: 200px;
+    padding: 70px 20px 20px 20px;
+    justify-content: space-between;
+}
+.container-avatar{
+    align-items: center;
+}
+.border-avatar{
+    height: 60px;
+    aspect-ratio: 1/1;
+    border: 1px solid #707070;
+    border-radius: 50px;
+}
+.border-avatar img{
+    height: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+}
+#container-publishInputs{
+    width: 60%;
+}
+#container-titlePost{
+    height: 40px;
+    width: 100%;
+}
+#insert-title{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 3px 3px 0 0;
+    font-size: 18px;
+    padding: 0;
+    outline: none;
+    font-family: "Open-Sans-SemiBold";
+    font-weight: 400;
+}
+#container-messagePost{
+    height: 115px;
+    width: 100%;
+    background-color: white;
+}
+#insert-message{
+    height: 96%;
+    width: 94%;
+    border: none;
+    font-size: 18px;
+    resize: none;
+    outline: none;
+}
+#container-publishButton{
+    width: 6%;
+    height: 100%;
+    margin-top: -1px;
+    margin-right: -1px;
+}
+#b:hover{
+    background-color: rgba(121,75,195,0.1);
+    transition-duration: 0.2s;
+    height: 101%;
+}
+#b{
+    height: 99%;
+    width: 99%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#publishButton img{
+    color: #8A3DFE;
+}
+#category{
+    height: 155px;
+    width: 25%;
+    border: 2px solid #707070;
+    border-radius: 11px;
+    background-color: white;
+}
+#titleBox-category{
+    background-color: #A266FC;
+    height: 40px;
+    border-bottom: 1px solid #707070;
+    border-radius: 7px 7px 0 0;
+    justify-content: center;
+}
+#title-text{
+    font-family: "Open Sans", sans-serif;
+    padding-left: 15px;
+    color: white;
+    font-size: 18px;
+}
+#category-boxs{
+    border-radius: 0 0 9px 9px;
+}
+.category-box{
+    height: 30px;
+    border-bottom: 2px solid #707070;
+    background-color: white;
+    justify-content: center;
+}
+.category-button{
+     padding-left: 10px;
+     padding-right: 25px;
+     border: none;
+     cursor: pointer;
+     justify-content: space-between;
+ }
+.category-box:hover{
+    background-color: rgba(130,80,200,0.2);
+    transition-duration: 0.2s;
+}
+.active {
+    background-color: rgba(130,80,200,0.2);
+}
+.text-category:hover{
+    filter:none;
+}
+#lastCategory-box{
+    height: 30px;
+    background-color: white;
+    justify-content: center;
+}
+
+.text-category{
+    padding-left: 5px;
+    font-size: 18px;
+    color: #794BC4;
+    font-family: "Open Sans", sans-serif;
+}
+.colorBox-category{
+    border: 2px solid #707070;
+    border-radius: 50px;
+    margin-top: 4px;
+    height: 10px;
+    width: 30px;
+}
+#colorBox1{
+    background-color: red;
+}
+#colorBox2{
+    background-color: orange;
+}
+#colorBox3{
+    background-color: yellow;
+}
+#colorBox4{
+    background-color: greenyellow;
+}
+#colorBox5{
+    background-color: green;
+}
+#colorBox6{
+    background-color: darkgreen;
+}
+#colorBox7{
+    background-color: dodgerblue;
+}
+#colorBox8{
+    background-color: blue;
+}
+#colorBox9{
+    background-color: purple;
+}
+#colorBox10{
+    background-color: hotpink;
+}

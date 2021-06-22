@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     fillSearchBar()
     document.getElementById("search-button").addEventListener("click", goToPost)
+    document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
+    document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
 })
 
 function showMoreFilter(){
@@ -35,30 +37,29 @@ function fillSearchBar() {
             "Content-Type": "application/json"
         }
     })
-    .then((response) => {
-        return response.json()
-    })
-    .then((res) => {
-        res.titles.forEach((element, i) => {
-            let option = document.createElement("option")
-            option.value = element
-            option.dataset.id = i+1
-            option.dataset.myType = "title"
-            datalist.appendChild(option)
-        });
+        .then((response) => {
+            return response.json()
+        })
+        .then((res) => {
+            res.titles.forEach((element, i) => {
+                let option = document.createElement("option")
+                option.value = element
+                option.dataset.id = i+1
+                option.dataset.myType = "title"
+                datalist.appendChild(option)
+            });
 
-        res.users.forEach((element, i) => {
-            let option = document.createElement("option")
-            option.value = element
-            option.dataset.id = i+1
-            option.dataset.myType = "user"
-            datalist.appendChild(option)
-        });
-    })
+            res.users.forEach((element, i) => {
+                let option = document.createElement("option")
+                option.value = element
+                option.dataset.id = i+1
+                option.dataset.myType = "user"
+                datalist.appendChild(option)
+            });
+        })
 }
 
 function goToPost() {
-    console.log("click")
     let input = document.getElementById("search-input")
     input = input.value
     let data = document.getElementById("searchBar").options
@@ -68,7 +69,7 @@ function goToPost() {
             var ID = data[i].dataset.id;
             if(data[i].dataset.myType == "title") {
                 document.location.href = "/status/"+ID;
-                return; 
+                return;
             } else if(data[i].dataset.myType == "user") {
                 document.location.href = "/profil/"+ID;
                 return;
