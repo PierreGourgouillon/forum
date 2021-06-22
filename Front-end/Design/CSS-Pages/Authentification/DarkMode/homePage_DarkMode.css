@@ -175,3 +175,10 @@ h2{
     color:#ffffff;
     border: 3px solid #531da8;
 }
+
+.invite{
+    display:flex;
+    justify-content: center;
+    color:#555;
+    font-size:1vw;
+}
