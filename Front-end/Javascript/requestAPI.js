@@ -187,7 +187,6 @@ async function addAllPost(response){
                 })
             }
 
-            console.log(post)
             pseudo.textContent = post.pseudo
             title.textContent = post.title
             messagePost.textContent += post.message

@@ -93,7 +93,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 func InsertPost(post *structs.Post) int64 {
 
 	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
-	println("dd:", post.Pseudo)
+
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -135,7 +135,6 @@ func GetAllPosts() []structs.Post {
 	}
 
 	for rows.Next() {
-
 		var post structs.Post
 		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
@@ -172,8 +171,6 @@ func FindPostById(id int) structs.Post {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(post)
 
 	return post
 }
@@ -478,4 +475,32 @@ func UpdateLocationByUserID(location string, id int)bool{
 	query := "UPDATE userProfile SET user_location= ? WHERE user_id= ?"
 	db.Exec(query, location, id)
 	return true
+}
+func GetCommentaryPost(postId int) ([]structs.Commentary, bool) {
+	var commentaries []structs.Commentary
+
+	rows, error := db.Query("SELECT commentary_id, user_id, post_id, commentary_date, commentary_message  FROM allCommentary WHERE post_id = ?", postId)
+
+	if error != nil {
+		return commentaries, true
+	}
+
+	for rows.Next() {
+		var commentary structs.Commentary
+		rows.Scan(&commentary.CommentaryID, &commentary.UserID, &commentary.PostID, &commentary.Date, &commentary.Message)
+		commentaries = append(commentaries, commentary)
+	}
+
+	return commentaries, false
+}
+
+func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) {
+
+	insert, error := db.Exec("INSERT INTO allCommentary (user_id, post_id, commentary_date, commentary_message) VALUES (?, ?, ?, ?)", commentary.UserID, commentary.PostID, commentary.Date, commentary.Message)
+	if error != nil {
+		return false, commentary
+	}
+	commentary.CommentaryID, _ = insert.LastInsertId()
+
+	return true, commentary
 }

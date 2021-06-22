@@ -21,7 +21,7 @@ import (
 
 func StartServer() {
 
-	fmt.Println("StartServer loading...")
+	fmt.Println("Start Server loading...")
 	router := mux.NewRouter().StrictSlash(true)
 
 	requestHTTP(router)
@@ -87,18 +87,27 @@ func requestHTTP(router *mux.Router) {
 	//Error Route
 	router.HandleFunc("/profilpassword/valid", passwordRouteValid)
 	router.HandleFunc("/profilpassword/nonValid", passwordRouteNonValid)
-	
+
 	router.HandleFunc("/profilpseudo/valid", profilPseudoValid)
 	router.HandleFunc("/profilpseudo/nonValid", profilPseudoNonValid)
-	
+
 	router.HandleFunc("/profildeactive/valid", profilDeactiveValid)
 	router.HandleFunc("/profildeactive/nonValid", profilDeactiveNonValid)
-	
+
 	router.HandleFunc("/profillocation/valid", profilLocationValid)
 	router.HandleFunc("/profillocation/nonValid", profilLocationNonValid)
 
+	//Commentary Route
+
+	router.HandleFunc("/commentary/{id}", getCommentaryPost).Methods("GET")
+	router.HandleFunc("/commentary/", createCommentary).Methods("POST")
+
 	//Footer Route
 	router.HandleFunc("/search/", getSearchBar).Methods("GET")
+
+	router.HandleFunc("/test/", testRoute)
+
+	router.HandleFunc("/status/{id}", postPage)
 
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
@@ -131,6 +140,7 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/home/", http.StatusSeeOther)
 		return
 	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
@@ -138,9 +148,8 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	tmpl.Execute(w, nil)}
-
-
+	tmpl.Execute(w, nil)
+}
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
 	if cookie.ReadCookie(r, "PioutterID") {
@@ -257,7 +266,6 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
-	println("paul",post.Pseudo)
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
@@ -270,13 +278,10 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	post.IdUser = valueCookie
 	post.Date = time.Format("02-01-2006")
 	post.Hour = time.Format("15:04:05")
-	
+
 	idPost := database.InsertPost(&post)
 
 	post.PostId = int(idPost)
-
-	fmt.Println("Insertion du post :")
-	fmt.Println(post)
 
 	jsonPost, _ := json.Marshal(post)
 	w.Write(jsonPost)
@@ -440,8 +445,6 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 	PageProfil.PostsUser = database.GetPostsByUserID(id)
 	PageProfil.PostsLiked = database.GetPostsLikedByUserID(id)
 
-	fmt.Println(PageProfil.PostsLiked)
-
 	jsonPosts, error := json.Marshal(PageProfil)
 
 	if error != nil {
@@ -456,8 +459,6 @@ func getReactions(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	reactions := database.GetAllReactions()
-
-	fmt.Println(reactions)
 
 	jsonReactions, err := json.Marshal(reactions)
 
@@ -573,8 +574,6 @@ func updateProfilUser(w http.ResponseWriter, r *http.Request) {
 
 	unmarshallJSON(r, &json)
 
-	fmt.Println(json.Choice)
-
 	if json.Choice == "bio" {
 		check := database.UpdateBioByUserID(id, json.Bio)
 		if check {
@@ -611,7 +610,18 @@ func getSearchBar(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func testRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -739,12 +749,6 @@ func updateProfilLocation(w http.ResponseWriter, r *http.Request) {
 
 }
 
-
-
-
-
-
-
 func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 	println("id:")
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
@@ -762,7 +766,7 @@ func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 	var deactive structs.UserIdentity
 	unmarshallJSON(r, &deactive)
 	isDelete := database.DeactivateProfil(&deactive, id)
-	
+
 
 	if isDelete {
 		if cookie.ReadCookie(r, "PioutterID") {
@@ -831,4 +835,55 @@ func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"valid\": \"false\"}"))
 	}
 
+}
+func getCommentaryPost(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	commentaries, error := database.GetCommentaryPost(id)
+
+	if !error {
+		jsonCommentary, _ := json.Marshal(commentaries)
+		w.Write(jsonCommentary)
+	} else {
+		w.Write([]byte("{\"error\": \"true\"}"))
+	}
+}
+
+func createCommentary(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	var commentary structs.Commentary
+
+	unmarshallJSON(r, &commentary)
+
+	time := time.Now()
+	commentary.Date = time.Format("02-01-2006")
+
+	isInsert, newCommentary := database.CreateCommentary(commentary)
+
+	if isInsert {
+		commentaryJSON, _ := json.Marshal(newCommentary)
+		w.Write(commentaryJSON)
+	} else {
+		w.Write([]byte("{\"create\": \"false\"}"))
+	}
+}
+
+func postPage(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
 }

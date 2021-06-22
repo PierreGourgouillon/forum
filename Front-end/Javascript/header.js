@@ -44,13 +44,34 @@ document.addEventListener('DOMContentLoaded', async ()=>{
             })
     }
 
+    if (idUser !== 0 ){
+        getUserProfil(idUser)
+            .then((user)=>{
+                document.getElementById("headerImage").src = "data:image/png;base64," + user.image
+            })
+    }
 
     document.getElementById("margin").addEventListener("click", ()=>{
-        console.log("hello")
         let userID = parseInt(getCookie("PioutterID"))
         document.location.href = `/profil/${userID}`
     })
 })
+
+function getUserProfil(idUser) {
+
+    return fetch(`/profiluser/${idUser}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .catch(() => {
+            return "error"
+        })
+}
 
 function getCookie(cname) {
     let name = cname + "=";

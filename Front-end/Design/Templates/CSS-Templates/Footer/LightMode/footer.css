@@ -10,7 +10,7 @@
     font-weight: normal;
     font-style: normal;
 }
-.RowFlex{
+.RowFLex{
     display: flex;
     flex-basis: auto;
     flex-direction: row;
