@@ -59,3 +59,20 @@ function profilUser(profil) {
     bio.textContent = profil.bio
 }
 
+
+// function verifConnect(){
+//     const id = parseInt(getCookie("PioutterID"))
+//     let infoCompte= document.getElementById("infoCompte")
+//     let changeMdp = document.getElementById("changeMdp")
+//     let deaCompte = document.getElementById("deaCompte")
+//     let deconnexion = document.getElementById("kkk")
+
+//     if (id > 0){
+//         console.log("c'est ok")
+//     }else {
+        
+//     }
+
+
+
+// }
