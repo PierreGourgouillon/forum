@@ -60,6 +60,7 @@ function register() {
         return response.json()
     })
     .then((res) => {
+        console.log(res)
         if(res.register == "true") {
             console.log(res.id)
             document.cookie = `PioutterID=${res.id}; path=/`

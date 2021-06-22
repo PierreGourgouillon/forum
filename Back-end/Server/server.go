@@ -21,7 +21,7 @@ import (
 
 func StartServer() {
 
-	fmt.Println("StartServer loading...")
+	fmt.Println("Start Server loading...")
 	router := mux.NewRouter().StrictSlash(true)
 
 	requestHTTP(router)
@@ -97,10 +97,21 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/profillocation/valid", profilLocationValid)
 	router.HandleFunc("/profillocation/nonValid", profilLocationNonValid)
 
+<<<<<<< HEAD
 	router.HandleFunc("/introuvable/", profilDeactiveRoute)
+=======
+	//Commentary Route
+
+	router.HandleFunc("/commentary/{id}", getCommentaryPost).Methods("GET")
+	router.HandleFunc("/commentary/", createCommentary).Methods("POST")
+>>>>>>> dev
 
 	//Footer Route
 	router.HandleFunc("/search/", getSearchBar).Methods("GET")
+
+	router.HandleFunc("/test/", testRoute)
+
+	router.HandleFunc("/status/{id}", postPage)
 
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
@@ -132,6 +143,7 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 	if !cookie.ReadCookie(r, "PioutterMode") {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
 	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
@@ -334,7 +346,10 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
+<<<<<<< HEAD
 	println("paul", post.Pseudo)
+=======
+>>>>>>> dev
 	unmarshallJSON(r, &post)
 
 	time := time.Now()
@@ -352,11 +367,14 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	post.PostId = int(idPost)
 
+<<<<<<< HEAD
 	post.Categories = database.GetCategoriesID(post.Categories)
 
 	fmt.Println("Insertion du post :")
 	fmt.Println(post)
 
+=======
+>>>>>>> dev
 	jsonPost, _ := json.Marshal(post)
 	w.Write(jsonPost)
 }
@@ -524,8 +542,6 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 	PageProfil.PostsUser = database.GetPostsByUserID(id)
 	PageProfil.PostsLiked = database.GetPostsLikedByUserID(id)
 
-	fmt.Println(PageProfil.PostsLiked)
-
 	jsonPosts, error := json.Marshal(PageProfil)
 
 	if error != nil {
@@ -540,8 +556,6 @@ func getReactions(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	reactions := database.GetAllReactions()
-
-	fmt.Println(reactions)
 
 	jsonReactions, err := json.Marshal(reactions)
 
@@ -657,8 +671,6 @@ func updateProfilUser(w http.ResponseWriter, r *http.Request) {
 
 	unmarshallJSON(r, &json)
 
-	fmt.Println(json.Choice)
-
 	if json.Choice == "bio" {
 		check := database.UpdateBioByUserID(id, json.Bio)
 		if check {
@@ -695,7 +707,18 @@ func getSearchBar(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func testRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
 		fmt.Println(err)
@@ -854,6 +877,10 @@ func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 	var deactive structs.UserIdentity
 	unmarshallJSON(r, &deactive)
 	isDelete := database.DeactivateProfil(&deactive, id)
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 
 	if isDelete {
 		if cookie.ReadCookie(r, "PioutterID") {
@@ -946,4 +973,56 @@ func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"valid\": \"false\"}"))
 	}
 
+}
+
+func getCommentaryPost(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	commentaries, error := database.GetCommentaryPost(id)
+
+	if !error {
+		jsonCommentary, _ := json.Marshal(commentaries)
+		w.Write(jsonCommentary)
+	} else {
+		w.Write([]byte("{\"error\": \"true\"}"))
+	}
+}
+
+func createCommentary(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	var commentary structs.Commentary
+
+	unmarshallJSON(r, &commentary)
+
+	time := time.Now()
+	commentary.Date = time.Format("02-01-2006")
+
+	isInsert, newCommentary := database.CreateCommentary(commentary)
+
+	if isInsert {
+		commentaryJSON, _ := json.Marshal(newCommentary)
+		w.Write(commentaryJSON)
+	} else {
+		w.Write([]byte("{\"create\": \"false\"}"))
+	}
+}
+
+func postPage(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
 }

@@ -13,7 +13,7 @@
 ::placeholder{
     color: white;
 }
-.RowFlex{
+.RowFLex{
     display: flex;
     flex-basis: auto;
     flex-direction: row;
