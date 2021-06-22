@@ -18,7 +18,7 @@ async function createPost(){
     let valueCookie = getCookie("PioutterID")
 
     let user = await getUser(valueCookie)
-    console.log("test:",user.Pseudo)
+    console.log("test:",user.pseudo)
 
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
