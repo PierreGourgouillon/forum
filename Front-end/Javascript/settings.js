@@ -1,6 +1,7 @@
 function delCookie(){
-    document.cookie = "PioutterID=0;path=/;";
+    document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log("cookie delete")
+    document.location.href="/"
 }
 function getCookie(cname) {
     let name = cname + "=";

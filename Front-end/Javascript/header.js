@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
                 return response.json()
             })
             .then((res)=>{
-                pseudo.textContent = res.Pseudo
+                pseudo.textContent = res.pseudo
             })
             .catch(()=>{
                 document.location.href = "/"
