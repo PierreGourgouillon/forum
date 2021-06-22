@@ -466,9 +466,10 @@ func UpdatePasswordByUserID(user *structs.Login, id int)bool{
 }
 
 func ChangePseudo(user *structs.UserIdentity, id int)bool{
-
-	query := "UPDATE userIdentity SET user_pseudo = ? WHERE user_id= ?"
-	db.Exec(query, user.Pseudo ,  id)
+	query1 := "UPDATE allPosts SET user_pseudo = ? WHERE user_id= ?"
+	query2 := "UPDATE userIdentity SET user_pseudo = ? WHERE user_id= ?"
+	db.Exec(query1, user.Pseudo ,  id)
+	db.Exec(query2, user.Pseudo ,  id)
 
 	return true
 }
