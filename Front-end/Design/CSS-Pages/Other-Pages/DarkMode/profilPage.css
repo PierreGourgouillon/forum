@@ -84,6 +84,7 @@ body {
     margin-top: 1%;
     background-color: #15202B;
     border-radius: 150px 15px 15px 150px;
+    
 }
 
 .Avatar-Container {
@@ -92,6 +93,7 @@ body {
     height: 100%;
     border-radius: 50%;
     background-color: white;
+    /* border: 8px solid red; */
 }
 
 .Avatar {
