@@ -45,7 +45,6 @@ func CreateAndSelectDB(name string) {
 }
 
 func CreateTable() {
-
 	//Création des tables
 	tableau := [8]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory, tablePostReactions}
 	for j := range tableau {
@@ -64,7 +63,8 @@ user_id INT AUTO_INCREMENT PRIMARY 		KEY,
 user_email VARCHAR(50) NOT NULL,
 user_pseudo VARCHAR(30) NOT NULL,
 user_password VARCHAR(3000) NOT NULL,
-user_birth VARCHAR(12) NOT NULL)`
+user_birth VARCHAR(12) NOT NULL,
+deactivate BOOLEAN NOT NULL)`
 
 const tableUserProfile = `CREATE TABLE IF NOT EXISTS userProfile(
 user_id INT,

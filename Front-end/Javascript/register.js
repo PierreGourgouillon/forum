@@ -54,6 +54,7 @@ function register() {
         return response.json()
     })
     .then((res) => {
+        console.log(res)
         if(res.register == "true") {
             document.cookie = `PioutterID=${res.id}; path=/`
             document.location.href = "/home/"

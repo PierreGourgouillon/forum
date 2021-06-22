@@ -34,7 +34,6 @@ section{
     height: 100%;
 }
 
-
 /********** Flexbox **********/
 
 .globalFLex{
@@ -125,6 +124,7 @@ section{
     font-size: 15px;
     font-weight: 700;
 }
+
 
 
 /********** Hover **********/

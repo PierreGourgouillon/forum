@@ -147,3 +147,16 @@ section{
 .transition {
     transition-duration: 0.2s;
 }
+
+#deconnexion{
+    display: flex;
+    justify-content: center;
+}
+
+#kkk:hover{
+    background-color:rgba(201, 66, 66, 0.651) ;
+}
+
+#kkk:hover span{
+    color:white;
+}

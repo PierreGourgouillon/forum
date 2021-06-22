@@ -5,13 +5,16 @@
     <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
     <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
+    <script type="text/javascript" src="/static/Javascript/mode.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="/static/Javascript/settings.js"  charset="utf-8"></script>
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
     <title>Votre Compte</title>
 </head>
 <body>
 
 <div class="container-body">
 
-    {{template "header" .}}
+    {{template "header"}}
 
     <main>
         <div class="container-main">
@@ -34,7 +37,7 @@
                         <span>Consultez les informations sur votre compte ou découvrez les options <br> de désactivation de votre compte</span>
                     </div>
 
-                    <a href="/settings/account/" class="globalFLex link-in-main">
+                    <a onclick="verifConnectInfoAccount()"  class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/profile.svg">
@@ -47,11 +50,11 @@
                                     <span>Consultez les informations de votre compte telles que votre numéro de téléphone et votre adresse e-mail.</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" id="infoCompte" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
-                    <a href="/settings/password/" class="globalFLex link-in-main">
+                    <a onclick="verifConnectChangMdp()" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/password.svg">
@@ -64,11 +67,11 @@
                                     <span>Changez votre mot de passe à tout moment.</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" id="changeMdp" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
-                    <a href="/settings/deactivate/" class="globalFLex link-in-main">
+                    <a onclick="verifConnectDeaAccount()" class="globalFLex link-in-main">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/desactivate_account.svg">
@@ -81,7 +84,17 @@
                                     <span>Désactiver ou supprimer votre compte</span>
                                 </div>
                             </div>
-                            <img src="/static/Design/Images/Icon/arrow_right.svg" style="height: 29px;width: 29px;">
+                            <img class="image" src="/static/Design/Images/Icon/arrow_right.svg" id="deaCompte" style="height: 29px;width: 29px;">
+                        </div>
+                    </a>
+
+                    <a id="kkk" class="globalFLex link-in-main">
+                        <div onclick="delCookie()"   class="container-link-main globalFLex">
+                            <div class="globalFLex"  style="flex-grow: 1;flex-shrink: 1;">
+                                <div  id="deconnexion" class="style-link">
+                                    <span id="deconnexionSpan">Déconnexion</span>
+                                </div>
+                            </div>
                         </div>
                     </a>
                 </div>

@@ -40,6 +40,10 @@ section{
     height: 100%;
 }
 
+option{
+    color:black;
+}
+
 
 /********** Flexbox **********/
 
