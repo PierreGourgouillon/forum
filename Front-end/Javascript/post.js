@@ -1,9 +1,3 @@
-
-function changeMode() {
-    let css = document.getElementById("css")
-    css.href = "/static/Design/CSS-Pages/Authentification/LightMode/homePage_LightMode.css"
-}
-
 function popUp(e){
     let div = e.target.parentNode
     let idPost = div.getAttribute("post_id")

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     fillSearchBar()
+    document.getElementById("search-button").addEventListener("click", goToPost)
     document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
     document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
-    document.getElementById("search-button").addEventListener("click", goToPost)
 })
 
 function showMoreFilter(){
