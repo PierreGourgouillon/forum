@@ -20,7 +20,7 @@ import (
 
 func StartServer() {
 
-	fmt.Println("StartServer loading...")
+	fmt.Println("Start Server loading...")
 	router := mux.NewRouter().StrictSlash(true)
 
 	requestHTTP(router)
@@ -264,9 +264,6 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	post.PostId = int(idPost)
 
-	fmt.Println("Insertion du post :")
-	fmt.Println(post)
-
 	jsonPost, _ := json.Marshal(post)
 	w.Write(jsonPost)
 }
@@ -429,8 +426,6 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 	PageProfil.PostsUser = database.GetPostsByUserID(id)
 	PageProfil.PostsLiked = database.GetPostsLikedByUserID(id)
 
-	fmt.Println(PageProfil.PostsLiked)
-
 	jsonPosts, error := json.Marshal(PageProfil)
 
 	if error != nil {
@@ -445,8 +440,6 @@ func getReactions(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	reactions := database.GetAllReactions()
-
-	fmt.Println(reactions)
 
 	jsonReactions, err := json.Marshal(reactions)
 
@@ -561,8 +554,6 @@ func updateProfilUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	unmarshallJSON(r, &json)
-
-	fmt.Println(json.Choice)
 
 	if json.Choice == "bio" {
 		check := database.UpdateBioByUserID(id, json.Bio)

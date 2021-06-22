@@ -137,8 +137,6 @@ func FindPostById(id int) structs.Post {
 		log.Fatal(err)
 	}
 
-	fmt.Println(post)
-
 	return post
 }
 
@@ -416,6 +414,7 @@ func GetCommentaryPost(postId int) ([]structs.Commentary, bool) {
 }
 
 func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) {
+
 	insert, error := db.Exec("INSERT INTO allCommentary (user_id, post_id, commentary_date, commentary_message) VALUES (?, ?, ?, ?)", commentary.UserID, commentary.PostID, commentary.Date, commentary.Message)
 	if error != nil {
 		return false, commentary
