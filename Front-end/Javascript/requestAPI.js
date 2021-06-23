@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)
     addImageProfil()
+    document.getElementById("filter-button").addEventListener('click', indexPostFilter)
 })
 
 async function createPost(){
@@ -55,12 +56,15 @@ async function createPost(){
 }
 
 function postIndex(){
-
+    
     fetch("/post/", {
-        method : "GET",
+        method : "POST",
         headers : {
             "Content-Type" : "application/json"
-        }
+        },
+        body: JSON.stringify({
+            //categorie selectionné
+        })
     })
         .then((response)=>{
             return response.json()
@@ -691,7 +695,7 @@ function changeLocation(){
 
 }
 
-function postIndexFilter(){
+function indexPostFilter(){
 
     fetch("/post/filter/", {
         method : "GET",

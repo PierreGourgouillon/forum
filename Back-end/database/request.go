@@ -571,3 +571,22 @@ func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) 
 
 	return true, commentary
 }
+
+
+func GetIdByCategorie(categories structs.Post) (bool, structs.Post) {
+	var categories []structs.Post
+
+	rows, error := db.Query("SELECT post_id FROM postCategory WHERE post_category = ?", categories.Categories)
+
+	if error != nil {
+		return commentaries, true
+	}
+
+	for rows.Next() {
+		var commentary structs.Commentary
+		rows.Scan(&commentary.CommentaryID, &commentary.UserID, &commentary.PostID, &commentary.Date, &commentary.Message)
+		commentaries = append(commentaries, commentary)
+	}
+
+	return commentaries, false
+}

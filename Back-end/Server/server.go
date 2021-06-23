@@ -73,6 +73,7 @@ func requestHTTP(router *mux.Router) {
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
+	router.HandleFunc("/post/filter/", getPostFilter).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
@@ -1018,4 +1019,22 @@ func postPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, nil)
+}
+
+func getPostFilter(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	var post structs.Post
+
+	unmarshallJSON(r, &post)
+
+	allPostArray := database.GetAllPosts()
+	idPostCategorie := database.GetIdByCategorie()
+	jsonAllPost, error := json.Marshal(postArray)
+
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonAllPost)
 }
