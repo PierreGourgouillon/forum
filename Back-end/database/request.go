@@ -574,6 +574,7 @@ func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) 
 
 
 func GetIdByCategorie(categories structs.Post) (structs.Post) {
+	//faire return database.GetIdByCategorie dans un tableau
 	println(&categories)
 	// rows, error := db.Query("SELECT post_id FROM postCategory WHERE post_category = ?", categories.Categories)
 

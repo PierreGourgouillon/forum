@@ -1025,18 +1025,28 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 	var post structs.Post
+	var tab []int
 
 	unmarshallJSON(r, &post)
 
-	allPostArray := database.GetAllPosts()
-	println(allPostArray)
-	// idPostCategorie := database.GetIdByCategorie(post)
-	jsonAllPost, error := json.Marshal(allPostArray)
+	idPostOfCategorie := database.GetAllPosts() //recuperation idposts associer a idCategories selectionné
+												//renvoie un tableau avec les idPosts
+	
+	for i := 0; i < 100; i++ {
+		FindPostById(idPostOfCategorie[i])
+	}
+
+	jsonPostFilterCategories, error := json.Marshal(allPostArray)
 
 	if error != nil {
 		log.Fatal(error)
 	}
 	println("p")
 
-	w.Write(jsonAllPost)
+	w.Write(jsonPostFilterCategories)
 }
+
+body -> id de la categories
+
+postCategory -> recupere les ids dans un tableau 
+getpostwitharray -> recupere tout les posts avec la bonne categories
