@@ -698,10 +698,15 @@ function changeLocation(){
 function indexPostFilter(){
 
     fetch("/post/filter/", {
-        method : "GET",
+        method : "POST",
         headers : {
             "Content-Type" : "application/json"
-        }
+        },
+        body: JSON.stringify({
+            "idUser": idUser,
+            "location" : newLocation,
+        })
+
     })
         .then((response)=>{
             return response.json()
