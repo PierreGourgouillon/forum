@@ -129,32 +129,13 @@ section{
     color: #794bc4;
 }
 
-.link-in-main-false:hover{
-    background-color: rgba(121,75,195,0.1);
-    transition-duration: 0.2s;
-    color: #794bc4;
-}
-
 .link-in-main:hover img{
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
-.link-in-main-false:hover img{
-     filter: invert(35%) sepia(12%) /*saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%)*/; 
-}
-
-
 /********** Reste **********/
 
 .link-in-main{
-    padding: 12px 16px;
-    justify-content: space-between;
-    outline-style: none;
-    border-bottom: 1px solid rgb(47, 51, 54);
-    min-height: calc(48px);
-}
-
-.link-in-main-false{
     padding: 12px 16px;
     justify-content: space-between;
     outline-style: none;

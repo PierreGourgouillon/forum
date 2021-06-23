@@ -191,6 +191,13 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
 	}
 
+	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
+
+	if valueCookie == 0{
+		http.Redirect(w, r, "/home/", http.StatusSeeOther)
+		return
+	}
+
 	if !cookie.ReadCookie(r, "PioutterID") {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
