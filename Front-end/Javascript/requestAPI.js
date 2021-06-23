@@ -5,11 +5,15 @@ document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)
     addImageProfil()
+    document.getElementById("insert-title").addEventListener('keyup', unborderingPublish)
+    document.getElementById("insert-message").addEventListener('keyup', unborderingPublish)
+
 })
 
 async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
+    let messageBox = document.getElementById("container-messagePost")
     let categories = [...document.getElementsByClassName("selected-category")]
     let cats = categories.map((elem) => {
         return elem.outerText
@@ -22,7 +26,7 @@ async function createPost(){
 
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
-        message.style.border = "2px solid red"
+        messageBox.style.border = "2px solid red"
     }else{
         fetch("/post/", {
             method: 'POST',
@@ -690,4 +694,14 @@ function changeLocation(){
         return false
     })
 
+}
+
+function unborderingPublish(){
+    let title = document.getElementById("insert-title")
+    let message = document.getElementById("insert-message")
+    let messageBox = document.getElementById("container-messagePost")
+    if((title.value.length === 0 && message.value.length === 0) || (title.value.length !== 0 && message.value.length!== 0)){
+        title.style.border = ""
+        messageBox.style.border = ""
+    }
 }
