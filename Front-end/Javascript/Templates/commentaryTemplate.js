@@ -8,7 +8,7 @@ export let objectCommentary = {
 export const templateCommentary = (objectCommentary)=>{
     return `
          <div class="globalFLex box" style="cursor: default">
-                    <div class="globalFLex paddingLeft" style="border-bottom: 1px solid #707070">
+                    <div class="globalFLex paddingLeft" style="border-bottom: 1px solid rgb(47, 51, 54)">
                         <div class="RowFlex" style="padding-top: 10px;width: 100%">
                             <div class="globalFLex">
                                 <div class="globalFLex" style="width: 40px;border-radius: 999px;align-items: center">

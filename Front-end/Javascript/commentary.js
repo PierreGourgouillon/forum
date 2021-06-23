@@ -7,9 +7,17 @@ import {objectCommentary} from "./Templates/commentaryTemplate.js";
 document.addEventListener("DOMContentLoaded", async ()=>{
     let postID = window.location.pathname.replace('/status/', "")
     let userID = parseInt(getCookie("PioutterID"))
+    let cookieDarkMode = getCookie("PioutterMode")
     let postUser = await routeAPI.findPostByIdAPI(postID)
     let user = await routeAPI.getUser(userID)
     let userAuthor = await routeAPI.getUser(postUser.IdUser)
+
+    if (cookieDarkMode === "D"){
+        document.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
+        document.getElementById('imgDislike').src = '/static/Design/Images/Icon/dislike_color_white.svg'
+        document.getElementById('imgCommentary').src = '/static/Design/Images/Icon/commentary_color_white.svg'
+
+    }
 
     checkReaction(parseInt(postID), userID)
     insertDataPost(userAuthor, postUser)

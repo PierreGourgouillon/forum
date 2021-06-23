@@ -8,6 +8,8 @@
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script type="text/javascript" src="/static/Javascript/footer.js"></script>
     <script type="module" src="/static/Javascript/commentary.js"></script>
+    <script type="text/javascript" src="/static/Javascript/mode.js"></script>
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
 </head>
 <body class="RowFlex">
 
@@ -17,7 +19,7 @@
 {{template "header"}}
 
 <main>
-    <div class="globalFLex" id="main-box" style="border-right: 1px solid #707070">
+    <div class="globalFLex" id="main-box" style="border-right: 1px solid rgb(47, 51, 54)">
         <div id="home-banner">
             <div class="RowFlex">
                 <div class="globalFLex">
@@ -39,7 +41,7 @@
 
         <div class="globalFLex scroll-div" style="height: 100vh">
 
-            <div class="globalFLex transition paddingLeft" id="post-parent" style="padding-top: 60px;border-bottom: 1px solid #707070">
+            <div class="globalFLex transition paddingLeft" id="post-parent" style="padding-top: 60px;border-bottom: 1px solid rgb(47, 51, 54)">
                 <div class="globalFLex">
                     <div class="globalFLex">
                         <article role="article" class="globalFLex" id="link-post">
@@ -94,18 +96,18 @@
                                                         </div>
 
                                                         <div class="RowFlex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
-                                                            <div class="RowFlex alignStart noUserSelect" id="like" style="cursor: pointer" >
-                                                                <img src="/static/Design/Images/Icon/like.svg" style="width: 25px;height: 25px;">
-                                                                <span style="padding-left: 5px;padding-top: 3px" id="like-post"></span>
+                                                            <div class="RowFlex alignStart noUserSelect" id="like" style="cursor: pointer;" >
+                                                                <img id="imgLike" src="/static/Design/Images/Icon/like.svg" style="width: 25px;height: 25px;">
+                                                                <span style="padding-left: 5px;padding-top: 3px;" id="like-post"></span>
                                                             </div>
 
                                                             <div class="RowFlex alignStart noUserSelect" id="dislike" style="margin-left: 20px; cursor: pointer" >
-                                                                <img src="/static/Design/Images/Icon/dislike.svg" style="width: 25px;height: 25px;">
+                                                                <img id="imgDislike" src="/static/Design/Images/Icon/dislike.svg" style="width: 25px;height: 25px;">
                                                                 <span style="padding-left: 5px;padding-top: 3px" id="dislike-post"></span>
                                                             </div>
 
                                                             <div class="RowFlex alignStart noUserSelect" style="margin-left: 20px; cursor: pointer" id="commentaryIcon">
-                                                                <img src="/static/Design/Images/Icon/commentary.svg" style="width: 25px;height: 25px;">
+                                                                <img id="imgCommentary" src="/static/Design/Images/Icon/commentary.svg" style="width: 25px;height: 25px;">
                                                             </div>
                                                         </div>
                                                     </div>
