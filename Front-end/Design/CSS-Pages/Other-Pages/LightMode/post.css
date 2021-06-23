@@ -176,7 +176,7 @@
     width: 100%;
 }
 
-.imgHover:hover{
+.hisPost:hover{
     background: rgba(121, 76, 196, 0.7);
     border-radius: 999px;
 }

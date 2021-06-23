@@ -197,6 +197,7 @@ async function addAllPost(response){
             if (idUser !== post.IdUser){
                 clone.getElementById("dotsImg").remove()
                 dots.onclick = ""
+                dots.classList.remove("hisPost")
             }else{
                 dots.setAttribute("post_id", post.PostId)
             }
