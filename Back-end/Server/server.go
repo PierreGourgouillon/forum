@@ -1029,12 +1029,14 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &post)
 
 	allPostArray := database.GetAllPosts()
-	idPostCategorie := database.GetIdByCategorie()
-	jsonAllPost, error := json.Marshal(postArray)
+	println(allPostArray)
+	// idPostCategorie := database.GetIdByCategorie(post)
+	jsonAllPost, error := json.Marshal(allPostArray)
 
 	if error != nil {
 		log.Fatal(error)
 	}
+	println("p")
 
 	w.Write(jsonAllPost)
 }
