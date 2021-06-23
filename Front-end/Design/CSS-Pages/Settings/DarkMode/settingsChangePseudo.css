@@ -242,6 +242,6 @@ input:valid + label, input:focus + label {
 .error{
     z-index: 1;
     color:#df5735;
-    font-size:20px;
-    font-family: "Montserrat-Thin";
+    font-size:13px;
+    font-family: Montserrat-Regular;
 }

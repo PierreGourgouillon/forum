@@ -203,12 +203,6 @@ input:valid + label, input:focus + label {
 
 /********** Id **********/
 
-#passwordMiss{
-    font-family: Montserrat-Thin;
-    color: #794BC4;
-    font-size: 13px;
-}
-
 #border{
     border-bottom: 1px solid black;
 }
@@ -237,5 +231,8 @@ input:valid + label, input:focus + label {
 }
 
 .error{
-    color:#c4634b;
+    z-index: 1;
+    color:#df5735;
+    font-size:13px;
+    font-family: Montserrat-Regular;
 }
