@@ -92,18 +92,16 @@ body {
     aspect-ratio: 1/1;
     height: 100%;
     border-radius: 50%;
-    background-color: white;
     /* border: 8px solid red; */
 }
 
 .Avatar {
     aspect-ratio: 1/1;
     height: 100%;
-    background: url(../../../Images/logo.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    border: none;
+    border: 1px solid transparent;
 }
 
 .info-container {

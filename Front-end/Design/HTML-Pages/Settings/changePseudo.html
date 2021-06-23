@@ -7,6 +7,8 @@
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script src="/static/Javascript/requestAPI.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/pseudo.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
     <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
     <title>Votre compte</title>
 </head>
@@ -35,12 +37,13 @@
                     <form method="post">
                         <div class="globalFLex link-in-mains">
                             <div class="input-container">
-                                <input id="passwordActuel" class="input" pattern=".+" required ></input>
+                                <input id="passwordActuel" class="input" pattern=".+" minlength="6" required></input>
                                 <label class="label" for="passwordActuel">Nom d'utilisateur</label>
+                                <span id="error" class="error"></span>
                             </div>
 
                             <div class="globalFLex" style="flex-direction: row; justify-content: center;margin-top: 40px">
-                                <button class="submit-button transition" onclick="changePseudo()" type="button">Sauvegarder</button>
+                                <button class="submit-button transition" onclick="verifPseudo()" type="button">Sauvegarder</button>
                             </div>
                         </div>
                     </form>

@@ -100,7 +100,7 @@ input,select, label {
 }
 
 input:valid,input:focus {
-    border-bottom: 2px solid #794BC4;
+    border-bottom: 2px solid #794bc4;
 }
 
 input:valid + label, input:focus + label {
@@ -234,4 +234,8 @@ input:valid + label, input:focus + label {
     outline-style: none;
     border-bottom: 1px solid rgb(47, 51, 54);
     min-height: calc(48px);
+}
+
+.error{
+    color:#c4634b;
 }

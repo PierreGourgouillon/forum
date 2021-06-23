@@ -127,8 +127,10 @@
 .styleCategory {
     font-size: 13px;
     border-radius: 15px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -208,60 +210,40 @@
 /********** Catégories **********/
 
 .colorBox1 {
-    width: 10px;
-    height: 10px;
     background-color: red;
 }
 
 .colorBox2 {
-    width: 10px;
-    height: 10px;
     background-color: orange;
 }
 
 .colorBox3 {
-    width: 10px;
-    height: 10px;
     background-color: yellow;
 }
 
 .colorBox4 {
-    width: 10px;
-    height: 10px;
     background-color: greenyellow;
 }
 .colorBox5 {
-    width: 10px;
-    height: 10px;
     background-color: green;
 }
 
 .colorBox6 {
-    width: 10px;
-    height: 10px;
     background-color: darkgreen;
 }
 
 .colorBox7 {
-    width: 10px;
-    height: 10px;
     background-color: dodgerblue;
 }
 
 .colorBox8 {
-    width: 10px;
-    height: 10px;
     background-color: blue;
 }
 
 .colorBox9 {
-    width: 10px;
-    height: 10px;
     background-color: purple;
 }
 
 .colorBox10 {
-    width: 10px;
-    height: 10px;
     background-color: hotpink;
 }
