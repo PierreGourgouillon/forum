@@ -1,6 +1,3 @@
-
-document.getElementById("submit-button").addEventListener('click', ajoutPseudo())
-
 function ajoutPseudo(){
     let pseudo = document.getElementById("passwordActuel").value
     if (pseudo.length >= 6){
