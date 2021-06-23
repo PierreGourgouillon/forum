@@ -642,7 +642,6 @@ func unmarshallJSON(r *http.Request, API interface{}) {
 	json.Unmarshal(body, &API)
 }
 
-
 func passwordRouteValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePassword/redirectionChangePasswordValid.html")
 
@@ -732,13 +731,11 @@ func updateProfilLocation(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 
-
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	unmarshallJSON(r, &json)
-
 
 	isUpdate := database.UpdateLocationByUserID(json.Location, id)
 	if isUpdate {
@@ -766,7 +763,6 @@ func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 	var deactive structs.UserIdentity
 	unmarshallJSON(r, &deactive)
 	isDelete := database.DeactivateProfil(&deactive, id)
-
 
 	if isDelete {
 		if cookie.ReadCookie(r, "PioutterID") {
@@ -798,7 +794,7 @@ func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
 
 	var passwordHash = database.GetPasswordById(id)
 
-	if password.CheckPasswordHash(structPassword.ActualPassword, passwordHash){
+	if password.CheckPasswordHash(structPassword.ActualPassword, passwordHash) {
 
 		isChange := database.UpdatePasswordByUserID(&structPassword, id)
 		if isChange {
@@ -806,7 +802,7 @@ func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
 		} else {
 			w.Write([]byte("{\"change\": \"false\"}"))
 		}
-	}else{
+	} else {
 		w.Write([]byte("{\"change\": \"false\"}"))
 	}
 }
@@ -827,7 +823,7 @@ func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &pseudoStruct)
 	isValid := database.ChangePseudo(&pseudoStruct, id)
 
-	if isValid{
+	if isValid {
 		w.Write([]byte("{\"valid\": \"true\"}"))
 		println("cest ok")
 
@@ -878,7 +874,7 @@ func createCommentary(w http.ResponseWriter, r *http.Request) {
 }
 
 func postPage(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
 		fmt.Println(err)

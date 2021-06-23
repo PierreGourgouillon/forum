@@ -16,6 +16,13 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     addDataPopUp(postUser, user, userAuthor)
     insertCommentariesInPage(postID)
 
+    let eventListUserAuthor = [...document.getElementsByClassName("eventList")]
+    eventListUserAuthor.forEach((element)=>{
+        element.addEventListener('click', ()=>{
+            document.location.href = `/profil/${postUser.IdUser}`
+        })
+    })
+
     document.getElementById("like").addEventListener('click', ()=>{
         addReactions(userID, postID, true)
     })
