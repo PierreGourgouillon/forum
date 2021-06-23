@@ -558,7 +558,6 @@ function getProfilImage(id) {
 
 function deactivateAccount(){
     let idUser = parseInt(getCookie("PioutterID"))
-    console.log("cookie:", idUser)
 
     fetch(`/profildeactivate/${idUser}`, {
         method: "PUT",
@@ -573,18 +572,15 @@ function deactivateAccount(){
     .then((response)=>{
         return response.json()
     }).then((res)=>{
-        console.log('valid')
         if (res.delete){
             document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             document.location.href="/profildeactive/valid"
         }else{
             document.location.href="/profildeactive/nonValid"
-            console.log("nonValid")
         }
     })
     .catch(()=>{
         document.location.href="/profildeactive/nonValid"
-        console.log("catch")
         return false
     })
 
@@ -593,8 +589,6 @@ function deactivateAccount(){
 function changePassword(){
     let newPassword = document.getElementById("newPassword").value
     let actualPassword = document.getElementById("passwordActuel").value
-
-    console.log(actualPassword)
     
     if (testGeneral()){
         let idUser = parseInt(getCookie("PioutterID"))
@@ -613,10 +607,8 @@ function changePassword(){
         }).then((res)=>{
             if (res.change){
                 document.location.href="/profilpassword/valid"
-                console.log('redirection ...')
             }else{
                 document.location.href="/profilpassword/nonValid"
-                console.log('mdp actuel différent')
             }
         })
         .catch(()=>{
@@ -643,16 +635,13 @@ function changePseudo(){
         return response.json()
     }).then((res)=>{
         if (res.valid){
-            console.log("valid")
             document.location.href="/profilpseudo/valid"
 
         }else{
-            console.log("nonValid")
             document.location.href="/profilpseudo/nonValid"
         }
     })
     .catch(()=>{
-        console.log("catch")
         return false
     })
 
@@ -676,16 +665,13 @@ function changeLocation(){
         return response.json()
     }).then((res)=>{
         if (res.change){
-            console.log("valid")
             document.location.href="/profillocation/valid"
 
         }else{
-            console.log("nonValid")
             document.location.href="/profillocation/nonValid"
         }
     })
     .catch(()=>{
-        console.log("catch")
         return false
     })
 

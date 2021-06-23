@@ -944,7 +944,6 @@ func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
 
 	var structPassword structs.Login
 	unmarshallJSON(r, &structPassword)
-	println(&structPassword)
 
 	var passwordHash = database.GetPasswordById(id)
 
@@ -979,7 +978,6 @@ func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
 
 	if isValid {
 		w.Write([]byte("{\"valid\": \"true\"}"))
-		println("cest ok")
 
 	} else {
 		w.Write([]byte("{\"valid\": \"false\"}"))
