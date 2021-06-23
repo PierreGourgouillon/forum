@@ -98,6 +98,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/profillocation/nonValid", profilLocationNonValid)
 
 	router.HandleFunc("/introuvable/", profilDeactiveRoute)
+	router.HandleFunc("/notconnected/", notConnectedRoute)
 	//Commentary Route
 
 	router.HandleFunc("/commentary/{id}", getCommentaryPost).Methods("GET")
@@ -194,7 +195,7 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
 
 	if valueCookie == 0{
-		http.Redirect(w, r, "/home/", http.StatusSeeOther)
+		http.Redirect(w, r, "/notconnected/", http.StatusSeeOther)
 		return
 	}
 
@@ -316,6 +317,13 @@ func deactivateAccount(w http.ResponseWriter, r *http.Request) {
 func profilRoute(w http.ResponseWriter, r *http.Request) {
 	if !cookie.ReadCookie(r, "PioutterMode") {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
+
+	if valueCookie == 0{
+		http.Redirect(w, r, "/notconnected/", http.StatusSeeOther)
+		return
 	}
 
 	if !cookie.ReadCookie(r, "PioutterID") {
@@ -826,6 +834,17 @@ func profilLocationNonValid(w http.ResponseWriter, r *http.Request) {
 
 func profilDeactiveRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccount.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
+func notConnectedRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionNotConnect/redirectionNotConnect.html")
 
 	if err != nil {
 		fmt.Println(err)
