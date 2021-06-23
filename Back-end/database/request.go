@@ -15,6 +15,7 @@ func GetEmailList() []string {
 	data, err := db.Query("SELECT user_email FROM userIdentity")
 
 	if err != nil {
+		fmt.Println("err GEL")
 		return []string{}
 	}
 
@@ -28,7 +29,6 @@ func GetEmailList() []string {
 }
 
 func InsertNewUser(user structs.Register) {
-
 	user.MotDePasse, _ = password.HashPassword(user.MotDePasse)
 	data, err := db.Exec("INSERT INTO userIdentity (user_email, user_pseudo, user_password, user_birth, deactivate) VALUES (?, ?, ?, ?, false)", user.Email, user.Pseudo, user.MotDePasse, user.Birth)
 	if err != nil {
@@ -36,6 +36,8 @@ func InsertNewUser(user structs.Register) {
 	}
 
 	id, err2 := data.LastInsertId()
+	fmt.Print("id => ")
+	fmt.Print(id)
 	if err2 != nil {
 		return
 	}
@@ -63,6 +65,17 @@ func GetIdByEmail(email string) string {
 
 	data.Scan(&ID)
 	return strconv.Itoa(ID)
+}
+
+func IsDeactivate(id int) bool {
+	var isDeactivate bool
+
+	data := db.QueryRow("SELECT deactivate FROM userIdentity WHERE user_id = ?", id)
+
+	data.Scan(&isDeactivate)
+
+	return isDeactivate
+
 }
 
 func GetIdentityUser(valueCookie string) structs.UserIdentity {
@@ -125,6 +138,19 @@ func insertCategories(id int, cat string) {
 	}
 }
 
+func GetCategoriesID(cats []string) []string {
+	var tabCatsID []string
+
+	for _, cat := range cats {
+		var id int
+		catRow := db.QueryRow("SELECT category_id FROM categories WHERE category_name = ?", cat)
+		catRow.Scan(&id)
+		tabCatsID = append(tabCatsID, strconv.Itoa(id))
+	}
+
+	return tabCatsID
+}
+
 func GetAllPosts() []structs.Post {
 	var allPost []structs.Post
 
@@ -140,7 +166,7 @@ func GetAllPosts() []structs.Post {
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
-		if error != nil {
+		if err != nil {
 			fmt.Println(err)
 		}
 
@@ -151,8 +177,6 @@ func GetAllPosts() []structs.Post {
 			cats = append(cats, cat)
 		}
 		post.Categories = cats
-		fmt.Print("cats => ")
-		fmt.Println(post.Categories)
 
 		allPost = append(allPost, post)
 	}
@@ -218,6 +242,12 @@ func DeletePost(id int) bool {
 
 	query := "DELETE FROM allPosts WHERE post_id= ?"
 	_, err := db.Exec(query, id)
+	if err != nil {
+		return false
+	}
+
+	query = "DELETE FROM postReactions WHERE post_id= ?"
+	_, err = db.Exec(query, id)
 	if err != nil {
 		return false
 	}
@@ -297,6 +327,21 @@ func GetPostsByUserID(id int) []structs.Post {
 	for rows.Next() {
 		var post structs.Post
 		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
 		allPost = append(allPost, post)
 	}
 
@@ -333,6 +378,21 @@ func getPostWithArray(tab []int) []structs.Post {
 
 		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
 		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
 		allPost = append(allPost, post)
 	}
 
@@ -436,10 +496,16 @@ func ChangeImageUser(idUser int, file string) bool {
 	return true
 }
 
-func DeactivateProfil(user *structs.UserIdentity, id int)bool{
-
+func DeactivateProfil(user *structs.UserIdentity, id int) bool {
 	query := "UPDATE userIdentity SET deactivate = ? WHERE user_id= ?"
-	db.Exec(query, user.Deactivate ,  id)
+	db.Exec(query, user.Deactivate, id)
+
+	return true
+}
+
+func ReactivateProfil(user structs.UserIdentity, id int) bool {
+	query := "UPDATE userIdentity SET deactivate = ? WHERE user_id= ?"
+	db.Exec(query, user.Deactivate, id)
 
 	return true
 }
@@ -453,29 +519,30 @@ func GetPasswordById(id int) string {
 	return password
 }
 
-func UpdatePasswordByUserID(user *structs.Login, id int)bool{
+func UpdatePasswordByUserID(user *structs.Login, id int) bool {
 
 	user.Password, _ = password.HashPassword(user.Password)
 	query := "UPDATE userIdentity SET user_password = ? WHERE user_id= ?"
-	db.Exec(query, user.Password ,  id)
+	db.Exec(query, user.Password, id)
 
 	return true
 }
 
-func ChangePseudo(user *structs.UserIdentity, id int)bool{
+func ChangePseudo(user *structs.UserIdentity, id int) bool {
 	query1 := "UPDATE allPosts SET user_pseudo = ? WHERE user_id= ?"
 	query2 := "UPDATE userIdentity SET user_pseudo = ? WHERE user_id= ?"
-	db.Exec(query1, user.Pseudo ,  id)
-	db.Exec(query2, user.Pseudo ,  id)
+	db.Exec(query1, user.Pseudo, id)
+	db.Exec(query2, user.Pseudo, id)
 
 	return true
 }
 
-func UpdateLocationByUserID(location string, id int)bool{
+func UpdateLocationByUserID(location string, id int) bool {
 	query := "UPDATE userProfile SET user_location= ? WHERE user_id= ?"
 	db.Exec(query, location, id)
 	return true
 }
+
 func GetCommentaryPost(postId int) ([]structs.Commentary, bool) {
 	var commentaries []structs.Commentary
 

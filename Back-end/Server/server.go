@@ -46,8 +46,8 @@ func requestHTTP(router *mux.Router) {
 	//API Authentification
 	router.HandleFunc("/user/", register).Methods("POST")
 	router.HandleFunc("/user/{id}", getUsers).Methods("GET")
-
 	router.HandleFunc("/users/", login).Methods("POST")
+	router.HandleFunc("/reactivate/{id}", reactivate).Methods("PUT")
 
 	//settings Route
 	router.HandleFunc("/settings/", settingsRoute)
@@ -97,6 +97,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/profillocation/valid", profilLocationValid)
 	router.HandleFunc("/profillocation/nonValid", profilLocationNonValid)
 
+	router.HandleFunc("/introuvable/", profilDeactiveRoute)
 	//Commentary Route
 
 	router.HandleFunc("/commentary/{id}", getCommentaryPost).Methods("GET")
@@ -136,9 +137,8 @@ func route(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginRoute(w http.ResponseWriter, r *http.Request) {
-	if cookie.ReadCookie(r, "PioutterID") {
-		http.Redirect(w, r, "/home/", http.StatusSeeOther)
-		return
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
 	}
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
@@ -152,8 +152,8 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func registerRoute(w http.ResponseWriter, r *http.Request) {
-	if cookie.ReadCookie(r, "PioutterID") {
-		cookie.DeleteCookie(r, "PioutterID")
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
 	}
 
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
@@ -167,6 +167,15 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func homeRoute(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/home_page.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
@@ -178,6 +187,15 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/settingsPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -189,6 +207,15 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/password.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -200,6 +227,15 @@ func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func accountInformations(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/accountInformations.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -211,6 +247,15 @@ func accountInformations(w http.ResponseWriter, r *http.Request) {
 }
 
 func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changePseudo.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -222,6 +267,15 @@ func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
 }
 
 func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changeCountry.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -233,6 +287,15 @@ func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
 }
 
 func deactivateAccount(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -244,6 +307,15 @@ func deactivateAccount(w http.ResponseWriter, r *http.Request) {
 }
 
 func profilRoute(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/profilPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
@@ -253,9 +325,14 @@ func profilRoute(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
+
 	nbrUsers := database.GetNumberOfUsers()
-	if id > nbrUsers || err != nil {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
+	if err != nil || id > nbrUsers {
+		fmt.Println("erreur nb users")
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+	} else if database.IsDeactivate(id) {
+		http.Redirect(w, r, "/introuvable/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, nil)
@@ -282,6 +359,11 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	idPost := database.InsertPost(&post)
 
 	post.PostId = int(idPost)
+
+	post.Categories = database.GetCategoriesID(post.Categories)
+
+	fmt.Println("Insertion du post :")
+	fmt.Println(post)
 
 	jsonPost, _ := json.Marshal(post)
 	w.Write(jsonPost)
@@ -329,7 +411,12 @@ func login(w http.ResponseWriter, r *http.Request) {
 	success, message := authentification.CheckUser(user)
 	if success {
 		ID := database.GetIdByEmail(user.Email)
-		w.Write([]byte("{\"login\":\"login\", \"id\":\"" + ID + "\"}"))
+		id, _ := strconv.Atoi(ID)
+		if !database.IsDeactivate(id) {
+			w.Write([]byte("{\"login\":\"login\", \"id\":\"" + ID + "\"}"))
+		} else {
+			w.Write([]byte("{\"login\":\"deactivate\", \"id\":\"" + ID + "\"}"))
+		}
 	} else {
 		if message == "password" {
 			w.Write([]byte("{\"login\":\"password\"}"))
@@ -642,7 +729,6 @@ func unmarshallJSON(r *http.Request, API interface{}) {
 	json.Unmarshal(body, &API)
 }
 
-
 func passwordRouteValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePassword/redirectionChangePasswordValid.html")
 
@@ -650,6 +736,7 @@ func passwordRouteValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -660,6 +747,7 @@ func passwordRouteNonValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -670,16 +758,18 @@ func profilDeactiveValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
 func profilDeactiveNonValid(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/errorDeactiveAccount/redirectionDeactiveAccountNonValid.html")
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccountNonValid.html")
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -690,6 +780,7 @@ func profilPseudoValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -700,6 +791,7 @@ func profilPseudoNonValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -710,6 +802,7 @@ func profilLocationValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -720,6 +813,18 @@ func profilLocationNonValid(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	tmpl.Execute(w, nil)
+}
+
+func profilDeactiveRoute(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccount.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
 	tmpl.Execute(w, nil)
 }
 
@@ -732,13 +837,11 @@ func updateProfilLocation(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 
-
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	unmarshallJSON(r, &json)
-
 
 	isUpdate := database.UpdateLocationByUserID(json.Location, id)
 	if isUpdate {
@@ -750,13 +853,11 @@ func updateProfilLocation(w http.ResponseWriter, r *http.Request) {
 }
 
 func deactivateRoute(w http.ResponseWriter, r *http.Request) {
-	println("id:")
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
-	println("id:", id)
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -766,7 +867,6 @@ func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 	var deactive structs.UserIdentity
 	unmarshallJSON(r, &deactive)
 	isDelete := database.DeactivateProfil(&deactive, id)
-
 
 	if isDelete {
 		if cookie.ReadCookie(r, "PioutterID") {
@@ -778,6 +878,30 @@ func deactivateRoute(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"delete\": \"false\"}"))
 	}
 
+}
+
+func reactivate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(0)
+	}
+
+	var reactivate structs.UserIdentity
+	unmarshallJSON(r, &reactivate)
+
+	isReactivate := database.ReactivateProfil(reactivate, id)
+
+	if isReactivate {
+		w.Write([]byte("{\"bool\": \"true\"}"))
+	} else {
+		w.Write([]byte("{\"bool\": \"false\"}"))
+	}
 }
 
 func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
@@ -798,7 +922,7 @@ func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
 
 	var passwordHash = database.GetPasswordById(id)
 
-	if password.CheckPasswordHash(structPassword.ActualPassword, passwordHash){
+	if password.CheckPasswordHash(structPassword.ActualPassword, passwordHash) {
 
 		isChange := database.UpdatePasswordByUserID(&structPassword, id)
 		if isChange {
@@ -806,7 +930,7 @@ func updateProfilPassword(w http.ResponseWriter, r *http.Request) {
 		} else {
 			w.Write([]byte("{\"change\": \"false\"}"))
 		}
-	}else{
+	} else {
 		w.Write([]byte("{\"change\": \"false\"}"))
 	}
 }
@@ -827,7 +951,7 @@ func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &pseudoStruct)
 	isValid := database.ChangePseudo(&pseudoStruct, id)
 
-	if isValid{
+	if isValid {
 		w.Write([]byte("{\"valid\": \"true\"}"))
 		println("cest ok")
 
@@ -836,6 +960,7 @@ func updateProfilPseudo(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
 func getCommentaryPost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
