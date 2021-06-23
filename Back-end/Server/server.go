@@ -1024,29 +1024,29 @@ func postPage(w http.ResponseWriter, r *http.Request) {
 func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
+
 	var post structs.Post
-	var tab []int
+	println(post.IdUser)
+	unmarshallJSON(r, post)
+	println("categorieID: ",post.CategorieID)
 
-	unmarshallJSON(r, &post)
+//recuperation idposts associer a idCategories selectionné
+	/*idPostsArray := */database.GetPostIdByCategoryId(post)
 
-	idPostOfCategorie := database.GetAllPosts() //recuperation idposts associer a idCategories selectionné
-												//renvoie un tableau avec les idPosts
-	
-	for i := 0; i < 100; i++ {
-		FindPostById(idPostOfCategorie[i])
+//recuperer les posts des idposts de idPostsArray
+	// PostsArray := database.GetPost(idPostsArray)
+
+	// jsonPostFilterCategories, error := json.Marshal(PostsArray)
+	// if error != nil {
+	// 	log.Fatal(error)
+	// }
+	p, err :=json.Marshal("post")
+		if err != nil {
+		log.Fatal(err)
 	}
-
-	jsonPostFilterCategories, error := json.Marshal(allPostArray)
-
-	if error != nil {
-		log.Fatal(error)
-	}
-	println("p")
-
-	w.Write(jsonPostFilterCategories)
+	// println("p")
+	w.Write(p)
+	// w.Write(jsonPostFilterCategories)
 }
 
-body -> id de la categories
 
-postCategory -> recupere les ids dans un tableau 
-getpostwitharray -> recupere tout les posts avec la bonne categories

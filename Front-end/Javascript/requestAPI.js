@@ -74,26 +74,45 @@ function postIndex(){
 }
 
 function postIndexFilter(){
-    // let categoriesInput = document.getElementById("IdBoutonSelectionné") 
+    const nombre = 1 
+    let valueCookie = getCookie("PioutterID")
+
+    fetch("/post/", {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: title.value,
+            pseudo: user.pseudo,
+            message: message.value,
+            like: 0,
+            dislike: 0,
+            categories: cats
+        })
+    })
+
+
     fetch("/post/filter/", {
         method : "POST",
         headers : {
-            "Content-Type" : "application/json"
+            'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            categories:"1"
+            idUser: valueCookie,
+            categoriesID: nombre
         })
     })
-        .then((response)=>{
-            return response.json()
-        })
-        .then((res)=>{
-            console.log("add all post:\n",res)
-            // addAllPost(res)
-        })
-        .catch(()=>{
-            document.location.href = "/error/"
-        })
+    .then((response)=>{
+        return response.json()
+    })
+    .then((res)=>{
+        console.log("add all post:\n",res)
+        // addAllPost(res)
+    })
+    .catch(()=>{
+        document.location.href = "/error/"
+    })
 }
 
 function findPostById(idUser){

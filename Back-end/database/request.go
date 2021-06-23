@@ -573,20 +573,19 @@ func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) 
 }
 
 
-func GetIdByCategorie(categories structs.Post) (structs.Post) {
-	//faire return database.GetIdByCategorie dans un tableau
-	println(&categories)
-	// rows, error := db.Query("SELECT post_id FROM postCategory WHERE post_category = ?", categories.Categories)
-
-	// if error != nil {
-	// 	return commentaries, true
+func GetPostIdByCategoryId(categories structs.Post) /*([]string)*/ {
+	//recuperer les postID
+	/*rows, err := */db.Query("SELECT post_id FROM postCategory WHERE post_id = ?", categories.CategorieID)
+	// if err != nil {
+	// 	fmt.Println(err)
 	// }
+	
+	println(categories.CategorieID)
+	//ajouter tt les postID dans un tableau
 
-	// for rows.Next() {
-	// 	var commentary structs.Commentary
-	// 	rows.Scan(&commentary.CommentaryID, &commentary.UserID, &commentary.PostID, &commentary.Date, &commentary.Message)
-	// 	commentaries = append(commentaries, commentary)
-	// }
 
-	return categories//, false
+
+	//return le tableau
+	//return categories
 }
+
