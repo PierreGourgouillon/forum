@@ -1,0 +1,357 @@
+@font-face {
+    font-family: "Open-Sans-SemiBold", sans-serif;
+    src: url('http://localhost:8088/static/Fonts/open-sans-semibold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: "montserrat";
+    src: url('http://localhost:8088/static/Fonts/Montserrat-Regular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: "Open-Sans-Extra";
+    src: url('http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf') format('ttf');
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+.RowFlex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+
+.globalFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+.scroll-div{
+    overflow-y: scroll;
+}
+
+body{
+    overflow: hidden;
+}
+#containerPost {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column-reverse;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+#home-banner{
+    background-color: #A266FC;
+    height: 50px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+}
+
+main{
+    width: 50%;
+    min-height: 100vh;
+}
+
+#main-box{
+    height: 100vh;
+    width: 100%;
+}
+
+#home-banner h2{
+    color: white;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 800;
+    font-family: Open-Sans-Extra;
+}
+
+.image:hover{
+    background-color: rgba(121,75,195,0.5);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+/***** Template Post *****/
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.mRight {
+    margin-right: 12px;
+}
+
+.mLeft {
+    margin-left: 12px;
+}
+
+.noUserSelect {
+    user-select: none;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+
+#pseudo-user{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open-Sans-Extra;
+}
+
+.divPseudo:hover{
+    text-decoration: #A266FC underline;
+}
+
+#title-user{
+    position: relative;
+    font-family: Open-Sans-SemiBold;
+    font-size: 20px;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+    font-family: Open-Sans-SemiBold;
+}
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+    font-family: Open-Sans-SemiBold;
+    cursor: default;
+}
+
+#message-post{
+    width: 90%;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+#dots span{
+    font-family: Montserrat-Regular;
+}
+
+.paddingLeft {
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+#message-commentary{
+    width: 100%;
+    font-size: 15px;
+    overflow-wrap: break-word;
+    font-family: Montserrat-Regular;
+}
+
+#pseudo-commentary{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open-Sans-Extra;
+    width: auto;
+    max-width: 250px;
+}
+
+#pseudo-commentary:hover {
+    text-decoration: #A266FC underline;
+    cursor: pointer;
+}
+
+
+/****** popUp commentary *****/
+
+#popUp-update {
+    display: none;
+    position: absolute;
+    z-index: 1500;
+    width: 100%;
+    height: 100%;
+    background: rgba(91, 112, 131, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+.container-popUp-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.block-popUp-update{
+    width: 600px;
+    background: whitesmoke;
+    border-radius: 20px;
+    padding-bottom: 20px;
+}
+
+#bandeau{
+    background: #A266FC;
+    border-radius: 18px 18px 0px 0px;
+}
+
+.title-popUp{
+    font-size: 24px;
+    font-family: Open-Sans-Extra;
+    color: #FFFFFF;
+}
+
+#image-close{
+    filter: invert(100%) sepia(2%) saturate(7475%) hue-rotate(128deg) brightness(110%) contrast(99%);
+    cursor: pointer;
+}
+
+#pseudoPost{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open-Sans-Extra;
+}
+#message{
+    font-size: 14px;
+    word-break: break-word;
+    font-family: Montserrat-Regular;
+}
+#message-Comment{
+    margin-top: 20px;
+    resize: none;
+    outline: none;
+    width: 400px;
+    height: 100px;
+    font-size: 15px;
+    font-family: Montserrat-Regular;
+}
+
+.valideBorder{
+    border: none;
+}
+
+.styleButton{
+    padding: 5px 10px 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: Open-Sans-Extra;
+    background: #a266fc;
+    color: white;
+}
+
+.styleButton:hover{
+    background: rgb(139, 80, 231);
+}
+
+.errorMessage {
+    border: 2px solid red;
+}
+
+#like:hover{
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+#dislike:hover{
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+/*Footer*/
+
+
+footer{
+    height: 100vh;
+    width: 25%;
+    background-color: #F5F5F5;
+    color: #707070;
+    font-weight: 500;
+}
+
+.border{
+    border: 1px solid #707070;
+}
+
+#container-searchbar{
+    height: 50px;
+    width: 70%;
+    border-radius: 25px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+#search-input{
+    font-family: "Open Sans", sans-serif;
+    font-size: 22px;
+    background-color: #ffffff;
+    width: 70%;
+    border: none;
+    margin-left: 22px;
+    outline: none;
+}
+
+#search-button{
+    height: 50px;
+    width: 60px;
+    border: none;
+    background-color: #8A3DFE;
+    border-radius: 0 23px 23px 0;
+    cursor: pointer;
+}
+
+@keyframes expand {
+    from {
+        transform: scale(0);
+        opacity: 0;
+        background: #5470B0;
+    }
+}
+
+.box{
+    animation: expand .5s ease-in-out;
+}

@@ -45,6 +45,14 @@ type Reaction struct {
 	Dislike bool `json:"dislike"`
 }
 
+type Commentary struct {
+	CommentaryID int64  `json:"commentaryID"`
+	PostID       int    `json:"postID"`
+	UserID       int    `json:"userID"`
+	Date         string `json:"date"`
+	Message      string `json:"message"`
+}
+
 type ProfilUser struct {
 	Pseudo   string `json:"pseudo"`
 	Location string `json:"location"`

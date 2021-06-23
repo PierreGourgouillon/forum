@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function login() {
+    console.log("click")
     const email = document.getElementById("email")
     const password = document.getElementById("password")
     let error = document.getElementById("zoneMessErreur")
@@ -34,6 +35,34 @@ function login() {
             error.textContent = "Le mot de passe n'est pas bon"
         } else if(res.login == "email") {
             error.textContent = "Cette adresse mail n'est pas assoscié à un compte"
+        } else if(res.login == "deactivate") {
+            error.textContent = "Ce compte est désactivé, cliquer pour le réactiver"
+            error.addEventListener("click", () => {
+                reactivate(res.id)
+            })
+        }
+    })
+}
+
+function reactivate(id) {
+    fetch(`/reactivate/${id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            deactivate: false,
+        })
+    })
+    .then((response) => {
+        return response.json()
+    })
+    .then((res) => {
+        if(res.bool) {
+            document.cookie = `PioutterID=${id}; path=/`
+            document.location.href = "/home/"
+        } else {
+            document.getElementById("zoneMessErreur").textContent = "La réactivation n'a pas fonctionné"
         }
     })
 }

@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "Open-Sans-Extra";
+    src: url('http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: "Open-Sans-SemiBold", sans-serif;
+    src: url('http://localhost:8088/static/Fonts/open-sans-semibold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: "Montserrat-Regular", sans-serif;
+    src: url('http://localhost:8088/static/Fonts/Montserrat-Regular.ttf') format('ttf');
+}
+
 /********** Flexbox **********/
 
 .RowFLex{
@@ -108,6 +123,7 @@
     font-size: 15px;
     line-height: 20px;
     overflow-wrap: break-word;
+    font-family: Montserrat-Regular;
 }
 
 .styleCategory {
@@ -195,61 +211,41 @@
 /********** Catégories **********/
 
 .colorBox1 {
-    width: 10px;
-    height: 10px;
     background-color: red;
 }
 
 .colorBox2 {
-    width: 10px;
-    height: 10px;
     background-color: orange;
 }
 
 .colorBox3 {
-    width: 10px;
-    height: 10px;
     background-color: yellow;
 }
 
 .colorBox4 {
-    width: 10px;
-    height: 10px;
     background-color: greenyellow;
 }
 .colorBox5 {
-    width: 10px;
-    height: 10px;
     background-color: green;
 }
 
 .colorBox6 {
-    width: 10px;
-    height: 10px;
     background-color: darkgreen;
 }
 
 .colorBox7 {
-    width: 10px;
-    height: 10px;
     background-color: dodgerblue;
 }
 
 .colorBox8 {
-    width: 10px;
-    height: 10px;
     background-color: blue;
 }
 
 .colorBox9 {
-    width: 10px;
-    height: 10px;
     background-color: purple;
 }
 
 .colorBox10 {
-    width: 10px;
-    height: 10px;
     background-color: hotpink;
 }
 #dotsImg, #like, #dislike{

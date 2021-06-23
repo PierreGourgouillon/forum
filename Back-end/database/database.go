@@ -56,6 +56,8 @@ func CreateTable() {
 			fmt.Println("Table " + strconv.Itoa(j+1) + " is create")
 		}
 	}
+
+	fillTableCategories()
 }
 
 const tableUserIdentity = `CREATE TABLE IF NOT EXISTS userIdentity(
@@ -80,8 +82,8 @@ const tableAllCommentary = `CREATE TABLE IF NOT EXISTS allCommentary(
 commentary_id INT AUTO_INCREMENT PRIMARY KEY,
 user_id INT NOT NULL,
 post_id INT NOT NULL,
-commentary_date DATE NOT NULL,
-commentary_message TEXT NULL )`
+commentary_date VARCHAR(15) NOT NULL,
+commentary_message TEXT NOT NULL )`
 
 const tableAllPosts = `CREATE TABLE IF NOT EXISTS allPosts (
 post_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -110,3 +112,28 @@ user_id INT NOT NULL,
 user_like BOOLEAN NOT NULL,
 user_dislike BOOLEAN NOT NULL
 )`
+
+func fillTableCategories() {
+	var err error
+	db, err = sql.Open("mysql", "root:foroumTwitter@(127.0.0.1:6677)/Forum")
+	if err != nil {
+		fmt.Print("fill db => ")
+		fmt.Println(err)
+	}
+
+	tabCat := []string{"Actualité", "Art", "Cinéma", "Histoire", "Humour", "Internet", "Jeux Vidéo", "Nourriture", "Santé", "Sport"}
+	row := db.QueryRow("SELECT category_name FROM categories WHERE category_id = 1")
+
+	var empty string
+	row.Scan(&empty)
+
+	if empty == "" {
+		for _, cat := range tabCat {
+			_, error := db.Exec("INSERT INTO categories (category_name) VALUES (?)", cat)
+			if error != nil {
+				fmt.Println(error)
+			}
+		}
+	}
+
+}

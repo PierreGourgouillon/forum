@@ -1,4 +1,4 @@
-
+let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Inetrnet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
 var compteur = false
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -156,6 +156,7 @@ async function addAllPost(response){
             if(post.categories != null) {
                 cats.forEach((elem, idx) => {
                     elem.classList.add(`colorBox${post.categories[idx]}`)
+                    elem.querySelector('span').textContent = tabCats[post.categories[idx]]
                 })
             }
 
@@ -187,7 +188,6 @@ async function addAllPost(response){
                 })
             }
 
-            console.log(post)
             pseudo.textContent = post.pseudo
             title.textContent = post.title
             messagePost.textContent += post.message
