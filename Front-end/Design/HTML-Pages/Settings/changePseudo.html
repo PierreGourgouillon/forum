@@ -36,13 +36,13 @@
                     <form method="post">
                         <div class="globalFLex link-in-mains">
                             <div class="input-container">
-                                <input id="passwordActuel" class="input" pattern=".+" minlength="6" required></input>
+                                <input id="passwordActuel" class="input" onkeyup="verificationPseudo()" pattern=".+" minlength="6" required></input>
                                 <label class="label" for="passwordActuel">Nom d'utilisateur</label>
                                 <span id="error" class="error"></span>
                             </div>
 
                             <div class="globalFLex" style="flex-direction: row; justify-content: center;margin-top: 40px">
-                                <button class="submit-button transition" style="cursor: pointer" onclick="verifPseudo()" type="button">Sauvegarder</button>
+                                <button class="submit-button transition" style="cursor: pointer" id="submit-button" onclick="ajoutPseudo()" type="button">Sauvegarder</button>
                             </div>
                         </div>
                     </form>
