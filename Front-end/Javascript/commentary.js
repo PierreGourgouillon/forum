@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", async ()=>{
         document.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
         document.getElementById('imgDislike').src = '/static/Design/Images/Icon/dislike_color_white.svg'
         document.getElementById('imgCommentary').src = '/static/Design/Images/Icon/commentary_color_white.svg'
-
     }
 
+    designCategories(postUser)
     checkReaction(parseInt(postID), userID)
     insertDataPost(userAuthor, postUser)
     addDataPopUp(postUser, user, userAuthor)
@@ -43,6 +43,18 @@ document.addEventListener("DOMContentLoaded", async ()=>{
         printPopUp(postID)
     })
 })
+
+function designCategories(post){
+    let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Inetrnet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
+    let cats = [...document.querySelectorAll(".styleCategory")]
+
+    if(post.categories != null) {
+        cats.forEach((elem, idx) => {
+            elem.classList.add(`colorBox${post.categories[idx]}`)
+            elem.querySelector('span').textContent = tabCats[post.categories[idx]]
+        })
+    }
+}
 
 function insertDataPost(user, post){
     document.getElementById("image-user").src = "data:image/png;base64," + user.image

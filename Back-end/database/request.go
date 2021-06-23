@@ -196,6 +196,20 @@ func FindPostById(id int) structs.Post {
 		log.Fatal(err)
 	}
 
+	catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	var cats []string
+	for catRows.Next() {
+		var cat string
+		catRows.Scan(&cat)
+		cats = append(cats, cat)
+	}
+	post.Categories = cats
+
 	return post
 }
 
