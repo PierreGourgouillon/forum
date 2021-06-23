@@ -1,8 +1,26 @@
+import * as routeAPI from "./route/route.js"
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    let userID = parseInt(getCookie("PioutterID"))
+    console.log("hello", userID)
+    routeAPI.getUser(userID)
+        .then((user)=>{
+            document.getElementById("pseudo-user-deactivate").textContent = user.pseudo
+            document.getElementById("profile-image-deactivate").src = "data:image/png;base64," + user.image
+        })
+
+    document.getElementById("buttonDeactivAcc").addEventListener('click', deactivateAccount)
+    document.getElementById("lineDeactivate").addEventListener('click', ()=>{
+        document.location.href = `/profil/${userID}`
+    })
+})
+
 function delCookie(){
     document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log("cookie delete")
     document.location.href="/"
 }
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

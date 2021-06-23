@@ -17,7 +17,7 @@
     {{template "header"}}
 
     <main>
-        <div class="container-main">
+        <div class="container-main" style="cursor: default">
             <section class="globalFLex">
                 <div class="container-account globalFLex">
                     <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
@@ -37,7 +37,7 @@
                         <span>Consultez les informations sur votre compte ou découvrez les options <br> de désactivation de votre compte</span>
                     </div>
 
-                    <a onclick="verifConnectInfoAccount()"  id="over1" class="globalFLex link-in-main">
+                    <a href="/settings/account/" id="over1" class="globalFLex link-in-main" style="cursor: pointer">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/profile.svg">
@@ -54,7 +54,7 @@
                         </div>
                     </a>
 
-                    <a onclick="verifConnectChangMdp()" id="over2" class="globalFLex link-in-main">
+                    <a href="/settings/password/" id="over2" class="globalFLex link-in-main" style="cursor: pointer">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/password.svg">
@@ -71,7 +71,7 @@
                         </div>
                     </a>
 
-                    <a onclick="verifConnectDeaAccount()" id="over3" class="globalFLex link-in-main">
+                    <a href="/settings/deactivate/" id="over3" class="globalFLex link-in-main" style="cursor: pointer">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/desactivate_account.svg">
@@ -84,11 +84,11 @@
                                     <span>Désactiver ou supprimer votre compte</span>
                                 </div>
                             </div>
-                            <img class="image" src="/static/Design/Images/Icon/arrow_right.svg" id="deaCompte" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" id="deaCompte" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
-                    <a id="kkk" class="globalFLex link-in-main">
+                    <a id="kkk" class="globalFLex link-in-main" style="cursor: pointer">
                         <div onclick="delCookie()"   class="container-link-main globalFLex">
                             <div class="globalFLex"  style="flex-grow: 1;flex-shrink: 1;">
                                 <div  id="deconnexion" class="style-link">
