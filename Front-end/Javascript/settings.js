@@ -60,48 +60,61 @@ function profilUser(profil) {
 }
 
 
-function verifConnect(){
-    const id = parseInt(getCookie("PioutterID"))
-    let infoCompte= document.getElementById("infoCompte")
-    let changeMdp = document.getElementById("changeMdp")
-    let deaCompte = document.getElementById("deaCompte")
-    let deconnexion = document.getElementById("kkk")
+// function verifConnect(){
+//     const id = parseInt(getCookie("PioutterID"))
 
-    if (id > 0){
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-    }else {
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
+//     let deconnexion = document.getElementById("kkk")
+
+//     if (id > 0){
+//         document.getElementById("MyElement").classList= "MyClass";
+//         document.getElementById("MyElement").classList= "MyClass";
+//         document.getElementById("MyElement").classList= "MyClass";
+//     }else {
+//         document.getElementById("MyElement").classList= "MyClass";
+//         document.getElementById("MyElement").classList= "MyClass";
+        
   
-    }
-}
+//     }
+// }
 
 function verifConnectInfoAccount(){
     const id = parseInt(getCookie("PioutterID"))
-    // let infoCompte= document.getElementById("infoCompte")
+    let infoCompte = document.getElementById("infoCompte")
     if (id > 0){
+        infoCompte.classList.remove()
+        infoCompte.classList = "link-in-main";
         document.location.href="/settings/account/"
+    }else{
+        infoCompte.classList.remove()
+        infoCompte.classList = "link-in-main-false";
     }
 
 }
 
 function verifConnectChangMdp(){
     const id = parseInt(getCookie("PioutterID"))
-    // let infoCompte= document.getElementById("infoCompte")
+    let changeMdp= document.getElementById("changeMdp")
     if (id > 0){
+        changeMdp.classList.remove()
+        document.getElementById("changeMdp").classList= "link-in-main";
         document.location.href="/settings/password/"
+    }else{
+        changeMdp.classList.remove()
+        document.getElementById("changeMdp").classList= "link-in-main-false";
     }
 
 }
 
 function verifConnectDeaAccount(){
     const id = parseInt(getCookie("PioutterID"))
-    // let infoCompte= document.getElementById("infoCompte")
+    let infoCompte= document.getElementById("deaCompte")
     if (id > 0){
+        infoCompte.classList.remove()
+        document.getElementById("infoCompte").classList= "link-in-main";
         document.location.href="/settings/deactivate/"
+    }else{
+        infoCompte.classList.remove()
+        document.getElementById("MyElement").classList= "link-in-main-false";
     }
 
 }
