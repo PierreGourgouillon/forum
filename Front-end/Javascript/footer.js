@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     filters.forEach((filter) => filter.addEventListener("click", () => {
         chooseFilter(filter)
     }))
-
+    document.getElementById("filter-button").addEventListener("click", pushFilter)
+    
 })
 
 function showMoreFilter(){

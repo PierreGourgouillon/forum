@@ -75,9 +75,6 @@ function postIndex(){
 
 
 function postIndexFilter(){
-    //recupere l'id qui est dans l'url 
-    //le met dans une variable 
-    //mettre la variable dans le body du fetch
     let tabStr = []
     const url = window.location.href
     id = url.charAt(url.length-1);
