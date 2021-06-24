@@ -65,6 +65,9 @@ func requestHTTP(router *mux.Router) {
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
 
+	//Filter Route
+	router.HandleFunc("/filter/", filterRoute)
+
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
 	router.HandleFunc("/profilposts/{id}", getPostsUser).Methods("GET")
@@ -187,6 +190,26 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
+func filterRoute(w http.ResponseWriter, r *http.Request) {
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/filterPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	tmpl.Execute(w, nil)
+}
+
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
 	if !cookie.ReadCookie(r, "PioutterMode") {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
@@ -194,7 +217,7 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 
 	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
 
-	if valueCookie == 0{
+	if valueCookie == 0 {
 		http.Redirect(w, r, "/home/", http.StatusSeeOther)
 		return
 	}
@@ -1029,12 +1052,12 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	unmarshallJSON(r, &post)
 	println("categorieID: ", post.Categories[0])
 
-//recuperation idposts associer a idCategories selectionné
+	//recuperation idposts associer a idCategories selectionné
 	idPostsArray := database.GetPostIdByCategoryId(post.Categories[0], &post)
 
 	var idPostsArrayInt = []int{}
 	var n = 0
-	
+
 	for _, i := range idPostsArray {
 		j, err := strconv.Atoi(i)
 		if err != nil {
@@ -1054,5 +1077,3 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 
 	w.Write(jsonPostFilterCategories)
 }
-
-

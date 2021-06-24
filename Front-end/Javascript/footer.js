@@ -13,23 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
 function showMoreFilter(){
     let hidden = document.getElementById("hiddenFilter")
     let more_less = document.getElementById("showMore-filterText")
+    let sort = document.getElementById("container-sort")
     if(hidden.style.display === "none"){
         hidden.style.display = ""
         more_less.innerText = "Voir moins"
+        sort.style.display = "none"
     }else{
         hidden.style.display = "none"
         more_less.innerText = "Voir plus"
+        sort.style.display = ""
     }
 }
 function showMoreSort(){
     let hidden = document.getElementById("hiddenSort")
     let more_less = document.getElementById("showMore-sortText")
+    let filter = document.getElementById("container-filter")
     if(hidden.style.display === "none"){
         hidden.style.display = ""
         more_less.innerText = "Voir moins"
+        filter.style.display = "none"
     }else{
         hidden.style.display = "none"
         more_less.innerText = "Voir plus"
+        filter.style.display = ""
     }
 }
 
