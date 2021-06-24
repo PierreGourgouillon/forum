@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         chooseFilter(filter)
     }))
     document.getElementById("filter-button").addEventListener("click", pushFilter)
-    
 })
 
 function showMoreFilter(){
@@ -107,13 +106,14 @@ function goToPost() {
 
 let tabFilter = []
 function chooseFilter(filter){
+    let displayArrow = document.getElementById("filter-button")
     const len = document.getElementById("filter").querySelectorAll('.active2').length
-
     let fil = filter.querySelector('span')
 
     if(filter.classList.value.includes('active2')) {
         filter.classList.remove('active2')
         fil.classList.remove('selected-category2')
+        displayArrow.style.display = "none"
         tabFilter.pop()
     } else {
         if(len >= 1) {
@@ -124,16 +124,13 @@ function chooseFilter(filter){
         filter.classList.add('active2')
         fil.classList.add('selected-category2')
         tabFilter.push(filter)
-
+        displayArrow.style.display = ""
         console.log(filter)
     }
 }
 function pushFilter(){
     let filter = [...document.getElementsByClassName("selected-category2")]
-    console.log("filter = ", filter)
     let id = filter[0].innerText
-    console.log("id = ", id)
     let value = Object.keys(tabCats).find(key => tabCats[key] === id)
-    console.log("value = ", value)
     document.location.href = "/filter/"+value
 }

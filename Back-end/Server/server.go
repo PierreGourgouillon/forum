@@ -114,8 +114,6 @@ func requestHTTP(router *mux.Router) {
 
 	router.HandleFunc("/status/{id}", postPage)
 
-	
-
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
 }
@@ -208,8 +206,15 @@ func filterRoute(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	title := mux.Vars(r)
+	id, err := strconv.Atoi(title["id"])
+	if err != nil {
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
+	}
+	tab := []string{"", "Actualité", "Art", "Cinéma", "Histoire", "Humour", "Internet", "Jeux Vidéo", "Nourriture", "Santé", "Sport"}
 
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, tab[id])
 }
 
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
