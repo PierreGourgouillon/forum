@@ -1027,13 +1027,16 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 
 	var post structs.Post
 	unmarshallJSON(r, &post)
-	println("categorieID: ", post.Categories)
+	println("categorieID: ", post.Categories[0])
 
 //recuperation idposts associer a idCategories selectionné
-	/*idPostsArray := */database.GetPostIdByCategoryId(post)
+	idPostsArray := database.GetPostIdByCategoryId(post.Categories[0], &post)
+	// for i:=0; i < 5; i++{
+	// 	println("dd:  ",idPostsArray[i])
+	// }
 
 //recuperer les posts des idposts de idPostsArray
-	// PostsArray := database.GetPost(idPostsArray)
+	PostsArray := database.GetPost(idPostsArray)
 
 	// jsonPostFilterCategories, error := json.Marshal(PostsArray)
 	// if error != nil {
