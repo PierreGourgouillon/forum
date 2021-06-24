@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("search-button").addEventListener("click", goToPost)
     document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
     document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
-    /*const filters = [...document.getElementsByClassName("filter")]
-    filters.forEach((filter) => filter.addEventListener("click", () => {
-        chooseFilter(filter)
-    }))*/
+    // const filters = [...document.getElementsByClassName("filter")]
+    // filters.forEach((filter) => filter.addEventListener("click", () => {
+    //     chooseFilter(filter)
+    // }))
+
 })
 
 function showMoreFilter(){
@@ -81,15 +82,17 @@ function goToPost() {
         }
     }
 }
-/*
-let tabFilter = []
 
+let tabFilter = []
 function chooseFilter(filter){
-    const len = document.getElementById(("category-boxs")).querySelectorAll('.active').length
+    console.log("choisefilter")
+    const len = document.getElementById("category-boxs").querySelectorAll('.active').length
+
     let fil = filter.querySelector('button')
+
     if(filter.classList.value.includes('active')) {
         filter.classList.remove('active')
-        fil.classList.remove('selected-category')
+        fil.classList.remove('selected-category2')
         tabFilter.forEach((elem, idx) => {
             if(elem == filter) {
                 tabFilter.splice(idx, 1)
@@ -98,11 +101,13 @@ function chooseFilter(filter){
     } else {
         if(len >= 2) {
             tabFilter[0].classList.remove('active')
-            tabCat[0].querySelector('button').classList.remove('selected-category')
+            tabCat[0].querySelector('button').classList.remove('selected-category2')
             tabFilter.shift()
         }
         filter.classList.add('active')
-        fil.classList.add('selected-category')
+        fil.classList.add('selected-category2')
         tabFilter.push(filter)
+
+        return tabFilter
     }
-}*/
+}
