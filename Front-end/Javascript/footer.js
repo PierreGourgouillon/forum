@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("search-button").addEventListener("click", goToPost)
     document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
     document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
-    // const filters = [...document.getElementsByClassName("filter")]
-    // filters.forEach((filter) => filter.addEventListener("click", () => {
-    //     chooseFilter(filter)
-    // }))
+    const filters = [...document.querySelectorAll("#filter > div")]
+    filters.forEach((filter) => filter.addEventListener("click", () => {
+        chooseFilter(filter)
+    }))
 
 })
 
@@ -91,8 +91,7 @@ function goToPost() {
 
 let tabFilter = []
 function chooseFilter(filter){
-    console.log("choisefilter")
-    const len = document.getElementById("category-boxs").querySelectorAll('.active').length
+    const len = document.getElementById("filter").querySelectorAll('.active').length
 
     let fil = filter.querySelector('button')
 
@@ -105,9 +104,9 @@ function chooseFilter(filter){
             }
         })
     } else {
-        if(len >= 2) {
+        if(len >= 1) {
             tabFilter[0].classList.remove('active')
-            tabCat[0].querySelector('button').classList.remove('selected-category2')
+            tabFilter[0].querySelector('button').classList.remove('selected-category2')
             tabFilter.shift()
         }
         filter.classList.add('active')
