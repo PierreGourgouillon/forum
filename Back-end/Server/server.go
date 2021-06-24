@@ -1026,9 +1026,8 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	var post structs.Post
-	println(post.IdUser)
-	unmarshallJSON(r, post)
-	println("categorieID: ",post.CategorieID)
+	unmarshallJSON(r, &post)
+	println("categorieID: ", post.Categories)
 
 //recuperation idposts associer a idCategories selectionné
 	/*idPostsArray := */database.GetPostIdByCategoryId(post)

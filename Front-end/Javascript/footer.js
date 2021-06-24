@@ -98,7 +98,7 @@ function chooseFilter(filter){
     } else {
         if(len >= 2) {
             tabFilter[0].classList.remove('active')
-            fil.classList.remove('selected-category')
+            tabCat[0].querySelector('button').classList.remove('selected-category')
             tabFilter.shift()
         }
         filter.classList.add('active')

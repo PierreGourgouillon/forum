@@ -575,12 +575,12 @@ func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) 
 
 func GetPostIdByCategoryId(categories structs.Post) /*([]string)*/ {
 	//recuperer les postID
-	/*rows, err := */db.Query("SELECT post_id FROM postCategory WHERE post_id = ?", categories.CategorieID)
+	/*rows, err := */db.Query("SELECT post_id FROM postCategory WHERE post_id = ?", categories.Categories)
 	// if err != nil {
 	// 	fmt.Println(err)
 	// }
 	
-	println(categories.CategorieID)
+	println(categories.Categories)
 	//ajouter tt les postID dans un tableau
 
 

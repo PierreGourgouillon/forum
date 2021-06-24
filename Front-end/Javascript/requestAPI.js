@@ -75,23 +75,6 @@ function postIndex(){
 
 function postIndexFilter(){
     const nombre = 1 
-    let valueCookie = getCookie("PioutterID")
-
-    fetch("/post/", {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            pseudo: user.pseudo,
-            message: message.value,
-            like: 0,
-            dislike: 0,
-            categories: cats
-        })
-    })
-
 
     fetch("/post/filter/", {
         method : "POST",
@@ -99,8 +82,7 @@ function postIndexFilter(){
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            idUser: valueCookie,
-            categoriesID: nombre
+            "categories": ["1"],
         })
     })
     .then((response)=>{
