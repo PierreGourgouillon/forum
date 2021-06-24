@@ -66,7 +66,7 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/home/", homeRoute)
 
 	//Filter Route
-	router.HandleFunc("/filter/", filterRoute)
+	router.HandleFunc("/filter/{id}", filterRoute)
 
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
@@ -113,6 +113,8 @@ func requestHTTP(router *mux.Router) {
 	router.HandleFunc("/test/", testRoute)
 
 	router.HandleFunc("/status/{id}", postPage)
+
+	
 
 	//Page error
 	router.HandleFunc("/error/", errorRoute)
