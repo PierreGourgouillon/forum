@@ -75,13 +75,17 @@ function postIndex(){
 
 
 function postIndexFilter(){
+    let filter = document.getElementById("test")
+    let tabFilter = []
+    tabFilter = [filter]
+    console.log(tabFilter)
     fetch("/post/filter/", {
         method : "POST",
         headers : {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "categories": ["1"],
+            "categories": tabFilter,
         })
     })
     .then((response)=>{
