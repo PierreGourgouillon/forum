@@ -32,7 +32,7 @@ function chooseCategory(cat){
     } else {
         if(len >= 2) {
             tabCat[0].classList.remove('active')
-            category.classList.remove('selected-category')
+            tabCat[0].querySelector('span').classList.remove('selected-category')
             tabCat.shift()
         }
         cat.classList.add('active')
