@@ -75,20 +75,13 @@ function postIndex(){
 
 
 function postIndexFilter(){
-    // let categories = [...document.getElementsByClassName("selected-category2")]
-    // let filter = categories.map((elem) => {
-    //     return elem.outerText
-    // })
-    // console.log("cats:", filter)
-    // document.location.href="/filter/"
-
     fetch("/post/filter/", {
         method : "POST",
         headers : {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "categories": ["2"],
+            "categories": ["1"],
         })
     })
     .then((response)=>{
