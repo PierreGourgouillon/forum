@@ -40,3 +40,5 @@ function chooseCategory(cat){
         tabCat.push(cat)
     }
 }
+
+

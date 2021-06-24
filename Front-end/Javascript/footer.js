@@ -120,3 +120,6 @@ function chooseFilter(filter){
         return tabFilter
     }
 }
+
+//fonction qui recupere l'id (1,2,3...) du bouton selectionné
+//redirige vers /filter/$id

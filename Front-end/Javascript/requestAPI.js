@@ -75,17 +75,22 @@ function postIndex(){
 
 
 function postIndexFilter(){
+    //recupere l'id qui est dans l'url 
+    //le met dans une variable 
+    //mettre la variable dans le body du fetch
+    
+    document.getElementById("containerPost").id = "containerPostFiltered";
     let filter = document.getElementById("test")
-    let tabFilter = []
-    tabFilter = [filter]
-    console.log(tabFilter)
-    fetch("/post/filter/", {
+    let tab = []
+    tab = [filter]
+    console.log("bb:",tabFilter)
+    fetch("/post/filter/"/*a changer*/, {
         method : "POST",
         headers : {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "categories": tabFilter,
+            "categories": ["2"],
         })
     })
     .then((response)=>{
