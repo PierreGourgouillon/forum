@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', createPost)
     addImageProfil()
-    document.getElementById("filter-button").addEventListener('click', postIndexFilter)
+    // document.getElementById("sort-button").addEventListener('click', postIndexFilter)
 })
 
 async function createPost(){
@@ -80,6 +80,7 @@ function postIndexFilter(){
     //     return elem.outerText
     // })
     // console.log("cats:", filter)
+    // document.location.href="/filter/"
 
     fetch("/post/filter/", {
         method : "POST",
@@ -87,7 +88,7 @@ function postIndexFilter(){
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "categories": ["1"],
+            "categories": ["2"],
         })
     })
     .then((response)=>{
@@ -97,7 +98,7 @@ function postIndexFilter(){
         addAllPostFilter(res)
     })
     .catch(()=>{
-        // document.location.href = "/error/"
+        document.location.href = "/error/"
         console.log('erreur')
     })
 }
