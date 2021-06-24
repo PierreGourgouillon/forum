@@ -184,6 +184,46 @@ func GetAllPosts() []structs.Post {
 	return allPost
 }
 
+
+//idFiltre est la metode de rangement
+func GetAllPostsTrie(idFiltre) []structs.Post {
+	var allPost []structs.Post
+
+	//ORDER BY post_date , post_hour DESC ->plus recente d'abord
+	//ORDER BY post_date , post_hour ASC ->plus ancienne d'abord
+	//post_likes DESC ->plus like d'abord
+	//post_likes ASC -> moins like d'abord
+
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY ?", idFiltre)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	for rows.Next() {
+		var post structs.Post
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
+		allPost = append(allPost, post)
+	}
+
+	return allPost
+}
+
 func FindPostById(id int) structs.Post {
 
 	var post structs.Post
