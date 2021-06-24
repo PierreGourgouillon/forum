@@ -91,32 +91,23 @@ function goToPost() {
 
 let tabFilter = []
 function chooseFilter(filter){
-    const len = document.getElementById("filter").querySelectorAll('.active').length
+    const len = document.getElementById("filter").querySelectorAll('.active2').length
 
-    let fil = filter.querySelector('button')
+    let fil = filter.querySelector('span')
 
-    if(filter.classList.value.includes('active')) {
-        filter.classList.remove('active')
+    if(filter.classList.value.includes('active2')) {
+        filter.classList.remove('active2')
         fil.classList.remove('selected-category2')
-        tabFilter.forEach((elem, idx) => {
-            if(elem == filter) {
-                tabFilter.splice(idx, 1)
-            }
-        })
+        tabFilter.pop()
     } else {
         if(len >= 1) {
-            tabFilter[0].classList.remove('active')
-            tabFilter[0].querySelector('button').classList.remove('selected-category2')
+            tabFilter[0].classList.remove('active2')
+            tabFilter[0].querySelector('span').classList.remove('selected-category2')
             tabFilter.shift()
         }
         filter.classList.add('active')
         fil.classList.add('selected-category2')
         tabFilter.push(filter)
-        if (filter.id === "3"){
-
-        }
-        tabFilter = [3]
-    console.log(tabFilter)
-        return tabFilter
+        console.log(filter)
     }
 }
