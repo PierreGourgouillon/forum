@@ -245,3 +245,13 @@ main{
 #colorBox10{
     background-color: hotpink;
 }
+#arrowLeft{
+    filter: invert(0%) sepia(87%) saturate(7432%) hue-rotate(10deg) brightness(93%) contrast(96%);
+}
+#arrowLeft:hover{
+    background-color: rgba(0,110,195,0.1);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
