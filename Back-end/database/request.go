@@ -365,12 +365,12 @@ func GetPostsLikedByUserID(id int) []structs.Post {
 		tab = append(tab, num)
 	}
 
-	allPost = getPostWithArray(tab)
+	allPost = GetPostWithArray(tab)
 
 	return allPost
 }
 
-func getPostWithArray(tab []int) []structs.Post {
+func GetPostWithArray(tab []int) []structs.Post {
 	var allPost []structs.Post
 
 	for _, num := range tab {

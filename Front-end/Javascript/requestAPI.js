@@ -82,7 +82,7 @@ function postIndexFilter(){
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "categories": ["1"],
+            "categories": ["3"],
         })
     })
     .then((response)=>{
@@ -90,7 +90,7 @@ function postIndexFilter(){
     })
     .then((res)=>{
         console.log("add all post:\n",res)
-        // addAllPost(res)
+        addAllPost(res)
     })
     .catch(()=>{
         document.location.href = "/error/"
