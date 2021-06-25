@@ -1115,11 +1115,6 @@ func getPostTrie(w http.ResponseWriter, r *http.Request) {
 	var idButton structs.RequestSql
 	unmarshallJSON(r, &idButton)
 
-	//ORDER BY post_date , post_hour DESC  |  plus recente d'abord
-	//ORDER BY post_date , post_hour ASC   |  plus ancienne d'abord
-	//post_likes DESC, post_dislikes ASC   |  plus like d'abord
-	//post_dislikes DESC, post_likes ASC   |  moins like d'abord
-
 	allPostTrie := database.GetAllPostsTrie(idButton.IdButton)
 
 	jsonPostTrie, error := json.Marshal(allPostTrie)

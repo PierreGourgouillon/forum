@@ -339,16 +339,15 @@ async function addAllPostFilter(response){
 
     let reactions = await getReactions()
     let idUser = parseInt(getCookie("PioutterID"))
-    // console.log(response)
 
         response.forEach((post)=>{
             if (post.title != ""){
-                console.log("les catégories du post sont :", post.categories)
 
                 let template = document.getElementById("postTemplate")
                 let clone = document.importNode(template.content, true)
                 let container = document.getElementById("containerPostFiltered")
                 let imageProfil = clone.getElementById("image-user")
+                let imgPost = clone.getElementById("imgPost")
                 let pseudo = clone.getElementById("pseudo-user")
                 let title = clone.getElementById("title-user")
                 let messagePost = clone.getElementById("message-post")
@@ -359,6 +358,7 @@ async function addAllPostFilter(response){
                 let divDislike = clone.getElementById("dislike")
                 let dots = clone.getElementById("dots")
                 let cats = [...clone.querySelectorAll(".styleCategory")]
+                let cookieDarkMode = getCookie("PioutterMode")
 
                 if(post.categories != null) {
                     cats.forEach((elem, idx) => {
@@ -395,6 +395,17 @@ async function addAllPostFilter(response){
                     })
                 }
 
+                if (post.image === ""){
+                    clone.getElementById("divImage").style.display = "none"
+                }
+
+                if (cookieDarkMode === "D"){
+                    clone.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
+                    clone.getElementById('imgDislike').src = '/static/Design/Images/Icon/dislike_color_white.svg'
+                    clone.getElementById('dotsImg').src = '/static/Design/Images/Icon/dots_white.svg'
+                }
+
+                imgPost.src = "data:image/png;base64," + post.image
                 pseudo.textContent = post.pseudo
                 title.textContent = post.title
                 messagePost.textContent += post.message
@@ -439,6 +450,7 @@ async function addAllPostTrie(response){
                 let clone = document.importNode(template.content, true)
                 let container = document.getElementById("containerPost")
                 let imageProfil = clone.getElementById("image-user")
+                let imgPost = clone.getElementById("imgPost")
                 let pseudo = clone.getElementById("pseudo-user")
                 let title = clone.getElementById("title-user")
                 let messagePost = clone.getElementById("message-post")
@@ -449,6 +461,7 @@ async function addAllPostTrie(response){
                 let divDislike = clone.getElementById("dislike")
                 let dots = clone.getElementById("dots")
                 let cats = [...clone.querySelectorAll(".styleCategory")]
+                let cookieDarkMode = getCookie("PioutterMode")
 
                 if(post.categories != null) {
                     cats.forEach((elem, idx) => {
@@ -485,6 +498,17 @@ async function addAllPostTrie(response){
                     })
                 }
 
+                if (post.image === ""){
+                    clone.getElementById("divImage").style.display = "none"
+                }
+
+                if (cookieDarkMode === "D"){
+                    clone.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
+                    clone.getElementById('imgDislike').src = '/static/Design/Images/Icon/dislike_color_white.svg'
+                    clone.getElementById('dotsImg').src = '/static/Design/Images/Icon/dots_white.svg'
+                }
+
+                imgPost.src = "data:image/png;base64," + post.image
                 pseudo.textContent = post.pseudo
                 title.textContent = post.title
                 messagePost.textContent += post.message

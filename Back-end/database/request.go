@@ -203,7 +203,7 @@ func GetAllPostsTrie(idFilter string) []structs.Post {
 		save = "post_dislikes ASC, post_likes DESC" //moins like d'abord
 
 	}
-	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
 
 	if error != nil {
 		fmt.Println(error)
@@ -211,7 +211,7 @@ func GetAllPostsTrie(idFilter string) []structs.Post {
 
 	for rows.Next() {
 		var post structs.Post
-		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
@@ -436,8 +436,8 @@ func GetPostWithArray(tab []int) []structs.Post {
 	for _, num := range tab {
 		var post structs.Post
 
-		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
-		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
+		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
