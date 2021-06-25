@@ -1,4 +1,4 @@
-module github.com/forum
+module forum
 
 go 1.16
 

@@ -3,9 +3,9 @@ package authentification
 import (
 	"fmt"
 
-	"github.com/forum/Back-end/database"
-	"github.com/forum/Back-end/password"
-	"github.com/forum/Back-end/structs"
+	"forum/Back-end/database"
+	"forum/Back-end/password"
+	"forum/Back-end/structs"
 )
 
 func DoInscription(data structs.Register) bool {

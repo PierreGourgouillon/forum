@@ -10,11 +10,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/forum/Back-end/authentification"
-	"github.com/forum/Back-end/cookie"
-	"github.com/forum/Back-end/database"
-	"github.com/forum/Back-end/password"
-	"github.com/forum/Back-end/structs"
+	"forum/Back-end/authentification"
+	"forum/Back-end/cookie"
+	"forum/Back-end/database"
+	"forum/Back-end/password"
+	"forum/Back-end/structs"
+
 	"github.com/gorilla/mux"
 )
 

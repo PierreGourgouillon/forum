@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/forum/Back-end/password"
-	"github.com/forum/Back-end/structs"
+	"forum/Back-end/password"
+	"forum/Back-end/structs"
 )
 
 func GetEmailList() []string {
