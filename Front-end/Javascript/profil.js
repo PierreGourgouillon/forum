@@ -272,6 +272,7 @@ async function addAllPost(response, choice){
         let divDislike = clone.getElementById("dislike")
         let dots = clone.getElementById("dots")
         let cats = [...clone.querySelectorAll(".styleCategory")]
+        let cookieDarkMode = getCookie("PioutterMode")
 
         if(post.categories != null) {
             cats.forEach((elem, idx) => {
@@ -306,6 +307,13 @@ async function addAllPost(response, choice){
                     }
                 }
             })
+        }
+
+
+        if (cookieDarkMode === "D"){
+            clone.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
+            clone.getElementById('imgDislike').src = '/static/Design/Images/Icon/dislike_color_white.svg'
+            clone.getElementById('dotsImg').src = '/static/Design/Images/Icon/dots_white.svg'
         }
 
         pseudo.textContent = post.pseudo

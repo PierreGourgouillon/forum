@@ -2,7 +2,6 @@ package database
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 
 	"github.com/forum/Back-end/password"
@@ -15,7 +14,6 @@ func GetEmailList() []string {
 	data, err := db.Query("SELECT user_email FROM userIdentity")
 
 	if err != nil {
-		fmt.Println("err GEL")
 		return []string{}
 	}
 
@@ -36,8 +34,6 @@ func InsertNewUser(user structs.Register) {
 	}
 
 	id, err2 := data.LastInsertId()
-	fmt.Print("id => ")
-	fmt.Print(id)
 	if err2 != nil {
 		return
 	}
@@ -87,7 +83,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 		idUser, err = strconv.Atoi(valueCookie)
 
 		if err != nil {
-			log.Fatal(err)
+			return user
 		}
 	}
 
@@ -95,7 +91,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 	errorDB := db.QueryRow(query, idUser).Scan(&user.Email, &user.Pseudo, &user.Birth)
 
 	if errorDB != nil {
-		log.Fatal(errorDB)
+		return user
 	}
 
 	user.ID = idUser
@@ -108,7 +104,7 @@ func InsertPost(post *structs.Post) int64 {
 	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_image, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Image, post.Date, post.Hour, post.Like, post.Dislike)
 
 	if error != nil {
-		log.Fatal(error)
+		return 0
 	}
 
 	id, error := res.LastInsertId()
@@ -118,7 +114,7 @@ func InsertPost(post *structs.Post) int64 {
 	}
 
 	if error != nil {
-		log.Fatal(error)
+		return 0
 	}
 
 	return id
@@ -126,8 +122,6 @@ func InsertPost(post *structs.Post) int64 {
 
 func insertCategories(id int, cat string) {
 	var catId int
-
-	fmt.Println(cat)
 
 	rows := db.QueryRow("SELECT category_id FROM categories WHERE category_name = ?", cat)
 	rows.Scan(&catId)
@@ -184,7 +178,6 @@ func GetAllPosts() []structs.Post {
 	return allPost
 }
 
-
 // idFiltre est la metode de rangement
 func GetAllPostsTrie(idFilter string) []structs.Post {
 	var allPost []structs.Post
@@ -192,25 +185,25 @@ func GetAllPostsTrie(idFilter string) []structs.Post {
 
 	println(idFilter)
 
-	if idFilter =="1"{
+	if idFilter == "1" {
 		println("idFilter:", idFilter)
 		println("fonction:plus vieux au plus recent")
 		save = "post_date ASC, post_hour DESC" //plus vieux au plus recent
-	}else if idFilter == "2"{
-		println("idFilter:",idFilter)
+	} else if idFilter == "2" {
+		println("idFilter:", idFilter)
 		println("du plus recent au plus vieux")
 		save = "post_date DESC, post_hour ASC" //plus recent au plus vieux
-	}else if idFilter== "3"{
-		println("idFilter:",idFilter)
+	} else if idFilter == "3" {
+		println("idFilter:", idFilter)
 		println("fonction:plus like au moins like")
 		save = "post_likes ASC, post_dislikes DESC" //les plus like
-	}else if idFilter == "4"{
-		println("idFilter:",idFilter)
+	} else if idFilter == "4" {
+		println("idFilter:", idFilter)
 		println("fonction: moins like au plus like")
 		save = "post_dislikes ASC, post_likes DESC" //moins like d'abord
 
-	}	
-	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
+	}
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
 
 	if error != nil {
 		fmt.Println(error)
@@ -218,7 +211,7 @@ func GetAllPostsTrie(idFilter string) []structs.Post {
 
 	for rows.Next() {
 		var post structs.Post
-		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
@@ -248,7 +241,7 @@ func FindPostById(id int) structs.Post {
 	err := db.QueryRow(query, id).Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 
 	catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
@@ -330,7 +323,7 @@ func GetAllReactions() []structs.Reaction {
 	rows, error := db.Query("SELECT post_id, user_id, user_like, user_dislike FROM postReactions")
 
 	if error != nil {
-		log.Fatal(error)
+		fmt.Println(error)
 	}
 
 	for rows.Next() {
@@ -359,7 +352,7 @@ func GetReactionsOnePost(id int) []structs.Reaction {
 	rows, error := db.Query("SELECT post_id, user_id, user_like, user_dislike FROM postReactions WHERE post_id= ?", id)
 
 	if error != nil {
-		log.Fatal(error)
+		fmt.Println(error)
 	}
 
 	for rows.Next() {
@@ -390,7 +383,7 @@ func GetPostsByUserID(id int) []structs.Post {
 	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE user_id = ?", id)
 
 	if error != nil {
-		log.Fatal(error)
+		fmt.Println(error)
 	}
 
 	for rows.Next() {
@@ -443,8 +436,8 @@ func GetPostWithArray(tab []int) []structs.Post {
 	for _, num := range tab {
 		var post structs.Post
 
-		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
-		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		data := db.QueryRow("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id = ?", num)
+		data.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
@@ -639,9 +632,8 @@ func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) 
 	return true, commentary
 }
 
+func GetPostIdByCategoryId(categories string, post *structs.Post) []string {
 
-func GetPostIdByCategoryId(categories string, post *structs.Post) ([]string) {
-	
 	var PostId []string
 	//recuperer les postID
 	rows, err := db.Query("SELECT post_id FROM postCategory WHERE category_id = ?", categories)
