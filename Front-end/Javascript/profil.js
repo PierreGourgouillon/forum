@@ -1,4 +1,4 @@
-let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Inetrnet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
+let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Internet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('image-close').addEventListener('click', () => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getProfilUserL()
     getPostsUserL()
 
-    addImageProfil()
+    setImageProfil()
 })
 
 function displayReactions() {
@@ -647,17 +647,75 @@ function getUserProfil(idUser) {
         })
 }
 
-function addImageProfil(){
-    let idUser = parseInt(getCookie("PioutterID"))
-    getProfilImage(idUser)
+function changeImageProfil(){
+    let idUser = parseInt(getCookie('PioutterID'))
+    // get a reference to the file input
+    const fileInput = document.querySelector("#fileChange");
+
+    fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64String = reader.result
+                .replace("data:", "")
+                .replace(/^.+,/, "");
+
+            APIChangeImage(idUser, base64String)
+                .then((isUpdate)=>{
+                    if (isUpdate){
+                        document.getElementById("imageUser").src = "data:image/png;base64," + base64String
+                        document.location.reload()
+                    }else{
+                        alert("Un problème est apparu")
+                    }
+                })
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function APIChangeImage(idUser, file){
+    return fetch(`/profiluser/${idUser}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body : JSON.stringify({
+            image : file,
+            choice: "image",
+        })
+    })
+        .then((response)=>{
+            return response.json()
+        })
+        .then((res)=>{
+            if (res.isUpdate === "true"){
+                return true
+            }else {
+                return false
+            }
+        })
+        .catch(()=>{
+            document.location.href = "/error/"
+        })
+}
+
+function setImageProfil(){
+    getProfilImage()
         .then((file)=>{
-            document.getElementById("create-post-image").src = "data:image/png;base64," + file
+            console.log("1",file)
+            document.getElementById("imageUser").src = "data:image/png;base64," + file
+            console.log("2",file)
+            document.getElementById("profilImage").src = "data:image/png;base64," + file
+            console.log(document.getElementById("profilImage").src)
+            console.log("3",file)
             document.getElementById("headerImage").src = "data:image/png;base64," + file
         })
 }
 
-
-function getProfilImage(id) {
+function getProfilImage() {
+    let id = parseInt(getCookie("PioutterID"))
 
     return fetch(`/profiluser/${id}`, {
         method: "GET",

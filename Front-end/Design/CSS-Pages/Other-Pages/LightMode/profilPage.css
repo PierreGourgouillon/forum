@@ -28,7 +28,7 @@ body {
 }
 
 #home-banner{
-    height: 5%;
+    height: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;

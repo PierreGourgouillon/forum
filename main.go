@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	database.CreateAndSelectDB("Forum")
-	database.CreateTable()
+	database.CreateAndSelectDB("Forum.db")
 	server.StartServer()
 }
