@@ -2,11 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil | Pioutter</title>
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/PostPage/LightMode/postPage.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <title>Post</title>
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/PostPage/LightMode/postPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/PostPage/DarkMode/postPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    {{end}}
+
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script type="text/javascript" src="/static/Javascript/footer.js"></script>
+    <script type="text/javascript" src="/static/Javascript/mode.js"></script>
     <script type="module" src="/static/Javascript/commentary.js"></script>
     <script type="text/javascript" src="/static/Javascript/mode.js"></script>
     <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">

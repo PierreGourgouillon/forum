@@ -2,14 +2,21 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+    <title>Votre compte</title>
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">   
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/deactivateAccount.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    {{end}}
     <script src="/static/Javascript/requestAPI.js" type="text/javascript"></script>
     <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/settings/deactivateAccount.js" type="module" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
-    <title>Votre compte</title>
 </head>
 <body>
     <div class="container-body">

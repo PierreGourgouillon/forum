@@ -1,4 +1,4 @@
-let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Inetrnet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
+let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Internet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
 var compteur = false
 
 document.addEventListener("DOMContentLoaded",()=>{

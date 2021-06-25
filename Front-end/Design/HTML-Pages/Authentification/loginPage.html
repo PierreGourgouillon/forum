@@ -3,11 +3,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>projet forum</title>
         <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+        <title>projet forum</title>
+        {{if eq . "L"}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/loginPage_LightMode.css">
+        {{else}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/DarkMode/loginPage_DarkMode.css">
+        {{end}}
         <script src="/static/Javascript/login.js" type="text/javascript" charset="utf-8"></script>
         <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
-        <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/loginPage_LightMode.css">
     </head>
   
     <body>
@@ -47,5 +51,6 @@
                     </a>
             </div>
         </div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     </body>
 </html>
