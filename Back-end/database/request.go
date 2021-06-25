@@ -184,6 +184,54 @@ func GetAllPosts() []structs.Post {
 	return allPost
 }
 
+
+// idFiltre est la metode de rangement
+func GetAllPostsTrie(idFiltre string) []structs.Post {
+	var allPost []structs.Post
+	var save string
+	println(idFiltre)
+
+	if idFiltre =="1"{
+		save = "post_date ASC, post_hour DESC" //plus vieux au plus recent
+	}else if idFiltre == "2"{
+		save = "post_date DESC, post_hour ASC" //plus recent au plus vieux
+	}else if idFiltre == "3"{
+		save = "post_likes ASC, post_dislikes DESC" //les plus like
+	}else if idFiltre == "4"{
+		save = "post_dislikes ASC, post_likes DESC" //moins like d'abord
+
+	}
+	println("save: ",save)
+	
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	for rows.Next() {
+		var post structs.Post
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
+		allPost = append(allPost, post)
+	}
+	return allPost
+}
+
 func FindPostById(id int) structs.Post {
 
 	var post structs.Post

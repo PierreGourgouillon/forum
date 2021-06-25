@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     filters.forEach((filter) => filter.addEventListener("click", () => {
         chooseFilter(filter)
     }))
+
+    const tries = [...document.querySelectorAll("#trie > div")]
+    tries.forEach((trie) => trie.addEventListener("click", () => {
+        chooseTrie(trie)
+    }))
     document.getElementById("filter-button").addEventListener("click", pushFilter)
 })
 
@@ -128,9 +133,37 @@ function chooseFilter(filter){
         console.log(filter)
     }
 }
+
 function pushFilter(){
     let filter = [...document.getElementsByClassName("selected-category2")]
     let id = filter[0].innerText
     let value = Object.keys(tabCats).find(key => tabCats[key] === id)
     document.location.href = "/filter/"+value
 }
+
+let tabTrie = []
+function chooseTrie(trie){
+    const len = document.getElementById("filter").querySelectorAll('.active3').length
+
+    let tri = trie.querySelector('span')
+
+    if(trie.classList.value.includes('active3')) {
+        trie.classList.remove('active3')
+        tri.classList.remove('selected-category3')
+        tabTrie.pop()
+    } else {
+        if(len >= 1) {
+            tabTrie[0].classList.remove('active3')
+            tabTrie[0].querySelector('span').classList.remove('selected-category3')
+            tabTrie.shift()
+        }
+        trie.classList.add('active3')
+        tri.classList.add('selected-category3')
+        tabTrie.push(trie)
+
+        console.log(filter)
+    }
+}
+
+
+
