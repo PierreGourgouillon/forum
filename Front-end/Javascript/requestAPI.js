@@ -106,7 +106,6 @@ function postIndexFilter(){
 function postIndexTrie(){
     const id = tabTrie
     let id2 = id[0]
-    console.log("id2", id2)
     fetch("/post/trie/", {
         method : "POST",
         headers : {
@@ -120,14 +119,11 @@ function postIndexTrie(){
         return response.json()
     })
     .then((res)=>{
-        console.log("recuperé")
-        console.log("res: ", res)
         deleteChild()
         addAllPostTrie(res)
     })
     .catch(()=>{
-        // document.location.href = "/error/"
-        console.log('erreur')
+        document.location.href = "/error/"
     })
 }
 

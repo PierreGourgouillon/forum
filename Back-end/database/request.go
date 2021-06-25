@@ -209,9 +209,7 @@ func GetAllPostsTrie(idFilter string) []structs.Post {
 		println("fonction: moins like au plus like")
 		save = "post_dislikes ASC, post_likes DESC" //moins like d'abord
 
-	}
-	println("save: ",save)
-	
+	}	
 	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
 
 	if error != nil {
