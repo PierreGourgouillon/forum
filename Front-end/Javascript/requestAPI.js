@@ -104,8 +104,7 @@ function postIndexFilter(){
 }
 
 function postIndexTrie(){
-    const requesteSQL = "post_likes DESC"
-    //faire appel a la fonction qui va recuperer la fin de la requete sql
+    const requesteSQL = "post_likes DESC, post_dislikes ASC" 
     fetch("/post/trie/", {
         method : "POST",
         headers : {
@@ -121,6 +120,7 @@ function postIndexTrie(){
     .then((res)=>{
         console.log("recuperé")
         console.log("res: ", res)
+        deleteChild()
         addAllPostTrie(res)
     })
     .catch(()=>{
@@ -376,18 +376,12 @@ async function addAllPostFilter(response){
 
 
 async function addAllPostTrie(response){
-    container.removeChild()
-
     let reactions = await getReactions()
     let idUser = parseInt(getCookie("PioutterID"))
-
         response.forEach((post)=>{
-            if (post.title != ""){
-                console.log("les catégories du post sont :", post.categories)
-
                 let template = document.getElementById("postTemplate")
                 let clone = document.importNode(template.content, true)
-                let container = document.getElementById("containerPostFiltered")
+                let container = document.getElementById("containerPost")
                 let imageProfil = clone.getElementById("image-user")
                 let pseudo = clone.getElementById("pseudo-user")
                 let title = clone.getElementById("title-user")
@@ -466,7 +460,6 @@ async function addAllPostTrie(response){
                     },500)
                 })
                 container.append(clone)
-            }
         })
 }
 

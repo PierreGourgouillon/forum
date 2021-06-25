@@ -1088,8 +1088,9 @@ func getPostTrie(w http.ResponseWriter, r *http.Request) {
 
 	var requestSql structs.RequestSql
 	unmarshallJSON(r, &requestSql)
+
 	allPostTrie := database.GetAllPostsTrie(requestSql.RequestSql)
-	println("requestSql: ", requestSql.RequestSql)
+	
 	jsonPostTrie, error := json.Marshal(allPostTrie)
 	if error != nil {
 		log.Fatal(error)

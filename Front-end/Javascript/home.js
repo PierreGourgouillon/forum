@@ -41,4 +41,18 @@ function chooseCategory(cat){
     }
 }
 
+function deleteChild() {
+    console.log('delete')
+    let container = document.getElementById("containerPost")
+    var e = [...container.querySelectorAll("div")];
+    console.log("e: ", e)
+    var child = e.lastElementChild; 
+    while (child) {
+        e.removeChild(child);
+        child = e.lastElementChild;
+        console.log(".")
+    }
+    container.append()
+}
+
 

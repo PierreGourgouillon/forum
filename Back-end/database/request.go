@@ -192,10 +192,10 @@ func GetAllPostsTrie(idFiltre string) []structs.Post {
 
 	//ORDER BY post_date , post_hour DESC  |  plus recente d'abord
 	//ORDER BY post_date , post_hour ASC   |  plus ancienne d'abord
-	//post_likes DESC 					   |  plus like d'abord
-	//post_likes ASC  					   |  moins like d'abord
+	//post_likes DESC, post_dislikes ASC   |  plus like d'abord
+	//post_dislikes DESC, post_likes ASC   |  moins like d'abord
 
-	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY ?", idFiltre)
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + idFiltre)
 
 	if error != nil {
 		fmt.Println(error)
@@ -221,7 +221,6 @@ func GetAllPostsTrie(idFiltre string) []structs.Post {
 
 		allPost = append(allPost, post)
 	}
-
 	return allPost
 }
 

@@ -137,3 +137,4 @@ function pushFilter(){
     console.log("value = ", value)
     document.location.href = "/filter/"+value
 }
+
