@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -132,8 +131,8 @@ func route(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/homePage.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -145,8 +144,8 @@ func loginRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/loginPage.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -158,8 +157,8 @@ func registerRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Authentification/registerPage.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -176,16 +175,16 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/home_page.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
 }
 
 func filterRoute(w http.ResponseWriter, r *http.Request) {
-	//faire struct
-	// cookieMode := mode(w, r)
+	var page structs.FilterPage
+	page.Cookie = mode(w, r)
 
 	if !cookie.ReadCookie(r, "PioutterMode") {
 		cookie.SetCookie(w, "PioutterMode", "L", "/")
@@ -199,8 +198,8 @@ func filterRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/filterPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	title := mux.Vars(r)
@@ -211,7 +210,8 @@ func filterRoute(w http.ResponseWriter, r *http.Request) {
 	}
 	tab := []string{"", "Actualité", "Art", "Cinéma", "Histoire", "Humour", "Internet", "Jeux Vidéo", "Nourriture", "Santé", "Sport"}
 
-	tmpl.Execute(w, tab[id])
+	page.Filter = tab[id]
+	tmpl.Execute(w, page)
 }
 
 func mode(w http.ResponseWriter, r *http.Request) string {
@@ -245,8 +245,8 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/settingsPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -263,8 +263,8 @@ func changePasswordRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/password.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -281,8 +281,8 @@ func accountInformations(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/accountInformations.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -299,8 +299,8 @@ func accountChangePseudo(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changePseudo.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -317,8 +317,8 @@ func accountChangeCountry(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/changeCountry.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -335,8 +335,8 @@ func deactivateAccount(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/Settings/deactivateAccount.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -353,8 +353,8 @@ func profilRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/profilPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	vars := mux.Vars(r)
@@ -384,7 +384,8 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	post.IdUser = valueCookie
@@ -392,6 +393,10 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	post.Hour = time.Format("15:04:05")
 
 	idPost := database.InsertPost(&post)
+
+	if idPost == 0 {
+		return
+	}
 
 	post.PostId = int(idPost)
 
@@ -412,7 +417,8 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	jsonAllPost, error := json.Marshal(postArray)
 
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonAllPost)
@@ -469,7 +475,8 @@ func postShow(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(vars["id"])
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	post := database.FindPostById(id)
@@ -477,7 +484,8 @@ func postShow(w http.ResponseWriter, r *http.Request) {
 	jsonPost, error := json.Marshal(post)
 
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonPost)
@@ -491,7 +499,8 @@ func postUpdate(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(vars["id"])
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	var post structs.Post
@@ -514,7 +523,8 @@ func postDelete(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(vars["id"])
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	isDelete := database.DeletePost(id)
@@ -534,7 +544,8 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(vars["id"])
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	idString := strconv.Itoa(id)
@@ -544,7 +555,8 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 	jsonAllPost, error := json.Marshal(user)
 
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonAllPost)
@@ -570,7 +582,8 @@ func getPostsUser(w http.ResponseWriter, r *http.Request) {
 	jsonPosts, error := json.Marshal(PageProfil)
 
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonPosts)
@@ -585,7 +598,8 @@ func getReactions(w http.ResponseWriter, r *http.Request) {
 	jsonReactions, err := json.Marshal(reactions)
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonReactions)
@@ -604,7 +618,8 @@ func createReaction(w http.ResponseWriter, r *http.Request) {
 	isInsertJson, error := json.Marshal(isInsert)
 
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(isInsertJson)
@@ -619,7 +634,8 @@ func getReactionsOnePost(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(vars["id"])
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	reaction := database.GetReactionsOnePost(id)
@@ -627,7 +643,8 @@ func getReactionsOnePost(w http.ResponseWriter, r *http.Request) {
 	reactionsPost, error := json.Marshal(reaction)
 
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(reactionsPost)
@@ -644,7 +661,8 @@ func updateReactionOnePost(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(vars["id"])
 
 	if err != nil {
-		log.Fatal(err)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	unmarshallJSON(r, &reactionPost)
@@ -735,8 +753,8 @@ func errorRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, nil)
@@ -746,8 +764,8 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, nil)
@@ -770,22 +788,24 @@ func passwordRouteValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePassword/redirectionChangePasswordValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
 }
 
 func passwordRouteNonValid(w http.ResponseWriter, r *http.Request) {
+	cookieMode := mode(w, r)
+
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePassword/redirectionChangePasswordNonValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, cookieMode)
 }
 
 func profilDeactiveValid(w http.ResponseWriter, r *http.Request) {
@@ -794,8 +814,8 @@ func profilDeactiveValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccountValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -807,8 +827,8 @@ func profilDeactiveNonValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccountNonValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -820,8 +840,8 @@ func profilPseudoValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePseudo/redirectionChangePseudoValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -833,8 +853,8 @@ func profilPseudoNonValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangePseudo/redirectionChangePseudoNonValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -846,8 +866,8 @@ func profilLocationValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangeLocation/redirectionChangeLocationValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -859,8 +879,8 @@ func profilLocationNonValid(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionChangeLocation/redirectionChangeLocationNonValid.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -872,8 +892,8 @@ func profilDeactiveRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/redirectionDeactiveAccount/redirectionDeactiveAccount.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -1059,8 +1079,8 @@ func postPage(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	tmpl.Execute(w, cookieMode)
@@ -1094,7 +1114,8 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	postsArray := database.GetPostWithArray(idPostsArrayInt)
 	jsonPostFilterCategories, error := json.Marshal(postsArray)
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonPostFilterCategories)
@@ -1116,7 +1137,8 @@ func getPostTrie(w http.ResponseWriter, r *http.Request) {
 
 	jsonPostTrie, error := json.Marshal(allPostTrie)
 	if error != nil {
-		log.Fatal(error)
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
 	}
 
 	w.Write(jsonPostTrie)

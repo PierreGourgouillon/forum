@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     })
 
     document.getElementById("commentaryIcon").addEventListener("click", ()=>{
+        if(getCookie("PioutterID") == "0") {
+            alert("Vousn'êtes pas connecté ou inscrit, vous ne pouvez pas commentez ce post")
+            return
+        }
         printPopUp(postID)
     })
 })
@@ -150,6 +154,10 @@ async function insertCommentariesInPage(postID){
 }
 
 async function addReactions(userId, idPost, isLike){
+    if(getCookie("PioutterID") == "0") {
+        alert("Vousn'êtes pas connecté ou inscrit, vous ne pouvez pas réagir à ce post")
+        return
+    }
     let postIsUp = ""
     let postReactions = await routeAPI.getReactionsPost(idPost)
     let arrayVerif = verificationReactionInBDD(postReactions, userId)

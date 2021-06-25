@@ -4,6 +4,10 @@ var compteur = false
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', ()=>{
+        if(getCookie("PioutterID") == "0") {
+            alert("Vousn'êtes pas connecté ou inscrit, vous ne pouvez pas envoyer un post")
+            return
+        }
         createPost()
     })
 
@@ -580,6 +584,10 @@ function getUser(id){
 async function addReactions(e, isLike){
 
     let userId = parseInt(getCookie("PioutterID"))
+    if(userId == 0) {
+        alert("Vous n'êtes pas connecté ou inscrit, vous ne pouvez pas réagir à ce post")
+        return
+    }
     let input = getReactionInput(e)
     let idPost = input.getAttribute("post_id")
     let postIsUp = ""

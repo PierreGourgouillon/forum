@@ -36,7 +36,8 @@ function login() {
         } else if(res.login == "email") {
             error.textContent = "Cette adresse mail n'est pas assoscié à un compte"
         } else if(res.login == "deactivate") {
-            error.textContent = "Ce compte est désactivé, cliquer pour le réactiver"
+            error.textContent = "Compte désactivé, cliquer pour le réactiver"
+            error.style.cursor = "pointer"
             error.addEventListener("click", () => {
                 reactivate(res.id)
             })

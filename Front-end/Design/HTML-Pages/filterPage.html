@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Accueil | Pioutter</title>
-  <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/homePage.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
+  {{if eq .Cookie "L"}}
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/homePage.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
+  {{else}}
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/homePage.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/DarkMode/footer.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/post.css" type="text/css">
+  {{end}}
   <link rel="stylesheet" href="/static/Design/CSS-Pages/test.css">
   <link rel="stylesheet" href="/static/Design/CSS-Pages/pop_up_Image.css">
   <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
@@ -92,7 +99,7 @@
             <img id="arrowLeft" style="height: 25px;width: 25px;padding-left: 5px;" src="/static/Design/Images/Icon/arrow_left.svg">
           </div>
         </a>
-        <span id="home-text" class="globalFLex" style="justify-content: center">{{.}}</span>
+        <span id="home-text" class="globalFLex" style="justify-content: center">{{.Filter}}</span>
       </div>
     </div>
     <div class="globalFLex scroll-div" style="height: 100vh">

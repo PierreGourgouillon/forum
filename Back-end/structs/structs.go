@@ -73,7 +73,11 @@ type PostsPageProfil struct {
 	PostsLiked []Post `json:"postsliked"`
 }
 
-type RequestSql struct{
+type RequestSql struct {
 	IdButton string `json:"idButton"`
-	} 
-	
+}
+
+type FilterPage struct {
+	Cookie string
+	Filter string
+}

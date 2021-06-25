@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     profil.addEventListener('click', ()=>{
 
         if (idUser === 0) {
-            document.location.href = "/register/"
+            alert("Vous n'êtes pas connecté ou inscrit, vous ne pouvez pas accéder à votre profil")
+            return
         }else {
             document.location.href = `/profil/${idUser}`
         }
