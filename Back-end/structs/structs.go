@@ -8,8 +8,8 @@ type Register struct {
 }
 
 type Login struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Email          string `json:"email"`
+	Password       string `json:"password"`
 	ActualPassword string `json:"actualPassword"`
 }
 
@@ -22,7 +22,6 @@ type UserIdentity struct {
 	Biographie string
 	Birth      string
 	Deactivate bool `json:"deactivate"`
-
 }
 
 type Post struct {
@@ -33,6 +32,7 @@ type Post struct {
 	Message    string   `json:"message"`
 	Categories []string `json:"categories"`
 	Date       string
+	Image      string `json:"image"`
 	Hour       string
 	Like       int `json:"like"`
 	Dislike    int `json:"dislike"`
@@ -59,8 +59,8 @@ type ProfilUser struct {
 	Bio      string `json:"bio"`
 	Image    string `json:"image"`
 	Choice   string `json:"choice"`
-	Email 	 string `json:"email"`
-	Birth	 string `json:"birth"`
+	Email    string `json:"email"`
+	Birth    string `json:"birth"`
 }
 
 type SearchBar struct {

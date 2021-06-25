@@ -105,7 +105,7 @@ func GetIdentityUser(valueCookie string) structs.UserIdentity {
 
 func InsertPost(post *structs.Post) int64 {
 
-	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Date, post.Hour, post.Like, post.Dislike)
+	res, error := db.Exec("INSERT INTO allPosts (user_pseudo, user_id, user_title, user_message, post_image, post_date, post_hour, post_likes, post_dislikes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", post.Pseudo, post.IdUser, post.Title, post.Message, post.Image, post.Date, post.Hour, post.Like, post.Dislike)
 
 	if error != nil {
 		log.Fatal(error)
@@ -154,7 +154,7 @@ func GetCategoriesID(cats []string) []string {
 func GetAllPosts() []structs.Post {
 	var allPost []structs.Post
 
-	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts")
 
 	if error != nil {
 		fmt.Println(error)
@@ -162,7 +162,7 @@ func GetAllPosts() []structs.Post {
 
 	for rows.Next() {
 		var post structs.Post
-		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
@@ -188,9 +188,9 @@ func FindPostById(id int) structs.Post {
 
 	var post structs.Post
 
-	query := "SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id= ?"
+	query := "SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE post_id= ?"
 
-	err := db.QueryRow(query, id).Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+	err := db.QueryRow(query, id).Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 	if err != nil {
 		log.Fatal(err)

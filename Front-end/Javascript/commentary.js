@@ -64,6 +64,14 @@ function insertDataPost(user, post){
     document.getElementById("message-post").textContent = post.message
     document.getElementById("like-post").textContent = post.like
     document.getElementById("dislike-post").textContent = post.dislike
+
+    console.log(post.image)
+
+    if (post.image === ""){
+        document.getElementById("divImage").style.display = "none"
+    }else{
+        document.getElementById("imgPost").src = "data:image/png;base64," + post.image
+    }
 }
 
 function addDataPopUp(post, user, userAuthor){

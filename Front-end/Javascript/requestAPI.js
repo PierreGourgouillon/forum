@@ -3,11 +3,13 @@ var compteur = false
 
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
-    document.getElementById("b").addEventListener('click', createPost)
+    document.getElementById("b").addEventListener('click', ()=>{
+        getImagePost(createPost)
+    })
     addImageProfil()
 })
 
-async function createPost(){
+async function createPost(file){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
     let categories = [...document.getElementsByClassName("selected-category")]
@@ -18,7 +20,6 @@ async function createPost(){
     let valueCookie = getCookie("PioutterID")
 
     let user = await getUser(valueCookie)
-    console.log("test:",user.pseudo)
 
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
@@ -33,6 +34,7 @@ async function createPost(){
                 title: title.value,
                 pseudo: user.pseudo,
                 message: message.value,
+                image: file,
                 like: 0,
                 dislike: 0,
                 categories: cats
@@ -53,6 +55,31 @@ async function createPost(){
             })
     }
 }
+
+
+function getImagePost(callback){
+
+    const fileInput = document.querySelector("#inputFile");
+
+        const file = fileInput.files[0];
+
+        const reader = new FileReader();
+
+        if (file === undefined){
+            callback("")
+        }else{
+            reader.onloadend = () => {
+                const base64String = reader.result
+                    .replace("data:", "")
+                    .replace(/^.+,/, "");
+                fileInput.value = ""
+                callback(base64String)
+            };
+            reader.readAsDataURL(file);
+        }
+
+}
+
 
 function postIndex(){
 
@@ -142,6 +169,7 @@ async function addAllPost(response){
             let clone = document.importNode(template.content, true)
             let container = document.getElementById("containerPost")
             let imageProfil = clone.getElementById("image-user")
+            let imgPost = clone.getElementById("imgPost")
             let pseudo = clone.getElementById("pseudo-user")
             let title = clone.getElementById("title-user")
             let messagePost = clone.getElementById("message-post")
@@ -188,6 +216,11 @@ async function addAllPost(response){
                 })
             }
 
+            if (post.image === ""){
+                clone.getElementById("divImage").style.display = "none"
+            }
+
+            imgPost.src = "data:image/png;base64," + post.image
             pseudo.textContent = post.pseudo
             title.textContent = post.title
             messagePost.textContent += post.message
