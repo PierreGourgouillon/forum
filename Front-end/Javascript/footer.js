@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chooseFilter(filter)
     }))
 
-    const tries= [...document.querySelectorAll("#trie > div")]
+    const tries = [...document.querySelectorAll("#trie > div")]
     tries.forEach((trie) => trie.addEventListener("click", () => {
         chooseTrie(trie)
     }))
@@ -143,24 +143,25 @@ function pushFilter(){
     document.location.href = "/filter/"+value
 }
 
-function chooseTrie(filter){
+let tabTrie = []
+function chooseTrie(trie){
     const len = document.getElementById("filter").querySelectorAll('.active3').length
 
-    let fil = filter.querySelector('span')
+    let tri = trie.querySelector('span')
 
-    if(filter.classList.value.includes('active3')) {
-        filter.classList.remove('active3')
-        fil.classList.remove('selected-category3')
-        tabFilter.pop()
+    if(trie.classList.value.includes('active3')) {
+        trie.classList.remove('active3')
+        tri.classList.remove('selected-category3')
+        tabTrie.pop()
     } else {
         if(len >= 1) {
-            tabFilter[0].classList.remove('active3')
-            tabFilter[0].querySelector('span').classList.remove('selected-category3')
-            tabFilter.shift()
+            tabTrie[0].classList.remove('active3')
+            tabTrie[0].querySelector('span').classList.remove('selected-category3')
+            tabTrie.shift()
         }
-        filter.classList.add('active3')
-        fil.classList.add('selected-category3')
-        tabFilter.push(filter)
+        trie.classList.add('active3')
+        tri.classList.add('selected-category3')
+        tabTrie.push(trie)
 
         console.log(filter)
     }
