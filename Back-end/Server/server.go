@@ -28,9 +28,9 @@ func StartServer() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		port = "8088"
+		port = "8080"
 	}
-	fmt.Println(port)
+
 	http.ListenAndServe(":"+port, router)
 }
 
