@@ -103,6 +103,32 @@ function postIndexFilter(){
     })
 }
 
+function postIndexTrie(){
+    const requesteSQL = "post_likes DESC"
+    //faire appel a la fonction qui va recuperer la fin de la requete sql
+    fetch("/post/trie/", {
+        method : "POST",
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+            "requestSql":requesteSQL,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    })
+    .then((res)=>{
+        console.log("recuperé")
+        console.log("res: ", res)
+        addAllPostTrie(res)
+    })
+    .catch(()=>{
+        // document.location.href = "/error/"
+        console.log('erreur')
+    })
+}
+
 function findPostById(idUser){
 
     return fetch(`/post/${idUser}`, {
@@ -347,6 +373,103 @@ async function addAllPostFilter(response){
             }
         })
 }
+
+
+async function addAllPostTrie(response){
+    container.removeChild()
+
+    let reactions = await getReactions()
+    let idUser = parseInt(getCookie("PioutterID"))
+
+        response.forEach((post)=>{
+            if (post.title != ""){
+                console.log("les catégories du post sont :", post.categories)
+
+                let template = document.getElementById("postTemplate")
+                let clone = document.importNode(template.content, true)
+                let container = document.getElementById("containerPostFiltered")
+                let imageProfil = clone.getElementById("image-user")
+                let pseudo = clone.getElementById("pseudo-user")
+                let title = clone.getElementById("title-user")
+                let messagePost = clone.getElementById("message-post")
+                let like = clone.getElementById("like-post")
+                let dislike = clone.getElementById("dislike-post")
+                let link = [...clone.querySelectorAll(".postLinkos")]
+                let divLike = clone.getElementById("like")
+                let divDislike = clone.getElementById("dislike")
+                let dots = clone.getElementById("dots")
+                let cats = [...clone.querySelectorAll(".styleCategory")]
+
+                if(post.categories != null) {
+                    cats.forEach((elem, idx) => {
+                        elem.classList.add(`colorBox${post.categories[idx]}`)
+                        elem.querySelector('span').textContent = tabCats[post.categories[idx]]
+                    })
+                }
+
+                getProfilImage(post.IdUser)
+                    .then((file)=>{
+                        imageProfil.src = "data:image/png;base64," + file
+                    })
+
+                divLike.setAttribute("contLike", "like")
+                divDislike.setAttribute("contDislike", "dislike")
+
+                link.forEach((element)=>{
+                    if (element.classList.contains("pseudo-href")){
+                        element.href = `/profil/${post.IdUser}`
+                    }else{
+                        element.href = `/status/${post.PostId}`
+                    }
+                })
+
+                if(reactions != null) {
+                    reactions.forEach((reaction)=>{
+                        if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                            if (reaction.like == true) {
+                                divLike.classList.add("filterLike")
+                            }else if (reaction.dislike == true) {
+                                divDislike.classList.add("filterDislike")
+                            }
+                        }
+                    })
+                }
+
+                pseudo.textContent = post.pseudo
+                title.textContent = post.title
+                messagePost.textContent += post.message
+                like.textContent = post.like
+                dislike.textContent = post.dislike
+
+                if (idUser !== post.IdUser){
+                    clone.getElementById("dotsImg").remove()
+                    dots.onclick = ""
+                }else{
+                    dots.setAttribute("post_id", post.PostId)
+                }
+
+                like.setAttribute("post_id", post.PostId)
+                dislike.setAttribute("post_id", post.PostId)
+
+                clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
+
+                    setTimeout(()=>{
+                        let divPost = event.target.closest("#post-parent")
+                        let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
+                        findPostById(idPost)
+                            .then((post)=>{
+                            printPopUpImages(post.IdUser, event)
+                        })
+                            .catch(()=>{
+                                document.location.href = "/error/"
+                            })
+                    },500)
+                })
+                container.append(clone)
+            }
+        })
+}
+
 
 function printPopUpImages(idUser, event){
     let divPopUp = document.getElementById("jsPopupImages")

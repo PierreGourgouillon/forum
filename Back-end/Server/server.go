@@ -77,6 +77,7 @@ func requestHTTP(router *mux.Router) {
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
 	router.HandleFunc("/post/filter/", getPostFilter).Methods("POST")
+	router.HandleFunc("/post/trie/", getPostTrie).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
@@ -1078,4 +1079,21 @@ func getPostFilter(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(jsonPostFilterCategories)
+}
+
+
+func getPostTrie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var requestSql structs.RequestSql
+	unmarshallJSON(r, &requestSql)
+	allPostTrie := database.GetAllPostsTrie(requestSql.RequestSql)
+	println("requestSql: ", requestSql.RequestSql)
+	jsonPostTrie, error := json.Marshal(allPostTrie)
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonPostTrie)
 }
