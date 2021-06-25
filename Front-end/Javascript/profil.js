@@ -73,7 +73,6 @@ function getPostsUserL() {
             return reponse.json()
         })
         .then((res) => {
-            console.log(res)
             addAllPost(res.postsuser, 1)
             addAllPost(res.postsliked, 2)
         })
@@ -262,6 +261,7 @@ async function addAllPost(response, choice){
             container = document.getElementById("containerPostLiked")
         }
         let imageProfil = clone.getElementById("image-user")
+        let imgPost = clone.getElementById("imgPost")
         let pseudo = clone.getElementById("pseudo-user")
         let title = clone.getElementById("title-user")
         let messagePost = clone.getElementById("message-post")
@@ -309,6 +309,9 @@ async function addAllPost(response, choice){
             })
         }
 
+        if (post.image === ""){
+            clone.getElementById("divImage").style.display = "none"
+        }
 
         if (cookieDarkMode === "D"){
             clone.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
@@ -316,6 +319,7 @@ async function addAllPost(response, choice){
             clone.getElementById('dotsImg').src = '/static/Design/Images/Icon/dots_white.svg'
         }
 
+        imgPost.src = "data:image/png;base64," + post.image
         pseudo.textContent = post.pseudo
         title.textContent = post.title
         messagePost.textContent += post.message

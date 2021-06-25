@@ -380,7 +380,7 @@ func UpdateReactionOnePost(idPost int, reactionpost structs.Reaction) bool {
 func GetPostsByUserID(id int) []structs.Post {
 	var allPost []structs.Post
 
-	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE user_id = ?", id)
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_image, post_date, post_hour, post_likes, post_dislikes FROM allPosts WHERE user_id = ?", id)
 
 	if error != nil {
 		fmt.Println(error)
@@ -388,7 +388,7 @@ func GetPostsByUserID(id int) []structs.Post {
 
 	for rows.Next() {
 		var post structs.Post
-		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Image, &post.Date, &post.Hour, &post.Like, &post.Dislike)
 
 		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
 
