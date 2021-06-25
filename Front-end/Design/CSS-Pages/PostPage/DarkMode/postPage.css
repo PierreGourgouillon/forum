@@ -309,45 +309,7 @@ main{
 /*Footer*/
 
 
-footer{
-    height: 100vh;
-    width: 25%;
-    background-color: #15202B;
-    color: #707070;
-    font-weight: 500;
-}
 
-.border{
-    border: 1px solid rgb(47, 51, 54);
-}
-
-#container-searchbar{
-    height: 50px;
-    width: 70%;
-    border-radius: 25px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-}
-
-#search-input{
-    font-family: Open Sans, sans-serif;
-    font-size: 22px;
-    background-color: #ffffff;
-    width: 70%;
-    border: none;
-    margin-left: 22px;
-    outline: none;
-}
-
-#search-button{
-    height: 50px;
-    width: 60px;
-    border: none;
-    background-color: #8A3DFE;
-    border-radius: 0 23px 23px 0;
-    cursor: pointer;
-}
 
 @keyframes expand {
     from {
