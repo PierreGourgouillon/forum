@@ -104,14 +104,14 @@ function postIndexFilter(){
 }
 
 function postIndexTrie(){
-    const requesteSQL = "post_likes DESC, post_dislikes ASC" 
+    const id = "4" 
     fetch("/post/trie/", {
         method : "POST",
         headers : {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "requestSql":requesteSQL,
+            "idButton":id,
         })
     })
     .then((response)=>{

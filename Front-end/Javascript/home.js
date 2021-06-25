@@ -43,16 +43,17 @@ function chooseCategory(cat){
 
 function deleteChild() {
     console.log('delete')
-    let container = document.getElementById("containerPost")
-    var e = [...container.querySelectorAll("div")];
-    console.log("e: ", e)
-    var child = e.lastElementChild; 
-    while (child) {
-        e.removeChild(child);
-        child = e.lastElementChild;
-        console.log(".")
-    }
-    container.append()
+    const b = document.getElementById("containerPost")
+    const e = [...document.querySelectorAll("#containerPost > div")]
+    // console.log("e: ", e)
+    // console.log("e[1]: ", e[1])
+    // while(e.length != 0){
+    //     e.pop()
+    // }
+    // console.log("e:", e)
+    // container.push(e)
+    b.innerHTML = ""
+    console.log(b.innerHTML)
 }
 
 

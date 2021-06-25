@@ -74,6 +74,6 @@ type PostsPageProfil struct {
 }
 
 type RequestSql struct{
-	RequestSql string `json:"requestSql"`
+	IdButton string `json:"idButton"`
 	} 
 	

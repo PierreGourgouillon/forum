@@ -1086,11 +1086,17 @@ func getPostTrie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
-	var requestSql structs.RequestSql
-	unmarshallJSON(r, &requestSql)
+	var idButton structs.RequestSql 
+	unmarshallJSON(r, &idButton)
 
-	allPostTrie := database.GetAllPostsTrie(requestSql.RequestSql)
-	
+	//ORDER BY post_date , post_hour DESC  |  plus recente d'abord
+	//ORDER BY post_date , post_hour ASC   |  plus ancienne d'abord
+	//post_likes DESC, post_dislikes ASC   |  plus like d'abord
+	//post_dislikes DESC, post_likes ASC   |  moins like d'abord
+
+
+	allPostTrie := database.GetAllPostsTrie(idButton.IdButton)
+
 	jsonPostTrie, error := json.Marshal(allPostTrie)
 	if error != nil {
 		log.Fatal(error)
