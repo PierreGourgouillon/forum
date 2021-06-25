@@ -11,14 +11,20 @@
       <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
       <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
       <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
+      <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/LightMode/pop_up_Image.css">
+      <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/LightMode/pop_up_Post.css">
+
+
     {{else}}
       <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/homePage.css" type="text/css">
       <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
       <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/DarkMode/footer.css" type="text/css">
       <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/post.css" type="text/css">
+      <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/DarkMode/pop_up_Image.css">
+      <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/DarkMode/pop_up_Post.css">
+
     {{end}}
     <link rel="stylesheet" href="/static/Design/CSS-Pages/test.css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/pop_up_Image.css">
     <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script type="text/javascript" src="/static/Javascript/home.js"></script>
@@ -302,12 +308,12 @@
 
                         <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
                           <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
-                            <img src="/static/Design/Images/Icon/like.svg" style="width: 25px;height: 25px;">
+                            <img src="/static/Design/Images/Icon/like.svg" id="imgLike" style="width: 25px;height: 25px;">
                             <span style="padding-left: 5px" id="like-post"></span>
                           </div>
 
                           <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
-                            <img src="/static/Design/Images/Icon/dislike.svg" style="width: 25px;height: 25px;">
+                            <img src="/static/Design/Images/Icon/dislike.svg" id="imgDislike" style="width: 25px;height: 25px;">
                             <span style="padding-left: 5px" id="dislike-post"></span>
                           </div>
                         </div>

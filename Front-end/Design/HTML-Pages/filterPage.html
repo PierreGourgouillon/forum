@@ -6,12 +6,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/homePage.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
-  <link rel="stylesheet" href="/static/Design/CSS-Pages/test.css">
-  <link rel="stylesheet" href="/static/Design/CSS-Pages/pop_up_Image.css">
+  {{if eq .Cookie "L"}}
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/homePage.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/LightMode/pop_up_Image.css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/LightMode/pop_up_Post.css">
+
+  {{else}}
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/homePage.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/DarkMode/footer.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/post.css" type="text/css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/DarkMode/pop_up_Image.css">
+    <link rel="stylesheet" href="/static/Design/CSS-Pages/PopUp/DarkMode/pop_up_Post.css">
+
+  {{end}}
   <script type="text/javascript" src="/static/Javascript/requestAPI.js"></script>
   <script type="text/javascript" src="/static/Javascript/header.js"></script>
   <script type="text/javascript" src="/static/Javascript/home.js"></script>
@@ -95,7 +106,7 @@
             <img id="arrowLeft" style="height: 25px;width: 25px;padding-left: 5px;" src="/static/Design/Images/Icon/arrow_left.svg">
           </div>
         </a>
-        <span id="home-text" class="globalFLex" style="justify-content: center">{{.}}</span>
+        <span id="home-text" class="globalFLex" style="justify-content: center">{{.Filter}}</span>
       </div>
     </div>
     <div class="globalFLex scroll-div" style="height: 100vh">
@@ -105,7 +116,107 @@
     </div>
   </div>
 </main>
-{{template "footer"}}
+
+
+<footer>
+  <div class="globalFLex container-footer">
+    <div class="RowFLex border" id="container-searchbar">
+      <input id="search-input" type="search" placeholder="Rechercher..." list="searchBar">
+      <datalist id="searchBar">
+      </datalist>
+      <button id="search-button">
+        <img src="/static/Design/Images/Icon/search_white.svg">
+      </button>
+    </div>
+    <div class="globalFLex border" id="container-filter">
+      <div class="globalFLex toolBox">
+        <div class="RowFLex toolBox-title">
+          <span class="globalFLex" id="filter-text" style="font-weight: bold;">Filtrer les posts</span>
+          <div id="filter-button" style="display: none">
+            <img src="/static/Design/Images/Icon/arrow_down.svg">
+          </div>
+        </div>
+      </div>
+      <div id="filter">
+        <div class="globalFLex toolBox" id="1">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Actualité</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="2">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Art</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="3">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Cinéma</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="4">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Histoire</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="hiddenFilter1" style="display: none;">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Humour</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="hiddenFilter2" style="display: none;">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Internet</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="hiddenFilter3" style="display: none;">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Jeux Vidéo</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="hiddenFilter4" style="display: none;">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Nourriture</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="hiddenFilter5" style="display: none;">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Santé</span>
+            </button>
+          </div>
+        </div>
+        <div class="globalFLex toolBox" id="hiddenFilter6" style="display: none;">
+          <div class="RowFLex toolBox-content">
+            <button class="toolBox-button globalFLex filter">
+              <span class="toolBox-text">Sport</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="RowFLex" id="showMore-filterBox">
+        <button id="showMore-filterButton">
+          <span id="showMore-filterText">Voir plus</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
 
 
 <div class="globalFLex popUpList" id="pop-up">
@@ -153,7 +264,7 @@
                             </div>
                           </div>
                         </a>
-                        <div class="RowFLex imgHover popUpList" id="dots" style="width: 25px; margin: 5px;height: 25px" onclick="javascript:popUp(event)"><img id="dotsImg" class="images popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
+                        <div class="RowFLex imgHover popUpList hisPost" id="dots" style="width: 25px; margin: 5px;height: 25px" onclick="javascript:popUp(event)"><img id="dotsImg" class="images popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
                       </div>
 
                       <div class="globalFLex" style="margin-top: -4px">
@@ -175,18 +286,22 @@
 
                           <div class="globalFLex">
                             <p class="styleMessage" id="message-post"></p>
+
+                            <div class="globalFLex" id="divImage" style="border-radius: 20px; overflow: hidden; margin-right: 20px">
+                              <img src="" id="imgPost" style="border-radius: 20px;width: 100%">
+                            </div>
                           </div>
                         </a>
 
 
                         <div class="RowFLex alignStart noUserSelect" style="margin-top: 12px;padding: 5px 5px 5px 0px;">
                           <div class="RowFLex alignStart noUserSelect" id="like"  onclick="javascript:addReactions(event,true)" >
-                            <img src="/static/Design/Images/Icon/like.svg" style="width: 25px;height: 25px;">
+                            <img src="/static/Design/Images/Icon/like.svg" id="imgLike" style="width: 25px;height: 25px;">
                             <span style="padding-left: 5px" id="like-post"></span>
                           </div>
 
                           <div class="RowFLex alignStart noUserSelect" id="dislike" onclick="javascript:addReactions(event, false)" style="margin-left: 20px" >
-                            <img src="/static/Design/Images/Icon/dislike.svg" style="width: 25px;height: 25px;">
+                            <img src="/static/Design/Images/Icon/dislike.svg" id="imgDislike" style="width: 25px;height: 25px;">
                             <span style="padding-left: 5px" id="dislike-post"></span>
                           </div>
                         </div>
