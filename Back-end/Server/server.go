@@ -110,8 +110,6 @@ func requestHTTP(router *mux.Router) {
 	//Footer Route
 	router.HandleFunc("/search/", getSearchBar).Methods("GET")
 
-	router.HandleFunc("/test/", testRoute)
-
 	router.HandleFunc("/status/{id}", postPage)
 
 	//Page error
@@ -751,17 +749,6 @@ func getSearchBar(w http.ResponseWriter, r *http.Request) {
 
 func errorRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/error.html")
-
-	if err != nil {
-		http.Redirect(w, r, "/error/", http.StatusSeeOther)
-		return
-	}
-
-	tmpl.Execute(w, nil)
-}
-
-func testRoute(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/pagepost.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
 
 	if err != nil {
 		http.Redirect(w, r, "/error/", http.StatusSeeOther)
