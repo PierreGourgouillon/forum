@@ -2,13 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     fillSearchBar()
     document.getElementById("search-button").addEventListener("click", goToPost)
     document.getElementById("showMore-filterBox").addEventListener("click", showMoreFilter)
-    document.getElementById("showMore-sortBox").addEventListener("click", showMoreSort)
     const filters = [...document.querySelectorAll("#filter > div")]
     filters.forEach((filter) => filter.addEventListener("click", () => {
         chooseFilter(filter)
     }))
 
-    const tries = [...document.querySelectorAll("#trie > div")]
+    const tries = [...document.querySelectorAll("#sort > div")]
     tries.forEach((trie) => trie.addEventListener("click", () => {
         chooseTrie(trie)
     }))
@@ -42,20 +41,6 @@ function showMoreFilter(){
         hidden6.style.display = "none"
         more_less.innerText = "Voir plus"
         sort.style.display = ""
-    }
-}
-function showMoreSort(){
-    let hidden = document.getElementById("hiddenSort")
-    let more_less = document.getElementById("showMore-sortText")
-    let filter = document.getElementById("container-filter")
-    if(hidden.style.display === "none"){
-        hidden.style.display = ""
-        more_less.innerText = "Voir moins"
-        filter.style.display = "none"
-    }else{
-        hidden.style.display = "none"
-        more_less.innerText = "Voir plus"
-        filter.style.display = ""
     }
 }
 
@@ -143,13 +128,14 @@ function pushFilter(){
 
 let tabTrie = []
 function chooseTrie(trie){
-    const len = document.getElementById("filter").querySelectorAll('.active3').length
-
+    const len = document.getElementById("sort").querySelectorAll('.active3').length
+    let displayArrow = document.getElementById("sort-button")
     let tri = trie.querySelector('span')
 
     if(trie.classList.value.includes('active3')) {
         trie.classList.remove('active3')
         tri.classList.remove('selected-category3')
+        displayArrow.style.display = "none"
         tabTrie.pop()
     } else {
         if(len >= 1) {
@@ -159,9 +145,11 @@ function chooseTrie(trie){
         }
         trie.classList.add('active3')
         tri.classList.add('selected-category3')
+        console.log(tri.id)
         tabTrie.push(trie)
+        displayArrow.style.display = ""
 
-        console.log(filter)
+        console.log(trie)
     }
 }
 

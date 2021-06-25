@@ -104,7 +104,7 @@ function postIndexFilter(){
 }
 
 function postIndexTrie(){
-    const id = "4" 
+    const id = tabTrie
     fetch("/post/trie/", {
         method : "POST",
         headers : {
