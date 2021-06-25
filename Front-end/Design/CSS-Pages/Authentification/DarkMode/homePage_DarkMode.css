@@ -182,3 +182,12 @@ h2{
     color:#555;
     font-size:1vw;
 }
+.invite:hover{
+    color:rgb(56, 56, 56);
+    font-size:1.05vw;
+
+}
+
+a:link:visited{
+    color:#555;
+}

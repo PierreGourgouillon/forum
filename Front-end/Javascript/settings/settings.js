@@ -1,8 +1,11 @@
+
+
 function delCookie(){
     document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log("cookie delete")
     document.location.href="/"
 }
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -57,51 +60,4 @@ function profilUser(profil) {
     pseudo.textContent = profil.pseudo
     country.textContent = profil.location
     bio.textContent = profil.bio
-}
-
-
-function verifConnect(){
-    const id = parseInt(getCookie("PioutterID"))
-    let infoCompte= document.getElementById("infoCompte")
-    let changeMdp = document.getElementById("changeMdp")
-    let deaCompte = document.getElementById("deaCompte")
-    let deconnexion = document.getElementById("kkk")
-
-    if (id > 0){
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-    }else {
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-        document.getElementById("MyElement").className = "MyClass";
-  
-    }
-}
-
-function verifConnectInfoAccount(){
-    const id = parseInt(getCookie("PioutterID"))
-    // let infoCompte= document.getElementById("infoCompte")
-    if (id > 0){
-        document.location.href="/settings/account/"
-    }
-
-}
-
-function verifConnectChangMdp(){
-    const id = parseInt(getCookie("PioutterID"))
-    // let infoCompte= document.getElementById("infoCompte")
-    if (id > 0){
-        document.location.href="/settings/password/"
-    }
-
-}
-
-function verifConnectDeaAccount(){
-    const id = parseInt(getCookie("PioutterID"))
-    // let infoCompte= document.getElementById("infoCompte")
-    if (id > 0){
-        document.location.href="/settings/deactivate/"
-    }
-
 }

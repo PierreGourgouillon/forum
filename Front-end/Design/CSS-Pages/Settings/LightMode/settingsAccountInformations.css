@@ -121,7 +121,7 @@ section{
     padding-right: 5px;
 }
 
-.link-in-main:hover{
+.link-in-main:hover {
     background-color: rgba(121,75,195,0.1);
     transition-duration: 0.2s;
     color: #794bc4;
@@ -130,7 +130,7 @@ section{
 
 /********** Image **********/
 
-.link-in-main:hover img{
+.link-in-main:hover .container-link-icon img{
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 

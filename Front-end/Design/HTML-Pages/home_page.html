@@ -91,7 +91,7 @@
 {{template "header"}}
 
 <main>
-  <div class="globalFLex border" id="main-box">
+  <div class="globalFLex border" id="main-box" style="cursor: default;">
     <div id="home-banner">
       <span id="home-text">Page d'Accueil</span>
     </div>
@@ -118,6 +118,10 @@
               </div>
             </div>
           </div>
+          <div class="globalFLex" style="width: 100%;justify-content: flex-start">
+            <img id="inputIMG" style="width: 35px;height: 35px; cursor: pointer" src="/static/Design/Images/Icon/add_img_black.svg">
+          </div>
+          <input type="file" id="inputFile" accept="image/png ,image/jpeg" style="display: none">
         </div>
         <div class="globalFLex" id="category">
           <div class="globalFLex" id="titleBox-category">
@@ -263,7 +267,7 @@
                             </div>
                           </div>
                           </a>
-                          <div class="RowFLex imgHover popUpList" id="dots" style="width: 25px; margin: 5px;height: 25px" onclick="javascript:popUp(event)"><img id="dotsImg" class="images popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
+                          <div class="RowFLex imgHover popUpList hisPost" id="dots" style="width: 25px; margin: 5px;height: 25px" onclick="javascript:popUp(event)"><img id="dotsImg" class="images popUpList" src="/static/Design/Images/Icon/dots.svg"></div>
                         </div>
 
                       <div class="globalFLex" style="margin-top: -4px">
@@ -285,6 +289,10 @@
 
                           <div class="globalFLex">
                             <p class="styleMessage" id="message-post"></p>
+
+                            <div class="globalFLex" id="divImage" style="border-radius: 20px; overflow: hidden; margin-right: 20px">
+                              <img src="" id="imgPost" style="border-radius: 20px;width: 100%">
+                            </div>
                           </div>
                         </a>
 

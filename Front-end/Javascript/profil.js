@@ -38,7 +38,7 @@ function displayReactions() {
     } else {
         op.style.color = "white"
     }
-    
+
 }
 
 function displayPosts() {
@@ -69,17 +69,17 @@ function getPostsUserL() {
             "Content-Type": "application/json"
         }
     })
-    .then((reponse) =>  {
-        return reponse.json()
-    })
-    .then((res) => {
-        console.log(res)
-        addAllPost(res.postsuser, 1)
-        addAllPost(res.postsliked, 2)
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .then((res) => {
+            console.log(res)
+            addAllPost(res.postsuser, 1)
+            addAllPost(res.postsliked, 2)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 }
 
 function getProfilUserL() {
@@ -93,15 +93,15 @@ function getProfilUserL() {
             "Content-Type": "application/json"
         }
     })
-    .then((reponse) =>  {
-        return reponse.json()
-    })
-    .then((res) => {
-        profilUserL(res)
-    })
-    .catch((error) => {
-        console.log("Profil non trouvé")
-    })
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .then((res) => {
+            profilUserL(res)
+        })
+        .catch((error) => {
+            console.log("Profil non trouvé")
+        })
 }
 
 function profilUserL(profil) {
@@ -143,19 +143,19 @@ function updateBio() {
             bio : newBio.value,
         })
     })
-    .then((reponse) =>  {
-        return reponse.json()
-    })
-    .then((res) => {
-        if(res.isUpdate == "true") {
-            bio.textContent = newBio.value
-            document.getElementById("popUp-update").style.display = "none"
+        .then((reponse) =>  {
+            return reponse.json()
+        })
+        .then((res) => {
+            if(res.isUpdate == "true") {
+                bio.textContent = newBio.value
+                document.getElementById("popUp-update").style.display = "none"
 
-        }
-    })
-    .catch((error) => {
-        console.log("O post")
-    })
+            }
+        })
+        .catch((error) => {
+            console.log("O post")
+        })
 
     let div = document.getElementById("popUp-update")
     div.style.display = "none"
@@ -184,7 +184,7 @@ function valueOfCookie(cookie) {
         value = document.cookie.substring(start)
     } else {
         value = document.cookie.substring(start, end)
-    }  
+    }
     console.log(value)
     return value
 }
@@ -251,96 +251,96 @@ async function addAllPost(response, choice){
     let reactions = await getReactions()
     let idUser = parseInt(getCookie("PioutterID"))
 
-        response.forEach((post)=>{
-            let container
+    response.forEach((post)=>{
+        let container
 
-            let template = document.getElementById("postTemplate")
-            let clone = document.importNode(template.content, true)
-            if(choice === 1) {
-                container = document.getElementById("containerPost")
-            } else if(choice === 2) {
-                container = document.getElementById("containerPostLiked")
+        let template = document.getElementById("postTemplate")
+        let clone = document.importNode(template.content, true)
+        if(choice === 1) {
+            container = document.getElementById("containerPost")
+        } else if(choice === 2) {
+            container = document.getElementById("containerPostLiked")
+        }
+        let imageProfil = clone.getElementById("image-user")
+        let pseudo = clone.getElementById("pseudo-user")
+        let title = clone.getElementById("title-user")
+        let messagePost = clone.getElementById("message-post")
+        let like = clone.getElementById("like-post")
+        let dislike = clone.getElementById("dislike-post")
+        let link = [...clone.querySelectorAll(".postLinkos")]
+        let divLike = clone.getElementById("like")
+        let divDislike = clone.getElementById("dislike")
+        let dots = clone.getElementById("dots")
+        let cats = [...clone.querySelectorAll(".styleCategory")]
+
+        if(post.categories != null) {
+            cats.forEach((elem, idx) => {
+                elem.classList.add(`colorBox${post.categories[idx]}`)
+                elem.querySelector('span').textContent = tabCats[post.categories[idx]]
+            })
+        }
+
+        getProfilImage(post.IdUser)
+            .then((file)=>{
+                imageProfil.src = "data:image/png;base64," + file
+            })
+
+        divLike.setAttribute("contLike", "like")
+        divDislike.setAttribute("contDislike", "dislike")
+
+        link.forEach((element)=>{
+            if (element.classList.contains("pseudo-href")){
+                element.href = `/profil/${post.IdUser}`
+            }else{
+                element.href = `/status/${post.PostId}`
             }
-            let imageProfil = clone.getElementById("image-user")
-            let pseudo = clone.getElementById("pseudo-user")
-            let title = clone.getElementById("title-user")
-            let messagePost = clone.getElementById("message-post")
-            let like = clone.getElementById("like-post")
-            let dislike = clone.getElementById("dislike-post")
-            let link = [...clone.querySelectorAll(".postLinkos")]
-            let divLike = clone.getElementById("like")
-            let divDislike = clone.getElementById("dislike")
-            let dots = clone.getElementById("dots")
-            let cats = [...clone.querySelectorAll(".styleCategory")]
+        })
 
-            if(post.categories != null) {
-                cats.forEach((elem, idx) => {
-                    elem.classList.add(`colorBox${post.categories[idx]}`)
-                    elem.querySelector('span').textContent = tabCats[post.categories[idx]]
-                })
-            }
-
-            getProfilImage(post.IdUser)
-                .then((file)=>{
-                    imageProfil.src = "data:image/png;base64," + file
-                })
-
-            divLike.setAttribute("contLike", "like")
-            divDislike.setAttribute("contDislike", "dislike")
-
-            link.forEach((element)=>{
-                if (element.classList.contains("pseudo-href")){
-                    element.href = `/profil/${post.IdUser}`
-                }else{
-                    element.href = `/status/${post.PostId}`
+        if(reactions != null) {
+            reactions.forEach((reaction)=>{
+                if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                    if (reaction.like == true) {
+                        divLike.classList.add("filterLike")
+                    }else if (reaction.dislike == true) {
+                        divDislike.classList.add("filterDislike")
+                    }
                 }
             })
+        }
 
-            if(reactions != null) {
-                reactions.forEach((reaction)=>{
-                    if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
-                        if (reaction.like == true) {
-                            divLike.classList.add("filterLike")
-                        }else if (reaction.dislike == true) {
-                            divDislike.classList.add("filterDislike")
-                        }
-                    }
-                })
-            }
+        pseudo.textContent = post.pseudo
+        title.textContent = post.title
+        messagePost.textContent += post.message
+        like.textContent = post.like
+        dislike.textContent = post.dislike
 
-            pseudo.textContent = post.pseudo
-            title.textContent = post.title
-            messagePost.textContent += post.message
-            like.textContent = post.like
-            dislike.textContent = post.dislike
+        if (idUser !== post.IdUser){
+            clone.getElementById("dotsImg").remove()
+            dots.onclick = ""
+        }else{
+            dots.setAttribute("post_id", post.PostId)
+        }
 
-            if (idUser !== post.IdUser){
-                clone.getElementById("dotsImg").remove()
-                dots.onclick = ""
-            }else{
-                dots.setAttribute("post_id", post.PostId)
-            }
+        like.setAttribute("post_id", post.PostId)
+        dislike.setAttribute("post_id", post.PostId)
 
-            like.setAttribute("post_id", post.PostId)
-            dislike.setAttribute("post_id", post.PostId)
+        clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
 
-            clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
-
-                setTimeout(()=>{
-                    let divPost = event.target.closest("#post-parent")
-                    let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
-                    findPostById(idPost)
-                        .then((post)=>{
+            setTimeout(()=>{
+                let divPost = event.target.closest("#post-parent")
+                let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
+                findPostById(idPost)
+                    .then((post)=>{
                         printPopUpImages(post.IdUser, event)
                     })
-                        .catch(()=>{
-                            document.location.href = "/error/"
-                        })
-                },500)
-            })
-
-            container.append(clone)
+                    .catch(()=>{
+                        document.location.href = "/error/"
+                    })
+            },500)
         })
+
+        container.append(clone)
+    })
 }
 
 function printPopUpImages(idUser, event){
@@ -369,9 +369,9 @@ function printPopUpImages(idUser, event){
 
     getUserProfil(idUser)
         .then((profil)=>{
-        pseudo.innerText = profil.pseudo
-        bio.innerText = profil.bio
-    })
+            pseudo.innerText = profil.pseudo
+            bio.innerText = profil.bio
+        })
         .catch(()=>{
             document.location.href = "/error/"
         })
@@ -398,7 +398,7 @@ function getCookie(cname) {
 }
 
 function getUser(id){
-     return fetch(`/user/${id}`, {
+    return fetch(`/user/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "applicaiton/json"
@@ -748,9 +748,9 @@ function deactivateAccount(){
             "deactivate" : true,
         })
     })
-    .then((response)=>{
-        return response.json()
-    }).then((res)=>{
+        .then((response)=>{
+            return response.json()
+        }).then((res)=>{
         console.log('valid')
         if (res.delete){
             document.cookie = "PioutterID=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -760,11 +760,11 @@ function deactivateAccount(){
             console.log("nonValid")
         }
     })
-    .catch(()=>{
-        document.location.href="/profildeactive/nonValid"
-        console.log("catch")
-        return false
-    })
+        .catch(()=>{
+            document.location.href="/profildeactive/nonValid"
+            console.log("catch")
+            return false
+        })
 
 }
 
@@ -773,7 +773,7 @@ function changePassword(){
     let actualPassword = document.getElementById("passwordActuel").value
 
     console.log(actualPassword)
-    
+
     if (testGeneral()){
         let idUser = parseInt(getCookie("PioutterID"))
         fetch(`/profilpassword/${idUser}`, {
@@ -786,9 +786,9 @@ function changePassword(){
                 "actualPassword" : actualPassword,
             })
         })
-        .then((response)=>{
-            return response.json()
-        }).then((res)=>{
+            .then((response)=>{
+                return response.json()
+            }).then((res)=>{
             if (res.change){
                 document.location.href="/profilpassword/valid"
                 console.log('redirection ...')
@@ -797,9 +797,9 @@ function changePassword(){
                 console.log('mdp actuel différent')
             }
         })
-        .catch(()=>{
-            return false
-        })
+            .catch(()=>{
+                return false
+            })
     }
 }
 
@@ -817,9 +817,9 @@ function changePseudo(){
             "pseudo" : newPseudo,
         })
     })
-    .then((response)=>{
-        return response.json()
-    }).then((res)=>{
+        .then((response)=>{
+            return response.json()
+        }).then((res)=>{
         if (res.valid){
             console.log("valid")
             document.location.href="/profilpseudo/valid"
@@ -829,10 +829,10 @@ function changePseudo(){
             document.location.href="/profilpseudo/nonValid"
         }
     })
-    .catch(()=>{
-        console.log("catch")
-        return false
-    })
+        .catch(()=>{
+            console.log("catch")
+            return false
+        })
 
 }
 
@@ -850,9 +850,9 @@ function changeLocation(){
             "location" : newLocation,
         })
     })
-    .then((response)=>{
-        return response.json()
-    }).then((res)=>{
+        .then((response)=>{
+            return response.json()
+        }).then((res)=>{
         if (res.change){
             console.log("valid")
             document.location.href="/profillocation/valid"
@@ -862,9 +862,9 @@ function changeLocation(){
             document.location.href="/profillocation/nonValid"
         }
     })
-    .catch(()=>{
-        console.log("catch")
-        return false
-    })
+        .catch(()=>{
+            console.log("catch")
+            return false
+        })
 
 }

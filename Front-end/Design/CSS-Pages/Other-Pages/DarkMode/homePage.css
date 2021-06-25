@@ -250,3 +250,11 @@ main{
 #colorBox10{
     background-color: hotpink;
 }
+
+#inputIMG {
+    filter: invert(100%) sepia(100%) saturate(266%) hue-rotate(198deg) brightness(111%) contrast(101%);
+}
+
+#inputIMG:hover{
+    filter: invert(65%) sepia(69%) saturate(6337%) hue-rotate(236deg) brightness(102%) contrast(98%);
+}

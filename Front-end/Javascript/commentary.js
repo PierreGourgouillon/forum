@@ -7,14 +7,29 @@ import {objectCommentary} from "./Templates/commentaryTemplate.js";
 document.addEventListener("DOMContentLoaded", async ()=>{
     let postID = window.location.pathname.replace('/status/', "")
     let userID = parseInt(getCookie("PioutterID"))
+    let cookieDarkMode = getCookie("PioutterMode")
     let postUser = await routeAPI.findPostByIdAPI(postID)
     let user = await routeAPI.getUser(userID)
     let userAuthor = await routeAPI.getUser(postUser.IdUser)
 
+    if (cookieDarkMode === "D"){
+        document.getElementById('imgLike').src = '/static/Design/Images/Icon/like_color_white.svg'
+        document.getElementById('imgDislike').src = '/static/Design/Images/Icon/dislike_color_white.svg'
+        document.getElementById('imgCommentary').src = '/static/Design/Images/Icon/commentary_color_white.svg'
+    }
+
+    designCategories(postUser)
     checkReaction(parseInt(postID), userID)
     insertDataPost(userAuthor, postUser)
     addDataPopUp(postUser, user, userAuthor)
     insertCommentariesInPage(postID)
+
+    let eventListUserAuthor = [...document.getElementsByClassName("eventList")]
+    eventListUserAuthor.forEach((element)=>{
+        element.addEventListener('click', ()=>{
+            document.location.href = `/profil/${postUser.IdUser}`
+        })
+    })
 
     document.getElementById("like").addEventListener('click', ()=>{
         addReactions(userID, postID, true)
@@ -29,6 +44,18 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     })
 })
 
+function designCategories(post){
+    let tabCats = {"1": "Actualité","2": "Art","3": "Cinéma","4": "Histoire","5": "Humour","6": "Inetrnet","7": "Jeux Vidéo","8": "Nourriture", "9": "Santé", "10": "Sport"}
+    let cats = [...document.querySelectorAll(".styleCategory")]
+
+    if(post.categories != null) {
+        cats.forEach((elem, idx) => {
+            elem.classList.add(`colorBox${post.categories[idx]}`)
+            elem.querySelector('span').textContent = tabCats[post.categories[idx]]
+        })
+    }
+}
+
 function insertDataPost(user, post){
     document.getElementById("image-user").src = "data:image/png;base64," + user.image
     document.getElementById("pseudo-user").textContent = user.pseudo
@@ -37,6 +64,14 @@ function insertDataPost(user, post){
     document.getElementById("message-post").textContent = post.message
     document.getElementById("like-post").textContent = post.like
     document.getElementById("dislike-post").textContent = post.dislike
+
+    console.log(post.image)
+
+    if (post.image === ""){
+        document.getElementById("divImage").style.display = "none"
+    }else{
+        document.getElementById("imgPost").src = "data:image/png;base64," + post.image
+    }
 }
 
 function addDataPopUp(post, user, userAuthor){

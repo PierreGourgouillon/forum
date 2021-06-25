@@ -11,7 +11,6 @@ import (
 var db *sql.DB
 
 func CreateAndSelectDB(name string) {
-
 	var err error
 	db, err = sql.Open("sqlite3", name)
 	if err != nil {
@@ -19,51 +18,6 @@ func CreateAndSelectDB(name string) {
 	}
 
 	CreateTable()
-
-	// var err error
-	// db, err = sql.Open("sqlite3", "./db/Forum.db")
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	// tableau := [8]string{tableUserIdentity, tableUserProfile, tableUserPost, tableAllPosts, tableCategories, tableAllCommentary, tablePostCategory, tablePostReactions}
-
-	// for _, table := range tableau {
-	// 	err := createDB(table)
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// }
-
-	// //Connexion au docker sql en root
-	// var err error
-	// db, err = sql.Open("sqlite3", "../../db/Forum.db")
-
-	// if err != nil {
-	// 	panic(err.Error())
-	// }
-	// defer db.Close()
-
-	// //Création de la bd
-	// _, error := db.Exec("CREATE DATABASE IF NOT EXISTS " + name)
-
-	// if error != nil {
-	// 	panic(err)
-	// } else {
-	// 	fmt.Println("DATABASE " + name + " is create")
-	// }
-
-	// //Selectionne la bd
-	// _, err = db.Exec("USE " + name)
-	// if err != nil {
-	// 	panic(err)
-	// } else {
-	// 	fmt.Println("DB selected successfully..")
-	// }
-
-	// if err != nil {
-	// 	panic(err)
-	// }
 }
 
 func CreateTable() {
@@ -78,7 +32,6 @@ func CreateTable() {
 			fmt.Println("Table " + strconv.Itoa(j+1) + " is create")
 		}
 	}
-	// fillUser()
 
 	fillTableCategories()
 }
@@ -154,19 +107,3 @@ func fillTableCategories() {
 	}
 
 }
-
-// func fillUser() {
-// 	user, err := db.Prepare("INSERT INTO userIdentity (user_id, user_email, user_pseudo, user_password,  user_birth, deactivate) VALUES (?, ?, ?, ?, ?, ?)")
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	defer user.Close()
-// 	user.Exec(1, "kok", "Lucas-Sama", "$2a$14$lvhImTBaJsxRJw2Fr0EhI.A7xkuru4BErrhIr5pyLHgHpHKSd.Nmu", "15/12/2011", 0)
-
-// 	user, err = db.Prepare("INSERT INTO userProfile (user_id) VALUES (?)")
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	defer user.Close()
-// 	user.Exec(1)
-// }

@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "Open-Sans-Extra";
+    src: url('http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: "Open-Sans-SemiBold", sans-serif;
+    src: url('http://localhost:8088/static/Fonts/open-sans-semibold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: "Montserrat-Regular", sans-serif;
+    src: url('http://localhost:8088/static/Fonts/Montserrat-Regular.ttf') format('ttf');
+}
+
 /********** Flexbox **********/
 
 .RowFLex{
@@ -106,15 +121,17 @@
     font-size: 15px;
     line-height: 20px;
     overflow-wrap: break-word;
+    font-family: Montserrat-Regular;
 }
 
 .styleCategory {
     font-size: 13px;
     border-radius: 15px;
-    padding: 0px 10px;
+    padding: 5px 10px;
     color: white;
     justify-content: center;
     align-items: center;
+    font-family: Montserrat-Regular;
 }
 
 
@@ -125,7 +142,7 @@
 }
 
 .pseudo-href:hover {
-    text-decoration: underline;
+    text-decoration: #A266FC underline;
 }
 
 
@@ -159,7 +176,7 @@
     width: 100%;
 }
 
-.imgHover:hover{
+.hisPost:hover{
     background: rgba(121, 76, 196, 0.7);
     border-radius: 999px;
 }

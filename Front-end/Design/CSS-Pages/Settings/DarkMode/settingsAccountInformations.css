@@ -135,7 +135,7 @@ section{
 
 /********** Image **********/
 
-.link-in-main:hover img{
+.link-in-main:hover .container-link-icon img{
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
 
@@ -159,9 +159,7 @@ section{
 }
 
 
-
-
-.link-in-main img{
+.link-in-main .container-link-icon img{
     filter: invert(100%) sepia(5%) saturate(7500%) hue-rotate(174deg) brightness(104%) contrast(104%);
 }
 

@@ -129,10 +129,9 @@ section{
     color: #794bc4;
 }
 
-.link-in-main:hover img{
+.link-in-main:hover .container-link-icon img{
     filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
 }
-
 
 /********** Reste **********/
 

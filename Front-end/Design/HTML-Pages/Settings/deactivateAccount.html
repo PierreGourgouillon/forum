@@ -15,6 +15,7 @@
     {{end}}
     <script src="/static/Javascript/requestAPI.js" type="text/javascript"></script>
     <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/settings/deactivateAccount.js" type="module" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
@@ -23,7 +24,7 @@
         {{template "header" .}}
 
         <main>
-            <div class="container-main">
+            <div class="container-main" style="cursor: default">
                 <section class="globalFLex">
                     <div class="container-account globalFLex">
                         <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
@@ -39,20 +40,18 @@
                         </div>
                     </div>
 
-                    <a href="/profil/">
-                        <div class="RowFLex paddingLeft paddingTop transition" id="lineDeactivate">
+                        <div class="RowFLex paddingLeft paddingTop transition" id="lineDeactivate" style="cursor: pointer">
                             <div class="RowFLex">
                                 <div class="RowFLex" style="flex-basis: 48px;margin-right: 12px; justify-content: center;">
-                                    <img src="/static/Design/Images/avatar.jpg" style="height: 48px;border-radius: 999px">
+                                    <img id="profile-image-deactivate" style="height: 48px;border-radius: 999px">
                                 </div>
                                 <div class="globalFLex" style="justify-content: center;flex-basis: 0px;flex-grow: 1;">
                                     <div class="globalFLex">
-                                        <span class="textStyle">Pierre</span>
+                                        <span class="textStyle" id="pseudo-user-deactivate"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </a>
 
                     <div class="globalFLex paddingTop paddingLeft">
                         <div class="globalFLex">
@@ -66,9 +65,9 @@
                         </div>
                     </div>
 
-                    <div class="globalFLex paddingTop paddingLeft transition" id="deactivateAcc" style="justify-content: center;margin-top: 25px;">
-                        <div class="globalFLex" style="text-align: center">
-                                <button value="true" type="submit" id="buttonDeactivAcc" class="textStyle" style="color:rgb(224, 36, 94);font-size: 15px;font-weight: 400;"onclick="deactivateAccount()">Désactiver votre compte</button>
+                    <div class="globalFLex paddingTop paddingLeft transition" id="deactivateAcc" style="justify-content: center;margin-top: 25px;cursor:pointer;">
+                        <div class="globalFLex" style="text-align: center; cursor: pointer">
+                                <button value="true" type="submit" id="buttonDeactivAcc" class="textStyle" style="color:rgb(224, 36, 94);font-size: 15px;font-weight: 400;cursor: pointer">Désactiver votre compte</button>
                         </div>
                     </div>
 
