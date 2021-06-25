@@ -1,13 +1,8 @@
-@font-face {
-    font-family: "Open-Sans-Extra";
-    src: url("http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf");
-}
-
-
 span{
     font-size: 54px;
     margin-left: 45%;
-    font-family: "Open-Sans-Extra";
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
 }
 
 :root {

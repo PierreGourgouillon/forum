@@ -1,21 +1,4 @@
 /*-----------------------
-* Police
--------------------------*/
-
-@font-face {
-    font-family: "Open Sans", sans-serif;
-    src: url('../../Fonts/open-sans-semibold.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: "montserrat";
-    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/*-----------------------
 * General
 -------------------------*/
 
@@ -30,7 +13,7 @@
 body {
     min-height: 100%;
     background: white;
-	font-family: 'Noto Sans', sans-serif;
+	font-family: Open Sans, sans-serif;
 
 }
 
@@ -195,7 +178,7 @@ body {
     position: relative;
 
     margin-top: -4px;
-    font-family: "montserrat";
+    font-family: Monserrat, sans-serif;
     color: #e74c3c;
     font-size: 18px;
     text-align: center;

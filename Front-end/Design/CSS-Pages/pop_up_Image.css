@@ -1,10 +1,3 @@
-@font-face {
-    font-family: "Montserrat-Regular";
-    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .container-popUp-Images{
     display: none;
     position: absolute;
@@ -45,7 +38,8 @@
 }
 
 .container-span-popUp span{
-    font-family: Open-Sans-Extra;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
 }
 
 .container-biographie-popUp{
@@ -56,6 +50,6 @@
 
 .container-biographie-popUp span{
     word-break: break-word;
-    font-family: Montserrat-Regular;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
 }

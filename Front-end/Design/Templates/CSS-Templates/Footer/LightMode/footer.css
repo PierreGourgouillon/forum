@@ -1,15 +1,3 @@
-@font-face {
-    font-family: "Open Sans", sans-serif;
-    src: url('../../../../../Fonts/open-sans-semibold.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: "montserrat";
-    src: url('../../../../../Fonts/Montserrat-Regular.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
 .RowFLex{
     display: flex;
     flex-basis: auto;
@@ -31,8 +19,8 @@
     position: relative;
     z-index: 0;
 }
-.border{
-    border: 1px solid #707070;
+.borderPurple{
+    border: 1px solid #8A3DFE;
 }
 footer{
     height: 100vh;

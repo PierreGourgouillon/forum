@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    rmBorderRightHeader()
     document.getElementById("insert-message").addEventListener("keyup", showButton)
     const cats = [...document.getElementsByClassName("category-box")]
     cats.forEach((cat) => cat.addEventListener("click", () => {
@@ -50,4 +51,7 @@ function deleteChild() {
     console.log(b.innerHTML)
 }
 
-
+function rmBorderRightHeader(){
+    let border = document.getElementById("header")
+    border.style.borderRight = "none"
+}

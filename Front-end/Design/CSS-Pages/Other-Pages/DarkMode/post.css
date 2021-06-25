@@ -1,18 +1,3 @@
-@font-face {
-    font-family: "Open-Sans-Extra";
-    src: url('http://localhost:8088/static/Fonts/OpenSans-ExtraBold.ttf') format('ttf');
-}
-
-@font-face {
-    font-family: "Open-Sans-SemiBold", sans-serif;
-    src: url('http://localhost:8088/static/Fonts/open-sans-semibold.ttf') format('ttf');
-}
-
-@font-face {
-    font-family: "Montserrat-Regular", sans-serif;
-    src: url('http://localhost:8088/static/Fonts/Montserrat-Regular.ttf') format('ttf');
-}
-
 /********** Flexbox **********/
 
 .RowFLex{
@@ -123,7 +108,7 @@
     font-size: 15px;
     line-height: 20px;
     overflow-wrap: break-word;
-    font-family: Montserrat-Regular;
+    font-family: Montserrat, sans-serif;
 }
 
 .styleCategory {
@@ -131,7 +116,7 @@
     border-radius: 15px;
     padding: 5px 10px;
     color: white;
-    font-family: Montserrat-Regular;
+    font-family: Montserrat, sans-serif;
 }
 
 
@@ -188,19 +173,20 @@
 
 .spanPopUp {
     margin-left: 10px;
-    font-family: Open-Sans-SemiBold;
+    font-family: Open Sans, sans-serif;
     font-size: 13px;
 }
 
 #pseudo-user{
     font-size: 15px;
     color: #A266FC;
-    font-family: Open-Sans-Extra;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
 }
 
 #title-user{
     position: relative;
-    font-family: Open-Sans-SemiBold;
+    font-family: Open Sans, sans-serif;
     font-size: 15px;
     color: white;
 }
