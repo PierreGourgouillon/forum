@@ -44,14 +44,6 @@ function chooseCategory(cat){
 function deleteChild() {
     console.log('delete')
     const b = document.getElementById("containerPost")
-    const e = [...document.querySelectorAll("#containerPost > div")]
-    // console.log("e: ", e)
-    // console.log("e[1]: ", e[1])
-    // while(e.length != 0){
-    //     e.pop()
-    // }
-    // console.log("e:", e)
-    // container.push(e)
     b.innerHTML = ""
     console.log(b.innerHTML)
 }
