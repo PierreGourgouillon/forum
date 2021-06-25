@@ -4,12 +4,16 @@ var compteur = false
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
     document.getElementById("b").addEventListener('click', ()=>{
-        getImagePost(createPost)
+        createPost()
+    })
+
+    document.getElementById("inputIMG").addEventListener('click', ()=>{
+        document.getElementById("inputFile").click()
     })
     addImageProfil()
 })
 
-async function createPost(file){
+async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
     let categories = [...document.getElementsByClassName("selected-category")]
@@ -20,6 +24,8 @@ async function createPost(file){
     let valueCookie = getCookie("PioutterID")
 
     let user = await getUser(valueCookie)
+
+    let file = await getImagePost()
 
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
@@ -57,27 +63,28 @@ async function createPost(file){
 }
 
 
-function getImagePost(callback){
+function getImagePost(){
 
-    const fileInput = document.querySelector("#inputFile");
+    return new Promise((resolve, reject) => {
+        const fileInput = document.querySelector("#inputFile");
 
         const file = fileInput.files[0];
 
         const reader = new FileReader();
 
         if (file === undefined){
-            callback("")
+            resolve("")
         }else{
             reader.onloadend = () => {
                 const base64String = reader.result
                     .replace("data:", "")
                     .replace(/^.+,/, "");
                 fileInput.value = ""
-                callback(base64String)
+                resolve(base64String)
             };
             reader.readAsDataURL(file);
         }
-
+    })
 }
 
 

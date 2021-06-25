@@ -193,7 +193,7 @@ func settingsRoute(w http.ResponseWriter, r *http.Request) {
 
 	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
 
-	if valueCookie == 0{
+	if valueCookie == 0 {
 		http.Redirect(w, r, "/home/", http.StatusSeeOther)
 		return
 	}
