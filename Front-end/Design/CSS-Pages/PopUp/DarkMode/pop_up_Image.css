@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Montserrat-Regular";
-    src: url('../../Fonts/Montserrat-Regular.ttf') format('ttf');
+    src: url('../../../../Fonts/Montserrat-Regular.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -14,7 +14,8 @@
     border: 2px solid #A266FC;
     border-radius: 13px;
     z-index: 5;
-    background: whitesmoke;
+    background: #1C2834;
+    color: white;
 }
 
 .container-images-popUp{

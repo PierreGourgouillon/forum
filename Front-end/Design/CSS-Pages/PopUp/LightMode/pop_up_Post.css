@@ -1,7 +1,3 @@
-body, html {
-    padding: 0;
-    margin: 0;
-}
 
 @font-face {
     font-family: "Open-Sans-Extra";
@@ -111,7 +107,7 @@ body, html {
     border-radius: 18px 18px 0px 0px;
 }
 
-.errorUpdate{
+.errorUpdate {
     margin-top: 30px;
     text-align: center;
     color: red;
