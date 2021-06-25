@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chooseTrie(trie)
     }))
     document.getElementById("filter-button").addEventListener("click", pushFilter)
+    document.getElementById("sort-button").addEventListener("click", postIndexTrie)
 })
 
 function showMoreFilter(){
@@ -146,7 +147,7 @@ function chooseTrie(trie){
         trie.classList.add('active3')
         tri.classList.add('selected-category3')
         console.log(tri.id)
-        tabTrie.push(trie)
+        tabTrie.push(tri.id)
         displayArrow.style.display = ""
 
         console.log(trie)

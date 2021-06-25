@@ -186,18 +186,27 @@ func GetAllPosts() []structs.Post {
 
 
 // idFiltre est la metode de rangement
-func GetAllPostsTrie(idFiltre string) []structs.Post {
+func GetAllPostsTrie(idFilter string) []structs.Post {
 	var allPost []structs.Post
 	var save string
-	println(idFiltre)
 
-	if idFiltre =="1"{
+	println(idFilter)
+
+	if idFilter =="1"{
+		println("idFilter:", idFilter)
+		println("fonction:plus vieux au plus recent")
 		save = "post_date ASC, post_hour DESC" //plus vieux au plus recent
-	}else if idFiltre == "2"{
+	}else if idFilter == "2"{
+		println("idFilter:",idFilter)
+		println("du plus recent au plus vieux")
 		save = "post_date DESC, post_hour ASC" //plus recent au plus vieux
-	}else if idFiltre == "3"{
+	}else if idFilter== "3"{
+		println("idFilter:",idFilter)
+		println("fonction:plus like au moins like")
 		save = "post_likes ASC, post_dislikes DESC" //les plus like
-	}else if idFiltre == "4"{
+	}else if idFilter == "4"{
+		println("idFilter:",idFilter)
+		println("fonction: moins like au plus like")
 		save = "post_dislikes ASC, post_likes DESC" //moins like d'abord
 
 	}

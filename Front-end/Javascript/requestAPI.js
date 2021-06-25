@@ -105,13 +105,15 @@ function postIndexFilter(){
 
 function postIndexTrie(){
     const id = tabTrie
+    let id2 = id[0]
+    console.log("id2", id2)
     fetch("/post/trie/", {
         method : "POST",
         headers : {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-            "idButton":id,
+            "idButton":id2,
         })
     })
     .then((response)=>{
