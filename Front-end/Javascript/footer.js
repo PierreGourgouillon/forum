@@ -128,6 +128,7 @@ function pushFilter(){
 }
 
 let tabTrie = []
+let tabSelect = []
 function chooseTrie(trie){
     const len = document.getElementById("sort").querySelectorAll('.active3').length
     let displayArrow = document.getElementById("sort-button")
@@ -138,15 +139,18 @@ function chooseTrie(trie){
         tri.classList.remove('selected-category3')
         displayArrow.style.display = "none"
         tabTrie.pop()
+        tabSelect.pop()
     } else {
         if(len >= 1) {
-            tabTrie[0].classList.remove('active3')
-            tabTrie[0].querySelector('span').classList.remove('selected-category3')
+            tabSelect[0].classList.remove('active3')
+            tabSelect[0].querySelector('span').classList.remove('selected-category3')
             tabTrie.shift()
+            tabSelect.shift()
         }
         trie.classList.add('active3')
         tri.classList.add('selected-category3')
         console.log(tri.id)
+        tabSelect.push(trie)
         tabTrie.push(tri.id)
         displayArrow.style.display = ""
 
