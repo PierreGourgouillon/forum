@@ -1,9 +1,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Profil désactivé</title>
         <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
-        <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/redirectionSettings/redirectionSettings_LightMode.css">
+        <title>Profil désactivé</title>
+        {{if eq . "L"}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/redirectionSettings/redirectionSettings_LightMode.css">
+        {{else}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/redirectionSettings/redirectionSettings_DarkMode.css">
+        {{end}}
         <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
     </head>
   

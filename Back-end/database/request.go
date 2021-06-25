@@ -354,8 +354,6 @@ func GetPostsLikedByUserID(id int) []structs.Post {
 
 	data, err := db.Query("SELECT post_id FROM postReactions WHERE user_id = ? AND (user_like > 0 OR user_dislike > 0)", id)
 	if err != nil {
-		fmt.Print("err 2 and => ")
-		fmt.Println(err)
 		return allPost
 	}
 
