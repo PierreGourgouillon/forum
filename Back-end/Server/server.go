@@ -65,6 +65,9 @@ func requestHTTP(router *mux.Router) {
 	//Home Route
 	router.HandleFunc("/home/", homeRoute)
 
+	//Filter Route
+	router.HandleFunc("/filter/{id}", filterRoute)
+
 	//Profil Route
 	router.HandleFunc("/profil/{id}", profilRoute)
 	router.HandleFunc("/profilposts/{id}", getPostsUser).Methods("GET")
@@ -73,6 +76,8 @@ func requestHTTP(router *mux.Router) {
 
 	//API post
 	router.HandleFunc("/post/", createPost).Methods("POST")
+	router.HandleFunc("/post/filter/", getPostFilter).Methods("POST")
+	router.HandleFunc("/post/trie/", getPostTrie).Methods("POST")
 	router.HandleFunc("/post/", getPost).Methods("GET")
 	router.HandleFunc("/post/{id}", postShow).Methods("GET")
 	router.HandleFunc("/post/{id}", postUpdate).Methods("PUT")
@@ -178,6 +183,37 @@ func homeRoute(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, cookieMode)
 }
 
+func filterRoute(w http.ResponseWriter, r *http.Request) {
+	//faire struct
+	// cookieMode := mode(w, r)
+
+	if !cookie.ReadCookie(r, "PioutterMode") {
+		cookie.SetCookie(w, "PioutterMode", "L", "/")
+	}
+
+	if !cookie.ReadCookie(r, "PioutterID") {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	tmpl, err := template.ParseFiles("./Front-end/Design/HTML-Pages/filterPage.html", "./Front-end/Design/Templates/HTML-Templates/header.html", "./Front-end/Design/Templates/HTML-Templates/footer.html")
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	title := mux.Vars(r)
+	id, err := strconv.Atoi(title["id"])
+	if err != nil {
+		http.Redirect(w, r, "/error/", http.StatusSeeOther)
+		return
+	}
+	tab := []string{"", "Actualité", "Art", "Cinéma", "Histoire", "Humour", "Internet", "Jeux Vidéo", "Nourriture", "Santé", "Sport"}
+
+	tmpl.Execute(w, tab[id])
+}
+
 func mode(w http.ResponseWriter, r *http.Request) string {
 	var cookieMode string
 	if !cookie.ReadCookie(r, "PioutterMode") {
@@ -193,7 +229,8 @@ func mode(w http.ResponseWriter, r *http.Request) string {
 
 func settingsRoute(w http.ResponseWriter, r *http.Request) {
 	cookieMode := mode(w, r)
-	valueCookie, err := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
+
+	valueCookie, _ := strconv.Atoi(cookie.ValueCookie(r, "PioutterID"))
 
 	if valueCookie == 0 {
 		http.Redirect(w, r, "/home/", http.StatusSeeOther)
@@ -1027,4 +1064,60 @@ func postPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, cookieMode)
+}
+
+func getPostFilter(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var post structs.Post
+	unmarshallJSON(r, &post)
+	println("categorieID: ", post.Categories[0])
+
+	//recuperation idposts associer a idCategories selectionné
+	idPostsArray := database.GetPostIdByCategoryId(post.Categories[0], &post)
+
+	var idPostsArrayInt = []int{}
+	var n = 0
+
+	for _, i := range idPostsArray {
+		j, err := strconv.Atoi(i)
+		if err != nil {
+			panic(err)
+		}
+		idPostsArrayInt = append(idPostsArrayInt, j)
+		println(idPostsArrayInt[n])
+		n++
+	}
+
+	//recuperer les posts des idposts de idPostsArray
+	postsArray := database.GetPostWithArray(idPostsArrayInt)
+	jsonPostFilterCategories, error := json.Marshal(postsArray)
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonPostFilterCategories)
+}
+
+func getPostTrie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	var idButton structs.RequestSql
+	unmarshallJSON(r, &idButton)
+
+	//ORDER BY post_date , post_hour DESC  |  plus recente d'abord
+	//ORDER BY post_date , post_hour ASC   |  plus ancienne d'abord
+	//post_likes DESC, post_dislikes ASC   |  plus like d'abord
+	//post_dislikes DESC, post_likes ASC   |  moins like d'abord
+
+	allPostTrie := database.GetAllPostsTrie(idButton.IdButton)
+
+	jsonPostTrie, error := json.Marshal(allPostTrie)
+	if error != nil {
+		log.Fatal(error)
+	}
+
+	w.Write(jsonPostTrie)
 }

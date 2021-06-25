@@ -72,3 +72,8 @@ type PostsPageProfil struct {
 	PostsUser  []Post `json:"postsuser"`
 	PostsLiked []Post `json:"postsliked"`
 }
+
+type RequestSql struct{
+	IdButton string `json:"idButton"`
+	} 
+	

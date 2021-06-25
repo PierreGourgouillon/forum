@@ -184,6 +184,61 @@ func GetAllPosts() []structs.Post {
 	return allPost
 }
 
+
+// idFiltre est la metode de rangement
+func GetAllPostsTrie(idFilter string) []structs.Post {
+	var allPost []structs.Post
+	var save string
+
+	println(idFilter)
+
+	if idFilter =="1"{
+		println("idFilter:", idFilter)
+		println("fonction:plus vieux au plus recent")
+		save = "post_date ASC, post_hour DESC" //plus vieux au plus recent
+	}else if idFilter == "2"{
+		println("idFilter:",idFilter)
+		println("du plus recent au plus vieux")
+		save = "post_date DESC, post_hour ASC" //plus recent au plus vieux
+	}else if idFilter== "3"{
+		println("idFilter:",idFilter)
+		println("fonction:plus like au moins like")
+		save = "post_likes ASC, post_dislikes DESC" //les plus like
+	}else if idFilter == "4"{
+		println("idFilter:",idFilter)
+		println("fonction: moins like au plus like")
+		save = "post_dislikes ASC, post_likes DESC" //moins like d'abord
+
+	}	
+	rows, error := db.Query("SELECT post_id, user_title, user_pseudo, user_id, user_message, post_date, post_hour, post_likes, post_dislikes FROM allPosts ORDER BY " + save)
+
+	if error != nil {
+		fmt.Println(error)
+	}
+
+	for rows.Next() {
+		var post structs.Post
+		rows.Scan(&post.PostId, &post.Title, &post.Pseudo, &post.IdUser, &post.Message, &post.Date, &post.Hour, &post.Like, &post.Dislike)
+
+		catRows, err := db.Query("SELECT category_id FROM postCategory WHERE post_id = ?", post.PostId)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cats []string
+		for catRows.Next() {
+			var cat string
+			catRows.Scan(&cat)
+			cats = append(cats, cat)
+		}
+		post.Categories = cats
+
+		allPost = append(allPost, post)
+	}
+	return allPost
+}
+
 func FindPostById(id int) structs.Post {
 
 	var post structs.Post
@@ -377,12 +432,12 @@ func GetPostsLikedByUserID(id int) []structs.Post {
 		tab = append(tab, num)
 	}
 
-	allPost = getPostWithArray(tab)
+	allPost = GetPostWithArray(tab)
 
 	return allPost
 }
 
-func getPostWithArray(tab []int) []structs.Post {
+func GetPostWithArray(tab []int) []structs.Post {
 	var allPost []structs.Post
 
 	for _, num := range tab {
@@ -582,4 +637,23 @@ func CreateCommentary(commentary structs.Commentary) (bool, structs.Commentary) 
 	commentary.CommentaryID, _ = insert.LastInsertId()
 
 	return true, commentary
+}
+
+
+func GetPostIdByCategoryId(categories string, post *structs.Post) ([]string) {
+	
+	var PostId []string
+	//recuperer les postID
+	rows, err := db.Query("SELECT post_id FROM postCategory WHERE category_id = ?", categories)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	for rows.Next() {
+		var user string
+		rows.Scan(&user)
+		PostId = append(PostId, user)
+	}
+	return PostId
+	//return le tableau
 }

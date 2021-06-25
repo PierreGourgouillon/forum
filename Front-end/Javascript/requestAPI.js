@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.getElementById("inputFile").click()
     })
     addImageProfil()
+    // document.getElementById("sort-button").addEventListener('click', postIndexFilter)
     document.getElementById("insert-title").addEventListener('keyup', unborderingPublish)
     document.getElementById("insert-message").addEventListener('keyup', unborderingPublish)
 
@@ -93,7 +94,6 @@ function getImagePost(){
 
 
 function postIndex(){
-
     fetch("/post/", {
         method : "GET",
         headers : {
@@ -109,6 +109,61 @@ function postIndex(){
         .catch(()=>{
             document.location.href = "/error/"
         })
+}
+
+
+
+function postIndexFilter(){
+    let tabStr = []
+    const url = window.location.href
+    id = url.charAt(url.length-1);
+    let idStr = id.toString()
+    tabStr=[idStr]
+    
+    console.log(tabStr)
+    fetch("/post/filter/", {
+        method : "POST",
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+            "categories":tabStr,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    })
+    .then((res)=>{
+        addAllPostFilter(res)
+    })
+    .catch(()=>{
+        document.location.href = "/error/"
+        console.log('erreur')
+    })
+}
+
+function postIndexTrie(){
+    const id = tabTrie
+    let id2 = id[0]
+    fetch("/post/trie/", {
+        method : "POST",
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+            "idButton":id2,
+        })
+    })
+    .then((response)=>{
+        return response.json()
+    })
+    .then((res)=>{
+        deleteChild()
+        addAllPostTrie(res)
+    })
+    .catch(()=>{
+        document.location.href = "/error/"
+    })
 }
 
 function findPostById(idUser){
@@ -267,6 +322,191 @@ async function addAllPost(response){
             container.append(clone)
         })
 }
+
+async function addAllPostFilter(response){
+
+    let reactions = await getReactions()
+    let idUser = parseInt(getCookie("PioutterID"))
+    // console.log(response)
+
+        response.forEach((post)=>{
+            if (post.title != ""){
+                console.log("les catégories du post sont :", post.categories)
+
+                let template = document.getElementById("postTemplate")
+                let clone = document.importNode(template.content, true)
+                let container = document.getElementById("containerPostFiltered")
+                let imageProfil = clone.getElementById("image-user")
+                let pseudo = clone.getElementById("pseudo-user")
+                let title = clone.getElementById("title-user")
+                let messagePost = clone.getElementById("message-post")
+                let like = clone.getElementById("like-post")
+                let dislike = clone.getElementById("dislike-post")
+                let link = [...clone.querySelectorAll(".postLinkos")]
+                let divLike = clone.getElementById("like")
+                let divDislike = clone.getElementById("dislike")
+                let dots = clone.getElementById("dots")
+                let cats = [...clone.querySelectorAll(".styleCategory")]
+
+                if(post.categories != null) {
+                    cats.forEach((elem, idx) => {
+                        elem.classList.add(`colorBox${post.categories[idx]}`)
+                        elem.querySelector('span').textContent = tabCats[post.categories[idx]]
+                    })
+                }
+
+                getProfilImage(post.IdUser)
+                    .then((file)=>{
+                        imageProfil.src = "data:image/png;base64," + file
+                    })
+
+                divLike.setAttribute("contLike", "like")
+                divDislike.setAttribute("contDislike", "dislike")
+
+                link.forEach((element)=>{
+                    if (element.classList.contains("pseudo-href")){
+                        element.href = `/profil/${post.IdUser}`
+                    }else{
+                        element.href = `/status/${post.PostId}`
+                    }
+                })
+
+                if(reactions != null) {
+                    reactions.forEach((reaction)=>{
+                        if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                            if (reaction.like == true) {
+                                divLike.classList.add("filterLike")
+                            }else if (reaction.dislike == true) {
+                                divDislike.classList.add("filterDislike")
+                            }
+                        }
+                    })
+                }
+
+                pseudo.textContent = post.pseudo
+                title.textContent = post.title
+                messagePost.textContent += post.message
+                like.textContent = post.like
+                dislike.textContent = post.dislike
+
+                if (idUser !== post.IdUser){
+                    clone.getElementById("dotsImg").remove()
+                    dots.onclick = ""
+                }else{
+                    dots.setAttribute("post_id", post.PostId)
+                }
+
+                like.setAttribute("post_id", post.PostId)
+                dislike.setAttribute("post_id", post.PostId)
+
+                clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
+
+                    setTimeout(()=>{
+                        let divPost = event.target.closest("#post-parent")
+                        let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
+                        findPostById(idPost)
+                            .then((post)=>{
+                            printPopUpImages(post.IdUser, event)
+                        })
+                            .catch(()=>{
+                                document.location.href = "/error/"
+                            })
+                    },500)
+                })
+                container.append(clone)
+            }
+        })
+}
+
+
+async function addAllPostTrie(response){
+    let reactions = await getReactions()
+    let idUser = parseInt(getCookie("PioutterID"))
+        response.forEach((post)=>{
+                let template = document.getElementById("postTemplate")
+                let clone = document.importNode(template.content, true)
+                let container = document.getElementById("containerPost")
+                let imageProfil = clone.getElementById("image-user")
+                let pseudo = clone.getElementById("pseudo-user")
+                let title = clone.getElementById("title-user")
+                let messagePost = clone.getElementById("message-post")
+                let like = clone.getElementById("like-post")
+                let dislike = clone.getElementById("dislike-post")
+                let link = [...clone.querySelectorAll(".postLinkos")]
+                let divLike = clone.getElementById("like")
+                let divDislike = clone.getElementById("dislike")
+                let dots = clone.getElementById("dots")
+                let cats = [...clone.querySelectorAll(".styleCategory")]
+
+                if(post.categories != null) {
+                    cats.forEach((elem, idx) => {
+                        elem.classList.add(`colorBox${post.categories[idx]}`)
+                        elem.querySelector('span').textContent = tabCats[post.categories[idx]]
+                    })
+                }
+
+                getProfilImage(post.IdUser)
+                    .then((file)=>{
+                        imageProfil.src = "data:image/png;base64," + file
+                    })
+
+                divLike.setAttribute("contLike", "like")
+                divDislike.setAttribute("contDislike", "dislike")
+
+                link.forEach((element)=>{
+                    if (element.classList.contains("pseudo-href")){
+                        element.href = `/profil/${post.IdUser}`
+                    }else{
+                        element.href = `/status/${post.PostId}`
+                    }
+                })
+
+                if(reactions != null) {
+                    reactions.forEach((reaction)=>{
+                        if (reaction.idUser === idUser && reaction.idPost === post.PostId) {
+                            if (reaction.like == true) {
+                                divLike.classList.add("filterLike")
+                            }else if (reaction.dislike == true) {
+                                divDislike.classList.add("filterDislike")
+                            }
+                        }
+                    })
+                }
+
+                pseudo.textContent = post.pseudo
+                title.textContent = post.title
+                messagePost.textContent += post.message
+                like.textContent = post.like
+                dislike.textContent = post.dislike
+
+                if (idUser !== post.IdUser){
+                    clone.getElementById("dotsImg").remove()
+                    dots.onclick = ""
+                }else{
+                    dots.setAttribute("post_id", post.PostId)
+                }
+
+                like.setAttribute("post_id", post.PostId)
+                dislike.setAttribute("post_id", post.PostId)
+
+                clone.getElementById("image-user").addEventListener('mouseenter', (event)=>{
+
+                    setTimeout(()=>{
+                        let divPost = event.target.closest("#post-parent")
+                        let idPost = divPost.querySelector("#like-post").getAttribute("post_id")
+                        findPostById(idPost)
+                            .then((post)=>{
+                            printPopUpImages(post.IdUser, event)
+                        })
+                            .catch(()=>{
+                                document.location.href = "/error/"
+                            })
+                    },500)
+                })
+                container.append(clone)
+        })
+}
+
 
 function printPopUpImages(idUser, event){
     let divPopUp = document.getElementById("jsPopupImages")

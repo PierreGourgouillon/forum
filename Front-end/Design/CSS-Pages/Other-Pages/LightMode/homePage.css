@@ -216,16 +216,16 @@ main{
     width: 30px;
 }
 #colorBox1{
-    background-color: red;
+    background-color: darkred;
 }
 #colorBox2{
-    background-color: orange;
+    background-color: orangered;
 }
 #colorBox3{
-    background-color: yellow;
+    background-color: orange;
 }
 #colorBox4{
-    background-color: greenyellow;
+    background-color: darkolivegreen;
 }
 #colorBox5{
     background-color: green;
@@ -244,6 +244,13 @@ main{
 }
 #colorBox10{
     background-color: hotpink;
+}
+#arrowLeft:hover{
+    background-color: rgba(0,110,195,0.1);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
 }
 
 #inputIMG:hover{

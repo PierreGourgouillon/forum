@@ -42,3 +42,12 @@ function chooseCategory(cat){
         tabCat.push(cat)
     }
 }
+
+function deleteChild() {
+    console.log('delete')
+    const b = document.getElementById("containerPost")
+    b.innerHTML = ""
+    console.log(b.innerHTML)
+}
+
+
