@@ -249,6 +249,11 @@
 .colorBox10 {
     background-color: hotpink;
 }
-#dotsImg, #like, #dislike{
-    filter: invert(99%) sepia(98%) saturate(8%) hue-rotate(87deg) brightness(106%) contrast(100%);
+
+#dislike-post{
+    color: white;
+}
+
+#like-post{
+    color: white;
 }
