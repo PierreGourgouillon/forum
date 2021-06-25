@@ -1,0 +1,180 @@
+/*-----------------
+* Général
+-----------------*/
+
+*{
+    margin : 0;
+    padding : 0;
+}
+
+html { 
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    font-family: Open Sans, sans-serif;
+}
+
+#general{
+    display: flex;
+    height: 100vh;
+}
+
+/*-----------------
+* Partie Gauche
+-----------------*/
+
+#gauche{
+    background-color: #794BC4;
+    width: 52%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo{
+    width: 400px;
+    aspect-ratio: 1/1.1;
+}
+
+/*-----------------
+* Droite
+-----------------*/
+
+#droite{ 
+    background-color: #15202B;
+    width: 48%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 3px solid blue; */
+    
+}
+
+#generalDroit{
+    margin-top:-150px;
+    margin-left:auto;
+    margin-right: auto;
+    width: 80%;
+    height: 1800px;
+    
+    /* border: 3px solid rgb(149, 4, 168); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*-----------------
+* Partie Droite | texte
+-----------------*/
+
+#textDroit{
+    width: 80%;
+    height: 10%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    /* margin:0 auto; */
+    /* border: 3px solid green; */
+    text-align: center;
+}
+
+h1{
+    position: relative;
+    top:15%;
+    color: white;
+    font-size: 2.5vw;
+}
+
+h2{
+    position: relative;
+    top:15%;
+    color: white;
+    font-size:1vw;
+}
+
+/*-----------------
+* Partie Droite | boutton
+-----------------*/
+
+#boutonDroit{
+    width: 55%;
+    height: 25%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 3px solid red; */
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right: auto;
+    
+}
+
+#bt1{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+
+    /* border: 3px solid pink; */
+    margin-left:auto;
+    margin-right: auto;
+}
+#formeBt1{
+    border:none;
+    background: #794BC4;
+    color:white;
+    border-radius: 40px;
+    font-size: 200%;
+
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+#formeBt1:hover{
+    background: #531da8;
+}
+
+
+#bt2{
+    min-width: 200px;
+    min-height: 60px;
+    width: 80%;
+    height: 30%;
+    /* border: 3px solid pink; */
+    margin-top:20px;
+    margin-left:auto;
+    margin-right: auto;
+}
+#formeBt2{
+
+    background: #f0f0f0;
+    color:#794BC4;
+    font-size: 200%;
+    border: 3px solid #794BC4;
+    border-radius: 40px;
+
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+#formeBt2:hover{
+    background: #531da8;
+    color:#ffffff;
+    border: 3px solid #531da8;
+}
+
+.invite{
+    display:flex;
+    justify-content: center;
+    color:#555;
+    font-size:1vw;
+}
+.invite:hover{
+    color:rgb(56, 56, 56);
+    font-size:1.05vw;
+
+}
+
+a:link:visited{
+    color:#555;
+}

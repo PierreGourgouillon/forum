@@ -1,0 +1,210 @@
+/*-----------------------
+* General
+-------------------------*/
+
+*{
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+    overflow: hidden;
+}
+
+
+body {
+    min-height: 100%;
+    background: white;
+	font-family: Open Sans, sans-serif;
+
+}
+
+#general{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5%;
+    padding-top: 20px;
+    width: 500px;
+    height: 500px;
+    border:1px solid #555;
+    border-radius: 6px;
+}
+
+/*-----------------------
+* Logo
+-------------------------*/
+
+#zoomImage{
+    margin: 0 auto;
+    width: 400px;
+    height: 200px;
+    /* border:1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+#logo{
+    width: 50%;
+    aspect-ratio: 1/1;
+}
+
+#separation{
+    width: 100px;
+    height: 3px;
+    opacity: 70%;
+    background: #794BC4;
+
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:30px;
+    border-radius: 6px;
+}
+
+/*-----------------------
+* Formulaire
+-------------------------*/
+
+#formulaire{
+    position:relative;
+    top:20px;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+	/* border:1px solid white; */
+	border-radius:3px;
+	padding-left:80px;
+	padding-right:80px;
+}
+
+/*---*/
+
+.caseFormulaire{
+	width:320px;
+    margin-left:auto;
+	margin-right:auto;
+}
+
+.boxInput{
+    /* border:1px solid #555;  */
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
+    max-height: 40px;
+    
+}
+
+.boxInput input{ 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#555;
+}
+
+.boxInput input:focus{ 
+    border:none;	
+    outline:none;
+    border-bottom:2px solid #555;	
+}
+
+.caseInput::placeholder{
+    color:#555;	
+}
+
+/* Placeholders */
+::-webkit-input-placeholder { opacity: 1; -webkit-transition: opacity .2s; transition: opacity .2s; }  /* Chrome 56, Safari 9 */
+:-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 4-18 */
+::-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 19-51 */
+:-ms-input-placeholder { opacity: 1; -ms-transition: opacity .2s; transition: opacity .2s; } /* IE 10+ */
+::placeholder { opacity: 1; transition: opacity .2s; } /* Modern Browsers */
+
+/* Focus */
+*:focus::-webkit-input-placeholder { opacity: 0; } /* Chrome 56, Safari 9 */
+*:focus:-moz-placeholder { opacity: 0; } /* FF 4-18 */
+*:focus::-moz-placeholder { opacity: 0; } /* FF 19-50 */
+*:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
+*:focus::placeholder { opacity: 0; } /* Modern Browsers */
+
+/*-----------------------
+* Bouton
+-------------------------*/
+
+/*-- Bouton Login --*/
+
+#generalBtn{
+/* border:1px solid #555; */
+	width:200px;
+	height:40px;
+	margin-top:-5px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.btn{
+    width: 100%;
+    height: 100%;
+	color:#fff;
+	background-color:#794BC4;
+	outline: none;
+    border: 0;
+	text-transform:uppercase;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+.btn:hover{
+    background-color:#5b3794;
+}
+
+/*-- Oeil affichage Mdp --*/
+
+.oeil{
+    position: relative;
+    left:290px;
+    top:-32px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    filter: invert(0.6);
+
+}
+.oeil:hover{
+    filter: invert(0);
+}
+
+/*-- Zone message d'erreur --*/
+
+#zoneMessErreur {
+    position: relative;
+
+    margin-top: -4px;
+    font-family: Monserrat, sans-serif;
+    color: #e74c3c;
+    font-size: 18px;
+    text-align: center;
+    width: 332px;
+    height: 30px;
+    /* background:pink; */
+}
+
+/*-- Btn Retour --*/
+
+#retour{
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+
+    width: 70px;
+    aspect-ratio: 1/1;
+}
+#imgRetour{
+    width: 100%;
+    aspect-ratio: 1/1;
+    filter: invert(0.6);
+}
+#imgRetour:hover{
+    filter: invert(0);
+}
+
+
+

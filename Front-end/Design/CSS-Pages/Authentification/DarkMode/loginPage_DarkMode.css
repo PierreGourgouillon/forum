@@ -1,0 +1,229 @@
+/*-----------------------
+* General
+-------------------------*/
+
+
+*{
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+    overflow: hidden;
+}
+
+
+body {
+    min-height: 100%;
+    background: #15202B;
+    font-family: Open Sans, sans-serif;
+    background: #15202B;
+    padding: 0;
+    margin: 0;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+#general{
+    padding-top: 40px;
+    width: 500px;
+    height: 600px;
+    border:1px solid white;
+    border-radius: 6px;
+}
+
+/*-----------------------
+* Logo
+-------------------------*/
+#zoomImage{
+    margin: 0 auto;
+    width: 400px;
+    height: 200px;
+    /* border:1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+#logo{
+    width: 50%;
+    aspect-ratio: 1/1;
+}
+
+#separation{
+    width: 100px;
+    height: 3px;
+    opacity: 70%;
+    background: #794BC4;
+
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:60px;
+    border-radius: 6px;
+
+}
+
+/*-----------------------
+* Formulaire
+-------------------------*/
+
+/*-----*/
+
+#formulaire{
+    margin-left: auto;
+    margin-right: auto;
+	/* border:1px solid white; */
+	border-radius:3px;
+    padding: 20px 80px 50px 80px;
+}
+
+/*---*/
+
+.caseFormulaire{
+	width:320px;
+    margin-left:auto;
+	margin-right:auto;
+}
+
+.boxInput{
+    /* border:1px solid #555;  */
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
+    max-height: 40px;
+    
+}
+
+.boxInput input{ 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#fff;
+}
+
+
+.boxInput input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+
+.boxInput input:valid{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #3ce759;	
+}
+
+
+
+.caseInput::placeholder{
+    color:#fff;	
+}
+
+/* Placeholders */
+::-webkit-input-placeholder { opacity: 1; -webkit-transition: opacity .2s; transition: opacity .2s; }  /* Chrome 56, Safari 9 */
+:-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 4-18 */
+::-moz-placeholder { opacity: 1; -moz-transition: opacity .2s; transition: opacity .2s; } /* FF 19-51 */
+:-ms-input-placeholder { opacity: 1; -ms-transition: opacity .2s; transition: opacity .2s; } /* IE 10+ */
+::placeholder { opacity: 1; transition: opacity .2s; } /* Modern Browsers */
+
+/* Focus */
+*:focus::-webkit-input-placeholder { opacity: 0; } /* Chrome 56, Safari 9 */
+*:focus:-moz-placeholder { opacity: 0; } /* FF 4-18 */
+*:focus::-moz-placeholder { opacity: 0; } /* FF 19-50 */
+*:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
+*:focus::placeholder { opacity: 0; } /* Modern Browsers */
+
+/*---*/
+
+#generalBtn{
+/* border:1px solid #555; */
+	width:200px;
+	height:40px;
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+.btn{
+    width: 100%;
+    height: 100%;
+	color:#fff;
+	background-color:#794BC4;
+	outline: none;
+    border: 0;
+	text-transform:uppercase;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+
+
+
+
+
+/*---*/
+
+.oeil{
+    position: relative;
+    left:290px;
+    top:-32px;
+    width: 30px;
+    height: 30px;
+    opacity: 40%;
+    cursor: pointer;
+    filter: invert(0.8);
+
+}
+.oeil:hover{
+    opacity: 100%;
+}
+
+/* Zone message d'erreur */
+
+#zoneMessErreur {
+    position: relative;
+    margin-top: -4px;
+    font-family: Montserrat, sans-serif;
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    width: 332px;
+    height: 30px;
+    /* background:pink; */
+}
+
+#retour{
+    width: 70px;
+    aspect-ratio: 1/1;
+}
+
+#imgRetour{
+    width: 100%;
+    aspect-ratio: 1/1;
+    filter: invert(0.8);
+    opacity: 40%;
+}
+
+#imgRetour:hover{
+    opacity: 100%;
+}
+
+.globalFLex{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}

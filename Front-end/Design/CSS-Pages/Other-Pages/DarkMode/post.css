@@ -1,0 +1,245 @@
+/********** Flexbox **********/
+
+.RowFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+
+/********** Espacements **********/
+
+.paddingTop{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.paddingLeft {
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.mRight {
+    margin-right: 12px;
+}
+
+.mLeft {
+    margin-left: 12px;
+}
+
+/********** Id **********/
+
+#like:hover{
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+#dislike:hover{
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+#containerPost {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column-reverse;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    background-color: #1C2834;
+}
+
+#message-post{
+    width: 90%;
+    color: white;
+}
+
+#pop-up{
+    display: none;
+    position: absolute;
+    width: 250px;
+    background: #A266FC;
+    border-radius: 5px;
+    border: 2px solid rgb(47, 51, 54);
+    animation: 1s ease topToBottom;
+}
+
+@keyframes topToBottom {
+    0%{
+        transform: translateY(-70px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+#pop-up span{
+    color: white;
+}
+
+/********** Texte **********/
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+    font-family: Montserrat, sans-serif;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+    font-family: Montserrat, sans-serif;
+}
+
+
+/********** Hover **********/
+
+.hover:hover{
+    background-color: rgba(121,75,196,0.1);
+}
+
+.pseudo-href:hover {
+    text-decoration: #A266FC underline;
+}
+
+
+/********** Reste **********/
+
+.cursor {
+    cursor: pointer;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.noUserSelect {
+    user-select: none;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+.images{
+    width: 100%;
+}
+
+.hisPost:hover{
+    background: rgba(121, 76, 196, 0.7);
+    border-radius: 999px;
+}
+
+.hoverpop:hover {
+    background: rgba(245,245,245,0.2);
+    cursor: pointer;
+}
+
+.spanPopUp {
+    margin-left: 10px;
+    font-family: Open Sans, sans-serif;
+    font-size: 13px;
+}
+
+#pseudo-user{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
+}
+
+#title-user{
+    position: relative;
+    font-family: Open Sans, sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+#link-post {
+    padding: 5px 12px 5px 12px;
+}
+
+/********** Catégories **********/
+
+.colorBox1 {
+    background-color: darkred;
+}
+
+.colorBox2 {
+    background-color: orangered;
+}
+
+.colorBox3 {
+    background-color: orange;
+}
+
+.colorBox4 {
+    background-color: darkolivegreen;
+}
+.colorBox5 {
+    background-color: green;
+}
+
+.colorBox6 {
+    background-color: darkgreen;
+}
+
+.colorBox7 {
+    background-color: dodgerblue;
+}
+
+.colorBox8 {
+    background-color: blue;
+}
+
+.colorBox9 {
+    background-color: purple;
+}
+
+.colorBox10 {
+    background-color: hotpink;
+}
+
+#dislike-post{
+    color: white;
+}
+
+#like-post{
+    color: white;
+}

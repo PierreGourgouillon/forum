@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+        <title>Login | Pioutter</title>
+        {{if eq . "L"}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/loginPage_LightMode.css">
+        {{else}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/DarkMode/loginPage_DarkMode.css">
+        {{end}}
+        <script src="/static/Javascript/login.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+  
+    <body>
+        <div class="globalFLex" id="container">
+            <div class="globalFLex" style="justify-content: center; align-items: center">
+                <div id="general">
+                    <div id="zoomImage">
+                        <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+                    </div>
+
+                    <div id="separation"></div>
+
+                    <div id="formulaire">
+                        <div class="caseFormulaire">
+                            <div class="boxInput">
+                                <input type="text" autocomplete="off" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                            </div>
+                            <div class="boxInput" id="boxPassword">
+                                <input type="password" autocomplete="false" value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
+                                <img class="oeil" id="eye" src="/static/Design/Images/Icon/eye_black.png">
+                            </div>
+                            <div id="zoneMessErreur"></div>
+                            <div id="generalBtn">
+                                <button type="button" id="logins" class="btn">Se Connecter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="globalFLex" style="width: 100%; justify-content: flex-end" >
+                    <a href="/" class="globalFLex"style="width: 70px; margin-left: 90%">
+                        <div id="retour">
+                            <img id="imgRetour"src="/static/Design/Images/Icon/retour.png">
+                        </div>
+                    </a>
+            </div>
+        </div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    </body>
+</html>

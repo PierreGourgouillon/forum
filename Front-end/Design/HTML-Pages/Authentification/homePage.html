@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/static/Design/Images/iconHaut.png">
+        <title>Home | Pioutter</title>
+        {{if eq . "L"}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/homePage_LightMode.css">
+        {{else}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/DarkMode/homePage_DarkMode.css">
+        {{end}}
+        <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/Javascript/choicePage.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+
+    <body>
+        <div id="general">
+            <div id="gauche">
+                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+            </div>
+
+            <div id="droite">
+                <div id="generalDroit">
+                    <div id="textDroit">
+                        <h1>REJOIGNEZ NOUS ET PROFITEZ AU MAX !</h1>
+                        <h2>Postez,likez et discutez avec le monde entier!</h2>
+                    </div>
+                    <div id="boutonDroit">
+                        <div id="bt1">
+                            <a href="/register/">
+                                <button id="formeBt1" type="reset">
+                                    S'inscrire
+                                </button>
+                            </a>
+                        </div>
+
+                        <div id="bt2">
+                            <a href="/login/">
+                                <button id="formeBt2" type="reset">
+                                    Se connecter
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/home/"class="invite" id="invite">Rejoindre en tant qu'invité</a>
+                </div>  
+            </div>
+        </div>
+    </body>
+</html>

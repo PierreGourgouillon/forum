@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+        <title>No Valid | Pioutter</title>
+        {{if eq . "L"}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/redirectionSettings/redirectionSettings_LightMode.css">
+        {{else}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/redirectionSettings/redirectionSettings_DarkMode.css">
+        {{end}}
+        <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+  
+    <body>
+        <div id="general">
+            <div id="zoomImage">
+                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+            </div>
+
+            <div id="separation"></div>
+
+            <h1 id="titre">LE PSEUDO N'A PAS ETE MODIFIE</h1>
+            <a href="/settings/account/pseudo/">
+                <h2 id="retour">Retour aux paramètres</h2>
+            </a>
+        </div>
+    </body>
+</html>

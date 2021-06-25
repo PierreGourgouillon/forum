@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+        <title>Register | Pioutter</title>
+        {{if eq . "L"}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/LightMode/registerPage_LightMode.css">
+        {{else}}
+            <link type="text/css" rel="stylesheet" href="/static/Design/CSS-Pages/Authentification/DarkMode/registerPage_DarkMode.css">
+        {{end}}
+        <script src="/static/Javascript/register.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+  
+    <body>
+        <div id="general">
+            <div id="zoomImage">
+                <img id="logo" src="/static/Design/Images/Logo/pioutter.png">
+            </div>
+
+            <div id="separation"></div>
+
+            <div id="formulaire">
+                <div class="caseFormulaire">
+                    <div class="boxInput" id="boxInputPseudo">
+                        <input type="text" autocomplete="off" onkeyup="validatePseudo()" class="caseInput" id="pseudo" name="Nom"  Placeholder="Pseudo" minlength="6" required>
+                    </div>
+                    <div class="boxInput" id="boxInputEmail">
+                        <input type="text" autocomplete="off" onkeyup="validateMail()" class="caseInput" id="email" name="Email" placeholder="Email"required>
+                    </div>
+                    <div class="boxInput" id="boxPassword">
+                        <input type="password" autocomplete="false" onkeyup="validatePassword()"value="" class="caseInput" id="password" name="Mot de passe" placeholder="Mot de Passe"required>
+                        <img id="eye1" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
+                    </div>
+                    <div class="boxInput" id="boxConfirmPassword">
+                        <input type="password" autocomplete="off" onkeyup="validatePasswordConf()" class="caseInput" id="passwordConf" name="Mot de passe" placeholder="Confirmation Mot de passe" required>
+                        <img id="eye2" class="oeil" src="/static/Design/Images/Icon/eye_black.png">
+                    </div>
+                    <div class="boxInput">
+                        <input type="date" id="birth" min="1930-01-01" max="2012-01-01" required>
+                    </div>
+                </div>
+                <div id="zoneMessErreur"></div>
+                <div id="generalBtn">
+
+                    <button id="register" type="button" class="btn" >S'inscrire</button>
+                </div>
+            </div>
+            <button id="btRandom" type="button"><img id="imgMdp"src="/static/Design/Images/Icon/iconMdp.png"></button>
+        </div>
+
+        <a href="/">
+            <div id="retour">
+                <img id="imgRetour"src="/static/Design/Images/Icon/retour.png">
+            </div>
+        </a>
+    </body>
+</html>

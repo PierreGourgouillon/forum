@@ -1,0 +1,189 @@
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+body {
+    overflow: hidden;
+    background-color: whitesmoke;
+}
+
+.middle-container {
+    width: 50%;
+    background-color: whitesmoke;
+}
+
+#home-banner{
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #A266FC;
+}
+
+#home-text{
+    font-family: Open Sans, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+#up {
+    width: 100%;
+    height: 25%;
+}
+
+.onglet {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid black;
+}
+
+.onglet div {
+    color: black;
+    font-size:30px;
+    font-family: Montserrat, sans-serif;
+    cursor: pointer;
+}
+
+#onglet-post {
+    color: #A266FC;
+}
+
+#down {
+    width: 100%;
+    height: 68.9%;
+    border-top: 1px solid black;
+    overflow-y: scroll;
+}
+
+.profil-container {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 95%;
+    margin-left: 2.5%;
+    margin-top: 1%;
+    border-radius: 150px 15px 15px 150px;
+}
+
+.Avatar-Container {
+    margin-left: -2px;
+    aspect-ratio: 1/1;
+    height: 100%;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.Avatar {
+    aspect-ratio: 1/1;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    border-radius: 999px;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.pseudo { 
+    margin-left: 2.5%;
+    width: 97.5%;
+    height: 20%;
+}
+
+#pseudoid {
+    font-family: Open Sans, sans-serif;
+    font-size: 30px;
+}
+
+.country {
+    margin-left: 5%;
+    width: 95%;
+}
+
+#countryid {
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+}
+
+.bio {
+    margin-top: 1%;
+    margin-left: 2.5%;
+    width: 97.5%;
+    height: 70%;
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+
+#bioid {
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+}
+
+.icon-bio {
+    width: 30px;
+    height: 30px;
+    left: 97.5%;
+    filter: invert(35%) sepia(12%) saturate(5335%) hue-rotate(232deg) brightness(94%) contrast(92%);
+}
+
+.gear {
+    position: relative;
+    background: url(../../../Images/Icon/settingsGear.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.post-container {
+    margin-top: 2.5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+footer {
+    width: 25%;
+    height: 100vh;
+    border-left: 1px solid black;
+}
+
+/* Popup */
+
+.RowFlex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+.globalFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}

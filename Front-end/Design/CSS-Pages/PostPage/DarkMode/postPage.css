@@ -1,0 +1,369 @@
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+.RowFlex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+
+.globalFLex{
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    position: relative;
+    z-index: 0;
+}
+.scroll-div{
+    overflow-y: scroll;
+}
+
+body{
+    overflow: hidden;
+    background: #15202B;
+}
+#containerPost {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column-reverse;
+    flex-shrink: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+}
+
+#home-banner{
+    background-color: #A266FC;
+    height: 50px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+}
+
+main{
+    width: 50%;
+    min-height: 100vh;
+}
+
+#main-box{
+    height: 100vh;
+    width: 100%;
+}
+
+#home-banner h2{
+    color: white;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 800;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;}
+
+.image:hover{
+    background-color: rgba(121,75,195,0.5);
+    border-radius: 999px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+
+.transition {
+    transition-duration: 0.2s;
+}
+
+/***** Template Post *****/
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.mRight {
+    margin-right: 12px;
+}
+
+.mLeft {
+    margin-left: 12px;
+}
+
+.noUserSelect {
+    user-select: none;
+}
+
+.radiusImage {
+    border-radius: 999px;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+
+#pseudo-user{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
+}
+
+.divPseudo:hover{
+    text-decoration: #A266FC underline;
+}
+
+#date-post {
+    color: white;
+}
+
+#title-user{
+    position: relative;
+    font-family: Open Sans, sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.styleCategory {
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+    font-family: Open Sans, sans-serif;
+}
+
+.styleMessage {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+    font-family: Open Sans, sans-serif;
+    cursor: default;
+}
+
+#message-post{
+    width: 90%;
+    color: white;
+}
+
+.filterLike {
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+.filterDislike {
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+#dots span{
+    font-family: Montserrat, sans-serif;
+}
+
+.paddingLeft {
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+#message-commentary{
+    width: 100%;
+    font-size: 15px;
+    overflow-wrap: break-word;
+    font-family: Montserrat, sans-serif;
+    color: white;
+}
+
+#pseudo-commentary{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
+    width: auto;
+    max-width: 250px;
+}
+
+#pseudo-commentary:hover {
+    text-decoration: #A266FC underline;
+    cursor: pointer;
+}
+
+
+/****** popUp commentary *****/
+
+#popUp-update {
+    display: none;
+    position: absolute;
+    z-index: 1500;
+    width: 100%;
+    height: 100%;
+    background: rgba(91, 112, 131, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+.container-popUp-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.block-popUp-update{
+    width: 600px;
+    background: #15202B;
+    border-radius: 20px;
+    padding-bottom: 20px;
+}
+
+#bandeau{
+    background: #A266FC;
+    border-radius: 18px 18px 0px 0px;
+}
+
+.title-popUp{
+    font-size: 24px;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
+    color: #FFFFFF;
+}
+
+#image-close{
+    filter: invert(100%) sepia(2%) saturate(7475%) hue-rotate(128deg) brightness(110%) contrast(99%);
+    cursor: pointer;
+}
+
+#pseudoPost{
+    font-size: 15px;
+    color: #A266FC;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
+}
+#message{
+    font-size: 14px;
+    word-break: break-word;
+    font-family: Montserrat, sans-serif;
+    color: white;
+}
+#message-Comment{
+    margin-top: 20px;
+    resize: none;
+    outline: none;
+    width: 400px;
+    height: 100px;
+    font-size: 15px;
+    font-family: Montserrat, sans-serif;
+    background: #212e3b;
+    color: white;
+}
+
+#message-Comment::placeholder{
+    color: white;
+}
+
+.valideBorder{
+    border: none;
+}
+
+.styleButton{
+    padding: 5px 10px 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: Open Sans, sans-serif;
+    font-weight: 800;
+    background: #a266fc;
+    color: white;
+}
+
+.styleButton:hover{
+    background: rgb(139, 80, 231);
+}
+
+.errorMessage {
+    border: 2px solid red;
+}
+
+#like:hover{
+    filter: invert(78%) sepia(46%) saturate(4447%) hue-rotate(82deg) brightness(98%) contrast(95%);
+}
+
+#dislike:hover{
+    filter: invert(26%) sepia(61%) saturate(6889%) hue-rotate(330deg) brightness(93%) contrast(88%);
+}
+
+/*Footer*/
+
+
+
+
+@keyframes expand {
+    from {
+        transform: scale(0);
+        opacity: 0;
+        background: #5470B0;
+    }
+}
+
+.box{
+    animation: expand .5s ease-in-out;
+}
+
+#like-post, #dislike-post{
+    color: white;
+}
+
+/********** CatÃ©gories **********/
+
+.colorBox1 {
+    background-color: red;
+}
+
+.colorBox2 {
+    background-color: orange;
+}
+
+.colorBox3 {
+    background-color: yellow;
+}
+
+.colorBox4 {
+    background-color: greenyellow;
+}
+.colorBox5 {
+    background-color: green;
+}
+
+.colorBox6 {
+    background-color: darkgreen;
+}
+
+.colorBox7 {
+    background-color: dodgerblue;
+}
+
+.colorBox8 {
+    background-color: blue;
+}
+
+.colorBox9 {
+    background-color: purple;
+}
+
+.colorBox10 {
+    background-color: hotpink;
+}

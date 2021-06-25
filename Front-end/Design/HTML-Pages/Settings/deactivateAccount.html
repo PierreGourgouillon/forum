@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+    <title>Settings | Pioutter</title>
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/deactivateAccount.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">   
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/deactivateAccount.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    {{end}}
+    <script src="/static/Javascript/requestAPI.js" type="text/javascript"></script>
+    <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/settings/deactivateAccount.js" type="module" charset="utf-8"></script>
+    <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+    <div class="container-body">
+
+        {{template "header" .}}
+
+        <main>
+            <div class="container-main" style="cursor: default">
+                <section class="globalFLex">
+                    <div class="container-account globalFLex">
+                        <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
+                            <div class="globalFLex" style="flex-direction: row">
+                                <a href="/settings/" class="globalFLex" style="justify-content: center;min-width: 50px">
+                                    <div style="height: 52px;justify-content: center" class="globalFLex">
+                                        <img style="height: 25px;width: 25px;padding-left: 5px" class="image transition" src="/static/Design/Images/Icon/arrow_left_purple.svg">
+                                    </div>
+                                </a>
+
+                                <h2>Votre Compte</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="RowFLex paddingLeft paddingTop transition" id="lineDeactivate" style="cursor: pointer">
+                            <div class="RowFLex">
+                                <div class="RowFLex" style="flex-basis: 48px;margin-right: 12px; justify-content: center;">
+                                    <img id="profile-image-deactivate" style="height: 48px;border-radius: 999px">
+                                </div>
+                                <div class="globalFLex" style="justify-content: center;flex-basis: 0px;flex-grow: 1;">
+                                    <div class="globalFLex">
+                                        <span class="textStyle" id="pseudo-user-deactivate"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="globalFLex paddingTop paddingLeft">
+                        <div class="globalFLex">
+                            <span class="textStyle" style="font-size: 20px;font-family: Open-Sans-Extra,Arial">Cela désactivera votre compte</span>
+                        </div>
+                    </div>
+
+                    <div class="globalFLex paddingLeft paddingTop" id="border">
+                        <div class="globalFLex">
+                            <span class="textStyle" style="font-family: Montserrat-Regular;font-weight: normal;font-size: 13px;">Vous êtes sur le point de commencer le processus de désactivation de votre compte Pioutter. Votre nom d'affichage et votre profil public ne seront plus visibles sur Pioutter.com.</span>
+                        </div>
+                    </div>
+
+                    <div class="globalFLex paddingTop paddingLeft transition" id="deactivateAcc" style="justify-content: center;margin-top: 25px;cursor:pointer;">
+                        <div class="globalFLex" style="text-align: center; cursor: pointer">
+                                <button value="true" type="submit" id="buttonDeactivAcc" class="textStyle" style="color:rgb(224, 36, 94);font-size: 15px;font-weight: 400;cursor: pointer">Désactiver votre compte</button>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
