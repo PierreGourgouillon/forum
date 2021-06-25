@@ -15,22 +15,10 @@ function changeMode() {
 }
 
 function chargeMode() {
-    let head = document.head
-    let css = head.querySelectorAll("link")
     let value = valueOfCookie("PioutterMode")
     
-    if(value == "L") {
-        console.log("eho")
-    } else if(value === "D") {
-        const regEx = new RegExp("LightMode", "g")
-        css.forEach((elem, i) => {
-            console.log(i)
-            elem.href = elem.href.replace(regEx, "DarkMode")
-        })
+    if(value === "D") {
         document.getElementById("modePage").textContent = "Mode Clair"
-    } else {
-        document.cookie = "PioutterMode=L; path=/"
-        document.location.reload()
     }
 }
 

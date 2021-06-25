@@ -21,9 +21,11 @@ let tabCat = []
 function chooseCategory(cat){
     const len = document.getElementById(("category-boxs")).querySelectorAll('.active').length
     let category = cat.querySelector('span')
+    console.log("span 1", category.classList)
     if(cat.classList.value.includes('active')) {
         cat.classList.remove('active')
         category.classList.remove('selected-category')
+        console.log("span 2", category.classList)
         tabCat.forEach((elem, idx) => {
             if(elem == cat) {
                 tabCat.splice(idx, 1)

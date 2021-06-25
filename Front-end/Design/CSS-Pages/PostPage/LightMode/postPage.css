@@ -355,3 +355,44 @@ footer{
 .box{
     animation: expand .5s ease-in-out;
 }
+
+/********** CatÃ©gories **********/
+
+.colorBox1 {
+    background-color: red;
+}
+
+.colorBox2 {
+    background-color: orange;
+}
+
+.colorBox3 {
+    background-color: yellow;
+}
+
+.colorBox4 {
+    background-color: greenyellow;
+}
+.colorBox5 {
+    background-color: green;
+}
+
+.colorBox6 {
+    background-color: darkgreen;
+}
+
+.colorBox7 {
+    background-color: dodgerblue;
+}
+
+.colorBox8 {
+    background-color: blue;
+}
+
+.colorBox9 {
+    background-color: purple;
+}
+
+.colorBox10 {
+    background-color: hotpink;
+}

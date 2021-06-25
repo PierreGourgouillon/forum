@@ -2,14 +2,20 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsAccountInformations.css" type="text/css">
-    <script type="text/javascript" src="/static/Javascript/header.js"></script>
-    <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/Javascript/settings.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
     <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
     <title>Votre Compte</title>
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsAccountInformations.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">   
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/settingsAccountInformations.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    {{end}}
+    <script type="text/javascript" src="/static/Javascript/header.js"></script>
+    <script src="/static/Javascript/settings/settings.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
     <div class="container-body">
@@ -17,7 +23,7 @@
         {{template "header" .}}
 
         <main>
-            <div class="container-main">
+            <div class="container-main" style="cursor: default">
                 <section class="globalFLex">
                     <div class="container-account globalFLex" id="border">
                         <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
@@ -34,7 +40,7 @@
                     </div>
 
                     <div class="list-settings globalFLex">
-                        <a href="/settings/account/pseudo/" id="imageHover" class="globalFLex link-in-main">
+                        <a href="/settings/account/pseudo/" id="imageHover" class="globalFLex link-in-main" style="cursor: pointer">
                             <div class="container-link-main globalFLex ">
                                 <div class="container-link-icon globalFLex">
                                     <img src="/static/Design/Images/Icon/profile.svg">
@@ -67,7 +73,7 @@
                             </div>
                         </div>
 
-                        <a href="/settings/account/country/" id="imageHovera" class="globalFLex link-in-main">
+                        <a href="/settings/account/country/" id="imageHovera" class="globalFLex link-in-main" style="cursor: pointer">
                             <div class="container-link-main globalFLex">
                                 <div class="container-link-icon globalFLex">
                                     <img src="/static/Design/Images/Icon/language.svg">

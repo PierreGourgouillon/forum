@@ -2,13 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <title>Votre Compte</title>
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/LightMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">   
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Settings/DarkMode/settingsPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    {{end}}
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script type="text/javascript" src="/static/Javascript/mode.js"  charset="utf-8"></script>
     <script type="text/javascript" src="/static/Javascript/settings.js"  charset="utf-8"></script>
-    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
-    <title>Votre Compte</title>
 </head>
 <body>
 
@@ -17,7 +22,7 @@
     {{template "header"}}
 
     <main>
-        <div class="container-main">
+        <div class="container-main" style="cursor: default">
             <section class="globalFLex">
                 <div class="container-account globalFLex">
                     <div class="globalFLex" style="padding-left: 16px;padding-right: 16px;">
@@ -37,7 +42,7 @@
                         <span>Consultez les informations sur votre compte ou découvrez les options <br> de désactivation de votre compte</span>
                     </div>
 
-                    <a onclick="verifConnectInfoAccount()"  id="over1" class="globalFLex link-in-main">
+                    <a href="/settings/account/" id="over1" class="globalFLex link-in-main" style="cursor: pointer">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/profile.svg">
@@ -54,7 +59,7 @@
                         </div>
                     </a>
 
-                    <a onclick="verifConnectChangMdp()" id="over2" class="globalFLex link-in-main">
+                    <a href="/settings/password/" id="over2" class="globalFLex link-in-main" style="cursor: pointer">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/password.svg">
@@ -71,7 +76,7 @@
                         </div>
                     </a>
 
-                    <a onclick="verifConnectDeaAccount()" id="over3" class="globalFLex link-in-main">
+                    <a href="/settings/deactivate/" id="over3" class="globalFLex link-in-main" style="cursor: pointer">
                         <div class="container-link-main globalFLex">
                             <div class="container-link-icon globalFLex">
                                 <img src="/static/Design/Images/Icon/desactivate_account.svg">
@@ -84,11 +89,11 @@
                                     <span>Désactiver ou supprimer votre compte</span>
                                 </div>
                             </div>
-                            <img class="image" src="/static/Design/Images/Icon/arrow_right.svg" id="deaCompte" style="height: 29px;width: 29px;">
+                            <img src="/static/Design/Images/Icon/arrow_right.svg" id="deaCompte" style="height: 29px;width: 29px;">
                         </div>
                     </a>
 
-                    <a id="kkk" class="globalFLex link-in-main">
+                    <a id="kkk" class="globalFLex link-in-main" style="cursor: pointer">
                         <div onclick="delCookie()"   class="container-link-main globalFLex">
                             <div class="globalFLex"  style="flex-grow: 1;flex-shrink: 1;">
                                 <div  id="deconnexion" class="style-link">

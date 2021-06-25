@@ -2,11 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil | Pioutter</title>
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/PostPage/LightMode/postPage.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    <title>Post</title>
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/PostPage/LightMode/postPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/PostPage/DarkMode/postPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+    {{end}}
+
     <script type="text/javascript" src="/static/Javascript/header.js"></script>
     <script type="text/javascript" src="/static/Javascript/footer.js"></script>
+    <script type="text/javascript" src="/static/Javascript/mode.js"></script>
     <script type="module" src="/static/Javascript/commentary.js"></script>
     <script type="text/javascript" src="/static/Javascript/mode.js"></script>
     <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
@@ -81,10 +88,10 @@
                                                                 </div>
 
                                                                 <div class="mLeft RowFlex noUserSelect" style="justify-content: space-between; margin-left: 12px">
-                                                                    <div class="globalFLex styleCategory" style="background-color: #794BC4">
+                                                                    <div class="globalFLex styleCategory">
                                                                         <span></span>
                                                                     </div>
-                                                                    <div class="globalFLex mLeft styleCategory" style="background-color: #531da8">
+                                                                    <div class="globalFLex mLeft styleCategory">
                                                                         <span></span>
                                                                     </div>
                                                                 </div>
@@ -92,6 +99,10 @@
 
                                                             <div class="globalFLex noUserSelect">
                                                                 <p class="styleMessage" id="message-post"></p>
+
+                                                                <div class="globalFLex" id="divImage" style="border-radius: 20px; overflow: hidden; margin-right: 20px">
+                                                                    <img src="" id="imgPost" style="border-radius: 20px;width: 100%">
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -122,7 +133,7 @@
                 </div>
             </div>
 
-            <div id="containerCommentary">
+            <div id="containerCommentary" style="padding-bottom: 30px">
 
             </div>
         </div>

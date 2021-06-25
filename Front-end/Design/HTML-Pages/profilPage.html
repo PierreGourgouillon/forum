@@ -2,22 +2,27 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
+    <title>Profil</title>
 
-    <link rel="icon" type="image/png" href="/static/Design/Images/logo.png">
-
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/profilPage.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
-    <link rel="stylesheet" href="/static/Design/CSS-Pages/pop_up_Image.css">
+    {{if eq . "L"}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/profilPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/LightMode/header.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/LightMode/footer.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/LightMode/post.css" type="text/css">
+    {{else}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/profilPage.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Header/DarkMode/header.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/Templates/CSS-Templates/Footer/DarkMode/footer.css" type="text/css">
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/Other-Pages/DarkMode/post.css" type="text/css">
+    {{end}}
+        <link rel="stylesheet" href="/static/Design/CSS-Pages/pop_up_Image.css">
 
     <script src="/static/Javascript/profil.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/mode.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="/static/Javascript/post.js"></script>
     <script src="/static/Javascript/header.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/Javascript/footer.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="icon" type="image/png" href="/static/Design/Images/Logo/pioutter.png">
-    <title>Home</title>
 </head>
 
 <body>
@@ -87,7 +92,7 @@
         <div id="up">
             <div class="profil-container">
                 <div class="Avatar-Container">
-                    <img id="create-post-image" class="Avatar" src=""></img>
+                    <img id="profilImage" class="Avatar"></img>
                 </div>
                 <div class="info-container">
                     <div class="pseudo">

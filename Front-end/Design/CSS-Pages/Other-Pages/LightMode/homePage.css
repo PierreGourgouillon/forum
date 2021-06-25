@@ -252,3 +252,7 @@ main{
     padding-bottom: 5px;
     padding-right: 5px;
 }
+
+#inputIMG:hover{
+    filter: invert(65%) sepia(69%) saturate(6337%) hue-rotate(236deg) brightness(102%) contrast(98%);
+}

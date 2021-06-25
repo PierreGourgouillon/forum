@@ -131,6 +131,7 @@
     border-radius: 15px;
     padding: 5px 10px;
     color: white;
+    font-family: Montserrat-Regular;
 }
 
 
@@ -141,7 +142,7 @@
 }
 
 .pseudo-href:hover {
-    text-decoration: underline;
+    text-decoration: #A266FC underline;
 }
 
 
@@ -175,7 +176,7 @@
     width: 100%;
 }
 
-.imgHover:hover{
+.hisPost:hover{
     background: rgba(121, 76, 196, 0.7);
     border-radius: 999px;
 }

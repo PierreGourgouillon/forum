@@ -3,14 +3,24 @@ var compteur = false
 
 document.addEventListener("DOMContentLoaded",()=>{
     postIndex()
-    document.getElementById("b").addEventListener('click', createPost)
+    document.getElementById("b").addEventListener('click', ()=>{
+        createPost()
+    })
+
+    document.getElementById("inputIMG").addEventListener('click', ()=>{
+        document.getElementById("inputFile").click()
+    })
     addImageProfil()
     // document.getElementById("sort-button").addEventListener('click', postIndexFilter)
+    document.getElementById("insert-title").addEventListener('keyup', unborderingPublish)
+    document.getElementById("insert-message").addEventListener('keyup', unborderingPublish)
+
 })
 
 async function createPost(){
     let title = document.getElementById("insert-title")
     let message = document.getElementById("insert-message")
+    let messageBox = document.getElementById("container-messagePost")
     let categories = [...document.getElementsByClassName("selected-category")]
     let cats = categories.map((elem) => {
         return elem.outerText
@@ -20,9 +30,11 @@ async function createPost(){
 
     let user = await getUser(valueCookie)
 
+    let file = await getImagePost()
+
     if (title.value.length === 0 || message.value.length === 0){
         title.style.border = "2px solid red"
-        message.style.border = "2px solid red"
+        messageBox.style.border = "2px solid red"
     }else{
         fetch("/post/", {
             method: 'POST',
@@ -33,6 +45,7 @@ async function createPost(){
                 title: title.value,
                 pseudo: user.pseudo,
                 message: message.value,
+                image: file,
                 like: 0,
                 dislike: 0,
                 categories: cats
@@ -53,6 +66,32 @@ async function createPost(){
             })
     }
 }
+
+
+function getImagePost(){
+
+    return new Promise((resolve, reject) => {
+        const fileInput = document.querySelector("#inputFile");
+
+        const file = fileInput.files[0];
+
+        const reader = new FileReader();
+
+        if (file === undefined){
+            resolve("")
+        }else{
+            reader.onloadend = () => {
+                const base64String = reader.result
+                    .replace("data:", "")
+                    .replace(/^.+,/, "");
+                fileInput.value = ""
+                resolve(base64String)
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+}
+
 
 function postIndex(){
     fetch("/post/", {
@@ -196,6 +235,7 @@ async function addAllPost(response){
             let clone = document.importNode(template.content, true)
             let container = document.getElementById("containerPost")
             let imageProfil = clone.getElementById("image-user")
+            let imgPost = clone.getElementById("imgPost")
             let pseudo = clone.getElementById("pseudo-user")
             let title = clone.getElementById("title-user")
             let messagePost = clone.getElementById("message-post")
@@ -242,6 +282,11 @@ async function addAllPost(response){
                 })
             }
 
+            if (post.image === ""){
+                clone.getElementById("divImage").style.display = "none"
+            }
+
+            imgPost.src = "data:image/png;base64," + post.image
             pseudo.textContent = post.pseudo
             title.textContent = post.title
             messagePost.textContent += post.message
@@ -251,6 +296,7 @@ async function addAllPost(response){
             if (idUser !== post.IdUser){
                 clone.getElementById("dotsImg").remove()
                 dots.onclick = ""
+                dots.classList.remove("hisPost")
             }else{
                 dots.setAttribute("post_id", post.PostId)
             }
@@ -930,5 +976,12 @@ function changeLocation(){
 
 }
 
-
-
+function unborderingPublish(){
+    let title = document.getElementById("insert-title")
+    let message = document.getElementById("insert-message")
+    let messageBox = document.getElementById("container-messagePost")
+    if((title.value.length === 0 && message.value.length === 0) || (title.value.length !== 0 && message.value.length!== 0)){
+        title.style.border = ""
+        messageBox.style.border = ""
+    }
+}
