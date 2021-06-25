@@ -8,5 +8,5 @@ WORKDIR /Pioutter
 COPY go.mod go.sum ./
 RUN go mod download
 RUN go build -o main .
-EXPOSE 8088
+EXPOSE 8080
 CMD ["/Pioutter/main"]
